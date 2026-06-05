@@ -1,0 +1,1 @@
+{ "hosting": { "site": "obrigado-pmes", "public": "public", "ignore": ["firebase.json", "**/.*"] } }

@@ -1,0 +1,1 @@
+{ "hosting": { "site": "obrigado-gcm-aracaju", "public": "public", "ignore": ["firebase.json", "**/.*"] } }

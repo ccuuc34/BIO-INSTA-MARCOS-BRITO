@@ -1,0 +1,1 @@
+{ "hosting": { "site": "obrigado-pmsp", "public": "public", "ignore": ["firebase.json", "**/.*"] } }

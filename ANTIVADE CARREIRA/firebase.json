@@ -1,0 +1,1 @@
+{ "hosting": { "site": "antivade-carreira", "public": "public", "ignore": ["firebase.json", "**/.*"] } }
