@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obrigado! — Edital PMMA | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100vh; font-family: 'Nunito', sans-serif; background-color: #010000; color: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    body { background-image: radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.4), transparent), radial-gradient(1.5px 1.5px at 60px 80px, rgba(255,255,255,0.2), transparent), radial-gradient(1px 1px at 110px 20px, rgba(255,100,100,0.3), transparent), radial-gradient(2px 2px at 150px 140px, rgba(255,255,255,0.1), transparent); background-size: 200px 200px; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 20px 20px; pointer-events: none; z-index: 0; }
+    body::after { content: ''; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 700px; height: 350px; background: #990000; border-radius: 50%; filter: blur(180px); opacity: 0.14; pointer-events: none; z-index: 0; }
+    .page { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+    .card { width: 100%; max-width: 440px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .check-wrap { width: 80px; height: 80px; border-radius: 50%; background: rgba(37,211,102,0.12); border: 1.5px solid rgba(37,211,102,0.4); display: flex; align-items: center; justify-content: center; margin-bottom: 28px; box-shadow: 0 0 32px rgba(37,211,102,0.15); animation: pulse 2.5s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 32px rgba(37,211,102,0.15); } 50% { box-shadow: 0 0 48px rgba(37,211,102,0.30); } }
+    .check-wrap svg { width: 36px; height: 36px; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(233,196,0,0.1); border: 1px solid rgba(233,196,0,0.35); border-radius: 999px; padding: 4px 12px; margin-bottom: 20px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 11px; color: #e9c400; letter-spacing: 0.1em; text-transform: uppercase; }
+    .title { font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(26px, 7vw, 36px); color: #ffffff; letter-spacing: 0.03em; line-height: 1.15; margin-bottom: 16px; }
+    .title span { color: #e9c400; }
+    .subtitle { font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 36px; max-width: 360px; }
+    .subtitle strong { color: rgba(255,255,255,0.9); font-weight: 700; }
+    .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 32px; }
+    .received-box { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 20px; margin-bottom: 28px; text-align: left; }
+    .received-box .box-title { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+    .received-box .item { display: flex; align-items: center; gap: 10px; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px; color: rgba(255,255,255,0.85); margin-bottom: 10px; }
+    .received-box .item:last-child { margin-bottom: 0; }
+    .received-box .item .dot { width: 6px; height: 6px; border-radius: 50%; background: #8000ff; flex-shrink: 0; }
+    .cta { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 18px 24px; background: linear-gradient(135deg, #8000ff, #5500bb); border: none; border-radius: 12px; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 16px; color: #ffffff; letter-spacing: 0.04em; text-decoration: none; cursor: pointer; box-shadow: 0 0 32px rgba(128,0,255,0.35), 0 8px 24px rgba(0,0,0,0.4); transition: transform 0.15s, box-shadow 0.15s; margin-bottom: 16px; }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 0 48px rgba(128,0,255,0.5), 0 12px 32px rgba(0,0,0,0.5); }
+    .cta:active { transform: scale(0.98); }
+    .cta svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .footer-note { font-family: 'Nunito', sans-serif; font-size: 12px; color: rgba(255,255,255,0.25); margin-top: 8px; }
+    .footer-sig { margin-top: 40px; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 12px; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <div class="check-wrap">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 13L9 17L19 7" stroke="#25D366" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="badge">★ Compra confirmada</div>
+      <h1 class="title">OBRIGADO,<br /><span>SOLDADO!</span></h1>
+      <p class="subtitle">Sua compra foi confirmada. Eu separei <strong>tudo o que você precisa</strong> pra dominar o edital da PMMA — organizado, verticalizado e com as marcações do que priorizar.<br /><br />Agora é só acessar e colocar o estudo pra rodar. <strong>Você tomou a decisão certa.</strong></p>
+      <div class="divider"></div>
+      <div class="received-box">
+        <div class="box-title">O que você recebeu</div>
+        <div class="item"><div class="dot"></div> Edital PMMA verticalizado por matéria</div>
+        <div class="item"><div class="dot"></div> Marcações do que priorizar em cada assunto</div>
+        <div class="item"><div class="dot"></div> Prioridades do que estudar primeiro</div>
+        <div class="item"><div class="dot"></div> Acesso completo via Google Drive</div>
+      </div>
+      <a href="https://drive.google.com/drive/folders/184M6SQpJNXzuPzV_d-0xllPdxAfCJbhq?usp=sharing" target="_blank" rel="noopener noreferrer" class="cta">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04A7.49 7.49 0 0012 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 000 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+        ACESSAR MEU EDITAL PMMA
+      </a>
+      <p class="footer-note">O link abre direto no Google Drive. Salve na sua conta para não perder o acesso.</p>
+      <p class="footer-sig">© 2026 Marcos Brito — Tactical Prep</p>
+    </div>
+  </div>
+</body>
+</html>
