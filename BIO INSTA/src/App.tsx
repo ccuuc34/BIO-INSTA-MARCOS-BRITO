@@ -82,6 +82,20 @@ const IconTour = () => (
   </svg>
 );
 
+const Icon6Pilares = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+    {/* Chama principal */}
+    <path d="M12 2C12 2 7 7 7 12.5C7 15.5 9.2 18 12 18C14.8 18 17 15.5 17 12.5C17 7 12 2 12 2Z"
+      fill="currentColor" opacity="0.9"/>
+    {/* Chama interna */}
+    <path d="M12 7C12 7 9.5 10 9.5 12.5C9.5 13.9 10.6 15 12 15C13.4 15 14.5 13.9 14.5 12.5C14.5 10 12 7 12 7Z"
+      fill="currentColor" opacity="0.35"/>
+    {/* Base */}
+    <path d="M8 21H16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+    <path d="M12 18V21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+  </svg>
+);
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 const hexToRgba = (hex: string, alpha: number): string => {
@@ -317,6 +331,16 @@ const links: LinkItem[] = [
     icon: <IconKits />,
     featured: true,
     description: '',
+  },
+  {
+    id: '6pilares',
+    label: '6 PILARES - AO VIVO COMIGO',
+    url: 'https://6pilares-oficial.web.app/',
+    color: '#fed7aa',
+    buttonColor: '#c2410c',
+    icon: <Icon6Pilares />,
+    featured: true,
+    description: 'Três encontros ao vivo comigo. Seis elementos que candidatos aprovados têm e que a maioria nunca para pra construir. Não é mais conteúdo. É o sistema de execução que faz tudo o mais funcionar. Clica em "Continuar" e acessa agora.',
   },
   {
     id: 'grupos',
