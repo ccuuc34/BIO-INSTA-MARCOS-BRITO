@@ -83,16 +83,15 @@ const IconTour = () => (
 );
 
 const Icon6Pilares = () => (
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-    {/* Chama principal */}
-    <path d="M12 2C12 2 7 7 7 12.5C7 15.5 9.2 18 12 18C14.8 18 17 15.5 17 12.5C17 7 12 2 12 2Z"
-      fill="currentColor" opacity="0.9"/>
-    {/* Chama interna */}
-    <path d="M12 7C12 7 9.5 10 9.5 12.5C9.5 13.9 10.6 15 12 15C13.4 15 14.5 13.9 14.5 12.5C14.5 10 12 7 12 7Z"
-      fill="currentColor" opacity="0.35"/>
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+    {/* 6 pilares verticais */}
+    <rect x="1"  y="8"  width="3" height="13" rx="1" opacity="0.6"/>
+    <rect x="5.5" y="5" width="3" height="16" rx="1" opacity="0.75"/>
+    <rect x="10" y="2"  width="3" height="19" rx="1" opacity="1"/>
+    <rect x="14.5" y="5" width="3" height="16" rx="1" opacity="0.75"/>
+    <rect x="19" y="8"  width="3" height="13" rx="1" opacity="0.6"/>
     {/* Base */}
-    <path d="M8 21H16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-    <path d="M12 18V21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+    <rect x="0" y="21.5" width="24" height="1.5" rx="0.75"/>
   </svg>
 );
 
@@ -313,6 +312,16 @@ const kitLinks: LinkItem[] = [
 
 const links: LinkItem[] = [
   {
+    id: '6pilares',
+    label: '6 PILARES - AO VIVO COMIGO',
+    url: 'https://6pilares-oficial.web.app/',
+    color: '#fed7aa',
+    buttonColor: '#c2410c',
+    icon: <Icon6Pilares />,
+    featured: true,
+    description: 'Três encontros ao vivo comigo. Seis elementos que candidatos aprovados têm e que a maioria nunca para pra construir. Não é mais conteúdo. É o sistema de execução que faz tudo o mais funcionar. Clica em "Continuar" e acessa agora.',
+  },
+  {
     id: 'antivade',
     label: 'ANTI-VADE AQUI',
     url: '',
@@ -331,16 +340,6 @@ const links: LinkItem[] = [
     icon: <IconKits />,
     featured: true,
     description: '',
-  },
-  {
-    id: '6pilares',
-    label: '6 PILARES - AO VIVO COMIGO',
-    url: 'https://6pilares-oficial.web.app/',
-    color: '#fed7aa',
-    buttonColor: '#c2410c',
-    icon: <Icon6Pilares />,
-    featured: true,
-    description: 'Três encontros ao vivo comigo. Seis elementos que candidatos aprovados têm e que a maioria nunca para pra construir. Não é mais conteúdo. É o sistema de execução que faz tudo o mais funcionar. Clica em "Continuar" e acessa agora.',
   },
   {
     id: 'grupos',
