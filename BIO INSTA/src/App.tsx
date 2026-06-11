@@ -1,5 +1,5 @@
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
 import './App.css';
 
@@ -705,6 +705,62 @@ function AudioPlayer({
   );
 }
 
+// ─── Wistia Video Player ─────────────────────────────────────────────────────
+// API nova (Web Component): <wistia-player media-id="...">
+// player.js é carregado UMA vez em index.html.
+// Cada vídeo tem seu próprio embed/{id}.js — guardado por ID para não duplicar.
+
+const WISTIA_VIDEO_IDS = ['sz38o0lg5l', 'c3us9zwx3c'];
+
+function WistiaVideo({ videoId, label }: { videoId: string; label: string }) {
+  useEffect(() => {
+    const scriptId = `wistia-embed-${videoId}`;
+    // Só adiciona se ainda não estiver no DOM — evita conflito entre os dois players
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = `https://fast.wistia.com/embed/${videoId}.js`;
+      script.async = true;
+      script.type = 'module';
+      document.head.appendChild(script);
+    }
+    // Sem cleanup: scripts de módulo Wistia registram o custom element globalmente;
+    // removê-los não desfaz o registro e causa problemas se o componente remontar.
+  }, [videoId]);
+
+  return (
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {/* Swatch placeholder enquanto o player não carrega */}
+      <style>{`
+        wistia-player[media-id='${videoId}']:not(:defined) {
+          background: center / contain no-repeat
+            url('https://fast.wistia.com/embed/medias/${videoId}/swatch');
+          display: block;
+          filter: blur(5px);
+          padding-top: 177.78%;
+        }
+      `}</style>
+
+      {/* Wrapper que controla o tamanho — 220px de largura, player vertical 9:16 */}
+      <div style={{ width: '220px' }}>
+        {React.createElement('wistia-player', {
+          'media-id': videoId,
+          aspect: '0.5625',
+          style: { width: '100%', borderRadius: '10px', overflow: 'hidden' },
+        })}
+      </div>
+
+      <p style={{
+        fontFamily: "'Nunito', sans-serif", fontWeight: 600, fontSize: '12px',
+        color: 'rgba(255,255,255,0.25)', textAlign: 'center',
+        marginTop: '10px', letterSpacing: '0.04em',
+      }}>
+        {label}
+      </p>
+    </div>
+  );
+}
+
 // ─── Depoimentos ─────────────────────────────────────────────────────────────
 
 const DEP_IMAGES = [
@@ -1176,6 +1232,54 @@ function App() {
           }}>
             {depIdx + 1} / {DEP_IMAGES.length}
           </p>
+        </motion.section>
+
+        {/* ── DEPOIMENTOS EM VÍDEO ── */}
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.85, duration: 0.5 }}
+          style={{ width: '100%', marginTop: '48px' }}
+        >
+          {/* Cabeçalho da seção */}
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            gap: '10px', marginBottom: '20px', textAlign: 'center',
+          }}>
+            <div style={{
+              width: '36px', height: '36px', borderRadius: '10px',
+              background: 'rgba(139,23,26,0.18)', border: '1px solid rgba(139,23,26,0.35)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="rgba(255,255,255,0.85)">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <div>
+              <p style={{
+                fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: '11px',
+                color: 'rgba(255,255,255,0.35)', letterSpacing: '0.12em',
+                textTransform: 'uppercase', marginBottom: '2px',
+              }}>Resultados reais</p>
+              <h2 style={{
+                fontFamily: "'Sora', sans-serif", fontWeight: 800, fontSize: '17px',
+                color: '#ffffff', letterSpacing: '0.02em',
+              }}>Depoimentos em Vídeo</h2>
+            </div>
+          </div>
+
+          {/* Vídeos */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {WISTIA_VIDEO_IDS.map((id, i) => (
+              <div key={id} style={{
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                borderRadius: '16px', padding: '16px',
+              }}>
+                <WistiaVideo videoId={id} label={`Depoimento ${i + 1}`} />
+              </div>
+            ))}
+          </div>
         </motion.section>
 
         {/* ── ÁUDIOS ── */}
