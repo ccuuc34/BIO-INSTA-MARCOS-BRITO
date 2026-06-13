@@ -1874,9 +1874,12 @@ function App() {
                 background: '#111111',
                 border: '1px solid rgba(175,144,100,0.3)',
                 borderRadius: '24px 24px 0 0',
-                padding: '8px 0 32px',
+                padding: '8px 0 0',
                 width: '100%',
                 maxWidth: '480px',
+                maxHeight: '75vh',
+                display: 'flex',
+                flexDirection: 'column',
                 boxShadow: '0 -8px 40px rgba(175,144,100,0.12), 0 -24px 64px rgba(0,0,0,0.6)',
               }}
             >
@@ -1927,7 +1930,7 @@ function App() {
               </p>
 
               {/* Lista de grupos */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '0 16px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '0 16px 32px', overflowY: 'auto', flex: 1 }}>
                 {groupLinks.map((group, i) => (
                   <motion.div
                     key={group.id}
