@@ -190,6 +190,20 @@ const groupLinks: LinkItem[] = [
     color: '#f0d4a0',
     description: 'Eu criei esse grupo pra quem estuda pra PMPE. Lá dentro eu posto conteúdo, dicas e te ajudo no que precisar. É um grupo de WhatsApp. Clica em "Continuar" e o WhatsApp já abre pra você entrar.',
   },
+  {
+    id: 'gma-grupo',
+    label: 'Grupo Rumo à GMA - Marcos Brito',
+    url: 'https://chat.whatsapp.com/CIhmDIFUNtL33RTWUzxC6D?s=sh&p=i&ilr=1',
+    color: '#f0d4a0',
+    description: 'Eu criei esse grupo pra quem estuda pra GMA. Lá dentro eu posto conteúdo, dicas e te ajudo no que precisar. É um grupo de WhatsApp. Clica em "Continuar" e o WhatsApp já abre pra você entrar.',
+  },
+  {
+    id: 'pmma-grupo',
+    label: 'Grupo Rumo à PMMA - Marcos Brito',
+    url: 'https://chat.whatsapp.com/HlzHLfu3yyD0t2tWiO3kNf?s=sh&p=i&ilr=1',
+    color: '#f0d4a0',
+    description: 'Eu criei esse grupo pra quem estuda pra PMMA. Lá dentro eu posto conteúdo, dicas e te ajudo no que precisar. É um grupo de WhatsApp. Clica em "Continuar" e o WhatsApp já abre pra você entrar.',
+  },
 ];
 
 // ─── Anti-Vade Links (sub-área) ───────────────────────────────────────────────
