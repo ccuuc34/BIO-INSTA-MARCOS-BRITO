@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-Vade Mecum 3.0 | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://fast.wistia.com/player.js" async></script>
+  <script src="https://fast.wistia.com/embed/9aqvvz58u4.js" async type="module"></script>
+  <style>
+    wistia-player[media-id='9aqvvz58u4']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/9aqvvz58u4/swatch');
+      display: block; filter: blur(5px); padding-top: 179.17%;
+    }
+  </style>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background-color: #010000;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 60px 80px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 110px 20px, rgba(255,100,100,0.3), transparent),
+        radial-gradient(2px 2px at 150px 140px, rgba(255,255,255,0.1), transparent);
+      background-size: 200px 200px;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 350px;
+      background: #8b0000;
+      border-radius: 50%; filter: blur(180px); opacity: 0.18;
+      pointer-events: none; z-index: 0;
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; justify-content: center;
+      padding: 52px 20px 80px;
+    }
+
+    .card {
+      width: 100%; max-width: 560px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    /* ── ticker faixa vermelha ── */
+    .ticker-strip {
+      width: 100%; overflow: hidden;
+      background: linear-gradient(90deg, #9b0a0a, #cc1818, #9b0a0a);
+      padding: 10px 0; margin-bottom: 22px;
+      border-radius: 6px;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+    .ticker-track {
+      display: flex; white-space: nowrap; width: max-content;
+      animation: ticker-scroll 11s linear infinite;
+    }
+    .ticker-track span {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #ffffff;
+      padding: 0 22px;
+    }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Headline ── */
+    .title {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(24px, 7.2vw, 38px);
+      color: #ffffff; text-align: center;
+      line-height: 1.2; letter-spacing: 0.01em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .title .accent { color: #e84040; font-size: 0.65em; }
+
+    .pre-video {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.35); text-align: center;
+      margin-bottom: 22px; letter-spacing: 0.02em;
+    }
+
+    /* ── Video ── */
+    .video-wrap {
+      width: clamp(180px, 58%, 260px);
+      margin: 0 auto 40px;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 60px rgba(139,23,26,0.25), 0 24px 48px rgba(0,0,0,0.5);
+    }
+    .video-label {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 12px;
+      color: rgba(255,255,255,0.2); letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* ── Advertorial body ── */
+    .advertorial {
+      width: 100%;
+      display: flex; flex-direction: column; gap: 48px;
+    }
+
+    .section-label {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      color: rgba(139,23,26,0.7); letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .body-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 16px;
+      color: rgba(255,255,255,0.72); line-height: 1.8;
+    }
+    .body-text + .body-text { margin-top: 16px; }
+    .body-text strong { color: rgba(255,255,255,0.92); font-weight: 700; }
+    .body-text em { color: #e84040; font-style: normal; font-weight: 700; }
+
+    .section-heading {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(18px, 5vw, 24px);
+      color: #ffffff; line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    .callout {
+      width: 100%;
+      background: rgba(139,23,26,0.1);
+      border-left: 3px solid #e84040;
+      border-radius: 0 10px 10px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .callout p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      color: rgba(255,220,220,0.9); line-height: 1.7;
+      font-style: italic;
+    }
+
+    .box {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .box-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.3); letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .false-item { margin-bottom: 22px; }
+    .false-item-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: line-through;
+      margin-bottom: 6px;
+    }
+    .false-item p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+
+    .objection { margin-bottom: 24px; }
+    .objection-q {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 8px;
+    }
+    .objection-q::before { content: '"'; color: #e84040; }
+    .objection-q::after  { content: '"'; color: #e84040; }
+    .objection-a {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.62); line-height: 1.75;
+      padding-left: 14px;
+      border-left: 2px solid rgba(139,23,26,0.4);
+    }
+
+    .offer-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+      margin: 16px 0;
+    }
+    .offer-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px;
+      color: rgba(255,255,255,0.8); line-height: 1.5;
+    }
+    .offer-list li .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #e84040; flex-shrink: 0; margin-top: 7px;
+    }
+
+    .testimonial {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 22px 20px;
+      margin-bottom: 16px;
+    }
+    .testimonial-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.75); line-height: 1.75;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 10px; }
+    .testimonial-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(139,23,26,0.25);
+      border: 1px solid rgba(139,23,26,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 13px;
+      color: rgba(255,170,170,0.9); flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+    .testimonial-detail {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px;
+      color: rgba(255,255,255,0.3); margin-top: 2px;
+    }
+    .testimonial-stars { color: #e9c400; font-size: 13px; margin-bottom: 10px; }
+
+    .bonus-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      margin-bottom: 20px;
+    }
+    .bonus-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(139,23,26,0.18);
+      border: 1px solid rgba(139,23,26,0.35);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 18px;
+    }
+    .bonus-text .bonus-name {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.88); margin-bottom: 4px;
+    }
+    .bonus-text p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.5); line-height: 1.6;
+    }
+
+    .guarantee-box {
+      width: 100%;
+      background: rgba(37,211,102,0.06);
+      border: 1px solid rgba(37,211,102,0.2);
+      border-radius: 14px;
+      padding: 24px 20px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .guarantee-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(37,211,102,0.12);
+      border: 1px solid rgba(37,211,102,0.3);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .guarantee-icon svg { width: 22px; height: 22px; }
+    .guarantee-text .g-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: rgba(255,255,255,0.9); margin-bottom: 8px;
+    }
+    .guarantee-text p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+
+    .scarcity {
+      width: 100%;
+      background: rgba(233,196,0,0.07);
+      border: 1px solid rgba(233,196,0,0.22);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex; gap: 10px; align-items: center;
+      margin-top: 20px;
+    }
+    .scarcity svg { width: 18px; height: 18px; fill: #e9c400; flex-shrink: 0; }
+    .scarcity p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(233,196,0,0.85); line-height: 1.5;
+    }
+
+    /* ── CTA ── */
+    .cta-wrap {
+      width: 100%; margin-top: 48px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+
+    .cta-snake {
+      position: relative; width: 100%;
+      border-radius: 17px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 85px rgba(10,190,82,0.72), 0 18px 44px rgba(0,0,0,0.5);
+    }
+    .cta-snake::before {
+      content: '';
+      position: absolute;
+      width: 300%; height: 300%;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg,
+        transparent 0deg,
+        transparent 255deg,
+        rgba(170,0,0,0.08) 272deg,
+        rgba(210,15,0,0.55) 288deg,
+        #ff3300 302deg,
+        #ff6600 316deg,
+        #ff9900 329deg,
+        rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg,
+        transparent 360deg
+      );
+      animation: cta-snake-spin 2.4s linear infinite;
+    }
+    @keyframes cta-snake-spin {
+      from { transform: translate(-50%,-50%) rotate(0deg); }
+      to   { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 20px clamp(14px, 4vw, 24px);
+      background: linear-gradient(135deg, #0abe52 0%, #079040 60%, #056830 100%);
+      border: none; border-radius: 14px;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(13px, 3.8vw, 17px);
+      color: #ffffff; letter-spacing: 0.04em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      position: relative; overflow: hidden;
+      transition: transform 0.15s;
+    }
+    .cta { transform: translateY(-2px); }
+    .cta:active { transform: scale(0.98) translateY(-2px); }
+    .cta svg { width: 20px; height: 20px; flex-shrink: 0; position: relative; z-index: 1; }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -10%; left: -85%;
+      width: 44%; height: 120%;
+      background: linear-gradient(
+        100deg,
+        transparent 10%,
+        rgba(255,255,255,0.28) 44%,
+        rgba(255,255,255,0.38) 50%,
+        rgba(255,255,255,0.28) 56%,
+        transparent 90%
+      );
+      transform: skewX(-12deg);
+      animation: cta-shimmer 2.9s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes cta-shimmer {
+      0%,  22% { left: -85%; }
+      62%, 100% { left: 155%; }
+    }
+    .cta-note {
+      font-family: 'Nunito', sans-serif; font-size: 12px;
+      color: rgba(255,255,255,0.2); text-align: center;
+    }
+
+    .footer-sig {
+      margin-top: 56px;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.12); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+      width: 100%; display: flex; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 16px 8px; text-align: center;
+    }
+    .stat-icon { font-size: 20px; margin-bottom: 6px; line-height: 1; }
+    .stat-value {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: #ffffff; margin-bottom: 3px;
+    }
+    .stat-label {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 10px;
+      color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── Stars row ── */
+    .stars-row {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-bottom: 24px;
+    }
+    .stars { color: #e9c400; font-size: 14px; letter-spacing: 2px; }
+    .stars-text {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* ── Guarantee mini ── */
+    .guarantee-mini {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      margin-top: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12px;
+      color: rgba(255,255,255,0.22);
+    }
+    .guarantee-mini svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── FAQ ── */
+    .faq-wrap { width: 100%; margin-top: 10px; margin-bottom: 10px; }
+    .faq-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: rgba(255,255,255,0.75); margin-bottom: 12px;
+    }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .faq-item:first-of-type { border-top: 1px solid rgba(255,255,255,0.07); }
+    .faq-q {
+      width: 100%; padding: 16px 0;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+      cursor: pointer; list-style: none; user-select: none;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.72); line-height: 1.45; text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::marker { display: none; }
+    details[open] .faq-q { color: #ffffff; }
+    .faq-chevron {
+      width: 16px; height: 16px; fill: rgba(255,255,255,0.25);
+      flex-shrink: 0; margin-top: 2px; transition: transform 0.25s;
+    }
+    details[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.52); line-height: 1.75;
+      padding-bottom: 18px;
+    }
+    .faq-a strong { color: rgba(255,255,255,0.8); font-weight: 700; }
+
+    /* ── TSL collapse ── */
+    .tsl-collapse {
+      width: 100%; margin-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .tsl-toggle {
+      width: 100%; padding: 18px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; gap: 12px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.35); list-style: none; user-select: none;
+      transition: color 0.2s;
+    }
+    .tsl-toggle::-webkit-details-marker { display: none; }
+    .tsl-toggle::marker { display: none; }
+    details[open] .tsl-toggle { color: rgba(255,255,255,0.55); }
+    .toggle-icon {
+      width: 18px; height: 18px; fill: rgba(255,255,255,0.2);
+      flex-shrink: 0; transition: transform 0.3s;
+    }
+    details[open] .toggle-icon { transform: rotate(180deg); }
+    .tsl-inner { padding-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+
+      <!-- ── HEADER ── -->
+      <div class="ticker-strip">
+        <div class="ticker-track">
+          <span>PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ </span><span>PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ </span>
+        </div>
+      </div>
+
+      <h1 class="title">
+        Você resolveu<br />o português.<br />
+        <span class="accent">Agora existe um único obstáculo entre você e a aprovação.</span>
+      </h1>
+
+      <p class="pre-video">Assista antes de fechar essa página. É curto. Vai mudar o que falta.</p>
+
+      <!-- PLAYER -->
+      <div class="video-wrap">
+        <wistia-player media-id="9aqvvz58u4" aspect="0.5581395348837209" style="width:100%;display:block;"></wistia-player>
+      </div>
+
+      <!-- ── CTA PRIMÁRIO ── -->
+      <div class="cta-wrap" style="margin-top:0; margin-bottom:28px;">
+        <div class="cta-snake">
+          <a href="https://pay.kirvano.com/5b388f81-7dff-4381-bbd8-4ac316c0aa75" class="cta">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+            QUERO O ANTI-VADE MECUM 3.0
+          </a>
+        </div>
+        <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+      </div>
+
+      <!-- ── STRIP VISUAL ── -->
+      <div class="stats-strip">
+        <div class="stat">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-value">15 min</div>
+          <div class="stat-label">por lei</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value">28/30</div>
+          <div class="stat-label">legislação PMAL</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">🛡️</div>
+          <div class="stat-value">7 dias</div>
+          <div class="stat-label">garantia</div>
+        </div>
+      </div>
+
+      <!-- ── STARS ── -->
+      <div class="stars-row">
+        <span class="stars">★★★★★</span>
+        <span class="stars-text">4.9 · Aprovados em PMAL, PPMG, PPES e mais</span>
+      </div>
+
+      <!-- ── FAQ ── -->
+      <div class="faq-wrap">
+        <p class="faq-title">Perguntas frequentes</p>
+
+        <details class="faq-item">
+          <summary class="faq-q">O Anti-Vade Mecum 3.0 cobre as leis do meu edital específico?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O material foi construído em torno das leis de maior incidência nos concursos policiais: Código Penal, Código Penal Militar, Lei de Drogas, Estatuto do Desarmamento, Lei Maria da Penha, Lei de Tortura, ECA e outras. Se o seu edital tem legislação, o Anti-Vade Mecum 3.0 cobre os fundamentos de qualquer banca — CESPE, VUNESP, FCC, FGV.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Já tentei estudar lei seca pelo PDF e nunca consigo terminar. Como isso é diferente?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O PDF original tem 180, 200, 300 páginas. O Anti-Vade Mecum 3.0 pega a mesma lei e entrega em 4, 5, 10 páginas no máximo. <strong>Não é resumo.</strong> É a lei inteira, com as palavras decisivas em negrito e os artigos de alta incidência marcados. Você lê uma lei completa em 15 minutos. A mesma lei que levaria 3 horas no PDF original.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Não é um resumo? A lei realmente está completa dentro do material?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Sim. A lei está inteira. O que o Anti-Vade Mecum 3.0 faz é separar o que a banca cobra do que existe apenas para completar o texto legal. As palavras que decidem questões ficam em negrito. Os artigos de alta incidência ficam marcados. O resto ainda está lá, mas não compete com o que você precisa fixar.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Tenho 30 dias para a prova. Ainda vale a pena começar?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Com 30 dias e o Anti-Vade Mecum 3.0, você consegue cobrir as 5 a 7 leis de maior incidência do seu edital. Você não precisa terminar o material inteiro para ter um resultado expressivo. <strong>Precisa terminar as leis certas, na ordem certa.</strong> E isso é exatamente o que o material foi feito para te ajudar a fazer.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Qual a diferença do 3.0 para versões anteriores?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O 3.0 foi revisado com base nos resultados dos alunos das versões anteriores. Os trechos de menor incidência foram removidos. Os destaques foram recalibrados. O formato de leitura ficou mais limpo. O aluno da PMAL que acertou 28 de 30 questões de legislação usou a versão anterior. O 3.0 está mais preciso.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Serve para qualquer concurso policial ou é específico?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O material cobre as leis que aparecem com maior frequência em PM e PP em todo o Brasil. Se você está estudando para PMAL, PPMG, PMMA, PMPE, PMES ou concursos similares, o Anti-Vade Mecum 3.0 foi construído pensando no seu perfil de prova.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">E se eu abrir o material e não gostar?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Você tem 7 dias de garantia. Se abrir o material, estudar e sentir que não entrega o que promete, solicita o reembolso. Sem perguntas, sem burocracia, o valor volta integralmente. Você não deve arriscar nada para descobrir se funciona.</p>
+        </details>
+
+      </div>
+
+      <!-- ── GARANTIA MINI ── -->
+      <div class="guarantee-mini">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="rgba(37,211,102,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Garantia de 7 dias · Acesso imediato · Sem burocracia</span>
+      </div>
+
+      <!-- ── TSL COLAPSÁVEL ── -->
+      <details class="tsl-collapse">
+        <summary class="tsl-toggle">
+          Quero saber tudo que está incluso antes de decidir
+          <svg class="toggle-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </summary>
+        <div class="tsl-inner">
+        <article class="advertorial">
+
+        <section>
+          <p class="body-text">
+            O vídeo mostrou o diagnóstico. Agora você vai entender por que o PDF de lei nunca funcionou para você — e o que, exatamente, você vai dominar se decidir entrar.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- FALSE SOLUTIONS -->
+        <section>
+          <p class="section-label">O que não funciona</p>
+          <h2 class="section-heading">Por que todo candidato trava na lei seca.</h2>
+
+          <p class="body-text" style="margin-bottom: 24px;">
+            Noventa por cento dos concurseiros abre um PDF de duzentas páginas, lê três artigos e fecha. Todo dia. Todo edital. Todo concurso. E não é falta de esforço. É falta da ferramenta certa.
+          </p>
+
+          <div class="false-item">
+            <div class="false-item-title">O PDF original da lei (180–300 páginas)</div>
+            <p>A Lei de Drogas tem 75 artigos. O Código Penal tem mais de 360. Você abre, vê o tamanho e perde o foco antes do artigo 5. A banca cobra 3% do conteúdo. Você estuda 100% de forma linear.</p>
+          </div>
+          <div class="false-item">
+            <div class="false-item-title">O resumo do colega aprovado</div>
+            <p>O resumo de quem passou foi feito para o concurso dele, com as bancas que ele estudou. Não tem negrito no que a sua banca cobra. Não tem alerta para a pegadinha do seu edital.</p>
+          </div>
+          <div class="false-item" style="margin-bottom:0;">
+            <div class="false-item-title">Os vídeos de 40 minutos sobre cada lei</div>
+            <p>Ótimos para entender o contexto. Péssimos para fixar os artigos que caem. Você assiste, entende tudo, fecha o vídeo e não consegue responder nem a primeira questão objetiva.</p>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- OBJECTIONS -->
+        <section>
+          <p class="section-label">Suas dúvidas</p>
+          <h2 class="section-heading">Já ouço o que você está pensando.</h2>
+
+          <div class="objection">
+            <div class="objection-q">Mas eu preciso saber a lei inteira, não posso usar um resumo.</div>
+            <p class="objection-a">Não é resumo. A lei está inteira dentro do material. O que muda é a apresentação: palavras decisivas em negrito, artigos de alta incidência marcados, o resto disponível sem competir com o que você precisa fixar. A banca cobra a lei, não o manual de leitura linear.</p>
+          </div>
+
+          <div class="objection">
+            <div class="objection-q">Não tenho tempo para estudar mais um material.</div>
+            <p class="objection-a">15 minutos por lei. Uma lei completa, com os pontos marcados, no tempo de um intervalo de trabalho. O Anti-Vade Mecum 3.0 foi feito para quem estuda nas margens do dia, não para quem tem a tarde inteira livre.</p>
+          </div>
+
+          <div class="objection">
+            <div class="objection-q">Já comprei material de lei seca antes e não usei.</div>
+            <p class="objection-a">Se o material anterior era um PDF com o texto original da lei ou um resumo sem estrutura, agora você tem algo diferente. O Anti-Vade Mecum 3.0 está organizado para você começar pela lei de maior incidência do seu edital e avançar lei por lei, sem se perder no caminho.</p>
+          </div>
+
+          <div class="objection" style="margin-bottom:0;">
+            <div class="objection-q">Lei seca nunca foi meu ponto forte.</div>
+            <p class="objection-a">O Marcos teve sete reprovações. Em todas elas errava questão de lei seca que tinha estudado. Não porque não estudou. Porque estudava o PDF inteiro quando a banca só cobrava a carne. Esse material existe porque ele viveu esse problema. E resolveu.</p>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- OFFER -->
+        <section>
+          <p class="section-label">O que você vai receber</p>
+          <h2 class="section-heading">A lei inteira. Em 15 minutos. Com o que cai em negrito.</h2>
+
+          <p class="body-text">
+            O Anti-Vade Mecum 3.0 pega cada lei do seu edital e entrega destrinchada, mastigada, com as palavras decisivas marcadas. As principais leis dos concursos policiais, na ordem de maior incidência.
+          </p>
+
+          <ul class="offer-list">
+            <li><div class="dot"></div> Atualizações Maria da Penha 2026</li>
+            <li><div class="dot"></div> Crimes Hediondos (Lei nº 8.072/90)</li>
+            <li><div class="dot"></div> Crimes Hediondos — Atualizações 2026</li>
+            <li><div class="dot"></div> Direito Processual — Inquérito Policial</li>
+            <li><div class="dot"></div> Direito Processual Penal — Ação Penal</li>
+            <li><div class="dot"></div> Estatuto do Desarmamento (Lei nº 10.826/03)</li>
+            <li><div class="dot"></div> ORCRIM (Lei nº 12.850)</li>
+            <li><div class="dot"></div> Lei de Abuso de Autoridade (Lei nº 13.869/19)</li>
+            <li><div class="dot"></div> Lei de Drogas (Lei nº 11.343/06)</li>
+            <li><div class="dot"></div> Lei de Execução Penal (Lei 7.210/84)</li>
+            <li><div class="dot"></div> Lei de Execução Penal — Atualizações 2026</li>
+            <li><div class="dot"></div> Lei de Tortura (Lei nº 9.455/97)</li>
+            <li><div class="dot"></div> Lei de Tortura — Atualizações 2026</li>
+            <li><div class="dot"></div> Lei Maria da Penha (Lei nº 11.340/06)</li>
+            <li><div class="dot"></div> Lei Maria da Penha — Atualizações 2026</li>
+            <li><div class="dot"></div> Prisão Temporária (Lei nº 7.960)</li>
+            <li><div class="dot"></div> Improbidade Administrativa (Lei nº 8.429/92)</li>
+            <li><div class="dot"></div> LEP Atualizações 2026</li>
+          </ul>
+
+          <p class="body-text">
+            Cada lei vem com <strong>destaques nos artigos de alta incidência</strong>, alertas onde a banca tenta te derrubar e comparativos quando duas leis são cobradas juntas na mesma questão.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- BONUSES -->
+        <section>
+          <p class="section-label">Bônus</p>
+          <h2 class="section-heading">O que vem junto, sem custo extra.</h2>
+
+          <div class="bonus-item">
+            <div class="bonus-icon">📋</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Mapa de Incidência por Banca</div>
+              <p>Quais leis têm mais peso por concurso. Você sabe exatamente por onde começar dependendo do edital que está estudando.</p>
+            </div>
+          </div>
+
+          <div class="bonus-item">
+            <div class="bonus-icon">⚡</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Lista das Pegadinhas Mais Cobradas em Legislação</div>
+              <p>Os artigos que eliminam candidatos bons. Comparativos entre leis parecidas. Exceções que a banca usa para criar questões que poucos acertam.</p>
+            </div>
+          </div>
+
+          <div class="bonus-item" style="margin-bottom:0;">
+            <div class="bonus-icon">🎯</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Checklist de Leitura por Edital</div>
+              <p>A ordem certa para estudar as leis conforme o seu concurso. Você começa pela lei certa e avança sem desperdiçar tempo com o que não cai no seu edital.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- GUARANTEE + SCARCITY -->
+        <section>
+          <p class="section-label">Sua segurança</p>
+          <h2 class="section-heading">Você não arrisca nada. A banca já cobra risco suficiente.</h2>
+
+          <p class="body-text" style="margin-bottom: 20px;">
+            O Marcos construiu esse material com um único objetivo: que você feche a lei sabendo os artigos que caem, não os que existem. Se isso não acontecer, existe uma garantia para isso.
+          </p>
+
+          <div class="guarantee-box">
+            <div class="guarantee-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="guarantee-text">
+              <div class="g-title">Garantia de 7 dias</div>
+              <p>Se você abrir o material e sentir que não é o que esperava, basta solicitar o reembolso em até 7 dias. Sem burocracia. Sem perguntas. O valor cai de volta na sua conta integralmente.</p>
+            </div>
+          </div>
+
+          <div class="scarcity">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <p>O valor atual é de upsell — exclusivo para quem acabou de comprar o Anti-Gramática 2.0. Quando essa janela fechar, o preço sobe e não volta. A farda não espera.</p>
+          </div>
+        </section>
+
+      </article>
+
+        <!-- CTA dentro do collapse -->
+        <div class="cta-wrap" style="margin-top:32px;">
+          <div class="cta-snake">
+            <a href="https://pay.kirvano.com/5b388f81-7dff-4381-bbd8-4ac316c0aa75" class="cta">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+              QUERO O ANTI-VADE MECUM 3.0
+            </a>
+          </div>
+          <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+        </div>
+
+        </div><!-- /tsl-inner -->
+      </details>
+
+      <p class="footer-sig">© 2026 Marcos Brito</p>
+
+    </div>
+  </div>
+</body>
+</html>

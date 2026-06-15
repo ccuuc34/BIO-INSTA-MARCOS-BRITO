@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz — Os 6 Pilares | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background: #010000;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.35), transparent),
+        radial-gradient(1.5px 1.5px at 80px 70px, rgba(255,255,255,0.15), transparent),
+        radial-gradient(1px 1px at 140px 20px, rgba(255,60,60,0.22), transparent),
+        radial-gradient(2px 2px at 40px 120px, rgba(255,255,255,0.08), transparent);
+      background-size: 180px 180px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+      pointer-events: none; z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 520px; height: 320px;
+      background: #cc0000;
+      border-radius: 50%;
+      filter: blur(180px);
+      opacity: 0.14;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Progress bar (fixed top) ── */
+    .progress-wrap {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(255,255,255,0.07);
+      z-index: 200;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #8b171a, #cc0000, #ff5555);
+      transition: width 0.55s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 0 10px rgba(204,0,0,0.7);
+    }
+
+    /* ── App ── */
+    #app {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 52px 16px 40px;
+    }
+
+    .screen {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .fade-in {
+      animation: fadeUp 0.3s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════
+       INTRO
+    ══════════════════════════════ */
+    .intro-logo {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+
+    .logo-icon {
+      width: 28px; height: 28px;
+      background: rgba(204,0,0,0.15);
+      border: 1px solid rgba(204,0,0,0.3);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .logo-text {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800; font-size: 13px;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.22em; text-transform: uppercase;
+    }
+
+    .intro-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(204,0,0,0.1);
+      border: 1px solid rgba(204,0,0,0.32);
+      border-radius: 999px;
+      padding: 5px 14px;
+      margin-bottom: 28px;
+      font-family: 'Sora', sans-serif;
+      font-size: 11px; font-weight: 700;
+      color: #ff5555; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    .pill-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #ff3333;
+      animation: pulse-dot 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.35; transform: scale(0.75); }
+    }
+
+    .intro-title {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: clamp(26px, 7vw, 34px);
+      line-height: 1.2;
+      text-align: center;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .intro-title .accent { color: #ff4444; }
+
+    .intro-sub {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600; font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      text-align: center; line-height: 1.6;
+      margin-bottom: 36px; padding: 0 8px;
+    }
+
+    .intro-meta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; margin-bottom: 40px;
+    }
+
+    .meta-chip {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 13px;
+      color: rgba(255,255,255,0.38);
+    }
+
+    .meta-sep { color: rgba(255,255,255,0.15); font-size: 18px; }
+
+    /* ── CTA (snake border + shimmer) ── */
+    .cta-snake {
+      position: relative;
+      width: 100%;
+      border-radius: 17px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 70px rgba(204,0,0,0.45), 0 18px 44px rgba(0,0,0,0.55);
+    }
+
+    .cta-snake::before {
+      content: ''; position: absolute;
+      width: 300%; height: 300%; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg, transparent 0deg, transparent 255deg,
+        rgba(170,0,0,0.08) 272deg, rgba(210,15,0,0.55) 288deg, #ff3300 302deg,
+        #ff6600 316deg, #ff9900 329deg, rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg, transparent 360deg);
+      animation: snake-spin 2.4s linear infinite;
+    }
+
+    @keyframes snake-spin {
+      from { transform: translate(-50%,-50%) rotate(0deg); }
+      to   { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    .cta-btn {
+      position: relative;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%;
+      padding: 20px clamp(14px,4vw,24px);
+      background: linear-gradient(135deg, #cc0000 0%, #990000 60%, #6b0000 100%);
+      border: none; border-radius: 14px;
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(13px,3.8vw,16px);
+      color: #fff; letter-spacing: 0.04em; text-transform: uppercase;
+      cursor: pointer; white-space: nowrap;
+      overflow: hidden; transform: translateY(-2px);
+      transition: transform 0.15s;
+      text-decoration: none;
+    }
+
+    .cta-btn::before {
+      content: ''; position: absolute;
+      top: -10%; left: -85%; width: 44%; height: 120%;
+      background: linear-gradient(100deg, transparent 10%, rgba(255,255,255,0.22) 44%,
+        rgba(255,255,255,0.32) 50%, rgba(255,255,255,0.22) 56%, transparent 90%);
+      transform: skewX(-12deg);
+      animation: shimmer 2.9s ease-in-out infinite; pointer-events: none;
+    }
+
+    @keyframes shimmer { 0%, 22% { left: -85%; } 62%, 100% { left: 155%; } }
+
+    .cta-btn:active { transform: scale(0.98) translateY(0); }
+
+    /* ══════════════════════════════
+       QUESTION
+    ══════════════════════════════ */
+    .q-counter {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.16em; text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .q-text {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: clamp(20px, 5.5vw, 26px);
+      line-height: 1.3; text-align: center;
+      margin-bottom: 8px; color: #fff;
+    }
+
+    .q-sub {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600; font-size: 14px;
+      color: rgba(255,255,255,0.38);
+      text-align: center; line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .options {
+      display: flex; flex-direction: column; gap: 11px;
+    }
+
+    .option {
+      display: flex; align-items: center; gap: 14px;
+      padding: 17px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .option:active { transform: scale(0.985); }
+
+    .option.selected {
+      background: rgba(204,0,0,0.11);
+      border-color: rgba(204,0,0,0.55);
+      animation: opt-pulse 0.38s ease;
+    }
+
+    @keyframes opt-pulse {
+      0%   { transform: scale(1); }
+      38%  { transform: scale(1.024); }
+      100% { transform: scale(1); }
+    }
+
+    .opt-icon {
+      font-size: 21px; width: 30px;
+      text-align: center; flex-shrink: 0;
+    }
+
+    .opt-text {
+      flex: 1;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.4;
+    }
+
+    .option.selected .opt-text { color: #fff; }
+
+    .opt-check {
+      width: 22px; height: 22px; flex-shrink: 0;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.14);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s, border-color 0.18s;
+    }
+
+    .option.selected .opt-check {
+      background: #cc0000; border-color: #cc0000;
+    }
+
+    .opt-check-inner {
+      display: none;
+      width: 6px; height: 10px;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(45deg) translate(-1px, -1px);
+    }
+
+    .option.selected .opt-check-inner { display: block; }
+
+    /* ══════════════════════════════
+       TRANSITION
+    ══════════════════════════════ */
+    .transition-screen {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 55vh; text-align: center; padding: 0 16px;
+    }
+
+    .transition-icon {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: rgba(204,0,0,0.1);
+      border: 1.5px solid rgba(204,0,0,0.32);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+      animation: t-glow 1.5s ease-in-out infinite;
+    }
+
+    @keyframes t-glow {
+      0%, 100% { box-shadow: 0 0 14px rgba(204,0,0,0.18); }
+      50%       { box-shadow: 0 0 30px rgba(204,0,0,0.42); }
+    }
+
+    .transition-text {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: clamp(18px, 4.8vw, 23px);
+      line-height: 1.4; color: #fff;
+      max-width: 300px;
+    }
+
+    /* ══════════════════════════════
+       LOADING
+    ══════════════════════════════ */
+    .loading-screen {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 60vh; text-align: center;
+    }
+
+    .loading-icon {
+      width: 76px; height: 76px; border-radius: 50%;
+      background: rgba(204,0,0,0.1);
+      border: 1.5px solid rgba(204,0,0,0.28);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 32px;
+      animation: scan-pulse 1.2s ease-in-out infinite;
+      position: relative;
+    }
+
+    .loading-icon::before {
+      content: '';
+      position: absolute; inset: -8px; border-radius: 50%;
+      border: 1px solid rgba(204,0,0,0.12);
+      animation: scan-pulse 1.2s ease-in-out infinite reverse;
+    }
+
+    @keyframes scan-pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(204,0,0,0.2); }
+      50%       { box-shadow: 0 0 42px rgba(204,0,0,0.48), 0 0 80px rgba(204,0,0,0.14); }
+    }
+
+    .loading-label {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .loading-status {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600; font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px; min-height: 24px;
+      transition: opacity 0.28s;
+    }
+
+    .loading-bar-wrap {
+      width: 240px; height: 4px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 999px; overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .loading-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #8b171a, #cc0000, #ff5555);
+      border-radius: 999px;
+      transition: width 0.22s linear;
+      box-shadow: 0 0 10px rgba(204,0,0,0.5);
+    }
+
+    .loading-pct {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800; font-size: 13px;
+      color: #cc0000; letter-spacing: 0.06em;
+    }
+
+    /* ══════════════════════════════
+       RESULT
+    ══════════════════════════════ */
+    .result-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(74,222,128,0.1);
+      border: 1px solid rgba(74,222,128,0.3);
+      border-radius: 999px;
+      padding: 5px 14px; margin-bottom: 22px;
+      font-family: 'Sora', sans-serif;
+      font-size: 11px; font-weight: 700;
+      color: #4ade80; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    .result-title {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: clamp(24px, 6.5vw, 32px);
+      line-height: 1.2; color: #fff;
+      margin-bottom: 18px;
+    }
+
+    .body-text {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600; font-size: 15px;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.7; margin-bottom: 14px;
+    }
+
+    .body-text strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 800;
+    }
+
+    .divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 28px 0;
+    }
+
+    .section-label {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-heading {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: clamp(20px, 5.2vw, 26px);
+      line-height: 1.3; color: #fff;
+      margin-bottom: 16px;
+    }
+
+    /* Proof */
+    .proof-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid #cc0000;
+      border-radius: 0 12px 12px 0;
+      padding: 18px 20px;
+    }
+
+    .proof-text {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 15px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.6; font-style: italic;
+    }
+
+    .proof-author {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600; font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 10px;
+    }
+
+    /* Offer */
+    .offer-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 24px 20px;
+      position: relative; overflow: hidden;
+    }
+
+    .price-installment {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 4px;
+    }
+
+    .price-row {
+      display: flex; align-items: baseline; gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .price-cur {
+      font-family: 'Sora', sans-serif; font-weight: 700;
+      font-size: 18px; color: #4ade80;
+    }
+
+    .price-val {
+      font-family: 'Sora', sans-serif; font-weight: 900;
+      font-size: clamp(44px, 12vw, 56px);
+      color: #4ade80; line-height: 1;
+      text-shadow: 0 0 30px rgba(74,222,128,0.28);
+    }
+
+    .price-cts {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: 22px; color: #4ade80;
+    }
+
+    .offer-divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 18px 0;
+    }
+
+    .checklist {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600; font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.45;
+    }
+
+    .check-icon {
+      width: 18px; height: 18px; flex-shrink: 0;
+      background: rgba(74,222,128,0.15);
+      border: 1px solid rgba(74,222,128,0.35);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+
+    .guarantee-row {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600; font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      padding-top: 4px;
+    }
+
+    /* Above CTA text */
+    .above-cta {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: clamp(16px, 4.2vw, 19px);
+      color: #fff; line-height: 1.45;
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 0 4px;
+    }
+
+    /* Below CTA */
+    .below-cta {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 13px;
+      color: rgba(255,140,0,0.72);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    /* Final line */
+    .final-line {
+      margin-top: 36px;
+      padding: 20px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600; font-size: 14px;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .footer-sig {
+      text-align: center;
+      margin-top: 28px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.1);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-wrap">
+    <div class="progress-fill" id="pg"></div>
+  </div>
+
+  <div id="app"></div>
+
+  <script>
+  // ─── Data ────────────────────────────────────────────────────────────────────
+
+  const QUESTIONS = [
+    {
+      id: 1,
+      text: 'Antes de tudo: onde você está agora?',
+      sub:  'Seja honesto. Ninguém está te julgando aqui.',
+      options: [
+        { icon: '📚', text: 'Estou estudando mas não estou onde precisava estar' },
+        { icon: '🏆', text: 'Já fiz prova antes e fui reprovado. Não deixo acontecer de novo' },
+        { icon: '⚡', text: 'Ainda não comecei de verdade mas sei que precisa mudar agora' },
+      ],
+      displayPct: 12, answerPct: 24,
+      transition: 'Você já está à frente de quem ainda não admitiu isso.',
+    },
+    {
+      id: 2,
+      text: 'Qual dessas frases mais parece com a sua semana de estudos?',
+      sub:  'Escolha a que dói mais de ler.',
+      options: [
+        { icon: '📅', text: 'Começo segunda com tudo planejado. Na quarta já desandei' },
+        { icon: '🔄', text: 'Consigo estudar alguns dias mas a constância nunca dura' },
+        { icon: '🌀', text: 'Sinto que me esforço muito e avanço pouco. Parece que corro no lugar' },
+      ],
+      displayPct: 24, answerPct: 36,
+      transition: 'Isso não é fraqueza. Isso tem nome. E tem solução.',
+    },
+    {
+      id: 3,
+      text: 'Quanto tempo você consegue estudar por dia de verdade?',
+      sub:  'Não o que você gostaria. O que realmente acontece.',
+      options: [
+        { icon: '⏱️', text: 'Menos de 2 horas. Trabalho o dia todo e estudo no que sobra' },
+        { icon: '📖', text: 'Entre 2 e 4 horas. Estudo nas margens do dia' },
+        { icon: '🎯', text: 'Mais de 4 horas. Consigo me dedicar bastante' },
+      ],
+      displayPct: 36, answerPct: 48,
+      transition: 'Com o método certo, o tempo que você tem já é suficiente para passar.',
+    },
+    {
+      id: 4,
+      text: 'Como você estuda hoje?',
+      sub:  'A resposta certa aqui vai te poupar meses de preparação.',
+      options: [
+        { icon: '📝', text: 'Releio o material, faço anotações e marco o que parece importante' },
+        { icon: '📺', text: 'Assisto videoaula e tento absorver o máximo possível' },
+        { icon: '❓', text: 'Faço questões mas sem um método definido por trás' },
+      ],
+      displayPct: 48, answerPct: 60,
+      transition: 'A ciência comprova que esse método não está funcionando como deveria. E tem uma saída mais rápida.',
+    },
+    {
+      id: 5,
+      text: 'O que está em jogo de verdade para você nessa aprovação?',
+      sub:  'Essa é a pergunta que a maioria nunca para para responder.',
+      options: [
+        { icon: '👨‍👩‍👧', text: 'Quero dar orgulho pra minha família e sair da CLT de uma vez por todas' },
+        { icon: '💔', text: 'Já reprovei antes e não aguento mais olhar pra trás e ver o mesmo lugar' },
+        { icon: '🔥', text: 'Sei que sou capaz. Só não consigo fazer acontecer de verdade todos os dias' },
+      ],
+      displayPct: 60, answerPct: 72,
+      transition: 'Quem chegou até aqui já provou que quer de verdade. O que falta é o sistema.',
+    },
+    {
+      id: 6,
+      text: 'O que mais te trava hoje?',
+      sub:  'Seja específico. Isso define o seu diagnóstico.',
+      options: [
+        { icon: '🔁', text: 'Constância. Começo forte e não termino' },
+        { icon: '🧭', text: 'Direção. Não sei o que priorizar no edital' },
+        { icon: '⚙️', text: 'Método. Estudo mas não rende como deveria' },
+      ],
+      displayPct: 72, answerPct: 85,
+      transition: 'Identificado. Calculando seu diagnóstico...',
+    },
+    {
+      id: 7,
+      text: 'Última pergunta. Essa é sobre você.',
+      sub:  'Não sobre o concurso. Sobre a decisão que você vai tomar agora.',
+      options: [
+        { icon: '💪', text: 'Estou pronto para parar de repetir o mesmo ciclo e construir algo diferente' },
+        { icon: '🔍', text: 'Quero entender de uma vez o que está me travando e resolver isso' },
+      ],
+      displayPct: 85, answerPct: 85,
+      transition: null,
+    },
+  ];
+
+  const LOADING_TEXTS = [
+    'Analisando suas respostas...',
+    'Mapeando seus obstáculos...',
+    'Identificando seu perfil...',
+    'Preparando seu diagnóstico...',
+  ];
+
+  // ─── Diagnósticos personalizados (definidos pela Q6) ─────────────────────────
+
+  const DIAGNOSTICS = {
+    PERFIL_CONSTANCIA: {
+      diagTitle: 'Seu diagnóstico: Você tem vontade. Falta sistema.',
+      diagBody: [
+        'Você não é preguiçoso. Você começa toda semana com disposição real. O problema é que sem estrutura interna, a vontade dura até a primeira dificuldade. E aí o ciclo reinicia na segunda-feira seguinte.',
+        'Você já provou que consegue começar. O que falta é o sistema que faz você continuar quando a vontade some. Porque ela vai sumir. Sempre some. E quem passa é quem tem sistema para os dias em que não quer.',
+      ],
+      causeTitle: 'Constância não é força de vontade. É arquitetura.',
+      causeBody: [
+        'O mercado te vendeu a ideia de que constância é disciplina. Que você precisa ser mais forte. Mais determinado. Mais focado.',
+        'Isso é mentira.',
+        'Constância é resultado de hábitos pequenos empilhados de forma inteligente. Começa com 40 minutos por dia. Cresce 5 minutos a cada 3 dias. Em 30 dias você tem uma rotina que se sustenta sozinha. Não porque você ficou mais forte. Porque o sistema foi construído para aguentar os dias ruins.',
+        'Sem essa arquitetura, qualquer candidato quebra. Não importa o quanto quer.',
+      ],
+    },
+    PERFIL_DIRECAO: {
+      diagTitle: 'Seu diagnóstico: Você estuda. Mas está mirando no lugar errado.',
+      diagBody: [
+        'Você não está parado. Está se movendo. O problema é que sem direção definida, cada hora de estudo pode estar indo para matéria que não decide sua aprovação.',
+        '80% da sua nota vem de 20% do conteúdo. A banca repete os mesmos artigos, as mesmas matérias, os mesmos padrões de prova em todo edital policial do Brasil. Quem sabe onde mirar estuda menos e acerta mais. Quem não sabe estuda tudo e não passa em nada.',
+      ],
+      causeTitle: 'O edital não é guia de estudo. É lista do que poderia cair.',
+      causeBody: [
+        'A maioria dos candidatos abre o edital e tenta dar conta de tudo. Isso não é estratégia. É desespero disfarçado de esforço.',
+        'Candidato sem direção estuda volume. Candidato com direção estuda estratégia. E estratégia começa antes de abrir qualquer material. Começa entendendo como a banca pensa, o que ela cobra com mais peso e o que você pode deixar para depois sem comprometer a aprovação.',
+        'Sem esse mapa, você pode estudar por anos e continuar chegando perto sem passar.',
+      ],
+    },
+    PERFIL_METODO: {
+      diagTitle: 'Seu diagnóstico: Você coloca horas. O problema é o que acontece dentro delas.',
+      diagBody: [
+        'Você estuda. Isso é fato. O problema não é quantidade de horas. É o que acontece dentro delas.',
+        'Reler anotação dá sensação de aprender. Assistir videoaula de novo dá sensação de reforçar. Marcar texto dá sensação de fixar. A ciência cognitiva prova que nenhuma dessas técnicas produz retenção real de longo prazo. Você termina a sessão sentindo que estudou. Chega na prova e não lembra.',
+      ],
+      causeTitle: 'Seu cérebro não retém o que reconhece. Retém o que é obrigado a recuperar.',
+      causeBody: [
+        'Existe uma diferença brutal entre ver a informação de novo e ter que buscar ela de dentro de você. A primeira dá sensação de que sabe. A segunda prova que sabe.',
+        'Sem revisão ativa, sem espaçamento correto entre sessões, sem o método certo de leitura cirúrgica, você pode estudar 6 horas por dia e reter menos do que quem estuda 2 horas com o sistema certo.',
+        'Não é falta de esforço. É método errado. E método tem solução direta.',
+      ],
+    },
+  };
+
+  // ─── State ───────────────────────────────────────────────────────────────────
+
+  const quiz = { locked: false, analytics: {} };
+
+  // ─── Helpers ─────────────────────────────────────────────────────────────────
+
+  function setPct(p) {
+    document.getElementById('pg').style.width = p + '%';
+  }
+
+  function mount(html) {
+    const app = document.getElementById('app');
+    const el  = document.createElement('div');
+    el.className = 'screen fade-in';
+    el.innerHTML = html;
+    app.innerHTML = '';
+    app.appendChild(el);
+    window.scrollTo(0, 0);
+  }
+
+  function checkSvg() {
+    return '<svg viewBox="0 0 10 10" width="9" height="9"><path d="M2 5.2l2 2 4-4" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+  }
+
+  // ─── Perfil / diagnóstico ────────────────────────────────────────────────────
+
+  const PROFILE_MAP = ['PERFIL_CONSTANCIA', 'PERFIL_DIRECAO', 'PERFIL_METODO'];
+
+  function saveProfile(optIdx) {
+    const perfil = PROFILE_MAP[optIdx] || 'PERFIL_CONSTANCIA';
+    localStorage.setItem('quiz_perfil_diagnostico', perfil);
+    localStorage.setItem('quiz_timestamp', new Date().toISOString());
+    localStorage.setItem('quiz_completo', 'true');
+    try { gtag('event', 'quiz_perfil_identificado', { perfil, timestamp: new Date().toISOString() }); } catch(e) {}
+  }
+
+  function getDiagnostic() {
+    const perfil = localStorage.getItem('quiz_perfil_diagnostico') || 'PERFIL_CONSTANCIA';
+    return DIAGNOSTICS[perfil] || DIAGNOSTICS.PERFIL_CONSTANCIA;
+  }
+
+  // ─── Analytics ───────────────────────────────────────────────────────────────
+
+  function track(qId, optIdx, optText) {
+    quiz.analytics['q' + qId] = { optIdx, optText };
+    try {
+      const raw = JSON.parse(localStorage.getItem('6pilares_quiz') || '{"sessions":[]}');
+      raw.sessions = raw.sessions || [];
+      if (!raw.sessions.length || raw.sessions[raw.sessions.length - 1].complete) {
+        raw.sessions.push({ ts: Date.now(), answers: {}, complete: false });
+      }
+      raw.sessions[raw.sessions.length - 1].answers['q' + qId] = { optIdx, optText };
+      if (raw.sessions.length > 100) raw.sessions = raw.sessions.slice(-100);
+      localStorage.setItem('6pilares_quiz', JSON.stringify(raw));
+    } catch(e) {}
+  }
+
+  function markComplete() {
+    try {
+      const raw = JSON.parse(localStorage.getItem('6pilares_quiz') || '{}');
+      if (raw.sessions && raw.sessions.length) {
+        raw.sessions[raw.sessions.length - 1].complete = true;
+        localStorage.setItem('6pilares_quiz', JSON.stringify(raw));
+      }
+    } catch(e) {}
+  }
+
+  // ─── Screens ─────────────────────────────────────────────────────────────────
+
+  function showIntro() {
+    setPct(0);
+    mount(`
+      <div style="text-align:center;padding-top:20px;">
+        <div class="intro-logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+              <path d="M12 2L4 5.5V12C4 17.2 7.6 20.8 12 22C16.4 20.8 20 17.2 20 12V5.5L12 2Z"
+                fill="rgba(204,0,0,0.22)" stroke="#cc0000" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M12 7.5L13.18 10.9H16.8L13.9 13L15.05 16.4L12 14.3L8.95 16.4L10.1 13L7.2 10.9H10.82Z"
+                fill="#cc0000"/>
+            </svg>
+          </div>
+          <span class="logo-text">Marcos Brito</span>
+        </div>
+
+        <div class="intro-pill">
+          <div class="pill-dot"></div>
+          7 perguntas
+        </div>
+
+        <h1 class="intro-title">
+          Descubra em 7 perguntas<br/>
+          <span class="accent">por que você ainda não passou.</span>
+        </h1>
+
+        <p class="intro-sub">
+          Candidatos que entenderam isso pararam de reprovar.<br/>
+          Os que ignoraram continuam repetindo o mesmo ciclo.
+        </p>
+
+        <div class="intro-meta">
+          <div class="meta-chip">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            3–4 min
+          </div>
+          <span class="meta-sep">·</span>
+          <div class="meta-chip">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            Gratuito
+          </div>
+        </div>
+
+        <div class="cta-snake">
+          <button class="cta-btn" onclick="startQuiz()">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+            </svg>
+            Quero descobrir o que está me travando
+          </button>
+        </div>
+      </div>
+    `);
+  }
+
+  function showQuestion(idx) {
+    quiz.locked = false;
+    const q = QUESTIONS[idx];
+    setPct(q.displayPct);
+
+    const optsHtml = q.options.map((opt, i) => `
+      <div class="option" id="opt${i}" onclick="selectOpt(${idx},${i})">
+        <div class="opt-icon">${opt.icon}</div>
+        <div class="opt-text">${opt.text}</div>
+        <div class="opt-check"><div class="opt-check-inner"></div></div>
+      </div>
+    `).join('');
+
+    mount(`
+      <div class="q-counter">Pergunta ${q.id} de ${QUESTIONS.length}</div>
+      <h2 class="q-text">${q.text}</h2>
+      <p class="q-sub">${q.sub}</p>
+      <div class="options">${optsHtml}</div>
+    `);
+  }
+
+  function selectOpt(qIdx, optIdx) {
+    if (quiz.locked) return;
+    quiz.locked = true;
+
+    const q   = QUESTIONS[qIdx];
+    const opt = q.options[optIdx];
+    track(q.id, optIdx, opt.text);
+
+    // Q6 (índice 5) define o perfil do diagnóstico
+    if (qIdx === 5) saveProfile(optIdx);
+
+    const el = document.getElementById('opt' + optIdx);
+    if (el) el.classList.add('selected');
+    setPct(q.answerPct);
+
+    setTimeout(() => {
+      if (q.transition) {
+        showTransition(q.transition, qIdx);
+      } else {
+        showLoading();
+      }
+    }, 420);
+  }
+
+  function showTransition(text, qIdx) {
+    mount(`
+      <div class="transition-screen">
+        <div class="transition-icon">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              stroke="#ff4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="transition-text">${text}</p>
+      </div>
+    `);
+
+    setTimeout(() => {
+      const next = qIdx + 1;
+      if (next < QUESTIONS.length) showQuestion(next);
+      else showLoading();
+    }, 1500);
+  }
+
+  function showLoading() {
+    mount(`
+      <div class="loading-screen">
+        <div class="loading-icon">
+          <svg viewBox="0 0 24 24" width="34" height="34" fill="none">
+            <path d="M12 2L4 5.5V12C4 17.2 7.6 20.8 12 22C16.4 20.8 20 17.2 20 12V5.5L12 2Z"
+              fill="rgba(204,0,0,0.2)" stroke="#cc0000" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M12 7.5L13.18 10.9H16.8L13.9 13L15.05 16.4L12 14.3L8.95 16.4L10.1 13L7.2 10.9H10.82Z"
+              fill="#cc0000"/>
+          </svg>
+        </div>
+        <div class="loading-label">Processando</div>
+        <div class="loading-status" id="ls">Analisando suas respostas...</div>
+        <div class="loading-bar-wrap">
+          <div class="loading-bar" id="lb"></div>
+        </div>
+        <div class="loading-pct" id="lp">0%</div>
+      </div>
+    `);
+
+    setPct(85);
+
+    let pct = 0, textStep = 0;
+    const iv = setInterval(() => {
+      pct += 2;
+      if (pct > 100) pct = 100;
+
+      const lb = document.getElementById('lb');
+      const lp = document.getElementById('lp');
+      if (lb) lb.style.width = pct + '%';
+      if (lp) lp.textContent = pct + '%';
+
+      const step = Math.min(Math.floor(pct / 25), LOADING_TEXTS.length - 1);
+      if (step !== textStep) {
+        textStep = step;
+        const ls = document.getElementById('ls');
+        if (ls) {
+          ls.style.opacity = '0';
+          setTimeout(() => {
+            if (ls) { ls.textContent = LOADING_TEXTS[step]; ls.style.opacity = '1'; }
+          }, 280);
+        }
+      }
+
+      if (pct >= 100) {
+        clearInterval(iv);
+        setPct(100);
+        setTimeout(showResult, 380);
+      }
+    }, 90);
+  }
+
+  function showResult() {
+    markComplete();
+    setPct(100);
+
+    const diag = getDiagnostic();
+    const diagBodyHtml  = diag.diagBody.map(t  => `<p class="body-text">${t}</p>`).join('');
+    const causeBodyHtml = diag.causeBody.map(t => `<p class="body-text">${t}</p>`).join('');
+
+    mount(`
+      <div style="padding-top:24px;">
+
+        <!-- BLOCO 1: Diagnóstico personalizado -->
+        <div class="result-badge">✓ Diagnóstico pronto</div>
+
+        <h1 class="result-title">${diag.diagTitle}</h1>
+
+        ${diagBodyHtml}
+
+        <div class="divider"></div>
+
+        <!-- BLOCO 2: Causa real personalizada -->
+        <p class="section-label">Por que isso acontece</p>
+        <h2 class="section-heading">${diag.causeTitle}</h2>
+
+        ${causeBodyHtml}
+
+        <div class="divider"></div>
+
+        <!-- BLOCO 3: A Solução -->
+        <p class="section-label">A solução</p>
+        <h2 class="section-heading">Os 6 Pilares do Candidato que Passa.</h2>
+
+        <p class="body-text">
+          Depois de 5 anos, 9 provas, 7 reprovações e 2 aprovações consecutivas, eu mapeei o que realmente faz a diferença entre quem passa e quem repete.
+        </p>
+        <p class="body-text">
+          Não é o concurso. Não é o material. São 6 pilares que quando estão no lugar, tudo o mais funciona.
+        </p>
+        <p class="body-text">
+          <strong>Mentalidade</strong> que não desmorona na primeira semana difícil. <strong>Direção</strong> que te mostra exatamente o que priorizar no edital. <strong>Rotina</strong> que cabe na sua vida real, não na vida de quem tem o dia inteiro livre. <strong>Método</strong> de estudo baseado em como o cérebro realmente fixa conteúdo. <strong>Equilíbrio</strong> para não chegar destruído na reta final. E <strong>Execução</strong> que transforma tudo isso em consistência real até a data da prova.
+        </p>
+        <p class="body-text">
+          Esses 6 pilares não vêm em apostila. Vêm de quem já construiu e pode te mostrar ao vivo como montar o seu.
+        </p>
+
+        <div class="divider"></div>
+
+        <!-- BLOCO 4: Prova social -->
+        <p class="section-label">Resultado real</p>
+        <div class="proof-box">
+          <p class="proof-text">
+            "Candidato CLT. 2 horas por dia. Usou o sistema. Passou com 28 de 30 questões de legislação na primeira tentativa depois de dois anos rodando em círculo."
+          </p>
+          <p class="proof-author">Aluno Os 6 Pilares</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- BLOCO 5: Oferta -->
+        <p class="section-label">O que você recebe hoje</p>
+        <div class="offer-box">
+          <div class="price-installment">12x de R$23</div>
+          <div class="price-row">
+            <span class="price-cur">R$</span>
+            <span class="price-val">247</span>
+            <span class="price-cts">,00</span>
+          </div>
+
+          <div class="offer-divider"></div>
+
+          <ul class="checklist">
+            <li><div class="check-icon">${checkSvg()}</div>3 encontros ao vivo com Marcos — 2 a 3 horas cada</li>
+            <li><div class="check-icon">${checkSvg()}</div>Os 6 Pilares aplicados ao seu concurso e à sua rotina</li>
+            <li><div class="check-icon">${checkSvg()}</div>Diagnóstico individual 7 dias após o último encontro</li>
+            <li><div class="check-icon">${checkSvg()}</div>Adicionais exclusivos: análise de edital, cronograma personalizado, reta final</li>
+            <li><div class="check-icon">${checkSvg()}</div>Acesso direto a Marcos durante os encontros</li>
+          </ul>
+
+          <div class="guarantee-row">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                stroke="#25D366" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            7 dias de garantia total. Se não fizer sentido, devolução sem pergunta.
+          </div>
+        </div>
+
+        <!-- BLOCO 6: CTA -->
+        <p class="above-cta" style="margin-top:28px;">
+          Você acabou de mapear o que está te travando.<br/>
+          O próximo passo é construir o sistema que resolve.
+        </p>
+
+        <div class="cta-snake">
+          <a href="https://pay.kirvano.com/689b430b-28a3-4c79-a447-d056e798abce" class="cta-btn">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+              <path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/>
+            </svg>
+            Quero construir meu sistema agora
+          </a>
+        </div>
+
+        <p class="below-cta">
+          Encontros ao vivo com Marcos. Vagas limitadas. Quando fechar, fechou.
+        </p>
+
+        <div class="final-line">
+          A aprovação não é sorte. Não é talento. Não é estudar mais horas do que ninguém.
+          É ter a base certa e executar com constância.
+          Você já tem o diagnóstico. Agora é sua vez.
+        </div>
+
+        <p class="footer-sig">© 2026 Marcos Brito</p>
+
+      </div>
+    `);
+  }
+
+  // ─── Init ────────────────────────────────────────────────────────────────────
+
+  function startQuiz() { showQuestion(0); }
+
+  showIntro();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+{ "hosting": { "site": "antigramatica", "public": "public", "ignore": ["firebase.json", "**/.*"] } }
