@@ -1062,12 +1062,7 @@
   </div>
   <script>
     (function () {
-      var LOCK_SECS = 120;
-      var unlocked  = false;
-
       function unlock() {
-        if (unlocked) return;
-        unlocked = true;
         ['cta-locked', 'laws-locked', 'tsl-locked'].forEach(function (id) {
           var el = document.getElementById(id);
           if (el) el.style.display = 'none';
@@ -1078,13 +1073,7 @@
         });
       }
 
-      window._wq = window._wq || [];
-      _wq.push({ id: '_all', onReady: function (video) {
-        if (video.time() >= LOCK_SECS) { unlock(); return; }
-        video.bind('secondchange', function (s) {
-          if (s >= LOCK_SECS) { unlock(); video.unbind('secondchange'); }
-        });
-      }});
+      setTimeout(unlock, 120000);
     })();
   </script>
 </body>
