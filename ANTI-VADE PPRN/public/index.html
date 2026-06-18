@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-Vade Mecum PPRN™ | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- ATENÇÃO: substitua WISTIA_VIDEO_ID pelo ID real do vídeo no Wistia -->
+  <script src="https://fast.wistia.com/player.js" async></script>
+  <script src="https://fast.wistia.com/embed/WISTIA_VIDEO_ID.js" async type="module"></script>
+  <style>
+    wistia-player[media-id='WISTIA_VIDEO_ID']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/WISTIA_VIDEO_ID/swatch');
+      display: block; filter: blur(5px); padding-top: 179.17%;
+    }
+  </style>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background-color: #010000;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 60px 80px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 110px 20px, rgba(255,100,100,0.3), transparent),
+        radial-gradient(2px 2px at 150px 140px, rgba(255,255,255,0.1), transparent);
+      background-size: 200px 200px;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 350px;
+      background: #8b0000;
+      border-radius: 50%; filter: blur(180px); opacity: 0.18;
+      pointer-events: none; z-index: 0;
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; justify-content: center;
+      padding: 52px 20px 80px;
+    }
+
+    .card {
+      width: 100%; max-width: 560px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    /* ── Ticker ── */
+    .ticker-strip {
+      width: 100%; overflow: hidden;
+      background: linear-gradient(90deg, #9b0a0a, #cc1818, #9b0a0a);
+      padding: 10px 0; margin-bottom: 22px;
+      border-radius: 6px;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+    .ticker-track {
+      display: flex; white-space: nowrap; width: max-content;
+      animation: ticker-scroll 11s linear infinite;
+    }
+    .ticker-track span {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #ffffff;
+      padding: 0 22px;
+    }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Headline ── */
+    .title {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(20px, 6vw, 32px);
+      color: #ffffff; text-align: center;
+      line-height: 1.2; letter-spacing: 0.01em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .title .accent { color: #e84040; font-size: 0.72em; }
+
+    .pre-video {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.35); text-align: center;
+      margin-bottom: 22px; letter-spacing: 0.02em;
+    }
+
+    /* ── Vídeo ── */
+    .video-wrap {
+      width: clamp(180px, 58%, 260px);
+      margin: 0 auto 40px;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 60px rgba(139,23,26,0.25), 0 24px 48px rgba(0,0,0,0.5);
+    }
+
+    /* ── Advertorial ── */
+    .advertorial {
+      width: 100%;
+      display: flex; flex-direction: column; gap: 48px;
+    }
+
+    .section-label {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      color: rgba(139,23,26,0.7); letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .body-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 16px;
+      color: rgba(255,255,255,0.72); line-height: 1.8;
+    }
+    .body-text + .body-text { margin-top: 16px; }
+    .body-text strong { color: rgba(255,255,255,0.92); font-weight: 700; }
+    .body-text em { color: #e84040; font-style: normal; font-weight: 700; }
+
+    .section-heading {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(18px, 5vw, 24px);
+      color: #ffffff; line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    /* Callout */
+    .callout {
+      width: 100%;
+      background: rgba(139,23,26,0.1);
+      border-left: 3px solid #e84040;
+      border-radius: 0 10px 10px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .callout p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      color: rgba(255,220,220,0.9); line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* Divider */
+    .divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* Falsa solução */
+    .false-item { margin-bottom: 22px; }
+    .false-item-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: line-through;
+      margin-bottom: 6px;
+    }
+    .false-item p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+
+    /* Objeção */
+    .objection { margin-bottom: 24px; }
+    .objection-q {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 8px;
+    }
+    .objection-q::before { content: '"'; color: #e84040; }
+    .objection-q::after  { content: '"'; color: #e84040; }
+    .objection-a {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.62); line-height: 1.75;
+      padding-left: 14px;
+      border-left: 2px solid rgba(139,23,26,0.4);
+    }
+
+    /* Bullets da oferta */
+    .offer-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+      margin: 16px 0;
+    }
+    .offer-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px;
+      color: rgba(255,255,255,0.8); line-height: 1.5;
+    }
+    .offer-list li .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #e84040; flex-shrink: 0; margin-top: 7px;
+    }
+
+    /* Bônus */
+    .bonus-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      margin-bottom: 20px;
+    }
+    .bonus-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(139,23,26,0.18);
+      border: 1px solid rgba(139,23,26,0.35);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 18px;
+    }
+    .bonus-text .bonus-name {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.88); margin-bottom: 4px;
+    }
+    .bonus-text p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.5); line-height: 1.6;
+    }
+
+    /* Garantia */
+    .guarantee-box {
+      width: 100%;
+      background: rgba(37,211,102,0.06);
+      border: 1px solid rgba(37,211,102,0.2);
+      border-radius: 14px;
+      padding: 24px 20px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .guarantee-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(37,211,102,0.12);
+      border: 1px solid rgba(37,211,102,0.3);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .guarantee-icon svg { width: 22px; height: 22px; }
+    .guarantee-text .g-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: rgba(255,255,255,0.9); margin-bottom: 8px;
+    }
+    .guarantee-text p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+
+    /* Escassez */
+    .scarcity {
+      width: 100%;
+      background: rgba(233,196,0,0.07);
+      border: 1px solid rgba(233,196,0,0.22);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex; gap: 10px; align-items: center;
+      margin-top: 20px;
+    }
+    .scarcity svg { width: 18px; height: 18px; fill: #e9c400; flex-shrink: 0; }
+    .scarcity p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(233,196,0,0.85); line-height: 1.5;
+    }
+
+    /* ── CTA ── */
+    .cta-wrap {
+      width: 100%; margin-top: 48px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .cta-snake {
+      position: relative; width: 100%;
+      border-radius: 17px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 85px rgba(10,190,82,0.72), 0 18px 44px rgba(0,0,0,0.5);
+    }
+    .cta-snake::before {
+      content: '';
+      position: absolute;
+      width: 300%; height: 300%;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg,
+        transparent 0deg,
+        transparent 255deg,
+        rgba(170,0,0,0.08) 272deg,
+        rgba(210,15,0,0.55) 288deg,
+        #ff3300 302deg,
+        #ff6600 316deg,
+        #ff9900 329deg,
+        rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg,
+        transparent 360deg
+      );
+      animation: cta-snake-spin 2.4s linear infinite;
+    }
+    @keyframes cta-snake-spin {
+      from { transform: translate(-50%,-50%) rotate(0deg); }
+      to   { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 20px clamp(14px, 4vw, 24px);
+      background: linear-gradient(135deg, #0abe52 0%, #079040 60%, #056830 100%);
+      border: none; border-radius: 14px;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(11px, 3.2vw, 15px);
+      color: #ffffff; letter-spacing: 0.04em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      position: relative; overflow: hidden;
+      transition: transform 0.15s; transform: translateY(-2px);
+    }
+    .cta:active { transform: scale(0.98) translateY(-2px); }
+    .cta svg { width: 20px; height: 20px; flex-shrink: 0; position: relative; z-index: 1; }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -10%; left: -85%;
+      width: 44%; height: 120%;
+      background: linear-gradient(
+        100deg,
+        transparent 10%,
+        rgba(255,255,255,0.28) 44%,
+        rgba(255,255,255,0.38) 50%,
+        rgba(255,255,255,0.28) 56%,
+        transparent 90%
+      );
+      transform: skewX(-12deg);
+      animation: cta-shimmer 2.9s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes cta-shimmer {
+      0%,  22% { left: -85%; }
+      62%, 100% { left: 155%; }
+    }
+    .cta-note {
+      font-family: 'Nunito', sans-serif; font-size: 12px;
+      color: rgba(255,255,255,0.2); text-align: center;
+    }
+
+    .footer-sig {
+      margin-top: 56px;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.12); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* ── Stats ── */
+    .stats-strip {
+      width: 100%; display: flex; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 16px 8px; text-align: center;
+    }
+    .stat-icon { font-size: 20px; margin-bottom: 6px; line-height: 1; }
+    .stat-value {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: #ffffff; margin-bottom: 3px;
+    }
+    .stat-label {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 10px;
+      color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── Stars ── */
+    .stars-row {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-bottom: 24px;
+    }
+    .stars { color: #e9c400; font-size: 14px; letter-spacing: 2px; }
+    .stars-text {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* ── Garantia mini ── */
+    .guarantee-mini {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      margin-top: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12px;
+      color: rgba(255,255,255,0.22);
+    }
+    .guarantee-mini svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── Leis + gatilho de preço ── */
+    .laws-wrap {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 28px;
+    }
+    .laws-header {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 14px;
+      color: rgba(255,255,255,0.6); text-align: center;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 18px;
+    }
+    .law-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .law-check {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(139,23,26,0.18); border: 1px solid rgba(139,23,26,0.4);
+      display: flex; align-items: center; justify-content: center;
+      color: #e84040; font-size: 11px; font-weight: 800;
+    }
+    .law-name {
+      flex: 1; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(255,255,255,0.75); line-height: 1.4;
+    }
+    .law-old-price {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 12px;
+      color: rgba(232,64,64,0.7); text-decoration: line-through; flex-shrink: 0;
+    }
+    .laws-sep {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 16px 0;
+    }
+    .laws-total-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 8px;
+    }
+    .laws-total-label {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    .laws-total-value {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(232,64,64,0.7); text-decoration: line-through;
+    }
+    .laws-today-box {
+      background: rgba(10,190,82,0.07);
+      border: 1px solid rgba(10,190,82,0.2);
+      border-radius: 10px; padding: 16px; text-align: center;
+      margin-top: 4px;
+    }
+    .laws-today-label {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+    .laws-today-price {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 38px;
+      color: #0abe52; line-height: 1;
+    }
+    .laws-today-note {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 11px;
+      color: rgba(233,196,0,0.55); margin-top: 8px;
+    }
+
+    /* ── FAQ ── */
+    .faq-wrap {
+      width: 100%; margin-top: 10px; margin-bottom: 10px;
+    }
+    .faq-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: rgba(255,255,255,0.75); margin-bottom: 12px;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .faq-item:first-of-type { border-top: 1px solid rgba(255,255,255,0.07); }
+    .faq-q {
+      width: 100%; padding: 16px 0;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+      cursor: pointer; list-style: none; user-select: none;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.72); line-height: 1.45; text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::marker { display: none; }
+    details[open] .faq-q { color: #ffffff; }
+    .faq-chevron {
+      width: 16px; height: 16px; fill: rgba(255,255,255,0.25);
+      flex-shrink: 0; margin-top: 2px; transition: transform 0.25s;
+    }
+    details[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.52); line-height: 1.75;
+      padding-bottom: 18px;
+    }
+    .faq-a strong { color: rgba(255,255,255,0.8); font-weight: 700; }
+
+    /* ── TSL collapse ── */
+    .tsl-collapse {
+      width: 100%; margin-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .tsl-toggle {
+      width: 100%; padding: 18px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; gap: 12px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.35); list-style: none; user-select: none;
+      transition: color 0.2s;
+    }
+    .tsl-toggle::-webkit-details-marker { display: none; }
+    .tsl-toggle::marker { display: none; }
+    details[open] .tsl-toggle { color: rgba(255,255,255,0.55); }
+    .toggle-icon {
+      width: 18px; height: 18px; fill: rgba(255,255,255,0.2);
+      flex-shrink: 0; transition: transform 0.3s;
+    }
+    details[open] .toggle-icon { transform: rotate(180deg); }
+    .tsl-inner { padding-top: 8px; }
+
+    /* ── Lock de CTA e TSL (libera após 2 min de VSL) ── */
+    .lock-placeholder {
+      width: 100%; padding: 20px 18px; border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      cursor: not-allowed; user-select: none;
+    }
+    .lock-icon-el { font-size: 22px; flex-shrink: 0; line-height: 1; }
+    .lock-timer {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px;
+      color: rgba(255,255,255,0.45); display: block; margin-bottom: 3px;
+    }
+    .lock-hint {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12px;
+      color: rgba(255,255,255,0.25); display: block;
+    }
+    .tsl-locked-row {
+      padding: 18px 0; margin-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      opacity: 0.42; cursor: not-allowed; user-select: none;
+    }
+    .tsl-locked-label {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.4);
+    }
+    .tsl-locked-hint {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 11px;
+      color: rgba(255,255,255,0.25); flex-shrink: 0; white-space: nowrap;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .unlock-anim { animation: fadeInUp 0.5s ease forwards; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+
+      <!-- ── TICKER ── -->
+      <div class="ticker-strip">
+        <div class="ticker-track">
+          <span>LANÇAMENTO ◆ ANTI-VADE PPRN™ ◆ DISPONÍVEL AGORA ◆ LANÇAMENTO ◆ ANTI-VADE PPRN™ ◆ DISPONÍVEL AGORA ◆ LANÇAMENTO ◆ ANTI-VADE PPRN™ ◆ </span><span>LANÇAMENTO ◆ ANTI-VADE PPRN™ ◆ DISPONÍVEL AGORA ◆ LANÇAMENTO ◆ ANTI-VADE PPRN™ ◆ DISPONÍVEL AGORA ◆ LANÇAMENTO ◆ ANTI-VADE PPRN™ ◆ </span>
+        </div>
+      </div>
+
+      <!-- ── HEADLINE (obrigatória) ── -->
+      <h1 class="title">
+        Descubra Como Dominar<br>Toda a Lei Seca da PPRN<br>em 15 Minutos Por Lei:<br>
+        <span class="accent">Sem PDF Gigante, e Sem Videoaula de 8 Horas</span>
+      </h1>
+
+      <p class="pre-video">Assista ao vídeo antes de sair desta página.</p>
+
+      <!-- ── PLAYER WISTIA ── -->
+      <div class="video-wrap">
+        <wistia-player media-id="WISTIA_VIDEO_ID" aspect="0.5581395348837209" style="width:100%;display:block;"></wistia-player>
+      </div>
+
+      <!-- ── CTA PRIMÁRIO (travado 2 min) ── -->
+      <!-- Placeholder bloqueado -->
+      <div class="cta-wrap" id="cta-locked" style="margin-top:0; margin-bottom:28px;">
+        <div class="lock-placeholder">
+          <span class="lock-icon-el">🔒</span>
+          <div>
+            <span class="lock-timer">Disponível em alguns segundos</span>
+            <span class="lock-hint">aguarde enquanto assiste ao vídeo</span>
+          </div>
+        </div>
+        <p class="cta-note" style="opacity:0.3;">Acesso imediato após confirmação do pagamento.</p>
+      </div>
+      <!-- CTA real (aparece após 2 min de VSL) -->
+      <div class="cta-wrap" id="cta-real" style="margin-top:0; margin-bottom:28px; display:none;">
+        <div class="cta-snake">
+          <!-- ATENÇÃO: substitua https://pay.kirvano.com/aa29f303-86d4-4690-b5eb-ea402c9b77a4 pelo link do checkout no Kirvano -->
+          <a href="https://pay.kirvano.com/aa29f303-86d4-4690-b5eb-ea402c9b77a4" class="cta">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+            GARANTIR O ANTI-VADE MECUM PPRN™
+          </a>
+        </div>
+        <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+        <p style="font-family:'Nunito',sans-serif; font-size:13px; color:rgba(255,255,255,0.22); text-align:center; font-style:italic; margin-top:4px; line-height:1.6;">
+          "De um Aprovado,para um futuro Aprovado."<br>Marcos Brito
+        </p>
+      </div>
+
+      <!-- ── STATS STRIP ── -->
+      <div class="stats-strip">
+        <div class="stat">
+          <div class="stat-icon">📄</div>
+          <div class="stat-value">8</div>
+          <div class="stat-label">Leis do edital</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-value">Imediato</div>
+          <div class="stat-label">acesso</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">🛡️</div>
+          <div class="stat-value">7 dias</div>
+          <div class="stat-label">garantia</div>
+        </div>
+      </div>
+
+      <!-- ── STARS ── -->
+      <div class="stars-row">
+        <span class="stars">★★★★★</span>
+        <span class="stars-text">4.9 · Aprovados na PPES, PPMG e mais</span>
+      </div>
+
+      <!-- ── LEIS + GATILHO DE PREÇO (travado 2 min) ── -->
+      <div id="laws-locked" class="cta-wrap" style="margin-bottom:28px;">
+        <div class="lock-placeholder">
+          <span class="lock-icon-el">🔒</span>
+          <div>
+            <span class="lock-timer">Disponível em alguns segundos</span>
+            <span class="lock-hint">aguarde enquanto assiste ao vídeo</span>
+          </div>
+        </div>
+      </div>
+      <div class="laws-wrap" id="laws-real" style="display:none;">
+        <p class="laws-header">O que você vai receber</p>
+
+        <div class="law-row">
+          <div class="law-check">✓</div>
+          <div class="law-name">Crimes Hediondos,Atualizado 2026</div>
+          <div class="law-old-price">R$ 9,90</div>
+        </div>
+        <div class="law-row">
+          <div class="law-check">✓</div>
+          <div class="law-name">Ação Penal</div>
+          <div class="law-old-price">R$ 9,90</div>
+        </div>
+        <div class="law-row">
+          <div class="law-check">✓</div>
+          <div class="law-name">Inquérito Policial</div>
+          <div class="law-old-price">R$ 9,90</div>
+        </div>
+        <div class="law-row">
+          <div class="law-check">✓</div>
+          <div class="law-name">Lei de Improbidade Administrativa</div>
+          <div class="law-old-price">R$ 9,90</div>
+        </div>
+        <div class="law-row">
+          <div class="law-check">✓</div>
+          <div class="law-name">Lei de Drogas (Lei nº 11.343/06)</div>
+          <div class="law-old-price">R$ 9,90</div>
+        </div>
+        <div class="law-row">
+          <div class="law-check">✓</div>
+          <div class="law-name">Organização Criminosa (ORCRIM)</div>
+          <div class="law-old-price">R$ 9,90</div>
+        </div>
+        <div class="law-row">
+          <div class="law-check">✓</div>
+          <div class="law-name">Lei de Tortura,Atualizada 2026</div>
+          <div class="law-old-price">R$ 9,90</div>
+        </div>
+        <div class="law-row" style="border-bottom:none;">
+          <div class="law-check">✓</div>
+          <div class="law-name">Lei de Abuso de Autoridade (Lei nº 13.869/19)</div>
+          <div class="law-old-price">R$ 9,90</div>
+        </div>
+
+        <div class="laws-sep"></div>
+
+        <div class="laws-total-row">
+          <span class="laws-total-label">Valor total separado:</span>
+          <span class="laws-total-value">R$ 197</span>
+        </div>
+
+        <div class="laws-today-box">
+          <div class="laws-today-label">⚡ Somente hoje,preço de lançamento</div>
+          <div style="text-align:center; margin: 8px 0 4px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:700; color:rgba(10,190,82,0.6); margin-bottom:2px; letter-spacing:0.04em;">9x de</div>
+            <div style="font-family:'Sora',sans-serif; font-size:52px; font-weight:800; line-height:1; color:#0abe52;">R$ 5,23</div>
+          </div>
+          <div class="laws-today-note">Quando essa janela fechar, o preço sobe e não volta.</div>
+        </div>
+      </div>
+
+      <!-- ── FAQ ── -->
+      <div class="faq-wrap">
+        <p class="faq-title">Perguntas frequentes</p>
+
+        <details class="faq-item">
+          <summary class="faq-q">Esse material realmente cobre tudo que vai cair na prova da PPRN ou é mais um resumo genérico adaptado?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O Anti-Vade Mecum PPRN foi construído especificamente para o edital da Polícia Penal do Rio Grande do Norte,não é material de outro concurso com o nome trocado na capa. Cada lei incluída é lei do edital. Cada artigo que está dentro passou por um processo de garimpo real: analisamos como a banca constrói questões, quais palavras ela troca nas alternativas erradas, e quais termos são decisivos para acerto ou erro. <strong>O que não cai, não está. Não há uma página de rosto bonita para impressionar,há conteúdo cirúrgico para aprovar.</strong></p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Eu já tenho PDF de legislação. Por que o Anti-Vade Mecum PPRN seria diferente?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O PDF que você tem provavelmente tem entre 90 e 200 páginas por lei. O Anti-Vade Mecum PPRN entrega a mesma lei em 4 a 10 páginas. A diferença não é só tamanho,é o que foi retirado e por quê. Cada corte foi feito com base no que a banca cobra, não no que o professor acha importante. Além disso, <strong>as palavras decisivas estão em negrito</strong>,as que a banca usa para montar e inverter questões. Você não precisa descobrir o que é importante durante a leitura. O material já fez esse trabalho por você.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Tenho pouco tempo para estudar porque trabalho o dia todo. Esse material funciona para minha realidade?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Foi exatamente para essa realidade que o material foi construído. O concurseiro médio da PPRN não estuda em tempo integral,ele estuda no ônibus, no intervalo do trabalho, na madrugada depois de chegar em casa. O Anti-Vade Mecum PPRN foi desenhado para caber nesses momentos: <strong>15 minutos por lei é suficiente para uma revisão completa.</strong> Você não precisa de mais tempo. Precisa de menos material e mais precisão.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Como eu sei que esse método realmente funciona e não é só mais uma promessa de cursinho?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O Método da Palavra Decisiva foi desenvolvido por Marcos Brito, aprovado na Polícia Penal do Espírito Santo e na Polícia Militar de Minas Gerais, com <strong>18 acertos em 18 questões de legislação especial</strong> na PPES. Não é teoria de quem nunca sentou numa cadeira de prova. É o método de quem passou, identificou o padrão da banca, e transformou esse padrão em material. A aprovação não foi acidente,foi resultado direto de estudar o que cai, com precisão, sem volume desnecessário.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">E se eu comprar e não gostar ou achar que não era o que esperava?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Você tem 7 dias para abrir o material, usar, e avaliar. Se depois disso você achar que não é o material mais cirúrgico que já teve nas mãos para estudar lei seca da PPRN, basta mandar uma mensagem e o valor é devolvido integralmente. <strong>Sem pergunta, sem processo, sem burocracia.</strong> A garantia existe porque o material entrega o que promete,e quem construiu sabe disso.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">O material é atualizado se o edital mudar?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Sim. O Anti-Vade Mecum PPRN é construído sobre o edital vigente. Se houver alteração de edital que impacte as legislações incluídas, o material é atualizado. Você não vai ficar com conteúdo desatualizado na mão na reta final de preparação.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Preciso ter base em direito para aproveitar o material ou funciona para quem está começando do zero?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Funciona para qualquer nível. O Anti-Vade Mecum PPRN não pressupõe conhecimento jurídico,ele destrincha cada artigo na linguagem direta que a questão vai usar, não na linguagem técnica da lei original. Quem está começando vai aprender a lei do jeito certo desde o início. Quem já tem base vai revisar com uma velocidade que nenhum PDF longo permite.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Por que estudar lei seca com esse material é melhor do que fazer questões diretamente?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Fazer questão sem ter a lei mastigada é treino de chute,você erra, lê o gabarito, acha que entendeu, e na próxima questão erra de novo porque <strong>a banca trocou uma palavra e você não sabia que aquela palavra era decisiva.</strong> O Anti-Vade Mecum PPRN resolve o problema na raiz: você primeiro aprende onde estão as palavras que a banca usa para te derrubar, e só depois vai para a questão,agora com a capacidade de reconhecer o padrão, não de adivinhar a resposta.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Quanto tempo antes da prova eu preciso ter o material para que ele faça diferença?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Quanto mais cedo, mais revisões você consegue fazer,e revisão é o que fixa. Mas mesmo com pouco tempo até a prova, o Anti-Vade Mecum PPRN tem vantagem sobre qualquer outro material: você consegue revisar toda a legislação especial em menos de 3 horas. Na semana da prova, quando o tempo é curto e o nervoso é alto, ter um material que permite revisão completa em uma tarde é a diferença entre entrar na sala preparado ou entrar na sala com dúvida.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Esse material substitui o estudo de questões ou preciso usar os dois juntos?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Os dois juntos é o caminho mais sólido,mas a ordem importa. <strong>Primeiro o Anti-Vade Mecum PPRN</strong>, para você conhecer as palavras decisivas de cada lei. Depois as questões, para você treinar o reconhecimento de padrão com o que já está gravado. Quem inverte essa ordem passa meses acertando questão por memorização e errando na prova porque a banca mudou a ordem das palavras. Quem segue a ordem certa entra na prova sabendo exatamente o que a banca está fazendo em cada alternativa.</p>
+        </details>
+
+      </div>
+
+      <!-- ── GARANTIA MINI ── -->
+      <div class="guarantee-mini">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="rgba(37,211,102,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Garantia de 7 dias · Acesso imediato · Sem burocracia</span>
+      </div>
+
+      <!-- ── TSL BLOQUEADO (placeholder) ── -->
+      <div class="tsl-locked-row" id="tsl-locked">
+        <span class="tsl-locked-label">🔒 Quero saber tudo que está incluso antes de decidir</span>
+        <span class="tsl-locked-hint">Continue assistindo →</span>
+      </div>
+
+      <!-- ── TSL COLAPSÁVEL (aparece após 2 min de VSL) ── -->
+      <details class="tsl-collapse" id="tsl-real" style="display:none;">
+        <summary class="tsl-toggle">
+          Quero saber tudo que está incluso antes de decidir
+          <svg class="toggle-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </summary>
+        <div class="tsl-inner">
+        <article class="advertorial">
+
+          <!-- BRIDGE -->
+          <section>
+            <p class="body-text">
+              O vídeo mostrou o diagnóstico. Agora você vai entender por que tudo que você tentou antes não funcionou,e o que, exatamente, o Anti-Vade Mecum PPRN™ entrega nas suas mãos.
+            </p>
+          </section>
+
+          <div class="divider"></div>
+
+          <!-- ABERTURA / LEAD-IN -->
+          <section>
+            <p class="section-label">O concurseiro que reprovou por uma palavra</p>
+            <h2 class="section-heading">Não foi falta de esforço. Foi falta do material certo.</h2>
+
+            <p class="body-text">
+              Você sabe qual é a diferença entre o candidato que passa na Polícia Penal do RN e o que reprova?
+            </p>
+            <p class="body-text">
+              Não é inteligência. Não é tempo de estudo. Não é nem o cursinho.
+            </p>
+            <p class="body-text">
+              É uma coisa só: <strong>saber exatamente qual palavra a banca vai cobrar.</strong>
+            </p>
+
+            <div class="callout">
+              <p>Enquanto você lê 150 páginas de legislação tentando absorver tudo, o candidato que vai sentar na sua vaga está lendo 8 páginas,as 8 páginas certas, com as palavras certas marcadas, gravadas na mente como tatuagem. Isso não é sorte. É método.</p>
+            </div>
+
+            <p class="body-text">
+              E é exatamente o que o Anti-Vade Mecum PPRN™ entrega nas suas mãos hoje.
+            </p>
+          </section>
+
+          <div class="divider"></div>
+
+          <!-- INTRO + CONCEITO CENTRAL -->
+          <section>
+            <p class="section-label">O método</p>
+            <h2 class="section-heading">Por que seu cérebro descarta 80% do que você lê,e o que fazer com isso.</h2>
+
+            <p class="body-text">
+              Você já abriu um PDF de legislação, leu por 2 horas, fechou o arquivo e não conseguiu lembrar de nada que leu?
+            </p>
+            <p class="body-text">
+              Todo mundo que estuda para concurso já viveu isso. E sabe por quê isso acontece?
+            </p>
+            <p class="body-text">
+              Porque o cérebro humano não foi feito para absorver volume. <strong>Ele foi feito para reconhecer padrão.</strong>
+            </p>
+            <p class="body-text">
+              Quando você abre uma lei de 90 páginas, seu cérebro tenta processar 90 páginas de informação. Quando você fecha o PDF, ele descartou 80% disso como ruído,porque não consegue distinguir o que importa do que não importa.
+            </p>
+            <p class="body-text">
+              É aí que 90% dos concurseiros perdem a prova antes mesmo de chegar na sala de exame. Eles estudaram demais. E aprenderam de menos.
+            </p>
+
+            <div class="callout">
+              <p>A banca da PPRN não quer saber se você leu a lei inteira. Ela quer saber se você sabe a palavra que está no artigo 3º, inciso II, alínea b,porque é exatamente essa palavra que ela vai trocar na alternativa errada para te derrubar.</p>
+            </div>
+
+            <p class="body-text">
+              Foi por isso que o <strong>Método da Palavra Decisiva™</strong> foi criado.
+            </p>
+            <p class="body-text">
+              Cada lei do edital da PPRN foi passada por um processo cirúrgico: garimpamos prova por prova, questão por questão, e identificamos exatamente quais palavras a banca usa para construir, inverter e derrubar candidatos.
+            </p>
+            <p class="body-text">
+              Essas palavras estão em negrito no Anti-Vade Mecum PPRN. <em>Você não vai mais ler a lei. Você vai ler a mente da banca.</em>
+            </p>
+          </section>
+
+          <div class="divider"></div>
+
+          <!-- FALSAS SOLUÇÕES -->
+          <section>
+            <p class="section-label">O que não funciona</p>
+            <h2 class="section-heading">Tudo que você já tentou,e por que não foi suficiente.</h2>
+
+            <p class="body-text" style="margin-bottom:24px;">
+              Antes de te falar o que funciona, preciso ser honesto sobre o que não funciona.
+            </p>
+
+            <div class="false-item">
+              <div class="false-item-title">O PDF de 200 páginas do professor famoso</div>
+              <p>Você já baixou. Aquele PDF bonito, bem diagramado, com sumário interativo e marca d'água do cursinho famoso. Você abriu no primeiro dia com animação. No terceiro dia estava na pasta "estudar depois". PDF longo não é qualidade. É quantidade disfarçada de qualidade. A banca não vai te perguntar se você leu 200 páginas. Ela vai te perguntar se você sabe a palavra certa no artigo certo.</p>
+            </div>
+            <div class="false-item">
+              <div class="false-item-title">A videoaula de 8 horas</div>
+              <p>Você assiste. Você anota. Você sente que aprendeu. Três dias depois, na hora de responder a questão, a memória some. Porque videoaula é passiva. Seu cérebro fica no modo de entretenimento, não no modo de fixação. Você não aprende legislação assistindo. Você aprende lendo, relendo e reconhecendo padrão.</p>
+            </div>
+            <div class="false-item" style="margin-bottom:0;">
+              <div class="false-item-title">Fazer questões sem ter o material certo</div>
+              <p>Fazer questão sem ter a lei mastigada é como tentar acertar um alvo no escuro. Você erra, lê o gabarito, acha que entendeu, e na próxima questão erra de novo porque a banca trocou uma palavra e você não sabia que aquela palavra era decisiva. Questão sem base é treino de chute. Não é treino de aprovação.</p>
+            </div>
+          </section>
+
+          <div class="divider"></div>
+
+          <!-- QUEBRA DE OBJEÇÕES -->
+          <section>
+            <p class="section-label">Suas dúvidas</p>
+            <h2 class="section-heading">Já ouço o que você está pensando.</h2>
+
+            <div class="objection">
+              <div class="objection-q">Mas eu não tenho tempo suficiente para estudar.</div>
+              <p class="objection-a">Esse é exatamente o problema que o Anti-Vade Mecum PPRN resolve. Você não precisa de mais tempo. Você precisa de menos material e mais precisão. Com 15 minutos por lei, você revisa o que a banca vai cobrar. No ônibus. No intervalo do trabalho. Na fila do banco. O concurseiro que passa não tem mais tempo que você. Ele usa o tempo que tem de forma cirúrgica.</p>
+            </div>
+
+            <div class="objection">
+              <div class="objection-q">Mas e se o edital mudar?</div>
+              <p class="objection-a">O Anti-Vade Mecum PPRN foi construído especificamente para o edital da Polícia Penal do Rio Grande do Norte. Cada lei incluída é lei do edital. Nada a mais, nada a menos. Se o edital mudar, o material é atualizado.</p>
+            </div>
+
+            <div class="objection">
+              <div class="objection-q">Mas eu já tenho material, não preciso de mais.</div>
+              <p class="objection-a">Deixa eu te perguntar uma coisa: o material que você tem hoje te faz sentir preparado para sentar na prova amanhã? Se a resposta não for um "sim" imediato, você não tem o material certo. Você tem volume.</p>
+            </div>
+
+            <div class="objection">
+              <div class="objection-q">Não sei se vai funcionar pra mim.</div>
+              <p class="objection-a">Vai te dizer quem não vai funcionar: quem não abre o material. Para quem abre, lê e revisa,funciona. Porque o método é cirúrgico, não depende de talento, não depende de tempo sobrando, não depende de você ser o mais inteligente da sala. Depende de você estudar o que cai. E só o que cai.</p>
+            </div>
+
+            <div class="objection" style="margin-bottom:0;">
+              <div class="objection-q">O preço está alto para mim.</div>
+              <p class="objection-a">O concurseiro que passa na PPRN vai ganhar em média R$ 4.000 por mês. São R$ 48.000 por ano. São R$ 240.000 em cinco anos. O que você vai investir hoje é menos do que gasta em um mês de alimentação. A pergunta não é se você pode investir nisso. A pergunta é se você pode continuar sem isso.</p>
+            </div>
+          </section>
+
+          <div class="divider"></div>
+
+          <!-- OFERTA -->
+          <section>
+            <p class="section-label">A oferta</p>
+            <h2 class="section-heading">O único material do RN construído com o Método da Palavra Decisiva™.</h2>
+
+            <p class="body-text">
+              O que você está recebendo não é mais um PDF de legislação.
+            </p>
+            <p class="body-text">
+              É o único material do mercado construído com o <strong>Método da Palavra Decisiva™</strong>,o processo que identifica exatamente quais palavras a banca da PPRN usa para montar, inverter e derrubar questões de lei seca.
+            </p>
+
+            <div class="callout">
+              <p>Não são 200 páginas. Não são 90 páginas. São 4 a 10 páginas por lei. Enxutas. Cirúrgicas. Sem uma palavra que não cai. Só o esqueleto da aprovação.</p>
+            </div>
+
+            <p class="body-text">
+              Construído por Marcos Brito,aprovado na Polícia Penal do Espírito Santo, aprovado na Polícia Militar de Minas Gerais, <strong>18 acertos em 18 questões de legislação especial na PPES</strong>,o material que você tem na mão foi testado em prova real, não em teoria de cursinho.
+            </p>
+          </section>
+
+          <!-- BULLETS -->
+          <section>
+            <p class="section-label">O que você vai ter nas mãos</p>
+            <ul class="offer-list">
+              <li><div class="dot"></div> Lei seca do edital da PPRN resumida em linguagem direta, sem juridiquês desnecessário</li>
+              <li><div class="dot"></div> Palavras decisivas em negrito,exatamente o que a banca troca para te derrubar</li>
+              <li><div class="dot"></div> Revisão completa de todas as leis em menos de 3 horas</li>
+              <li><div class="dot"></div> Material que cabe no celular,estude no ônibus, no intervalo, na madrugada</li>
+              <li><div class="dot"></div> Cada artigo destrinchado na linguagem que a questão vai usar, não na linguagem da lei original</li>
+              <li><div class="dot"></div> Zero conteúdo que não cai,cada palavra dentro do material tem razão de estar ali</li>
+              <li><div class="dot"></div> Acesso imediato após a confirmação,você começa a estudar hoje, não amanhã</li>
+              <li><div class="dot"></div> Construído especificamente para o edital da PPRN,não é material genérico adaptado</li>
+            </ul>
+          </section>
+
+          <div class="divider"></div>
+
+          <!-- BÔNUS -->
+          <section>
+            <p class="section-label">Bônus</p>
+            <h2 class="section-heading">O que vem junto, sem custo extra.</h2>
+
+            <div class="bonus-item">
+              <div class="bonus-icon">🎯</div>
+              <div class="bonus-text">
+                <div class="bonus-name">Lista das Palavras Decisivas por Lei</div>
+                <p>As palavras exatas que a banca usa para construir alternativas erradas em cada uma das 8 leis. Leitura de 10 minutos que vale meses de estudo de questão no escuro.</p>
+              </div>
+            </div>
+
+            <div class="bonus-item">
+              <div class="bonus-icon">📋</div>
+              <div class="bonus-text">
+                <div class="bonus-name">Mapa de Prioridades PPRN</div>
+                <p>Quais artigos têm maior incidência de cobrança na PPRN. Você sabe exatamente onde concentrar energia em cada lei,sem adivinhar o que a banca vai priorizar.</p>
+              </div>
+            </div>
+
+            <div class="bonus-item" style="margin-bottom:0;">
+              <div class="bonus-icon">⚡</div>
+              <div class="bonus-text">
+                <div class="bonus-name">Cronograma de Revisão Pré-Prova</div>
+                <p>Para a semana antes da prova. Qual lei revisar, em qual ordem, em quanto tempo,para entrar na sala com toda a legislação na ponta da língua.</p>
+              </div>
+            </div>
+          </section>
+
+          <div class="divider"></div>
+
+          <!-- GARANTIA + ESCASSEZ -->
+          <section>
+            <p class="section-label">Sua segurança</p>
+            <h2 class="section-heading">Você não arrisca nada. A banca já cobra risco suficiente.</h2>
+
+            <p class="body-text" style="margin-bottom:20px;">
+              O Marcos construiu esse material com um objetivo: que você feche cada lei sabendo mais do que quando começou. Se isso não acontecer, existe uma garantia para isso.
+            </p>
+
+            <div class="guarantee-box">
+              <div class="guarantee-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="guarantee-text">
+                <div class="g-title">Garantia de 7 dias</div>
+                <p>Se você abrir o material e sentir que não é o que esperava, basta solicitar o reembolso em até 7 dias. Sem burocracia. Sem perguntas. O valor cai de volta na sua conta integralmente.</p>
+              </div>
+            </div>
+
+            <div class="scarcity">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+              <p>O edital da PPRN tem data. A prova não espera você decidir quando está pronto. O candidato que vai sentar na sua vaga não está esperando. Ele está estudando agora. A questão é simples: você vai chegar na prova tendo estudado volume, ou tendo estudado precisão?</p>
+            </div>
+          </section>
+
+        </article>
+
+          <!-- ENCERRAMENTO,copy final da TSL antes do CTA -->
+          <section>
+            <p class="body-text" style="margin-bottom:16px;">
+              O Anti-Vade Mecum PPRN™ está disponível agora. Acesso imediato. Sem enrolação. Sem espera.
+            </p>
+            <div class="callout">
+              <p>Ou você entra para a Polícia Penal do Rio Grande do Norte com a farda que você merece,ou você deixa outra pessoa entrar no seu lugar. A decisão é sua. E ela precisa ser tomada agora.</p>
+            </div>
+          </section>
+
+          <!-- CTA dentro do collapse,para quem leu tudo -->
+          <div class="cta-wrap" style="margin-top:32px;">
+            <div class="cta-snake">
+              <a href="https://pay.kirvano.com/aa29f303-86d4-4690-b5eb-ea402c9b77a4" class="cta">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+                GARANTIR O ANTI-VADE MECUM PPRN™
+              </a>
+            </div>
+            <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+            <p style="font-family:'Nunito',sans-serif; font-size:13px; color:rgba(255,255,255,0.22); text-align:center; font-style:italic; margin-top:6px; line-height:1.6;">
+              "De um Aprovado,para um futuro Aprovado."<br>Marcos Brito
+            </p>
+          </div>
+
+        </div><!-- /tsl-inner -->
+      </details>
+
+      <p class="footer-sig">© 2026 Marcos Brito</p>
+
+    </div>
+  </div>
+  <script>
+    (function () {
+      var LOCK_SECS = 120;
+      var unlocked  = false;
+
+      function unlock() {
+        if (unlocked) return;
+        unlocked = true;
+        ['cta-locked', 'laws-locked', 'tsl-locked'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+        ['cta-real', 'laws-real', 'tsl-real'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) { el.style.display = ''; el.classList.add('unlock-anim'); }
+        });
+      }
+
+      window._wq = window._wq || [];
+      _wq.push({ id: '_all', onReady: function (video) {
+        if (video.time() >= LOCK_SECS) { unlock(); return; }
+        video.bind('secondchange', function (s) {
+          if (s >= LOCK_SECS) { unlock(); video.unbind('secondchange'); }
+        });
+      }});
+    })();
+  </script>
+</body>
+</html>
