@@ -580,7 +580,7 @@
       </div>
 
       <!-- ── CTA PRIMÁRIO ── -->
-      <div class="cta-wrap" id="cta-real" style="margin-top:0; margin-bottom:28px;">
+      <div class="cta-wrap" id="cta-real" style="margin-top:0; margin-bottom:28px; display:none;">
         <div class="cta-snake">
           <!-- ATENÇÃO: substitua https://pay.kirvano.com/aa29f303-86d4-4690-b5eb-ea402c9b77a4 pelo link do checkout no Kirvano -->
           <a href="https://pay.kirvano.com/aa29f303-86d4-4690-b5eb-ea402c9b77a4" class="cta">
@@ -620,7 +620,7 @@
       </div>
 
       <!-- ── LEIS + GATILHO DE PREÇO ── -->
-      <div class="laws-wrap" id="laws-real">
+      <div class="laws-wrap" id="laws-real" style="display:none;">
         <p class="laws-header">O que você vai receber</p>
 
         <div class="law-row">
@@ -764,7 +764,7 @@
       </div>
 
       <!-- ── TSL COLAPSÁVEL ── -->
-      <details class="tsl-collapse" id="tsl-real">
+      <details class="tsl-collapse" id="tsl-real" style="display:none;">
         <summary class="tsl-toggle">
           Quero saber tudo que está incluso antes de decidir
           <svg class="toggle-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
@@ -1033,5 +1033,16 @@
 
     </div>
   </div>
+  <script>
+    (function () {
+      function unlock() {
+        ['cta-real', 'laws-real', 'tsl-real'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) { el.style.display = ''; el.classList.add('unlock-anim'); }
+        });
+      }
+      setTimeout(unlock, 15000);
+    })();
+  </script>
 </body>
 </html>
