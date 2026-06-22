@@ -263,7 +263,7 @@ const antiVadeLinks: LinkItem[] = [
     url: 'https://antivade-pprn.web.app/',
     color: '#e9d5ff',
     featured: true,
-    description: 'Eu montei o Anti-Vade Mecum PPRN com todas as leis que caem na prova. Cada lei organizada, atualizada e pronta pra você estudar. Clica em "Continuar" e já abre pra você.',
+    description: 'Eu montei o Anti-Vade Mecum PPRN com todas as leis que caem na prova. Cada uma já está organizada pra você baixar e estudar. Olha o que tem aqui:\n\n📄 Crimes Hediondos — Atualizado 2026\n📄 Ação Penal\n📄 Inquérito Policial\n📄 Lei de Improbidade Administrativa\n📄 Lei de Drogas (Lei nº 11.343/06)\n📄 Organização Criminosa — ORCRIM\n📄 Lei de Tortura — Atualizada 2026\n📄 Lei de Abuso de Autoridade (Lei nº 13.869/19)\n\nClica em "Continuar" e já abre pra você.',
   },
   {
     id: 'anti-vade-pmpi',
@@ -271,7 +271,7 @@ const antiVadeLinks: LinkItem[] = [
     url: 'https://antivade-pmpi.web.app',
     color: '#e9d5ff',
     featured: true,
-    description: 'Eu montei o Anti-Vade Mecum PMPI com todas as leis que caem na prova. Cada lei organizada, atualizada e pronta pra você estudar. Clica em "Continuar" e já abre pra você.',
+    description: 'Eu montei o Anti-Vade Mecum PMPI com todas as leis que caem na prova. Cada uma já está organizada pra você baixar e estudar. Olha o que tem aqui:\n\n📄 Lei Maria da Penha + Atualizações 2026\n📄 Lei de Abuso de Autoridade (Lei nº 13.869/19)\n📄 Lei de Tortura (Lei nº 9.455/97)\n📄 Lei de Improbidade Administrativa\n\nClica em "Continuar" e já abre pra você.',
   },
 ];
 
