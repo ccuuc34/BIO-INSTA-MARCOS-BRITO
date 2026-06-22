@@ -257,6 +257,22 @@ const antiVadeLinks: LinkItem[] = [
     featured: true,
     description: 'Eu montei o Anti-Vade Mecum PMAL com todas as leis que caem na prova. Olha o que você vai receber:\n\n📄 Código Processo-Penal-Militar\n📄 Código Penal Militar\n📄 Crimes de Preconceito (Lei nº 7.716)\n📄 Crimes Hediondos (Lei nº 8.072/90)\n📄 Crimes Hediondos — Atualizações 2026\n📄 Direito Processual — Inquérito Policial\n📄 Direito Processual Penal — Ação Penal\n📄 Estatuto do Desarmamento (Lei nº 10.826/03)\n📄 Lei de Abuso de Autoridade (Lei nº 13.869/19)\n📄 Lei de Drogas (Lei nº 11.343/06)\n📄 Lei de Tortura (Lei nº 9.455/97)\n📄 Lei de Tortura — Atualizações 2026\n📄 Lei Maria da Penha (Lei nº 11.340/06)\n📄 Lei Maria da Penha — Atualizações 2026\n📄 ORCRIM (Lei nº 12.850)\n📄 Prisão Temporária (Lei nº 7.960)\n\nClica em "Continuar" e já abre pra você.',
   },
+  {
+    id: 'anti-vade-pprn',
+    label: 'Anti-Vade Mecum PPRN',
+    url: 'https://antivade-pprn.web.app/',
+    color: '#e9d5ff',
+    featured: true,
+    description: 'Eu montei o Anti-Vade Mecum PPRN com todas as leis que caem na prova. Cada lei organizada, atualizada e pronta pra você estudar. Clica em "Continuar" e já abre pra você.',
+  },
+  {
+    id: 'anti-vade-pmpi',
+    label: 'Anti-Vade Mecum PMPI',
+    url: 'https://antivade-pmpi.web.app',
+    color: '#e9d5ff',
+    featured: true,
+    description: 'Eu montei o Anti-Vade Mecum PMPI com todas as leis que caem na prova. Cada lei organizada, atualizada e pronta pra você estudar. Clica em "Continuar" e já abre pra você.',
+  },
 ];
 
 // ─── Links Data ───────────────────────────────────────────────────────────────
@@ -319,6 +335,22 @@ const kitLinks: LinkItem[] = [
     color: '#e9d5ff',
     featured: true,
     description: 'Eu montei o kit completo pra quem estuda pra PMESP. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-pprn',
+    label: 'KIT PPRN: Edital Verticalizado + Prioridades',
+    url: 'https://edital-verticalizado-pprn.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    description: 'Eu montei o kit completo pra quem estuda pra PPRN. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-pmpi',
+    label: 'KIT PMPI: Edital Verticalizado + Prioridades',
+    url: 'https://edital-verticalizado-pmpi.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    description: 'Eu montei o kit completo pra quem estuda pra PMPI. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
 ];
 
