@@ -365,7 +365,7 @@ const links: LinkItem[] = [
     buttonColor: '#c2410c',
     icon: <Icon6Pilares />,
     featured: true,
-    description: 'Três encontros ao vivo comigo. Seis elementos que candidatos aprovados têm e que a maioria nunca para pra construir. Não é mais conteúdo. É o sistema de execução que faz tudo o mais funcionar. Clica em "Continuar" e acessa agora.',
+    description: 'Se você sofre com falta de disciplina pra manter a rotina, estuda bastante mas sente que não evolui, ou chega na prova travado mesmo sabendo o conteúdo — clica em "Continuar" pra entender o que é o Método 6PF.',
   },
   {
     id: 'antivade',
