@@ -359,7 +359,7 @@ const kitLinks: LinkItem[] = [
 const links: LinkItem[] = [
   {
     id: '6pilares',
-    label: '6 PILARES - AO VIVO COMIGO',
+    label: 'MÉTODO 6PF - AO VIVO COMIGO',
     url: 'https://6pilares-oficial.web.app/',
     color: '#fed7aa',
     buttonColor: '#c2410c',
