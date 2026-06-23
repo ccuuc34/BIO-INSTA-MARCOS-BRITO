@@ -1685,6 +1685,8 @@ function App() {
                 padding: '8px 0 32px',
                 width: '100%',
                 maxWidth: '480px',
+                maxHeight: '88vh',
+                overflowY: 'auto',
                 boxShadow: '0 -8px 40px rgba(139,23,26,0.15), 0 -24px 64px rgba(0,0,0,0.6)',
               }}
             >
@@ -1792,6 +1794,8 @@ function App() {
                 padding: '8px 0 32px',
                 width: '100%',
                 maxWidth: '480px',
+                maxHeight: '88vh',
+                overflowY: 'auto',
                 boxShadow: '0 -8px 40px rgba(128,0,255,0.1), 0 -24px 64px rgba(0,0,0,0.6)',
               }}
             >
@@ -2041,6 +2045,8 @@ function App() {
                 padding: '32px 24px 28px',
                 maxWidth: '360px',
                 width: '100%',
+                maxHeight: '85vh',
+                overflowY: 'auto',
                 textAlign: 'center',
                 boxShadow: `0 0 40px ${activeLink.color}22, 0 24px 64px rgba(0,0,0,0.6)`,
                 position: 'relative',
