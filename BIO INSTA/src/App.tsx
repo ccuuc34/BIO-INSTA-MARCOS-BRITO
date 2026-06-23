@@ -1870,12 +1870,20 @@ function App() {
                       border: '1px solid rgba(160,60,255,0.3)',
                     }}
                   >
-                    <span style={{
-                      fontFamily: "'Nunito', sans-serif", fontWeight: 700,
-                      fontSize: '14px', color: '#ffffff', lineHeight: 1.3,
-                    }}>
-                      {item.label}
-                    </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                      <span style={{
+                        fontFamily: "'Nunito', sans-serif", fontWeight: 700,
+                        fontSize: '14px', color: '#ffffff', lineHeight: 1.3,
+                      }}>
+                        {item.label}
+                      </span>
+                      <span style={{
+                        fontFamily: "'Nunito', sans-serif", fontWeight: 500,
+                        fontSize: '11px', color: 'rgba(233,213,255,0.55)', lineHeight: 1,
+                      }}>
+                        Toque para ver as leis incluídas
+                      </span>
+                    </div>
                     <span className="material-symbols-outlined"
                       style={{ color: '#e9d5ff', fontSize: '18px', opacity: 0.7, flexShrink: 0, marginLeft: '8px' }}>
                       chevron_right
