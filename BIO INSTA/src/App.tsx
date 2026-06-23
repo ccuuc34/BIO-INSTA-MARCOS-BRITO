@@ -429,27 +429,27 @@ const categoryPopups = {
   antivade: {
     color: '#8000ff',
     tag: 'Anti-Vade Mecum',
-    headline: 'O ATALHO QUE OS APROVADOS NÃO CONTAM',
-    sub: 'A maioria perde a vaga estudando o que não cai. Você não vai cometer esse erro.',
+    headline: 'TODA A LEI SECA DO SEU CONCURSO SEM O QUE NÃO CAI',
+    sub: 'O Anti-Vade Mecum pega cada lei do seu edital e entrega só o que a banca cobra. Sem os 80% que não caem. Só o esqueleto da aprovação — na linguagem direta da questão.',
     blocks: [
       {
         icon: '📚',
-        title: 'De 200 páginas para 5',
-        body: 'O edital tem centenas de artigos em leis gigantes. Ninguém tem tempo pra estudar tudo. Eu peguei essas leis e reduzi para 5 a 12 páginas — só o que realmente cai na prova.',
+        title: '200 páginas viram 10',
+        body: 'Cada lei foi reduzida ao que realmente cai. Você lê em minutos o que levaria horas no PDF original.',
       },
       {
         icon: '🎯',
-        title: 'Sem surpresa na prova',
-        body: 'Quem estuda pelo Anti-Vade chega na prova sabendo exatamente o que vai aparecer. Não tem susto, não tem "eu vi isso mas não lembro onde estava".',
+        title: 'As palavras decisivas marcadas',
+        body: 'A banca não cobra a lei. Cobra uma palavra específica dela. Essas palavras estão destacadas em cada artigo.',
       },
       {
         icon: '⚡',
         title: 'Atualizado para 2026',
-        body: 'Cada material já vem com as leis atualizadas. Você não perde tempo caçando atualização em site nenhum.',
+        body: 'Cada material já vem com as atualizações mais recentes. Você não estuda versão velha.',
       },
     ],
-    cta: 'QUERO ESTUDAR SÓ O QUE CAI',
-    ctaSub: 'Ver os Anti-Vade disponíveis →',
+    cta: 'VER OS ANTI-VADE DISPONÍVEIS',
+    ctaSub: 'Escolha o do seu concurso →',
   },
   editais: {
     color: '#8b171a',
