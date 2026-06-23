@@ -1877,12 +1877,14 @@ function App() {
                       }}>
                         {item.label}
                       </span>
-                      <span style={{
-                        fontFamily: "'Nunito', sans-serif", fontWeight: 500,
-                        fontSize: '11px', color: 'rgba(233,213,255,0.55)', lineHeight: 1,
-                      }}>
-                        Toque para ver as leis incluídas
-                      </span>
+                      {item.description.includes('📄') && (
+                        <span style={{
+                          fontFamily: "'Nunito', sans-serif", fontWeight: 500,
+                          fontSize: '11px', color: 'rgba(233,213,255,0.55)', lineHeight: 1,
+                        }}>
+                          Toque para ver as leis incluídas
+                        </span>
+                      )}
                     </div>
                     <span className="material-symbols-outlined"
                       style={{ color: '#e9d5ff', fontSize: '18px', opacity: 0.7, flexShrink: 0, marginLeft: '8px' }}>
