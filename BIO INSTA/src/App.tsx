@@ -2042,11 +2042,13 @@ function App() {
                 background: '#111111',
                 border: `1px solid ${activeLink.color}33`,
                 borderRadius: '20px',
-                padding: '32px 24px 28px',
+                padding: '0',
                 maxWidth: '360px',
                 width: '100%',
                 maxHeight: '85vh',
-                overflowY: 'auto',
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden',
                 textAlign: 'center',
                 boxShadow: `0 0 40px ${activeLink.color}22, 0 24px 64px rgba(0,0,0,0.6)`,
                 position: 'relative',
@@ -2061,12 +2063,14 @@ function App() {
                   borderRadius: '50%', width: '32px', height: '32px',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   cursor: 'pointer', color: 'rgba(255,255,255,0.5)',
-                  fontSize: '18px', lineHeight: 1,
+                  fontSize: '18px', lineHeight: 1, zIndex: 1,
                 }}
               >
                 ×
               </button>
 
+              {/* Área scrollável: ícone + título + descrição */}
+              <div style={{ flex: 1, overflowY: 'auto', padding: '32px 24px 16px' }}>
               {/* Ícone */}
               {activeLink.icon && (
                 <div style={{
@@ -2093,7 +2097,7 @@ function App() {
               </h3>
 
               {/* Descrição */}
-              <div style={{ margin: '0 0 28px', textAlign: 'left' }}>
+              <div style={{ textAlign: 'left' }}>
                 {activeLink.description.split('\n').map((line, i) => {
                   const isUpdate = line.includes('Atualizações 2026');
                   return (
@@ -2117,9 +2121,10 @@ function App() {
                   );
                 })}
               </div>
+              </div>{/* fim área scrollável */}
 
-              {/* Botões */}
-              <div style={{ display: 'flex', gap: '10px' }}>
+              {/* Botões — fixos no fundo */}
+              <div style={{ flexShrink: 0, padding: '12px 24px 28px', borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', gap: '10px' }}>
                 <button
                   onClick={handleVoltar}
                   style={{
