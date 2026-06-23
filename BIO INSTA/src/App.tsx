@@ -827,6 +827,13 @@ function App() {
   const [showKitsModal, setShowKitsModal] = useState(false);
   const [categoryPopup, setCategoryPopup] = useState<CategoryKey | null>(null);
   const [previousModal, setPreviousModal] = useState<'antivade' | 'editais' | 'grupos' | null>(null);
+
+  useEffect(() => {
+    const anyOpen = !!(activeLink || showGroupsModal || showAntiVadeModal || showKitsModal || categoryPopup);
+    document.body.style.overflow = anyOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [activeLink, showGroupsModal, showAntiVadeModal, showKitsModal, categoryPopup]);
+
   // ── Áudios ──
   const [activeAudio, setActiveAudio] = useState<number | null>(null);
 
