@@ -337,6 +337,22 @@ const kitLinks: LinkItem[] = [
     description: 'Eu montei o kit completo pra quem estuda pra PMESP. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
+    id: 'kit-pmma',
+    label: 'KIT PMMA: Edital Verticalizado + Prioridades',
+    url: 'https://edital-verticalizado-pmma.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    description: 'Eu montei o kit completo pra quem estuda pra PMMA. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-pmmg',
+    label: 'KIT PMMG: Edital Verticalizado + Prioridades',
+    url: 'https://edital-verticalizado-pmmg.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    description: 'Eu montei o kit completo pra quem estuda pra PMMG. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
     id: 'kit-pprn',
     label: 'KIT PPRN: Edital Verticalizado + Prioridades',
     url: 'https://edital-verticalizado-pprn.vercel.app/',
