@@ -115,6 +115,7 @@ interface LinkItem {
   icon?: ReactNode;
   featured?: boolean;
   description: string;
+  category?: 'pp' | 'pm' | 'gcm';
 }
 
 // ─── Group Links (sub-área de grupos) ─────────────────────────────────────────
@@ -279,6 +280,12 @@ const antiVadeLinks: LinkItem[] = [
 
 // ─── Kit Links (sub-área de editais verticalizados) ──────────────────────────
 
+const kitCategories: { id: 'pp' | 'pm' | 'gcm'; label: string; icon: string }[] = [
+  { id: 'pp',  label: 'Polícia Penal',                     icon: '⚖️' },
+  { id: 'pm',  label: 'Polícia Militar',                    icon: '🪖' },
+  { id: 'gcm', label: 'Guarda Civil Municipal (GCM)',       icon: '🛡️' },
+];
+
 const kitLinks: LinkItem[] = [
   {
     id: 'kit-pprs',
@@ -286,7 +293,26 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pprs.web.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pp',
     description: 'Eu montei um kit completo pra você não perder tempo. Tem o edital verticalizado, as prioridades do que estudar primeiro e um plano de ação de 76 dias pra você chegar na prova preparado. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-pppb',
+    label: 'KIT PP PB: Edital Verticalizado + Prioridades',
+    url: 'https://edital-pppb-2026.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    category: 'pp',
+    description: 'Eu montei o kit completo pra quem estuda pra PP PB. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-ppma',
+    label: 'KIT PP MA: Edital Verticalizado + Prioridades',
+    url: 'https://edital-pp-ma-2026.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    category: 'pp',
+    description: 'Eu montei o kit completo pra quem estuda pra PP MA. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
     id: 'kit-pmal',
@@ -294,6 +320,7 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pmal.vercel.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pm',
     description: 'Eu montei o kit completo pra quem estuda pra PMAL. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
@@ -302,15 +329,8 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pmba.vercel.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pm',
     description: 'Eu montei o kit completo pra quem estuda pra PMBA. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
-  },
-  {
-    id: 'kit-gcm-aracaju',
-    label: 'KIT GCM Aracaju: Edital Verticalizado + Prioridades',
-    url: 'https://edital-verticalizado-gcm-aracaju.vercel.app/',
-    color: '#e9d5ff',
-    featured: true,
-    description: 'Eu montei o kit completo pra quem estuda pra GCM Aracaju. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
     id: 'kit-pmpe',
@@ -318,6 +338,7 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pmpe.vercel.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pm',
     description: 'Eu montei o kit completo pra quem estuda pra PMPE. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
@@ -326,6 +347,7 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pmes.web.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pm',
     description: 'Eu montei o kit completo pra quem estuda pra PMES. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
@@ -334,6 +356,7 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pmsp.vercel.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pm',
     description: 'Eu montei o kit completo pra quem estuda pra PMESP. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
@@ -342,6 +365,7 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pmma.vercel.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pm',
     description: 'Eu montei o kit completo pra quem estuda pra PMMA. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
@@ -350,6 +374,7 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pmmg.vercel.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pm',
     description: 'Eu montei o kit completo pra quem estuda pra PMMG. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
@@ -358,6 +383,7 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pprn.vercel.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pp',
     description: 'Eu montei o kit completo pra quem estuda pra PPRN. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
@@ -366,7 +392,53 @@ const kitLinks: LinkItem[] = [
     url: 'https://edital-verticalizado-pmpi.vercel.app/',
     color: '#e9d5ff',
     featured: true,
+    category: 'pm',
     description: 'Eu montei o kit completo pra quem estuda pra PMPI. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-pmdf-praca',
+    label: 'KIT PMDF Praça: Edital Verticalizado + Prioridades',
+    url: 'https://edital-pmdf-praca-2026.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    category: 'pm',
+    description: 'Eu montei o kit completo pra quem estuda pra PMDF Praça. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-gcm-aracaju',
+    label: 'KIT Guarda Civil Municipal de Aracaju: Edital Verticalizado + Prioridades',
+    url: 'https://edital-verticalizado-gcm-aracaju.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    category: 'gcm',
+    description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de Aracaju. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-gcm-pousoalegre',
+    label: 'KIT Guarda Civil Municipal de Pouso Alegre: Edital Verticalizado + Prioridades',
+    url: 'https://edital-gcm-pouso-alegre.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    category: 'gcm',
+    description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de Pouso Alegre. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-gcm-saojoseribamar',
+    label: 'KIT Guarda Civil Municipal de São José de Ribamar: Edital Verticalizado + Prioridades',
+    url: 'https://edital-gcm-sao-jose-ribamar.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    category: 'gcm',
+    description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de São José de Ribamar. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-gcm-maceio',
+    label: 'KIT Guarda Civil Municipal de Maceió: Edital Verticalizado + Prioridades',
+    url: 'https://edital-gcm-maceio-2026.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    category: 'gcm',
+    description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de Maceió. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
 ];
 
@@ -841,13 +913,25 @@ function App() {
   const [showGroupsModal, setShowGroupsModal] = useState(false);
   const [showAntiVadeModal, setShowAntiVadeModal] = useState(false);
   const [showKitsModal, setShowKitsModal] = useState(false);
+  const [kitCategory, setKitCategory] = useState<'pp' | 'pm' | 'gcm' | null>(null);
   const [categoryPopup, setCategoryPopup] = useState<CategoryKey | null>(null);
-  const [previousModal, setPreviousModal] = useState<'antivade' | 'editais' | 'grupos' | null>(null);
 
+  // ── Trava o scroll do fundo enquanto qualquer modal/popup estiver aberto ──
   useEffect(() => {
-    const anyOpen = !!(activeLink || showGroupsModal || showAntiVadeModal || showKitsModal || categoryPopup);
-    document.body.style.overflow = anyOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    const modalOpen = !!activeLink || showGroupsModal || showAntiVadeModal || showKitsModal || !!categoryPopup;
+    if (!modalOpen) return;
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      window.scrollTo(0, scrollY);
+    };
   }, [activeLink, showGroupsModal, showAntiVadeModal, showKitsModal, categoryPopup]);
 
   // ── Áudios ──
@@ -885,11 +969,11 @@ function App() {
 
   const handleVoltar = () => {
     setActiveLink(null);
-    const prev = previousModal;
-    setPreviousModal(null);
-    if (prev === 'antivade') setTimeout(() => setShowAntiVadeModal(true), 50);
-    else if (prev === 'editais') setTimeout(() => setShowKitsModal(true), 50);
-    else if (prev === 'grupos') setTimeout(() => setShowGroupsModal(true), 50);
+  };
+
+  const closeKitsModal = () => {
+    setShowKitsModal(false);
+    setTimeout(() => setKitCategory(null), 300);
   };
 
   const handleLinkClick = (link: LinkItem) => {
@@ -1682,7 +1766,7 @@ function App() {
         {showKitsModal && (
           <motion.div
             key="kits-overlay"
-            onClick={() => setShowKitsModal(false)}
+            onClick={closeKitsModal}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -1730,7 +1814,7 @@ function App() {
                   }}>EDITAIS VERTICALIZADOS</span>
                 </div>
                 <button
-                  onClick={() => setShowKitsModal(false)}
+                  onClick={closeKitsModal}
                   style={{
                     background: 'rgba(255,255,255,0.07)', border: 'none',
                     borderRadius: '50%', width: '32px', height: '32px',
@@ -1740,46 +1824,119 @@ function App() {
                   }}
                 >×</button>
               </div>
-              <p style={{
-                fontFamily: "'Nunito', sans-serif", fontWeight: 500,
-                fontSize: '13px', color: 'rgba(255,255,255,0.4)',
-                padding: '0 24px', marginBottom: '16px', lineHeight: 1.5,
-              }}>
-                Escolha o edital verticalizado do seu concurso.
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '0 16px' }}>
-                {kitLinks.map((kit, i) => (
-                  <motion.div
-                    key={kit.id}
-                    role="button"
-                    onClick={() => {
-                      setShowKitsModal(false);
-                      setPreviousModal('editais');
-                      setTimeout(() => setActiveLink(kit), 50);
-                    }}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 + i * 0.06, duration: 0.25 }}
-                    whileTap={{ scale: 0.98 }}
-                    style={{
-                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                      padding: '14px 16px', borderRadius: '10px', cursor: 'pointer',
-                      background: 'rgba(139,23,26,0.14)',
-                      border: '1px solid rgba(139,23,26,0.4)',
-                    }}
-                  >
-                    <span style={{
-                      fontFamily: "'Nunito', sans-serif", fontWeight: 700,
-                      fontSize: '14px', color: '#ffffff', lineHeight: 1.3,
-                    }}>
-                      {kit.label}
-                    </span>
-                    <span className="material-symbols-outlined"
-                      style={{ color: '#ffbbbb', fontSize: '18px', opacity: 0.7, flexShrink: 0, marginLeft: '8px' }}>
-                      chevron_right
-                    </span>
-                  </motion.div>
-                ))}
+
+              <div style={{ overflow: 'hidden' }}>
+                <AnimatePresence mode="wait" initial={false}>
+                  {kitCategory === null ? (
+                    <motion.div
+                      key="kit-categories"
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -16 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <p style={{
+                        fontFamily: "'Nunito', sans-serif", fontWeight: 500,
+                        fontSize: '13px', color: 'rgba(255,255,255,0.4)',
+                        padding: '0 24px', marginBottom: '16px', lineHeight: 1.5,
+                      }}>
+                        Escolha a categoria do seu concurso.
+                      </p>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '0 16px' }}>
+                        {kitCategories.map((cat, i) => (
+                          <motion.div
+                            key={cat.id}
+                            role="button"
+                            onClick={() => setKitCategory(cat.id)}
+                            initial={{ opacity: 0, x: -12 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.05 + i * 0.06, duration: 0.25 }}
+                            whileTap={{ scale: 0.98 }}
+                            style={{
+                              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                              padding: '16px', borderRadius: '10px', cursor: 'pointer',
+                              background: 'rgba(139,23,26,0.14)',
+                              border: '1px solid rgba(139,23,26,0.4)',
+                            }}
+                          >
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                              <span style={{ fontSize: '20px', lineHeight: 1 }}>{cat.icon}</span>
+                              <span style={{
+                                fontFamily: "'Sora', sans-serif", fontWeight: 700,
+                                fontSize: '14.5px', color: '#ffffff', lineHeight: 1.3,
+                              }}>
+                                {cat.label}
+                              </span>
+                            </span>
+                            <span className="material-symbols-outlined"
+                              style={{ color: '#ffbbbb', fontSize: '18px', opacity: 0.7, flexShrink: 0, marginLeft: '8px' }}>
+                              chevron_right
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key={`kit-list-${kitCategory}`}
+                      initial={{ opacity: 0, x: 16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 16 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <button
+                        onClick={() => setKitCategory(null)}
+                        style={{
+                          display: 'flex', alignItems: 'center', gap: '6px',
+                          background: 'none', border: 'none', cursor: 'pointer',
+                          padding: '0 24px', marginBottom: '14px',
+                          fontFamily: "'Nunito', sans-serif", fontWeight: 700,
+                          fontSize: '13px', color: '#ffbbbb',
+                        }}
+                      >
+                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_back</span>
+                        Voltar
+                      </button>
+                      <p style={{
+                        fontFamily: "'Nunito', sans-serif", fontWeight: 500,
+                        fontSize: '13px', color: 'rgba(255,255,255,0.4)',
+                        padding: '0 24px', marginBottom: '16px', lineHeight: 1.5,
+                      }}>
+                        Escolha o edital verticalizado do seu concurso.
+                      </p>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '0 16px' }}>
+                        {kitLinks.filter(kit => kit.category === kitCategory).map((kit, i) => (
+                          <motion.div
+                            key={kit.id}
+                            role="button"
+                            onClick={() => setActiveLink(kit)}
+                            initial={{ opacity: 0, x: -12 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.05 + i * 0.06, duration: 0.25 }}
+                            whileTap={{ scale: 0.98 }}
+                            style={{
+                              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                              padding: '14px 16px', borderRadius: '10px', cursor: 'pointer',
+                              background: 'rgba(139,23,26,0.14)',
+                              border: '1px solid rgba(139,23,26,0.4)',
+                            }}
+                          >
+                            <span style={{
+                              fontFamily: "'Nunito', sans-serif", fontWeight: 700,
+                              fontSize: '14px', color: '#ffffff', lineHeight: 1.3,
+                            }}>
+                              {kit.label}
+                            </span>
+                            <span className="material-symbols-outlined"
+                              style={{ color: '#ffbbbb', fontSize: '18px', opacity: 0.7, flexShrink: 0, marginLeft: '8px' }}>
+                              chevron_right
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           </motion.div>
@@ -1870,11 +2027,7 @@ function App() {
                   <motion.div
                     key={item.id}
                     role="button"
-                    onClick={() => {
-                      setShowAntiVadeModal(false);
-                      setPreviousModal('antivade');
-                      setTimeout(() => setActiveLink(item), 50);
-                    }}
+                    onClick={() => setActiveLink(item)}
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 + i * 0.06, duration: 0.25 }}
@@ -2004,11 +2157,7 @@ function App() {
                   <motion.div
                     key={group.id}
                     role="button"
-                    onClick={() => {
-                      setShowGroupsModal(false);
-                      setPreviousModal('grupos');
-                      setTimeout(() => setActiveLink(group), 50);
-                    }}
+                    onClick={() => setActiveLink(group)}
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 + i * 0.06, duration: 0.25 }}
