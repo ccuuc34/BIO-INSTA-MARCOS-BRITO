@@ -1,0 +1,1 @@
+{ "hosting": { "site": "copa-hexa", "public": "public", "ignore": ["firebase.json", "**/.*"] } }
