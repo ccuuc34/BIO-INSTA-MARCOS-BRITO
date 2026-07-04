@@ -95,6 +95,17 @@ const Icon6Pilares = () => (
   </svg>
 );
 
+const IconAntiGramatica = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+    {/* Corpo do lápis */}
+    <path d="M15.5 3.5L20.5 8.5L9 20H4V15L15.5 3.5Z" fill="currentColor" opacity="0.9"/>
+    {/* Ponta */}
+    <path d="M4 15L9 20L4 21Z" fill="currentColor" opacity="0.55"/>
+    {/* Faixa metálica */}
+    <path d="M13 6L18 11" stroke="currentColor" strokeWidth="1.4" opacity="0.4"/>
+  </svg>
+);
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 const hexToRgba = (hex: string, alpha: number): string => {
@@ -454,6 +465,16 @@ const links: LinkItem[] = [
     icon: <Icon6Pilares />,
     featured: true,
     description: 'Se você sofre com falta de disciplina pra manter a rotina, estuda bastante mas sente que não evolui, ou chega na prova travado mesmo sabendo o conteúdo — clica em "Continuar" pra entender o que é o Método 6PF.',
+  },
+  {
+    id: 'antigramatica',
+    label: 'ANTI-GRAMÁTICA AQUI',
+    url: 'https://antigramatica.web.app',
+    color: '#bfe9d0',
+    buttonColor: '#0f7a4d',
+    icon: <IconAntiGramatica />,
+    featured: true,
+    description: 'Eu criei o Anti-Gramática pra você que trava em português. Tudo o que cai na prova, direto ao ponto, sem enrolação. Clica em "Continuar" e já abre pra você.',
   },
   {
     id: 'antivade',
