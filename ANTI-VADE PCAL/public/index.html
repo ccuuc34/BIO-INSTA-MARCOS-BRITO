@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-Vade Mecum PCAL™ | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background-color: #010000;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 60px 80px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 110px 20px, rgba(255,100,100,0.3), transparent),
+        radial-gradient(2px 2px at 150px 140px, rgba(255,255,255,0.1), transparent);
+      background-size: 200px 200px;
+    }
+    body::after {
+      content: '';
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 350px;
+      background: #8b0000;
+      border-radius: 50%; filter: blur(180px); opacity: 0.16;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Progress bar (fixa, presente em toda etapa) ── */
+    .progress-wrap {
+      position: fixed; top: 0; left: 0; width: 100%; height: 5px;
+      background: rgba(255,255,255,0.06); z-index: 50;
+    }
+    .progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #e84040, #ff6a00);
+      transition: width 0.5s ease;
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; justify-content: center;
+      padding: 44px 20px 60px;
+    }
+    .card {
+      width: 100%; max-width: 520px;
+    }
+
+    #app { animation: fadeIn 0.35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .eyebrow {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: #e84040; letter-spacing: 0.16em; text-transform: uppercase;
+      text-align: center; margin-bottom: 14px;
+    }
+    .headline {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(21px, 6.2vw, 30px);
+      color: #ffffff; text-align: center; line-height: 1.28;
+      margin-bottom: 28px;
+    }
+    .headline strong { color: #e84040; }
+    .avatar-row {
+      display: flex; justify-content: center; margin-bottom: 22px;
+    }
+    .avatar {
+      width: 76px; height: 76px; border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 40px rgba(232,64,64,0.35);
+    }
+
+    /* ── Opções do quiz (Etapa 1) ── */
+    .opt-list { display: flex; flex-direction: column; gap: 12px; }
+    .opt-btn {
+      width: 100%; text-align: left; cursor: pointer;
+      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 14px; padding: 18px 20px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15.5px;
+      color: rgba(255,255,255,0.88); line-height: 1.4;
+      transition: border-color 0.2s, background 0.2s, transform 0.12s;
+    }
+    .opt-btn:hover { border-color: rgba(232,64,64,0.5); background: rgba(232,64,64,0.08); }
+    .opt-btn:active { transform: scale(0.98); }
+
+    /* ── Corpo de texto ── */
+    .body-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 16px;
+      color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 14px;
+    }
+    .body-text strong { color: #fff; font-weight: 700; }
+    .punch {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 17px;
+      color: #ffffff; text-align: center; margin: 22px 0 6px;
+    }
+    .punch-sub {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px;
+      color: rgba(255,255,255,0.6); text-align: center; margin-bottom: 24px;
+    }
+
+    /* ── Checklist ── */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      color: rgba(255,255,255,0.88); line-height: 1.5;
+    }
+    .check-ico {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(10,190,82,0.15); border: 1px solid rgba(10,190,82,0.4);
+      color: #0abe52; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; margin-top: 1px;
+    }
+
+    /* ── Mini law cards (Etapa 3) ── */
+    .law-cards { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
+    .law-card {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 12px 14px;
+    }
+    .law-card .ico { font-size: 16px; flex-shrink: 0; }
+    .law-card .name { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px; color: rgba(255,255,255,0.8); }
+
+    /* ── Prova social (Etapa 4) ── */
+    .proof-box {
+      background: rgba(232,64,64,0.06); border: 1px solid rgba(232,64,64,0.25);
+      border-radius: 16px; padding: 22px 20px; margin: 18px 0;
+    }
+    .proof-stats { display: flex; gap: 10px; margin-top: 16px; }
+    .proof-stat {
+      flex: 1; text-align: center; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 6px;
+    }
+    .proof-stat .v { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 17px; color: #0abe52; }
+    .proof-stat .l { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 3px; }
+
+    /* ── Divider ── */
+    .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.08); margin: 22px 0; }
+
+    /* ── Callout ── */
+    .callout {
+      background: rgba(139,23,26,0.12); border-left: 3px solid #e84040;
+      border-radius: 0 10px 10px 0; padding: 16px 18px; margin: 18px 0;
+    }
+    .callout p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14.5px;
+      color: rgba(255,220,220,0.92); line-height: 1.7; font-style: italic;
+    }
+
+    /* ── Oferta / Missão (Etapa 6) ── */
+    .mission-box {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 22px 20px; margin-bottom: 20px;
+    }
+    .mission-label { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px; color: #e84040; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .bonus-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14.5px; color: rgba(255,255,255,0.82); line-height: 1.5; }
+    .bonus-item .ico { flex-shrink: 0; font-size: 16px; }
+
+    .price-list {
+      width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 18px 18px 6px; margin-bottom: 20px;
+    }
+    .price-row {
+      display: flex; align-items: center; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .price-row:last-of-type { border-bottom: none; }
+    .price-row .check {
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(10,190,82,0.15); border: 1px solid rgba(10,190,82,0.4);
+      color: #0abe52; display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800;
+    }
+    .price-row .name {
+      flex: 1; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(255,255,255,0.78); line-height: 1.4;
+    }
+    .price-row .val {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 12.5px;
+      color: rgba(232,64,64,0.8); text-decoration: line-through; flex-shrink: 0;
+    }
+
+    .price-box {
+      background: rgba(10,190,82,0.07); border: 1px solid rgba(10,190,82,0.22);
+      border-radius: 14px; padding: 22px 18px; text-align: center; margin: 22px 0 8px;
+    }
+    .price-old { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; color: rgba(232,64,64,0.75); text-decoration: line-through; }
+    .price-label { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin: 6px 0; }
+    .price-new { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 46px; color: #0abe52; line-height: 1; }
+    .price-installment { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .price-note { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12px; color: rgba(233,196,0,0.7); margin-top: 10px; }
+
+    /* ── CTA principal (verde, snake shimmer) ── */
+    .cta-wrap { width: 100%; margin-top: 22px; }
+    .cta-snake {
+      position: relative; width: 100%; border-radius: 16px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 70px rgba(10,190,82,0.55), 0 16px 36px rgba(0,0,0,0.5);
+    }
+    .cta-snake::before {
+      content: ''; position: absolute; width: 300%; height: 300%; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg, transparent 0deg, transparent 255deg,
+        rgba(170,0,0,0.08) 272deg, rgba(210,15,0,0.55) 288deg, #ff3300 302deg,
+        #ff6600 316deg, #ff9900 329deg, rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg, transparent 360deg);
+      animation: spin 2.4s linear infinite;
+    }
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 19px 20px;
+      background: linear-gradient(135deg, #0abe52 0%, #079040 60%, #056830 100%);
+      border: none; border-radius: 13px; cursor: pointer;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(13px, 3.6vw, 15px);
+      color: #fff; letter-spacing: 0.02em; text-transform: uppercase;
+      text-decoration: none; position: relative;
+    }
+    .cta-note { font-family: 'Nunito', sans-serif; font-size: 12px; color: rgba(255,255,255,0.28); text-align: center; margin-top: 10px; }
+
+    .footer-sig {
+      margin-top: 40px; text-align: center;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      color: rgba(255,255,255,0.14); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+  <div class="page">
+    <div class="card" id="app"></div>
+  </div>
+
+  <script>
+    var CHECKOUT_URL = "https://pay.kirvano.com/04527972-88d6-48a8-b6e4-7839fe1cbcab";
+
+    var app = document.getElementById('app');
+    var progress = document.getElementById('progress');
+
+    function setProgress(pct) { progress.style.width = pct + '%'; }
+
+    function mount(html) {
+      app.style.opacity = 0;
+      setTimeout(function () {
+        app.innerHTML = html;
+        app.style.opacity = 1;
+      }, 120);
+    }
+
+    function goStage(n) {
+      var fns = { 1: stage1, 2: stage2, 3: stage3, 4: stage4, 5: stage5, 6: stage6 };
+      fns[n]();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── ETAPA 1: Pergunta de qualificação ──
+    function stage1() {
+      setProgress(16);
+      mount(
+        '<p class="eyebrow">Marcos Brito</p>' +
+        '<div class="avatar-row"><img class="avatar" src="marcos-hero.webp" alt="Marcos Brito"></div>' +
+        '<h1 class="headline">Qual dessas 2 mudanças você quer que eu faça <strong>rápido</strong> no seu estudo da PCAL hoje?</h1>' +
+        '<div class="opt-list">' +
+          '<button class="opt-btn" onclick="goStage(2)">Parar de perder tempo estudando o que não cai</button>' +
+          '<button class="opt-btn" onclick="goStage(2)">Aprender a lei seca de um jeito que gruda de verdade</button>' +
+        '</div>'
+      );
+    }
+
+    // ── ETAPA 2: Presell / Reframe ──
+    function stage2() {
+      setProgress(33);
+      mount(
+        '<p class="eyebrow">Antes de mais nada</p>' +
+        '<h2 class="headline">Vão te oferecer PDF de 200 páginas e videoaula de 8 horas.</h2>' +
+        '<p class="body-text">Mas o que realmente vai fazer você dominar a lei seca mais rápido é:</p>' +
+        '<ul class="check-list">' +
+          '<li><span class="check-ico">✓</span> Saber exatamente qual palavra a banca troca pra te derrubar</li>' +
+          '<li><span class="check-ico">✓</span> Revisar uma lei inteira em 15 minutos, não em 3 horas</li>' +
+          '<li><span class="check-ico">✓</span> Ter as palavras decisivas já destacadas, sem garimpar sozinho</li>' +
+          '<li><span class="check-ico">✓</span> Estudar só as leis que realmente caem no edital da PCAL</li>' +
+        '</ul>' +
+        '<p class="punch">Pouca coisa né? 😏</p>' +
+        '<p class="punch-sub">Pois é. Você só não sai do lugar porque tá estudando volume,não método.</p>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(3)">Preciso estudar certo</button></div></div>'
+      );
+    }
+
+    // ── ETAPA 3: Produto / Proposta de valor ──
+    function stage3() {
+      setProgress(50);
+      mount(
+        '<p class="eyebrow">O Anti-Vade Mecum PCAL</p>' +
+        '<h2 class="headline">Com o Anti-Vade Mecum PCAL você vai:</h2>' +
+        '<ul class="check-list">' +
+          '<li><span class="check-ico">✓</span> Ter as 6 leis do edital resumidas em 4 a 10 páginas cada</li>' +
+          '<li><span class="check-ico">✓</span> Ver as palavras decisivas em negrito,as que a banca troca pra te derrubar</li>' +
+          '<li><span class="check-ico">✓</span> Revisar toda a legislação especial em menos de 2 horas</li>' +
+          '<li><span class="check-ico">✓</span> Estudar no celular,no ônibus, no intervalo do trabalho</li>' +
+          '<li><span class="check-ico">✓</span> Saber o Mapa de Prioridades,onde a banca mais cobra</li>' +
+        '</ul>' +
+        '<div class="law-cards">' +
+          '<div class="law-card"><span class="ico">📄</span><span class="name">Inquérito Policial</span></div>' +
+          '<div class="law-card"><span class="ico">📄</span><span class="name">Organização Criminosa (Lei 12.850/13)</span></div>' +
+          '<div class="law-card"><span class="ico">📄</span><span class="name">Crimes Hediondos (Lei 8.072/90) — Atual. 2026</span></div>' +
+          '<div class="law-card"><span class="ico">📄</span><span class="name">Crimes de Preconceito (Lei 7.716/89)</span></div>' +
+          '<div class="law-card"><span class="ico">📄</span><span class="name">Lei de Tortura (Lei 9.455/97) — Atual. 2026</span></div>' +
+          '<div class="law-card"><span class="ico">📄</span><span class="name">Abuso de Autoridade (Lei 13.869/19)</span></div>' +
+        '</div>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(4)">É disso que eu preciso</button></div></div>'
+      );
+    }
+
+    // ── ETAPA 4: Prova social forte ──
+    function stage4() {
+      setProgress(66);
+      mount(
+        '<p class="eyebrow">Não confie só na minha palavra</p>' +
+        '<h2 class="headline">Deixa eu te mostrar o resultado. 😅</h2>' +
+        '<div class="proof-box">' +
+          '<p class="body-text" style="margin-bottom:0;">Antes de criar esse método, eu tentava decorar lei inteira e ia mal em legislação especial. Depois que passei a estudar só as palavras que a banca troca,fui <strong>aprovado na Polícia Penal do Espírito Santo</strong> e na <strong>Polícia Militar de Minas Gerais</strong>.</p>' +
+          '<div class="proof-stats">' +
+            '<div class="proof-stat"><div class="v">18/18</div><div class="l">Acertos em legislação especial (PPES)</div></div>' +
+            '<div class="proof-stat"><div class="v">2</div><div class="l">Concursos aprovado</div></div>' +
+          '</div>' +
+        '</div>' +
+        '<p class="body-text">Não foi sorte. Foi parar de estudar volume e passar a estudar exatamente onde a banca ataca.</p>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(5)">Preciso desse método também</button></div></div>'
+      );
+    }
+
+    // ── ETAPA 5: Quebra de objeção ──
+    function stage5() {
+      setProgress(83);
+      mount(
+        '<p class="eyebrow">Sua dúvida agora</p>' +
+        '<h2 class="headline">"Mas será que esse material cobre mesmo o que cai no edital da PCAL, ou é resumo genérico adaptado?" 🙄</h2>' +
+        '<p class="body-text">Deixa eu ser direto com você: <strong>esse material não é genérico.</strong></p>' +
+        '<div class="law-cards">' +
+          '<div class="law-card"><span class="ico">🎯</span><span class="name">Feito exclusivamente pro edital da Polícia Civil de Alagoas</span></div>' +
+          '<div class="law-card"><span class="ico">🚫</span><span class="name">Não é material de outro concurso com o nome trocado na capa</span></div>' +
+          '<div class="law-card"><span class="ico">✅</span><span class="name">Só entra lei que está no edital da PCAL,nada a mais, nada a menos</span></div>' +
+        '</div>' +
+        '<div class="callout"><p>Esse Anti-Vade Mecum foi construído <strong>apenas e especificamente para quem vai prestar concurso pra PCAL</strong>. Não é PM. Não é PP. É PCAL,e só PCAL.</p></div>' +
+        '<p class="body-text">Você só não descobriu ainda como estudar lei seca sem decorar página por página.</p>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(6)">Já quero estudar assim</button></div></div>'
+      );
+    }
+
+    // ── ETAPA 6: Missão + Oferta principal ──
+    function stage6() {
+      setProgress(100);
+      mount(
+        '<p class="eyebrow">Minha missão é simples</p>' +
+        '<h2 class="headline">Te fazer dominar toda a lei seca da PCAL,as 6 leis do edital, em 15 minutos por lei.</h2>' +
+
+        '<div class="mission-box">' +
+          '<p class="mission-label">🎯 Seu objetivo</p>' +
+          '<p class="body-text" style="margin-bottom:0;">Revisar as 6 leis mais cobradas do edital da PCAL antes da prova,com as palavras decisivas já destacadas pra você, sem precisar garimpar sozinho.</p>' +
+        '</div>' +
+
+        '<div class="mission-box">' +
+          '<p class="mission-label">🎁 Bônus que você vai ter</p>' +
+          '<div class="bonus-item"><span class="ico">🎯</span> Lista das Palavras Decisivas por Lei</div>' +
+          '<div class="bonus-item" style="margin-bottom:0;"><span class="ico">♾️</span> Acesso vitalício,sem mensalidade, com atualização gratuita se o edital mudar</div>' +
+        '</div>' +
+
+        '<div class="price-list">' +
+          '<div class="price-row"><span class="check">✓</span><span class="name">Inquérito Policial</span><span class="val">R$ 22,90</span></div>' +
+          '<div class="price-row"><span class="check">✓</span><span class="name">Organização Criminosa (Lei 12.850/2013)</span><span class="val">R$ 27,90</span></div>' +
+          '<div class="price-row"><span class="check">✓</span><span class="name">Crimes Hediondos (Lei 8.072/1990) — Atual. 2026</span><span class="val">R$ 29,90</span></div>' +
+          '<div class="price-row"><span class="check">✓</span><span class="name">Crimes de Preconceito (Lei 7.716/1989)</span><span class="val">R$ 19,90</span></div>' +
+          '<div class="price-row"><span class="check">✓</span><span class="name">Lei de Tortura (Lei 9.455/1997) — Atual. 2026</span><span class="val">R$ 24,90</span></div>' +
+          '<div class="price-row"><span class="check">✓</span><span class="name">Abuso de Autoridade (Lei 13.869/2019)</span><span class="val">R$ 22,90</span></div>' +
+        '</div>' +
+
+        '<div class="price-box">' +
+          '<div class="price-old">De R$ 148 (valor somado das 6 leis separadas)</div>' +
+          '<div class="price-label">Hoje, preço de lançamento</div>' +
+          '<div class="price-new">8x de R$ 5,51</div>' +
+          '<div class="price-installment">ou R$ 37,90 à vista</div>' +
+          '<div class="price-note">Isso aqui não é gatilho mental: soma o valor de cada lei aí em cima e confere.</div>' +
+        '</div>' +
+
+        '<div class="cta-wrap">' +
+          '<div class="cta-snake"><a href="' + CHECKOUT_URL + '" class="cta">GARANTIR O ANTI-VADE PCAL</a></div>' +
+          '<p class="cta-note">Acesso imediato após confirmação do pagamento · Garantia de 7 dias</p>' +
+        '</div>' +
+
+        '<p class="footer-sig">© 2026 Marcos Brito</p>'
+      );
+    }
+
+    stage1();
+  </script>
+</body>
+</html>

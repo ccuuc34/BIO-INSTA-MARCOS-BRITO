@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-Gramática 2.0 | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://fast.wistia.com/player.js" async></script>
+  <script src="https://fast.wistia.com/embed/rpycnitnog.js" async type="module"></script>
+  <style>
+    wistia-player[media-id='rpycnitnog']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/rpycnitnog/swatch');
+      display: block; filter: blur(5px); padding-top: 179.17%;
+    }
+  </style>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background-color: #010000;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 60px 80px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 110px 20px, rgba(255,100,100,0.3), transparent),
+        radial-gradient(2px 2px at 150px 140px, rgba(255,255,255,0.1), transparent);
+      background-size: 200px 200px;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 350px;
+      background: #8b0000;
+      border-radius: 50%; filter: blur(180px); opacity: 0.18;
+      pointer-events: none; z-index: 0;
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; justify-content: center;
+      padding: 52px 20px 80px;
+    }
+
+    .card {
+      width: 100%; max-width: 560px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    /* ── Aviso de obrigado (upsell) ── */
+    .thanks-wrap {
+      width: 100%;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      padding: 8px 6px 30px;
+      margin-bottom: 26px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .thanks-check {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(10,190,82,0.12); border: 1px solid rgba(10,190,82,0.35);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .thanks-check svg { width: 26px; height: 26px; }
+    .thanks-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(19px, 5.5vw, 25px);
+      color: #ffffff; line-height: 1.3; margin-bottom: 12px;
+    }
+    .thanks-body {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.68); line-height: 1.7; max-width: 460px;
+    }
+    .thanks-body + .thanks-body { margin-top: 10px; }
+    .thanks-body strong { color: #ffffff; font-weight: 700; }
+    .thanks-arrow {
+      margin-top: 22px;
+      animation: thanks-bounce 1.4s ease-in-out infinite;
+    }
+    .thanks-arrow svg { width: 30px; height: 30px; }
+    @keyframes thanks-bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50%      { transform: translateY(10px); opacity: 1; }
+    }
+
+    /* ── Badge ── */
+    /* ── ticker faixa vermelha ── */
+    .ticker-strip {
+      width: 100%; overflow: hidden;
+      background: linear-gradient(90deg, #9b0a0a, #cc1818, #9b0a0a);
+      padding: 10px 0; margin-bottom: 22px;
+      border-radius: 6px;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+    .ticker-track {
+      display: flex; white-space: nowrap; width: max-content;
+      animation: ticker-scroll 11s linear infinite;
+    }
+    .ticker-track span {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #ffffff;
+      padding: 0 22px;
+    }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Headline ── */
+    .title {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(24px, 7.2vw, 38px);
+      color: #ffffff; text-align: center;
+      line-height: 1.2; letter-spacing: 0.01em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .title .accent { color: #e84040; font-size: 0.65em; }
+
+    .pre-video {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.35); text-align: center;
+      margin-bottom: 22px; letter-spacing: 0.02em;
+    }
+
+    /* ── Video ── */
+    .video-wrap {
+      width: clamp(180px, 58%, 260px);
+      margin: 0 auto 40px;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 60px rgba(139,23,26,0.25), 0 24px 48px rgba(0,0,0,0.5);
+    }
+
+    /* ── Advertorial body ── */
+    .advertorial {
+      width: 100%;
+      display: flex; flex-direction: column; gap: 48px;
+    }
+
+    .section-label {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      color: rgba(139,23,26,0.7); letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .body-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 16px;
+      color: rgba(255,255,255,0.72); line-height: 1.8;
+    }
+    .body-text + .body-text { margin-top: 16px; }
+    .body-text strong { color: rgba(255,255,255,0.92); font-weight: 700; }
+    .body-text em { color: #e84040; font-style: normal; font-weight: 700; }
+
+    .section-heading {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(18px, 5vw, 24px);
+      color: #ffffff; line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    /* Callout box */
+    .callout {
+      width: 100%;
+      background: rgba(139,23,26,0.1);
+      border-left: 3px solid #e84040;
+      border-radius: 0 10px 10px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .callout p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      color: rgba(255,220,220,0.9); line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* Neutral box */
+    .box {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .box-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.3); letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    /* Divider */
+    .divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* False solution item */
+    .false-item {
+      margin-bottom: 22px;
+    }
+    .false-item-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: line-through;
+      margin-bottom: 6px;
+    }
+    .false-item p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+
+    /* Objection block */
+    .objection {
+      margin-bottom: 24px;
+    }
+    .objection-q {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 8px;
+    }
+    .objection-q::before { content: '"'; color: #e84040; }
+    .objection-q::after  { content: '"'; color: #e84040; }
+    .objection-a {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.62); line-height: 1.75;
+      padding-left: 14px;
+      border-left: 2px solid rgba(139,23,26,0.4);
+    }
+
+    /* Offer bullets */
+    .offer-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+      margin: 16px 0;
+    }
+    .offer-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px;
+      color: rgba(255,255,255,0.8); line-height: 1.5;
+    }
+    .offer-list li .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #e84040; flex-shrink: 0; margin-top: 7px;
+    }
+
+    /* Testimonial card */
+    .testimonial {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 22px 20px;
+      margin-bottom: 16px;
+    }
+    .testimonial-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.75); line-height: 1.75;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .testimonial-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(139,23,26,0.25);
+      border: 1px solid rgba(139,23,26,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 13px;
+      color: rgba(255,170,170,0.9); flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+    .testimonial-detail {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px;
+      color: rgba(255,255,255,0.3); margin-top: 2px;
+    }
+    .testimonial-stars {
+      color: #e9c400; font-size: 13px; margin-bottom: 10px;
+    }
+
+    /* Bonus item */
+    .bonus-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      margin-bottom: 20px;
+    }
+    .bonus-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(139,23,26,0.18);
+      border: 1px solid rgba(139,23,26,0.35);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+    .bonus-text .bonus-name {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.88); margin-bottom: 4px;
+    }
+    .bonus-text p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.5); line-height: 1.6;
+    }
+
+    /* Guarantee box */
+    .guarantee-box {
+      width: 100%;
+      background: rgba(37,211,102,0.06);
+      border: 1px solid rgba(37,211,102,0.2);
+      border-radius: 14px;
+      padding: 24px 20px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .guarantee-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(37,211,102,0.12);
+      border: 1px solid rgba(37,211,102,0.3);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .guarantee-icon svg { width: 22px; height: 22px; }
+    .guarantee-text .g-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: rgba(255,255,255,0.9); margin-bottom: 8px;
+    }
+    .guarantee-text p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+
+    /* Scarcity bar */
+    .scarcity {
+      width: 100%;
+      background: rgba(233,196,0,0.07);
+      border: 1px solid rgba(233,196,0,0.22);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex; gap: 10px; align-items: center;
+      margin-top: 20px;
+    }
+    .scarcity svg { width: 18px; height: 18px; fill: #e9c400; flex-shrink: 0; }
+    .scarcity p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(233,196,0,0.85); line-height: 1.5;
+    }
+
+    /* ── CTA final ── */
+    .cta-wrap {
+      width: 100%; margin-top: 48px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+
+    /* ── cobrinha girando (wrapper) ── */
+    .cta-snake {
+      position: relative; width: 100%;
+      border-radius: 17px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 85px rgba(10,190,82,0.72), 0 18px 44px rgba(0,0,0,0.5);
+    }
+    .cta-snake::before {
+      content: '';
+      position: absolute;
+      width: 300%; height: 300%;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg,
+        transparent 0deg,
+        transparent 255deg,
+        rgba(170,0,0,0.08) 272deg,
+        rgba(210,15,0,0.55) 288deg,
+        #ff3300 302deg,
+        #ff6600 316deg,
+        #ff9900 329deg,
+        rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg,
+        transparent 360deg
+      );
+      animation: cta-snake-spin 2.4s linear infinite;
+    }
+    @keyframes cta-snake-spin {
+      from { transform: translate(-50%,-50%) rotate(0deg); }
+      to   { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    /* ── botão verde estratégico + shimmer ── */
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 20px clamp(14px, 4vw, 24px);
+      background: linear-gradient(135deg, #0abe52 0%, #079040 60%, #056830 100%);
+      border: none; border-radius: 14px;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(13px, 3.8vw, 17px);
+      color: #ffffff; letter-spacing: 0.04em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      position: relative; overflow: hidden;
+      transition: transform 0.15s;
+    }
+    .cta { transform: translateY(-2px); }
+    .cta:active { transform: scale(0.98) translateY(-2px); }
+    .cta svg { width: 20px; height: 20px; flex-shrink: 0; position: relative; z-index: 1; }
+    /* reflexo passando em loop */
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -10%; left: -85%;
+      width: 44%; height: 120%;
+      background: linear-gradient(
+        100deg,
+        transparent 10%,
+        rgba(255,255,255,0.28) 44%,
+        rgba(255,255,255,0.38) 50%,
+        rgba(255,255,255,0.28) 56%,
+        transparent 90%
+      );
+      transform: skewX(-12deg);
+      animation: cta-shimmer 2.9s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes cta-shimmer {
+      0%,  22% { left: -85%; }
+      62%, 100% { left: 155%; }
+    }
+    .cta-note {
+      font-family: 'Nunito', sans-serif; font-size: 12px;
+      color: rgba(255,255,255,0.2); text-align: center;
+    }
+
+    .footer-sig {
+      margin-top: 56px;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.12); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+      width: 100%; display: flex; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 16px 8px; text-align: center;
+    }
+    .stat-icon { font-size: 20px; margin-bottom: 6px; line-height: 1; }
+    .stat-value {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: #ffffff; margin-bottom: 3px;
+    }
+    .stat-label {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 10px;
+      color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── Stars row ── */
+    .stars-row {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-bottom: 24px;
+    }
+    .stars { color: #e9c400; font-size: 14px; letter-spacing: 2px; }
+    .stars-text {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* ── Guarantee mini ── */
+    .guarantee-mini {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      margin-top: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12px;
+      color: rgba(255,255,255,0.22);
+    }
+    .guarantee-mini svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── Audio player (mesmo design da bio) ── */
+    .audio-player {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .player-glow {
+      position: absolute; inset: 0; border-radius: 16px;
+      background: radial-gradient(ellipse at 50% 120%, rgba(139,23,26,0.18), transparent 70%);
+      pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    }
+    .player-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .player-avatar { font-size: 22px; flex-shrink: 0; }
+    .player-name {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(255,255,255,0.8);
+    }
+    .player-detail {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px;
+      color: rgba(255,255,255,0.3); margin-top: 2px;
+    }
+    .player-stars {
+      margin-left: auto; color: #e9c400; font-size: 13px; flex-shrink: 0;
+    }
+    .player-label {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 11px;
+      color: rgba(255,255,255,0.35); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+    .player-main {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
+    }
+    .play-btn-audio {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(139,23,26,0.25);
+      border: 1.5px solid rgba(139,23,26,0.5);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s; position: relative; z-index: 1;
+    }
+    .waveform {
+      flex: 1; display: flex; align-items: center; gap: 2.5px; height: 40px;
+    }
+    .waveform-bar {
+      flex: 1; min-width: 3px; border-radius: 2px;
+      background: rgba(255,255,255,0.18);
+      transform-origin: center; transition: background 0.15s;
+    }
+    .waveform-bar.filled { background: #cc2a2d; }
+    @keyframes wavePulse {
+      0%, 100% { transform: scaleY(1); }
+      50%       { transform: scaleY(1.55); }
+    }
+    .waveform.playing .waveform-bar {
+      animation: wavePulse var(--d, 0.6s) ease-in-out infinite;
+      animation-delay: var(--dl, 0s);
+    }
+    .player-progress {
+      display: flex; align-items: center; gap: 10px; position: relative; z-index: 1;
+    }
+    .time-label {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.5); min-width: 32px; flex-shrink: 0;
+    }
+    .time-label.right { color: rgba(255,255,255,0.3); text-align: right; }
+    .progress-track {
+      flex: 1; position: relative; height: 4px;
+    }
+    .progress-track-bg {
+      position: absolute; inset: 0; border-radius: 2px;
+      background: rgba(255,255,255,0.1);
+    }
+    .progress-fill {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 0%; border-radius: 2px;
+      background: linear-gradient(90deg, #8b171a, #cc2a2d);
+      transition: width 0.1s linear;
+    }
+    .progress-range {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      opacity: 0; cursor: pointer; margin: 0;
+    }
+    .speed-btn {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px; padding: 3px 7px; cursor: pointer;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      color: rgba(255,255,255,0.45); letter-spacing: 0.04em;
+      white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
+    }
+
+    /* ── FAQ ── */
+    .faq-wrap {
+      width: 100%; margin-top: 10px; margin-bottom: 10px;
+    }
+    .faq-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: rgba(255,255,255,0.75); margin-bottom: 12px;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .faq-item:first-of-type { border-top: 1px solid rgba(255,255,255,0.07); }
+    .faq-q {
+      width: 100%; padding: 16px 0;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+      cursor: pointer; list-style: none; user-select: none;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.72); line-height: 1.45; text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::marker { display: none; }
+    details[open] .faq-q { color: #ffffff; }
+    .faq-chevron {
+      width: 16px; height: 16px; fill: rgba(255,255,255,0.25);
+      flex-shrink: 0; margin-top: 2px; transition: transform 0.25s;
+    }
+    details[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.52); line-height: 1.75;
+      padding-bottom: 18px;
+    }
+    .faq-a strong { color: rgba(255,255,255,0.8); font-weight: 700; }
+
+    /* ── TSL collapse ── */
+    .tsl-collapse {
+      width: 100%; margin-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .tsl-toggle {
+      width: 100%; padding: 18px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; gap: 12px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.35); list-style: none; user-select: none;
+      transition: color 0.2s;
+    }
+    .tsl-toggle::-webkit-details-marker { display: none; }
+    .tsl-toggle::marker { display: none; }
+    details[open] .tsl-toggle { color: rgba(255,255,255,0.55); }
+    .toggle-icon {
+      width: 18px; height: 18px; fill: rgba(255,255,255,0.2);
+      flex-shrink: 0; transition: transform 0.3s;
+    }
+    details[open] .toggle-icon { transform: rotate(180deg); }
+    .tsl-inner { padding-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+
+      <!-- ── AVISO DE OBRIGADO (UPSELL) ── -->
+      <div class="thanks-wrap">
+        <div class="thanks-check">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#0abe52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2 class="thanks-title">Sua compra foi confirmada. Obrigado pela confiança!</h2>
+        <p class="thanks-body">Vai lá no seu e-mail (ou na caixa de spam, se não achar) e confirma que o acesso já chegou pra você.</p>
+        <p class="thanks-body"><strong>Mas antes de sair dessa página,</strong> tem uma coisa que você precisa saber.</p>
+        <div class="thanks-arrow">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="rgba(232,64,64,0.8)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- ── HEADER ── -->
+      <div class="ticker-strip">
+        <div class="ticker-track">
+          <span>ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ </span><span>ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ ATENÇÃO ◆ SAIU! ◆ </span>
+        </div>
+      </div>
+
+      <h1 class="title">
+        Você não é ruim<br />em português.<br />
+        <span class="accent">Você está estudando a coisa errada do jeito errado.</span>
+      </h1>
+
+      <p class="pre-video">Assista ao vídeo antes de sair desta página.</p>
+
+      <!-- PLAYER -->
+      <div class="video-wrap">
+        <wistia-player media-id="rpycnitnog" aspect="0.5581395348837209" style="width:100%;display:block;"></wistia-player>
+      </div>
+
+      <!-- ── CTA PRIMÁRIO (imediato após o vídeo) ── -->
+      <div class="cta-wrap" style="margin-top:0; margin-bottom:28px;">
+        <div class="cta-snake">
+          <button class="cta kirvano-payment-trigger">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+            QUERO O ANTI-GRAMÁTICA 2.0
+          </button>
+        </div>
+        <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+      </div>
+
+      <!-- ── STRIP VISUAL ── -->
+      <div class="stats-strip">
+        <div class="stat">
+          <div class="stat-icon">📚</div>
+          <div class="stat-value">20</div>
+          <div class="stat-label">capítulos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-value">Imediato</div>
+          <div class="stat-label">acesso</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">🛡️</div>
+          <div class="stat-value">7 dias</div>
+          <div class="stat-label">garantia</div>
+        </div>
+      </div>
+
+      <!-- ── STARS ── -->
+      <div class="stars-row">
+        <span class="stars">★★★★★</span>
+        <span class="stars-text">4.9 · Aprovados em PMMA, PPMG, PMPE e mais</span>
+      </div>
+
+      <!-- ── DEPOIMENTO EM ÁUDIO ── -->
+      <div class="audio-player" id="player-1">
+        <div class="player-glow" id="glow-1"></div>
+        <div class="player-header">
+          <div class="player-avatar">🎙️</div>
+          <div>
+            <div class="player-name">Depoimento de aluno</div>
+            <div class="player-detail">Aprovado · Anti-Gramática 2.0</div>
+          </div>
+          <div class="player-stars">★★★★★</div>
+        </div>
+        <div class="player-main">
+          <button class="play-btn-audio" id="btn-1" onclick="togglePlay(1)">
+            <svg id="icon-1" viewBox="0 0 24 24" width="22" height="22" fill="#fff">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </button>
+          <div class="waveform" id="waveform-1"></div>
+        </div>
+        <div class="player-progress">
+          <span class="time-label" id="current-1">0:00</span>
+          <div class="progress-track">
+            <div class="progress-track-bg"></div>
+            <div class="progress-fill" id="fill-1"></div>
+            <input type="range" class="progress-range" id="range-1" min="0" max="100" step="0.1" value="0" oninput="seek(1)" />
+          </div>
+          <span class="time-label right" id="duration-1">0:00</span>
+          <button class="speed-btn" id="speed-1" onclick="cycleSpeed(1)">1x</button>
+        </div>
+      </div>
+
+      <!-- ── FAQ ── -->
+      <div class="faq-wrap">
+        <p class="faq-title">Perguntas frequentes</p>
+
+        <details class="faq-item">
+          <summary class="faq-q">O material é focado em concurso policial ou serve para qualquer concurso?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O Anti-Gramática 2.0 foi escrito com foco direto em provas policiais. Os capítulos, os exemplos e as caixas MARCOS DIZ foram montados a partir dos padrões de cobrança de bancas como VUNESP, CESPE, FCC e FGV nas provas de PM e PP. Se você está estudando para PMMA, PPMG, PMPE, PMAL ou concursos similares, o material foi construído pensando exatamente em você.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Já comprei cursos de português antes e nunca terminei. Por que o Anti-Gramática 2.0 seria diferente?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">A maioria dos materiais falha por excesso, não por falta de conteúdo. Você começa, vê o tamanho do material, e trava. O Anti-Gramática 2.0 tem 20 capítulos objetivos, sem introdução histórica da língua portuguesa e sem rodeios. Cada capítulo tem uma promessa simples: você abre, lê, e fecha sabendo mais do que antes. É feito para quem tem pouco tempo e precisa de resultado real.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Sou muito fraco em português. O material funciona para alguém no meu nível?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">É exatamente para você. Quem já domina gramática não precisa desse material. O Anti-Gramática 2.0 foi criado para o candidato que sente que português é seu ponto fraco mas não entende por quê. A resposta, na maioria dos casos, é simples: você nunca teve acesso a um material que mostrasse <strong>o que a banca realmente cobra</strong>. Não é falta de inteligência. É falta da informação certa.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Quanto tempo por dia preciso dedicar para cobrir o material?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Os capítulos foram escritos para serem diretos ao ponto. Você consegue avançar em janelas de 20 a 30 minutos, sem precisar de uma tarde inteira livre. O material se adapta à sua rotina, não o contrário.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">O que são as caixas MARCOS DIZ e por que elas importam?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Em praticamente todos os capítulos, o Marcos interrompe a explicação técnica e fala diretamente com você sobre o que a banca faz naquele tópico específico. São alertas sobre pegadinhas reais, padrões de questão que eliminam candidatos bons e macetes que não estão em nenhuma gramática. Isso é o que diferencia esse material de qualquer PDF de gramática que você já viu.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Tenho 30 dias para a prova. Ainda dá tempo de usar o material?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Com 30 dias e foco, você consegue cobrir os capítulos de maior incidência. Pronomes, concordância, crase, colocação pronominal e interpretação de texto respondem pela maioria das questões de português em qualquer prova policial. <strong>Você não precisa dominar os 20 capítulos para ter um resultado expressivo. Precisa dominar os certos.</strong></p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">E se eu abrir o material e não gostar?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Você tem 7 dias de garantia. Se abrir o material, estudar e sentir que não entrega o que promete, solicita o reembolso. Sem perguntas, sem burocracia, o valor volta integralmente. Isso existe porque o material foi construído para entregar resultado. E porque você não deve arriscar nada para descobrir isso.</p>
+        </details>
+
+      </div>
+
+      <!-- ── GARANTIA MINI ── -->
+      <div class="guarantee-mini">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="rgba(37,211,102,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Garantia de 7 dias · Acesso imediato · Sem burocracia</span>
+      </div>
+
+      <!-- ── TSL COLAPSÁVEL ── -->
+      <details class="tsl-collapse">
+        <summary class="tsl-toggle">
+          Quero saber tudo que está incluso antes de decidir
+          <svg class="toggle-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </summary>
+        <div class="tsl-inner">
+        <article class="advertorial">
+
+        <!-- ① BRIDGE — conecta o vídeo ao texto sem repetir o que o Marcos já disse -->
+        <section>
+          <p class="body-text">
+            O vídeo mostrou o diagnóstico. Agora você vai entender por que tudo que você tentou antes não funcionou. E o que, exatamente, você vai dominar se decidir entrar.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ② FALSE SOLUTIONS -->
+        <section>
+          <p class="section-label">O que não funciona</p>
+          <h2 class="section-heading">Tudo que você já tentou e continua sem resultado.</h2>
+
+          <p class="body-text" style="margin-bottom: 24px;">
+            Antes de continuar, preciso ser honesto com você sobre as soluções que todo mundo recomenda e que não entregam o resultado que você precisa.
+          </p>
+
+          <div class="false-item">
+            <div class="false-item-title">A gramática de 800 páginas</div>
+            <p>Você provavelmente tem uma em casa. Nenhum concurseiro aprova com ela como material principal. Não porque ela está errada. Mas porque ela foi feita para quem quer aprender o idioma completo. Não para quem precisa gabaritar a prova da PM.</p>
+          </div>
+          <div class="false-item">
+            <div class="false-item-title">O curso genérico de português para concurso</div>
+            <p>A maioria cobre tudo o que pode cair. O problema: o tempo do candidato é finito. Estudar tudo igualmente é o mesmo que não priorizar nada. Você aprende muito e melhora pouco no que a banca realmente quer.</p>
+          </div>
+          <div class="false-item">
+            <div class="false-item-title">O resumo do colega aprovado</div>
+            <p>Todo mundo pede o resumo de quem passou. Só que o resumo de quem passou foi feito para o concurso dele, com as dificuldades dele. Não para o seu concurso, com as suas dificuldades.</p>
+          </div>
+          <div class="false-item" style="margin-bottom:0;">
+            <div class="false-item-title">O YouTube sem método</div>
+            <p>Excelente para aprender. Péssimo para garantir cobertura sistemática do que a banca vai cobrar. Você assiste ao que o algoritmo recomenda. Não ao que você precisa dominar.</p>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ④ OBJECTIONS -->
+        <section>
+          <p class="section-label">Suas dúvidas</p>
+          <h2 class="section-heading">Já ouço o que você está pensando.</h2>
+
+          <div class="objection">
+            <div class="objection-q">Mas eu já estudei gramática e não funcionou. Por que seria diferente dessa vez?</div>
+            <p class="objection-a">Porque o Anti-Gramática 2.0 não é uma gramática. É um mapa. Mostra onde você precisa ir, não todo o território que existe. A diferença entre os dois não é tamanho. É intenção.</p>
+          </div>
+
+          <div class="objection">
+            <div class="objection-q">Não tenho tempo para mais um curso.</div>
+            <p class="objection-a">Os 20 capítulos foram escritos para ser diretos. Sem introdução longa. Sem revisão histórica. Sem filosofia da língua. Só o que cai, como cai, e onde a banca tenta te pegar. Você avança um capítulo de cada vez, sem se perder.</p>
+          </div>
+
+          <div class="objection">
+            <div class="objection-q">Português nunca foi meu ponto forte.</div>
+            <p class="objection-a">Então você é exatamente quem esse material foi feito para atingir. A maioria dos candidatos que acha que é ruim em português nunca teve acesso a um material que explique o que a banca realmente quer. Não é dom. É método.</p>
+          </div>
+
+          <div class="objection" style="margin-bottom:0;">
+            <div class="objection-q">Já comprei material antes e não usei.</div>
+            <p class="objection-a">Esse é um problema real. Por isso o Anti-Gramática 2.0 foi estruturado em capítulos enxutos, com linguagem direta. Você consegue avançar em qualquer janela de tempo disponível, sem depender de longas sessões de estudo.</p>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ⑤ OFFER -->
+        <section>
+          <p class="section-label">O que você vai receber</p>
+          <h2 class="section-heading">20 capítulos. Foco cirúrgico. O professor do seu lado.</h2>
+
+          <p class="body-text">
+            O Anti-Gramática 2.0 cobre todos os tópicos de português que aparecem com maior frequência nos concursos policiais. Do básico ao avançado. Sem enrolação.
+          </p>
+
+          <ul class="offer-list">
+            <li><div class="dot"></div> Compreensão e interpretação com o Método dos 3 Passos e as funções de Jakobson</li>
+            <li><div class="dot"></div> Ortografia completa com o Acordo de 2009: S x Z, X x CH, hífen e parônimos</li>
+            <li><div class="dot"></div> Acentuação gráfica com tudo que mudou e o acento diferencial</li>
+            <li><div class="dot"></div> As 10 classes de palavras com formação e derivação</li>
+            <li><div class="dot"></div> Pronomes: o capítulo mais cobrado nas provas policiais</li>
+            <li><div class="dot"></div> Verbos: subjuntivo, irregulares mais cobrados e particípio duplo</li>
+            <li><div class="dot"></div> Sintaxe completa: sujeito, predicado, complementos, adjuntos, aposto e vocativo</li>
+            <li><div class="dot"></div> Período composto: coordenação e subordinação com todas as conjunções</li>
+            <li><div class="dot"></div> Crase com o Teste de Substituição: quando ocorre, nunca ocorre e facultativa</li>
+            <li><div class="dot"></div> Concordância verbal e nominal com todos os casos especiais de alta incidência</li>
+            <li><div class="dot"></div> Regência verbal e nominal com os verbos mais cobrados e suas preposições</li>
+            <li><div class="dot"></div> Colocação pronominal: próclise obrigatória, ênclise e mesóclise</li>
+            <li><div class="dot"></div> Pontuação: quando usar e quando não usar vírgula, restritiva x explicativa</li>
+            <li><div class="dot"></div> Figuras de linguagem: sintaxe, palavras e pensamento</li>
+            <li><div class="dot"></div> Semântica e funções da linguagem com regra da predominante</li>
+            <li><div class="dot"></div> Redação Oficial: MRPR, ofício, apenas 2 fechos e pronomes de tratamento</li>
+          </ul>
+
+          <p class="body-text">
+            E em cada capítulo: as caixas <strong>MARCOS DIZ</strong>. Com macetes reais, alertas de pegadinha e os pontos onde a banca vai tentar te derrubar.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ⑥ BONUSES -->
+        <section>
+          <p class="section-label">Bônus</p>
+          <h2 class="section-heading">O que vem junto, sem custo extra.</h2>
+
+          <div class="bonus-item">
+            <div class="bonus-icon">📋</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Mapa de Incidência por Banca</div>
+              <p>Quais capítulos têm mais peso por concurso. Você sabe exatamente onde concentrar energia dependendo do edital que está estudando.</p>
+            </div>
+          </div>
+
+          <div class="bonus-item">
+            <div class="bonus-icon">⚡</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Lista das Pegadinhas Mais Cobradas</div>
+              <p>Os erros que eliminam candidatos bons. Compilados a partir dos padrões reais das bancas. Leitura de 15 minutos que vale meses de estudo.</p>
+            </div>
+          </div>
+
+          <div class="bonus-item" style="margin-bottom:0;">
+            <div class="bonus-icon">🎯</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Checklist de Revisão Pré-Prova</div>
+              <p>Para nas 72 horas antes da prova. O que revisar, na ordem certa, para entrar na sala com o conteúdo na ponta da língua.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ⑨ GUARANTEE + SCARCITY -->
+        <section>
+          <p class="section-label">Sua segurança</p>
+          <h2 class="section-heading">Você não arrisca nada. A banca já cobra risco suficiente.</h2>
+
+          <p class="body-text" style="margin-bottom: 20px;">
+            O Marcos construiu esse material com um objetivo: que você feche o capítulo sabendo mais do que quando começou. Se isso não acontecer, existe uma garantia para isso.
+          </p>
+
+          <div class="guarantee-box">
+            <div class="guarantee-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="guarantee-text">
+              <div class="g-title">Garantia de 7 dias</div>
+              <p>Se você abrir o material e sentir que não é o que esperava, basta solicitar o reembolso em até 7 dias. Sem burocracia. Sem perguntas. O valor cai de volta na sua conta integralmente.</p>
+            </div>
+          </div>
+
+          <div class="scarcity">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <p>O valor atual é de lançamento. Quando essa janela fechar, o preço sobe e não volta. Se você está lendo isso agora, ainda dá tempo. Mas o tempo da janela de lançamento não espera.</p>
+          </div>
+        </section>
+
+      </article>
+
+        <!-- CTA dentro do collapse, para quem leu tudo -->
+        <div class="cta-wrap" style="margin-top:32px;">
+          <div class="cta-snake">
+            <button class="cta kirvano-payment-trigger">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+              QUERO O ANTI-GRAMÁTICA 2.0
+            </button>
+          </div>
+          <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+        </div>
+
+        </div><!-- /tsl-inner -->
+      </details>
+
+      <p class="footer-sig">© 2026 Marcos Brito</p>
+
+    </div>
+  </div>
+  <script>
+    const HEIGHTS = [3,6,10,14,9,13,7,12,15,8,11,6,14,10,7,13,9,5,12,8];
+    const SPEEDS  = [1, 1.5, 2];
+    const state   = {};
+
+    function initPlayer(id, src) {
+      const audio = new Audio();
+      audio.preload = 'none';
+      const s1 = document.createElement('source'); s1.src = src + '.mp3'; s1.type = 'audio/mpeg';
+      const s2 = document.createElement('source'); s2.src = src + '.ogg'; s2.type = 'audio/ogg';
+      audio.appendChild(s1); audio.appendChild(s2);
+
+      const waveform = document.getElementById('waveform-' + id);
+      HEIGHTS.forEach((h, i) => {
+        const bar = document.createElement('div');
+        bar.className = 'waveform-bar';
+        bar.style.cssText = 'height:' + h + 'px;--d:' + (0.6 + (i % 4) * 0.15) + 's;--dl:' + (i * 0.04) + 's';
+        waveform.appendChild(bar);
+      });
+
+      state[id] = { audio, speedIdx: 0, playing: false };
+
+      audio.addEventListener('timeupdate',    () => updateProgress(id));
+      audio.addEventListener('loadedmetadata', () => {
+        document.getElementById('duration-' + id).textContent = fmt(audio.duration);
+        document.getElementById('range-' + id).max = audio.duration;
+      });
+      audio.addEventListener('ended', () => {
+        state[id].playing = false;
+        audio.currentTime = 0;
+        updateUI(id);
+      });
+    }
+
+    function togglePlay(id) {
+      Object.keys(state).forEach(pid => {
+        if (pid != id && state[pid].playing) {
+          state[pid].audio.pause();
+          state[pid].playing = false;
+          updateUI(pid);
+        }
+      });
+      const p = state[id];
+      if (p.playing) { p.audio.pause(); p.playing = false; }
+      else           { p.audio.play().catch(() => {}); p.playing = true; }
+      updateUI(id);
+    }
+
+    function updateUI(id) {
+      const p   = state[id];
+      const btn  = document.getElementById('btn-' + id);
+      const icon = document.getElementById('icon-' + id);
+      const glow = document.getElementById('glow-' + id);
+      const wf   = document.getElementById('waveform-' + id);
+
+      btn.style.background  = p.playing ? '#8b171a' : 'rgba(139,23,26,0.25)';
+      btn.style.borderColor = p.playing ? '#cc2a2d' : 'rgba(139,23,26,0.5)';
+      btn.style.boxShadow   = p.playing ? '0 0 20px rgba(139,23,26,0.5)' : 'none';
+      icon.innerHTML        = p.playing
+        ? '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>'
+        : '<path d="M8 5v14l11-7z"/>';
+      glow.style.opacity = p.playing ? '1' : '0';
+      wf.classList.toggle('playing', p.playing);
+    }
+
+    function updateProgress(id) {
+      const p   = state[id];
+      const cur = p.audio.currentTime;
+      const dur = p.audio.duration || 1;
+      const pct = (cur / dur) * 100;
+      document.getElementById('current-' + id).textContent = fmt(cur);
+      document.getElementById('fill-' + id).style.width    = pct + '%';
+      document.getElementById('range-' + id).value         = cur;
+      document.querySelectorAll('#waveform-' + id + ' .waveform-bar').forEach((bar, i, bars) => {
+        bar.classList.toggle('filled', (i / bars.length) * 100 < pct);
+      });
+    }
+
+    function seek(id) {
+      state[id].audio.currentTime = Number(document.getElementById('range-' + id).value);
+    }
+
+    function cycleSpeed(id) {
+      const p = state[id];
+      p.speedIdx = (p.speedIdx + 1) % SPEEDS.length;
+      const spd  = SPEEDS[p.speedIdx];
+      p.audio.playbackRate = spd;
+      const btn  = document.getElementById('speed-' + id);
+      const active = spd !== 1;
+      btn.textContent    = spd + 'x';
+      btn.style.background   = active ? 'rgba(139,23,26,0.3)' : 'rgba(255,255,255,0.07)';
+      btn.style.borderColor  = active ? 'rgba(139,23,26,0.6)' : 'rgba(255,255,255,0.12)';
+      btn.style.color        = active ? '#ff8888'              : 'rgba(255,255,255,0.45)';
+    }
+
+    function fmt(t) {
+      return Math.floor(t/60) + ':' + String(Math.floor(t%60)).padStart(2,'0');
+    }
+
+    initPlayer(1, '/depoimento');
+  </script>
+
+  <!-- ── UPSELL KIRVANO ── -->
+  <script>
+    var offer = "f39eec9b-f4ae-4680-ad74-6c66f08db806";
+    var nextPageURL = "https://6-pilares.web.app/";
+    var refusePageURL = "https://6-pilares.web.app/";
+  </script>
+  <script src="https://snippets.kirvano.com/upsell.min.js"></script>
+</body>
+</html>

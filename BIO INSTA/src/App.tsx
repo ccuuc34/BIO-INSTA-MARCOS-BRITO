@@ -216,6 +216,13 @@ const groupLinks: LinkItem[] = [
     color: '#f0d4a0',
     description: 'Eu criei esse grupo pra quem estuda pra PMMA. Lá dentro eu posto conteúdo, dicas e te ajudo no que precisar. É um grupo de WhatsApp. Clica em "Continuar" e o WhatsApp já abre pra você entrar.',
   },
+  {
+    id: 'aulas-gratuitas-grupo',
+    label: 'Grupos das Aulas Gratuitas - Marcos Brito',
+    url: 'https://chat.whatsapp.com/EuDW6gz1gIABroor0vDvE7?mode=gi_t',
+    color: '#f0d4a0',
+    description: 'Eu criei esse grupo pra quem quer receber aulas gratuitas direto comigo. Lá dentro eu posto conteúdo, dicas e te ajudo no que precisar. É um grupo de WhatsApp. Clica em "Continuar" e o WhatsApp já abre pra você entrar.',
+  },
 ];
 
 // ─── Anti-Vade Links (sub-área) ───────────────────────────────────────────────

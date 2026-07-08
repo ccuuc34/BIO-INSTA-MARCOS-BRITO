@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edital Verticalizado PC AL 2026 Grátis | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background-color: #150825;
+      color: #F6F6F6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::after {
+      content: '';
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 350px;
+      background: #8b171a;
+      border-radius: 50%; filter: blur(180px); opacity: 0.22;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Barra de progresso fixa ── */
+    .progress-wrap {
+      position: fixed; top: 0; left: 0; width: 100%; height: 5px;
+      background: rgba(255,255,255,0.06); z-index: 50;
+    }
+    .progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #8b171a, #e84040);
+      transition: width 0.4s ease;
+    }
+
+    .page { position: relative; z-index: 1; min-height: 100vh; display: flex; justify-content: center; padding: 44px 20px 56px; }
+    .card { width: 100%; max-width: 480px; }
+    #app { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .eyebrow {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      color: #8b171a; background: rgba(139,23,26,0.12); border: 1px solid rgba(139,23,26,0.35);
+      display: inline-flex; padding: 6px 14px; border-radius: 100px;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px;
+    }
+    .eyebrow-row { text-align: center; }
+
+    .headline {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(21px, 6.4vw, 30px); color: #F6F6F6;
+      text-align: center; line-height: 1.28; margin-bottom: 14px;
+    }
+    .headline.left { text-align: left; font-size: clamp(19px, 5.6vw, 24px); }
+    .headline .accent { color: #AF9064; }
+
+    .desc {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(246,246,246,0.72); line-height: 1.75; text-align: center;
+      margin-bottom: 26px;
+    }
+    .desc.left { text-align: left; }
+    .desc strong { color: #F6F6F6; font-weight: 700; }
+
+    /* ── Form fields ── */
+    .field { margin-bottom: 10px; }
+    .field label {
+      display: block; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(246,246,246,0.85); margin-bottom: 7px;
+    }
+    .field .hint {
+      display: block; font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px;
+      color: rgba(246,246,246,0.4); margin-top: 6px;
+    }
+    .field input[type="text"], .field input[type="tel"], .field input[type="email"] {
+      width: 100%; padding: 15px 16px;
+      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 10px; color: #F6F6F6;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 16px;
+      outline: none; transition: border-color 0.2s;
+    }
+    .field input:focus { border-color: rgba(139,23,26,0.6); }
+    .field input::placeholder { color: rgba(246,246,246,0.28); }
+
+    .radio-group { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+    .radio-opt {
+      display: flex; align-items: flex-start; gap: 10px; cursor: pointer;
+      background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 14px 15px; transition: border-color 0.2s, background 0.2s, transform 0.12s;
+    }
+    .radio-opt:hover { border-color: rgba(139,23,26,0.45); background: rgba(139,23,26,0.06); }
+    .radio-opt:active { transform: scale(0.98); }
+    .radio-opt span {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14.5px;
+      color: rgba(246,246,246,0.85); line-height: 1.45;
+    }
+    .radio-opt.selected { border-color: #8b171a; background: rgba(139,23,26,0.14); }
+
+    /* ── CTA (snake shimmer) ── */
+    .cta-wrap { width: 100%; margin-top: 26px; }
+    .cta-snake {
+      position: relative; width: 100%; border-radius: 16px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 70px rgba(139,23,26,0.5), 0 16px 36px rgba(0,0,0,0.5);
+    }
+    .cta-snake::before {
+      content: ''; position: absolute; width: 300%; height: 300%; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg, transparent 0deg, transparent 255deg,
+        rgba(170,0,0,0.08) 272deg, rgba(210,15,0,0.55) 288deg, #ff3300 302deg,
+        #ff6600 316deg, #ff9900 329deg, rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg, transparent 360deg);
+      animation: spin 2.4s linear infinite;
+    }
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .cta {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 18px 20px; background: #8b171a;
+      border: none; border-radius: 13px; cursor: pointer;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(13px, 3.6vw, 15px);
+      color: #fff; letter-spacing: 0.02em; text-transform: uppercase;
+      text-decoration: none;
+    }
+    .cta:disabled { opacity: 0.6; cursor: not-allowed; }
+    .cta-note { font-family: 'Nunito', sans-serif; font-size: 12px; color: rgba(246,246,246,0.32); text-align: center; margin-top: 10px; }
+    .back-link {
+      display: block; text-align: center; margin-top: 16px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(246,246,246,0.35); cursor: pointer; background: none; border: none;
+    }
+
+    /* ── Success screen ── */
+    .success-check {
+      width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 20px;
+      background: rgba(10,190,82,0.12); border: 1px solid rgba(10,190,82,0.35);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .success-check svg { width: 32px; height: 32px; }
+
+    .footer-sig {
+      margin-top: 36px; text-align: center;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      color: rgba(246,246,246,0.14); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+  <div class="page">
+    <div class="card">
+      <div id="app"></div>
+      <p class="footer-sig">© 2026 Marcos Brito</p>
+    </div>
+  </div>
+
+  <script>
+    // ATENÇÃO: cole aqui a URL do Web App do Google Apps Script depois de implantar
+    var SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxnfErn1wP3dnaSchQK4iE1um3xqFTdnsleY-mU8H3ObHmDAPrV2DAIOZVji3HUMNXKIQ/exec";
+
+    var formData = {};
+    var app = document.getElementById('app');
+    var progress = document.getElementById('progress');
+
+    function setProgress(pct) { progress.style.width = pct + '%'; }
+
+    function mount(html, afterMount) {
+      app.style.opacity = 0;
+      setTimeout(function () {
+        app.innerHTML = html;
+        app.style.opacity = 1;
+        if (afterMount) afterMount();
+        var firstInput = app.querySelector('input[type="text"], input[type="tel"], input[type="email"]');
+        if (firstInput) firstInput.focus();
+      }, 130);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Trava o campo em tempo real: só dígitos, no máximo 11 (DDD + 9 número).
+    function maskWhatsapp(value) {
+      var d = (value || '').replace(/\D/g, '').substring(0, 11);
+      if (d.length === 0) return '';
+      if (d.length <= 2) return '(' + d;
+      var ddd = d.substring(0, 2);
+      var rest = d.substring(2);
+      if (rest.length <= 4) return '(' + ddd + ') ' + rest;
+      if (d.length <= 10) return '(' + ddd + ') ' + rest.substring(0, 4) + '-' + rest.substring(4);
+      return '(' + ddd + ') ' + rest.substring(0, 5) + '-' + rest.substring(5);
+    }
+
+    // Normaliza qualquer formato pro canônico 55DDNNNNNNNNN, pronto pra API oficial de WhatsApp.
+    function normalizeWhatsapp(raw) {
+      var digits = (raw || '').replace(/\D/g, '');
+      if (digits.length === 0) return null;
+      if (digits.length > 10 && digits[0] === '0') digits = digits.substring(1);
+      if ((digits.length === 12 || digits.length === 13) && digits.substring(0, 2) === '55') {
+        digits = digits.substring(2);
+      }
+      if (digits.length !== 10 && digits.length !== 11) return null;
+      var ddd = digits.substring(0, 2);
+      var numero = digits.substring(2);
+      if (parseInt(ddd, 10) < 11) return null;
+      return { clean: '55' + ddd + numero };
+    }
+
+    // options: cada item pode ser uma string simples (label = value) ou um
+    // objeto { label, value } quando o texto mostrado precisa ser diferente
+    // do valor salvo na planilha (ex: sem a tag de produto visível pro candidato).
+    function renderRadioStage(headline, options, key, nextFn, isLast, backFn) {
+      var html = '<h2 class="headline left">' + headline + '</h2><div class="radio-group">';
+      options.forEach(function (opt, i) {
+        var label = (typeof opt === 'string') ? opt : opt.label;
+        html += '<div class="radio-opt" data-idx="' + i + '"><span>' + label + '</span></div>';
+      });
+      html += '</div><button class="back-link" id="backBtn" type="button">← Voltar</button>';
+
+      mount(html, function () {
+        var opts = app.querySelectorAll('.radio-opt');
+        opts.forEach(function (el, i) {
+          el.addEventListener('click', function () {
+            if (el.classList.contains('selected')) return;
+            opts.forEach(function (o) { o.classList.remove('selected'); });
+            el.classList.add('selected');
+            var opt = options[i];
+            formData[key] = (typeof opt === 'string') ? opt : opt.value;
+            setTimeout(function () {
+              if (isLast) { submitToSheet(); }
+              nextFn();
+            }, 380);
+          });
+        });
+        document.getElementById('backBtn').addEventListener('click', backFn);
+      });
+    }
+
+    // ── STAGE 1: Nome ──
+    function stage1() {
+      setProgress(10);
+      mount(
+        '<div class="eyebrow-row"><span class="eyebrow">📋 Gratuito · Edição 2026</span></div>' +
+        '<h1 class="headline">Edital Verticalizado PC AL <span class="accent">Grátis.</span><br>Garanta o seu agora.</h1>' +
+        '<p class="desc">Você está prestes a receber o <strong>Edital Verticalizado da Polícia Civil de Alagoas 2026</strong>, sem pagar nada por isso. É rapidinho (menos de 1 minuto) e assim que você terminar, ele já aparece aqui na tela pra você baixar.</p>' +
+        '<div class="field"><label for="nome">Seu nome</label><input type="text" id="nome" placeholder="Digite seu nome completo"></div>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btn1">Continuar</button></div></div>',
+        function () {
+          document.getElementById('btn1').addEventListener('click', function () {
+            var v = document.getElementById('nome').value.trim();
+            if (!v) { document.getElementById('nome').style.borderColor = '#e84040'; return; }
+            formData.nome = v;
+            stage2();
+          });
+        }
+      );
+    }
+
+    // ── STAGE 2: WhatsApp ──
+    function stage2() {
+      setProgress(24);
+      mount(
+        '<h2 class="headline left">Seu WhatsApp com DDD</h2>' +
+        '<p class="desc left">É pra onde vamos te avisar sobre o material de prioridades da PCAL</p>' +
+        '<div class="field"><input type="tel" inputmode="numeric" id="whatsapp" placeholder="82 99999-9999">' +
+        '<span class="hint" id="whatsappError" style="color:#e84040; display:none;">Número inválido. Confere o DDD e o número e tenta de novo.</span></div>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btn2">Continuar</button></div></div>' +
+        '<button class="back-link" id="backBtn2" type="button">← Voltar</button>',
+        function () {
+          var field = document.getElementById('whatsapp');
+          field.addEventListener('input', function () { field.value = maskWhatsapp(field.value); });
+          document.getElementById('backBtn2').addEventListener('click', stage1);
+          document.getElementById('btn2').addEventListener('click', function () {
+            var parsed = normalizeWhatsapp(field.value);
+            if (!parsed) { document.getElementById('whatsappError').style.display = 'block'; return; }
+            formData.whatsapp = parsed.clean;
+            stage3();
+          });
+        }
+      );
+    }
+
+    // ── STAGE 3: E-mail ──
+    function stage3() {
+      setProgress(38);
+      mount(
+        '<h2 class="headline left">Seu melhor e-mail</h2>' +
+        '<p class="desc left">Vamos usar pra te mandar novidade e conteúdo extra também</p>' +
+        '<div class="field"><input type="email" id="email" placeholder="seuemail@exemplo.com">' +
+        '<span class="hint" id="emailError" style="color:#e84040; display:none;">Digita um e-mail válido pra continuar.</span></div>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btn3">Continuar</button></div></div>' +
+        '<button class="back-link" id="backBtn3" type="button">← Voltar</button>',
+        function () {
+          document.getElementById('backBtn3').addEventListener('click', stage2);
+          document.getElementById('btn3').addEventListener('click', function () {
+            var field = document.getElementById('email');
+            if (!field.checkValidity() || !field.value.trim()) {
+              document.getElementById('emailError').style.display = 'block';
+              return;
+            }
+            formData.email = field.value.trim();
+            stage4();
+          });
+        }
+      );
+    }
+
+    // ── STAGE 4: O que mais te trava ──
+    function stage4() {
+      setProgress(54);
+      renderRadioStage(
+        'O que mais te trava na sua preparação pra Polícia Civil de Alagoas agora?',
+        [
+          'Não sei por onde começar, o edital é gigante',
+          'Tenho rotina puxada e pouco tempo pra estudar',
+          'Já estudo, mas não sei se estou focando no que realmente cai',
+          'Ainda estou decidindo se vou prestar esse concurso'
+        ],
+        'pergunta_trava', stage5, false, stage3
+      );
+    }
+
+    // ── STAGE 5: A verdade que dói ──
+    function stage5() {
+      setProgress(68);
+      renderRadioStage(
+        'Enquanto você lê isso, tem candidato que já decorou o edital inteiro. O que está te deixando pra trás?',
+        [
+          { label: 'Não sei nem por onde começar, edital parece um labirinto', value: 'Não sei nem por onde começar, edital parece um labirinto (→ Edital Verticalizado)' },
+          { label: 'Zero questão fácil de português por regra boba que eu "achava" que sabia', value: 'Zero questão fácil de português por regra boba que eu achava que sabia (→ Anti-Gramática)' },
+          { label: 'Abro a lei e sinto vontade de desistir do concurso inteiro', value: 'Abro a lei e sinto vontade de desistir do concurso inteiro (→ Anti-Vade Mecum)' },
+          { label: 'Estudo todo dia e sinto que não saio do lugar, sem método, sem direção', value: 'Estudo todo dia e sinto que não saio do lugar, sem método, sem direção (→ Método 6PF)' }
+        ],
+        'pergunta4', stage6, false, stage4
+      );
+    }
+
+    // ── STAGE 6: Lei seca ──
+    function stage6() {
+      setProgress(82);
+      renderRadioStage(
+        'Quantas vezes a lei seca já te fez fechar o material e assistir Netflix no lugar?',
+        [
+          { label: 'Sempre. Bate um bloqueio só de olhar o tamanho da lei', value: 'Sempre. Bate um bloqueio só de olhar o tamanho da lei (→ Anti-Vade Mecum)' },
+          { label: 'Estudo, decoro, esqueço em uma semana, ciclo sem fim', value: 'Estudo, decoro, esqueço em uma semana, ciclo sem fim (→ Anti-Vade Mecum)' },
+          { label: 'Quando vou ler lei seca, sinto vontade de desistir do concurso inteiro', value: 'Quando vou ler lei seca, sinto vontade de desistir do concurso inteiro (→ Anti-Vade Mecum)' },
+          { label: 'Nem sei se estou estudando a versão atualizada de 2026', value: 'Nem sei se estou estudando a versão atualizada de 2026 (→ Anti-Vade Mecum atualizado 2026)' }
+        ],
+        'pergunta_leiseca', stage7, false, stage5
+      );
+    }
+
+    // ── STAGE 7: Quer saber prioridades (última pergunta) ──
+    function stage7() {
+      setProgress(94);
+      renderRadioStage(
+        'Se existisse uma forma de saber exatamente o que estudar primeiro nesse edital, sem perder tempo com o que quase nunca cai, você gostaria de receber essa informação também?',
+        ['Sim, quero saber', 'Não, prefiro estudar tudo por conta própria'],
+        'pergunta5', stage8, true, stage6
+      );
+    }
+
+    // ── STAGE 8: Sucesso + download ──
+    function stage8() {
+      setProgress(100);
+      mount(
+        '<div class="success-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#0abe52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
+        '<h1 class="headline">Prontinho! ✅</h1>' +
+        '<p class="desc">Seu Edital Verticalizado já está liberado logo abaixo,clica no botão pra baixar. E como você marcou que quer saber o que estudar primeiro, prepara que em breve chega novidade boa no seu WhatsApp 😉🔥</p>' +
+        '<div class="cta-wrap"><div class="cta-snake"><a href="/Edital-Verticalizado-PCAL-2026.pdf" download class="cta">⬇️ Baixar Edital Verticalizado PC AL</a></div></div>'
+      );
+    }
+
+    function submitToSheet() {
+      formData.data = new Date().toISOString();
+      fetch(SHEET_WEBAPP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(formData)
+      }).catch(function () {});
+    }
+
+    stage1();
+  </script>
+</body>
+</html>
