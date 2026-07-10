@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suporte Prioritário | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background-color: #150825;
+      color: #F6F6F6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::after {
+      content: '';
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 350px;
+      background: #8b171a;
+      border-radius: 50%; filter: blur(180px); opacity: 0.2;
+      pointer-events: none; z-index: 0;
+    }
+
+    .page { position: relative; z-index: 1; min-height: 100vh; display: flex; justify-content: center; padding: 64px 20px 56px; }
+    .card { width: 100%; max-width: 480px; }
+
+    .eyebrow-row { text-align: center; margin-bottom: 22px; }
+    .eyebrow {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      color: #AF9064; background: rgba(175,144,100,0.1); border: 1px solid rgba(175,144,100,0.3);
+      display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 100px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
+    .headline {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(26px, 7vw, 34px); color: #F6F6F6;
+      text-align: center; line-height: 1.2; margin-bottom: 6px;
+    }
+    .brand-line {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px;
+      color: #8b171a; text-align: center; letter-spacing: 0.04em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+
+    .desc {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(246,246,246,0.65); line-height: 1.75; text-align: center;
+      margin-bottom: 38px;
+    }
+    .desc strong { color: #F6F6F6; font-weight: 700; }
+
+    /* ── Cards de canal ── */
+    .channel-card {
+      background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 18px; padding: 26px 24px; margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .channel-card.primary { border-color: rgba(139,23,26,0.4); background: rgba(139,23,26,0.06); }
+    .channel-card.disabled { opacity: 0.55; }
+
+    .channel-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .channel-icon {
+      width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .channel-icon.email { background: rgba(139,23,26,0.16); border: 1px solid rgba(139,23,26,0.4); }
+    .channel-icon.whats { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+
+    .channel-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .channel-title { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 17px; color: #F6F6F6; }
+    .channel-badge {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .channel-badge.fast { color: #0abe52; background: rgba(10,190,82,0.12); border: 1px solid rgba(10,190,82,0.3); }
+    .channel-badge.slow { color: rgba(246,246,246,0.45); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+
+    .channel-desc {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(246,246,246,0.6); line-height: 1.65; margin-bottom: 20px;
+    }
+
+    /* ── Botões ── */
+    .channel-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 15px 18px; border-radius: 12px;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 14px;
+      letter-spacing: 0.02em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      position: relative;
+    }
+    .channel-btn.email-btn { background: #8b171a; color: #fff; }
+    .channel-btn.email-btn:active { transform: scale(0.98); }
+    .channel-btn.disabled-btn {
+      background: rgba(255,255,255,0.04); color: rgba(246,246,246,0.35);
+      cursor: not-allowed; border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ── Fallback de cópia: garante funcionamento mesmo sem app de e-mail (ex: navegador in-app do Instagram) ── */
+    .email-fallback {
+      display: flex; align-items: center; gap: 8px; margin-top: 10px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 10px 12px;
+    }
+    .email-fallback-text {
+      flex: 1; min-width: 0; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12.5px;
+      color: rgba(246,246,246,0.7); word-break: break-all;
+    }
+    .email-copy-btn {
+      flex-shrink: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      letter-spacing: 0.03em; text-transform: uppercase; color: #ff9999;
+      background: rgba(139,23,26,0.14); border: 1px solid rgba(139,23,26,0.4);
+      border-radius: 8px; padding: 9px 12px; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .email-copy-btn.copied { background: #0abe52; border-color: #0abe52; color: #fff; }
+
+    .footer-note {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12.5px;
+      color: rgba(246,246,246,0.32); text-align: center; line-height: 1.7; margin-top: 30px;
+    }
+
+    /* ── TSL: o que esse canal resolve (sempre visível) ── */
+    .tsl-section { width: 100%; margin-top: 30px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .tsl-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13.5px;
+      color: #F6F6F6; margin-bottom: 16px;
+    }
+    .tsl-inner { padding-bottom: 8px; }
+
+    .tsl-lead {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px;
+      color: rgba(246,246,246,0.7); line-height: 1.7; margin-bottom: 18px;
+    }
+    .tsl-lead strong { color: #F6F6F6; }
+
+    .tsl-col-label {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .tsl-col-label.ok { color: #0abe52; }
+    .tsl-col-label.no { color: #e84040; }
+
+    .tsl-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+    .tsl-list li {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 13.5px;
+      color: rgba(246,246,246,0.62); line-height: 1.5;
+    }
+    .tsl-list li .mark { flex-shrink: 0; font-weight: 800; margin-top: 1px; }
+    .tsl-list.ok li .mark { color: #0abe52; }
+    .tsl-list.no li .mark { color: #e84040; }
+
+    .tsl-closing {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px;
+      color: rgba(246,246,246,0.55); line-height: 1.7; padding-top: 4px; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-sig {
+      margin-top: 36px; text-align: center;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      color: rgba(246,246,246,0.14); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+
+      <div class="eyebrow-row"><span class="eyebrow">🎯 Atendimento Exclusivo</span></div>
+
+      <h1 class="headline">Suporte Prioritário</h1>
+      <p class="brand-line">Marcos Brito</p>
+
+      <p class="desc">
+        Escolha abaixo o canal certo pra sua dúvida ser resolvida <strong>mais rápido</strong>. Cada canal tem um tempo de resposta diferente.
+      </p>
+
+      <!-- E-MAIL: canal principal, mais rápido -->
+      <div class="channel-card primary">
+        <div class="channel-top">
+          <div class="channel-icon email">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+              <path d="M3 6.5A1.5 1.5 0 014.5 5h15A1.5 1.5 0 0121 6.5v11a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 17.5v-11z" stroke="#ff9999" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M4 6.5l8 6.5 8-6.5" stroke="#ff9999" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="channel-title-row">
+              <span class="channel-title">E-mail</span>
+              <span class="channel-badge fast">⚡ Mais rápido</span>
+            </div>
+          </div>
+        </div>
+        <p class="channel-desc">Meu canal principal de suporte. Eu leio e respondo e-mail bem mais rápido do que mensagem. Pra qualquer dúvida, comece por aqui.</p>
+        <a href="mailto:suportemarcosbrito@gmail.com" class="channel-btn email-btn">Enviar E-mail</a>
+        <div class="email-fallback">
+          <span class="email-fallback-text" id="emailAddr">suportemarcosbrito@gmail.com</span>
+          <button type="button" class="email-copy-btn" id="copyEmailBtn">Copiar</button>
+        </div>
+      </div>
+
+      <!-- WHATSAPP: canal secundário, mais lento -->
+      <div class="channel-card disabled">
+        <div class="channel-top">
+          <div class="channel-icon whats">💬</div>
+          <div>
+            <div class="channel-title-row">
+              <span class="channel-title">WhatsApp</span>
+              <span class="channel-badge slow">Resposta mais lenta</span>
+            </div>
+          </div>
+        </div>
+        <p class="channel-desc">Canal secundário. Como recebo muitas mensagens por dia, a resposta por aqui costuma demorar bem mais que por e-mail.</p>
+        <button class="channel-btn disabled-btn" disabled>Em breve</button>
+      </div>
+
+      <div class="tsl-section">
+        <p class="tsl-title">Antes de chamar, veja o que esse canal resolve</p>
+        <div class="tsl-inner">
+          <p class="tsl-lead">Esse suporte existe pra <strong>resolver problema real</strong>, não pra bate-papo. Isso é o que mantém o canal rápido pra quem realmente precisa.</p>
+
+          <p class="tsl-col-label ok">✅ É pra isso</p>
+          <ul class="tsl-list ok">
+            <li><span class="mark">✓</span>Não recebeu o material que comprou</li>
+            <li><span class="mark">✓</span>Link de acesso não abre ou dá erro</li>
+            <li><span class="mark">✓</span>Cobrança duplicada ou pagamento não reconhecido</li>
+            <li><span class="mark">✓</span>Erro técnico que te impede de usar o que comprou</li>
+          </ul>
+
+          <p class="tsl-col-label no">❌ Não é pra isso</p>
+          <ul class="tsl-list no">
+            <li><span class="mark">✕</span>Dúvida de conteúdo ou matéria de estudo</li>
+            <li><span class="mark">✕</span>Papo sem relação com o suporte</li>
+            <li><span class="mark">✕</span>Pedido de desconto ou negociação de preço</li>
+            <li><span class="mark">✕</span>Pergunta que já está respondida na página do material</li>
+          </ul>
+
+          <p class="tsl-closing">Se você chamar pra resolver algo fútil, pode estar atrasando o atendimento de outra pessoa que tem um problema real esperando resposta. Quanto mais focado o canal, mais rápido eu resolvo problema de verdade.</p>
+        </div>
+      </div>
+
+      <p class="footer-note">Priorize o e-mail sempre que possível,é o jeito mais rápido de chegar até mim.</p>
+
+      <p class="footer-sig">© 2026 Marcos Brito</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('copyEmailBtn');
+      if (!btn) return;
+      var email = document.getElementById('emailAddr').textContent.trim();
+      var originalLabel = btn.textContent;
+      var resetTimer = null;
+
+      function done(ok) {
+        btn.textContent = ok ? 'Copiado ✓' : 'Toque e segure pra copiar';
+        btn.classList.toggle('copied', ok);
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function () {
+          btn.textContent = originalLabel;
+          btn.classList.remove('copied');
+        }, 2200);
+      }
+
+      function legacyCopy() {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.top = '-9999px';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          ta.setSelectionRange(0, email.length);
+          var ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          done(ok);
+        } catch (e) {
+          done(false);
+        }
+      }
+
+      btn.addEventListener('click', function () {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(function () { done(true); }).catch(legacyCopy);
+        } else {
+          legacyCopy();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
