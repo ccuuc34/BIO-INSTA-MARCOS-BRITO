@@ -379,7 +379,7 @@ const kitLinks: LinkItem[] = [
   },
   {
     id: 'kit-pmma',
-    label: 'KIT PMMA: Edital Verticalizado + Prioridades',
+    label: 'KIT PMMA: Edital Verticalizado 2026 (Novo) + Prioridades',
     url: 'https://edital-verticalizado-pmma.vercel.app/',
     color: '#e9d5ff',
     featured: true,
