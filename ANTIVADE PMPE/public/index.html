@@ -42,7 +42,7 @@
     .progress-bar {
       height: 100%; width: 0%;
       background: linear-gradient(90deg, #AF9064, #8b171a);
-      transition: width 0.5s ease;
+      transition: width 0.6s ease;
     }
 
     .page {
@@ -63,6 +63,10 @@
       color: #AF9064; letter-spacing: 0.16em; text-transform: uppercase;
       text-align: center; margin-bottom: 14px;
     }
+    .validation-line {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: #AF9064; text-align: center; line-height: 1.6; margin-bottom: 18px;
+    }
     .headline {
       font-family: 'Sora', sans-serif; font-weight: 800;
       font-size: clamp(21px, 6.2vw, 30px);
@@ -80,7 +84,7 @@
       box-shadow: 0 0 40px rgba(175,144,100,0.4);
     }
 
-    /* ── Opções do quiz (Etapa 1) ── */
+    /* ── Opções do quiz (Etapa 0) ── */
     .opt-list { display: flex; flex-direction: column; gap: 12px; }
     .opt-btn {
       width: 100%; text-align: left; cursor: pointer;
@@ -108,6 +112,18 @@
       color: rgba(246,246,246,0.6); text-align: center; margin-bottom: 24px;
     }
 
+    /* ── Botão leve de continuidade (divulgação progressiva) ── */
+    .next-btn {
+      display: block; width: 100%; margin-top: 4px; padding: 16px 20px;
+      background: rgba(175,144,100,0.12); border: 1.5px solid rgba(175,144,100,0.4);
+      border-radius: 13px; cursor: pointer;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 14px;
+      color: #AF9064; letter-spacing: 0.02em; text-align: center;
+      transition: background 0.2s, transform 0.12s;
+    }
+    .next-btn:hover { background: rgba(175,144,100,0.18); }
+    .next-btn:active { transform: scale(0.98); }
+
     /* ── Checklist ── */
     .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
     .check-list li {
@@ -122,17 +138,29 @@
       font-size: 12px; font-weight: 800; margin-top: 1px;
     }
 
-    /* ── Mini law cards (Etapa 3) ── */
+    /* ── Mini law cards + prioridade visual (Etapa 2 / Mecanismo) ── */
     .law-cards { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
     .law-card {
       display: flex; align-items: center; gap: 10px;
       background: rgba(255,255,255,0.03); border: 1px solid rgba(175,144,100,0.15);
+      border-left-width: 3px; border-left-style: solid;
       border-radius: 10px; padding: 12px 14px;
     }
+    .law-card.priority-alta { border-left-color: #0abe52; }
+    .law-card.priority-media { border-left-color: #e9c400; }
+    .law-card.priority-atencao { border-left-color: #8b171a; }
     .law-card .ico { font-size: 16px; flex-shrink: 0; }
-    .law-card .name { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px; color: rgba(246,246,246,0.8); }
+    .law-card .name { flex: 1; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px; color: rgba(246,246,246,0.8); }
+    .law-priority-tag {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 9px;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 9px;
+      border-radius: 100px; flex-shrink: 0; white-space: nowrap;
+    }
+    .law-priority-tag.alta { color: #0abe52; background: rgba(10,190,82,0.12); }
+    .law-priority-tag.media { color: #e9c400; background: rgba(233,196,0,0.12); }
+    .law-priority-tag.atencao { color: #ff8080; background: rgba(139,23,26,0.2); }
 
-    /* ── Prova social (Etapa 4) ── */
+    /* ── Prova social (Etapa 3) ── */
     .proof-box {
       background: rgba(175,144,100,0.07); border: 1px solid rgba(175,144,100,0.25);
       border-radius: 16px; padding: 22px 20px; margin: 18px 0;
@@ -158,7 +186,7 @@
       color: rgba(255,225,225,0.92); line-height: 1.7; font-style: italic;
     }
 
-    /* ── Oferta / Missão (Etapa 6) ── */
+    /* ── Oferta / Missão (Etapa 5) ── */
     .mission-box {
       background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
       border-radius: 16px; padding: 22px 20px; margin-bottom: 20px;
@@ -250,6 +278,7 @@
 
   <script>
     var CHECKOUT_URL = "https://pay.kirvano.com/e4a915d9-5937-4e05-9b9a-d8420b1ddf52";
+    var formData = { dor: 'tempo' };
 
     var app = document.getElementById('app');
     var progress = document.getElementById('progress');
@@ -265,32 +294,51 @@
     }
 
     function goStage(n) {
-      var fns = { 1: stage1, 2: stage2, 3: stage3, 4: stage4, 5: stage5, 6: stage6 };
+      var fns = { 1: stage1, 2: stage2, 3: stage3, 4: stage4, 5: stage5, 6: stage6, 7: stage7 };
       fns[n]();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ── ETAPA 1: Pergunta de qualificação (hook com notícia fresca) ──
+    function chooseDor(d) {
+      formData.dor = d;
+      goStage(2);
+    }
+
+    // ── ETAPA 0: Pergunta de qualificação (hook com notícia fresca) ──
     function stage1() {
-      setProgress(16);
+      setProgress(35);
       mount(
         '<p class="eyebrow">Marcos Brito</p>' +
         '<div class="avatar-row"><img class="avatar" src="marcos-hero.webp" alt="Marcos Brito"></div>' +
         '<h1 class="headline">O edital da PMPE <strong>ACABOU DE SAIR</strong>: 1.320 vagas confirmadas. Qual dessas 2 mudanças você quer fazer AGORA no seu estudo pra sair na frente?</h1>' +
         '<div class="opt-list">' +
-          '<button class="opt-btn" onclick="goStage(2)">Parar de perder tempo estudando o que não vai cair</button>' +
-          '<button class="opt-btn" onclick="goStage(2)">Aprender a lei seca de um jeito que gruda de verdade</button>' +
+          '<button class="opt-btn" onclick="chooseDor(\'tempo\')">Parar de perder tempo estudando o que não vai cair</button>' +
+          '<button class="opt-btn" onclick="chooseDor(\'memoria\')">Aprender a lei seca de um jeito que gruda de verdade</button>' +
         '</div>'
       );
     }
 
-    // ── ETAPA 2: Presell / Reframe ──
+    // ── ETAPA 1a: Validação rápida + tease (Texto 1, tela curta) ──
     function stage2() {
-      setProgress(33);
+      setProgress(45);
+      var validacao = formData.dor === 'tempo'
+        ? 'Você quer parar de perder tempo com o que não cai. Show,é exatamente isso que vamos resolver.'
+        : 'Você quer que a lei seca finalmente grude de verdade. Show,é exatamente isso que vamos resolver.';
       mount(
-        '<p class="eyebrow">Antes de mais nada</p>' +
-        '<h2 class="headline">Vão te oferecer PDF de 200 páginas e videoaula de 8 horas.</h2>' +
-        '<p class="body-text">Mas o que realmente vai fazer você dominar a lei seca mais rápido é:</p>' +
+        '<p class="eyebrow">Entendi</p>' +
+        '<h2 class="headline">' + validacao + '</h2>' +
+        '<p class="body-text">Só que antes,preciso ser direto com você: vão te oferecer PDF de 200 páginas e videoaula de 8 horas.</p>' +
+        '<button class="next-btn" onclick="goStage(3)">Faz sentido →</button>' +
+        '<button class="back-link" onclick="goStage(1)">← Voltar</button>'
+      );
+    }
+
+    // ── ETAPA 1b: Reframe / payoff (Texto 2, checklist) ──
+    function stage3() {
+      setProgress(58);
+      mount(
+        '<p class="eyebrow">O que realmente funciona</p>' +
+        '<h2 class="headline">O que realmente vai fazer você dominar a lei seca mais rápido é:</h2>' +
         '<ul class="check-list">' +
           '<li><span class="check-ico">✓</span> Saber exatamente qual palavra a banca troca pra te derrubar</li>' +
           '<li><span class="check-ico">✓</span> Revisar uma lei inteira em 15 minutos, não em 3 horas</li>' +
@@ -299,14 +347,14 @@
         '</ul>' +
         '<p class="punch">Pouca coisa né? 😏</p>' +
         '<p class="punch-sub">Pois é. Você só não sai do lugar porque tá estudando volume,não método.</p>' +
-        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(3)">Preciso estudar certo</button></div></div>' +
-        '<button class="back-link" onclick="goStage(1)">← Voltar</button>'
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(4)">Preciso estudar certo</button></div></div>' +
+        '<button class="back-link" onclick="goStage(2)">← Voltar</button>'
       );
     }
 
-    // ── ETAPA 3: Produto / Proposta de valor ──
-    function stage3() {
-      setProgress(50);
+    // ── ETAPA 2: Produto / O Mecanismo (cartões coloridos por prioridade) ──
+    function stage4() {
+      setProgress(72);
       mount(
         '<p class="eyebrow">O Anti-Vade Mecum PMPE</p>' +
         '<h2 class="headline">Com o Anti-Vade Mecum PMPE você vai:</h2>' +
@@ -318,21 +366,21 @@
           '<li><span class="check-ico">✓</span> Saber o Mapa de Prioridades,onde a banca mais cobra</li>' +
         '</ul>' +
         '<div class="law-cards">' +
-          '<div class="law-card"><span class="ico">📄</span><span class="name">Abuso de Autoridade (Lei 13.869/19)</span></div>' +
-          '<div class="law-card"><span class="ico">📄</span><span class="name">Estatuto do Desarmamento (Lei 10.826/03)</span></div>' +
-          '<div class="law-card"><span class="ico">📄</span><span class="name">Lei Maria da Penha (Lei 11.340/06)</span></div>' +
-          '<div class="law-card"><span class="ico">📄</span><span class="name">Lei de Drogas (Lei 11.343/06) — Atual. 2026</span></div>' +
-          '<div class="law-card"><span class="ico">📄</span><span class="name">Lei de Tortura (Lei 9.455/97) — Atual. 2026</span></div>' +
-          '<div class="law-card"><span class="ico">📄</span><span class="name">Crimes Hediondos (Lei 8.072/90)</span></div>' +
+          '<div class="law-card priority-alta"><span class="ico">📄</span><span class="name">Abuso de Autoridade (Lei 13.869/19)</span><span class="law-priority-tag alta">Cai muito</span></div>' +
+          '<div class="law-card priority-alta"><span class="ico">📄</span><span class="name">Estatuto do Desarmamento (Lei 10.826/03)</span><span class="law-priority-tag alta">Cai muito</span></div>' +
+          '<div class="law-card priority-media"><span class="ico">📄</span><span class="name">Lei Maria da Penha (Lei 11.340/06)</span><span class="law-priority-tag media">Cai bastante</span></div>' +
+          '<div class="law-card priority-media"><span class="ico">📄</span><span class="name">Lei de Drogas (Lei 11.343/06) — Atual. 2026</span><span class="law-priority-tag media">Cai bastante</span></div>' +
+          '<div class="law-card priority-atencao"><span class="ico">📄</span><span class="name">Lei de Tortura (Lei 9.455/97) — Atual. 2026</span><span class="law-priority-tag atencao">Pegadinha</span></div>' +
+          '<div class="law-card priority-atencao"><span class="ico">📄</span><span class="name">Crimes Hediondos (Lei 8.072/90)</span><span class="law-priority-tag atencao">Pegadinha</span></div>' +
         '</div>' +
-        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(4)">É disso que eu preciso</button></div></div>' +
-        '<button class="back-link" onclick="goStage(2)">← Voltar</button>'
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(5)">É disso que eu preciso</button></div></div>' +
+        '<button class="back-link" onclick="goStage(3)">← Voltar</button>'
       );
     }
 
-    // ── ETAPA 4: Prova social forte ──
-    function stage4() {
-      setProgress(66);
+    // ── ETAPA 3: Prova social forte (progresso bate ~85%) ──
+    function stage5() {
+      setProgress(85);
       mount(
         '<p class="eyebrow">Não confie só na minha palavra</p>' +
         '<h2 class="headline">Deixa eu te mostrar o resultado. 😅</h2>' +
@@ -344,14 +392,14 @@
           '</div>' +
         '</div>' +
         '<p class="body-text">Não foi sorte. Foi parar de estudar volume e passar a estudar exatamente onde a banca ataca — o mesmo método que agora adaptei pro perfil de cobrança da PM.</p>' +
-        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(5)">Preciso desse método também</button></div></div>' +
-        '<button class="back-link" onclick="goStage(3)">← Voltar</button>'
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(6)">Preciso desse método também</button></div></div>' +
+        '<button class="back-link" onclick="goStage(4)">← Voltar</button>'
       );
     }
 
-    // ── ETAPA 5: Quebra de objeção ──
-    function stage5() {
-      setProgress(83);
+    // ── ETAPA 4: Quebra de objeção ──
+    function stage6() {
+      setProgress(93);
       mount(
         '<p class="eyebrow">Sua dúvida agora</p>' +
         '<h2 class="headline">"Mas será que esse material cobre mesmo o que cai em concurso de PM, ou é resumo genérico de outra força adaptado?" 🙄</h2>' +
@@ -363,16 +411,20 @@
         '</div>' +
         '<div class="callout"><p>Esse Anti-Vade Mecum foi construído <strong>apenas e especificamente para quem vai prestar concurso pra PM</strong>. Não é PP. Não é GCM. É PM,com foco total em PMPE.</p></div>' +
         '<p class="body-text">Você só não descobriu ainda como estudar lei seca sem decorar página por página.</p>' +
-        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(6)">Já quero estudar assim</button></div></div>' +
-        '<button class="back-link" onclick="goStage(4)">← Voltar</button>'
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(7)">Já quero estudar assim</button></div></div>' +
+        '<button class="back-link" onclick="goStage(5)">← Voltar</button>'
       );
     }
 
-    // ── ETAPA 6: Missão + Oferta principal ──
-    function stage6() {
+    // ── ETAPA 5: Missão + Oferta principal (abertura validatória) ──
+    function stage7() {
       setProgress(100);
+      var abertura = formData.dor === 'tempo'
+        ? '👉 Como você me disse lá no início que quer parar de perder tempo com o que não cai,separei exatamente isso pra você:'
+        : '👉 Como você me disse lá no início que quer que a lei seca grude de verdade,separei exatamente isso pra você:';
       mount(
         '<p class="eyebrow">Minha missão é simples</p>' +
+        '<p class="validation-line">' + abertura + '</p>' +
         '<h2 class="headline">Te fazer dominar toda a lei seca de concurso de PM,as 6 leis que mais caem, em 15 minutos por lei.</h2>' +
 
         '<div class="callout"><p>📢 Fato: o edital da PMPE 2026 acabou de sair,1.320 vagas confirmadas (1.250 soldado + 70 oficial). A partir de agora é oficial: tem edital,tem prova chegando. Quem começa a estudar lei seca HOJE sai na frente de quem ainda nem terminou de ler o edital inteiro.</p></div>' +
