@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-Gramática PMMA | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background-color: #010000;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 24px 20px;
+      gap: 20px;
+    }
+
+    .hero-wrap {
+      width: 100%; max-width: 420px;
+    }
+    .hero-img {
+      width: 100%; height: auto; display: block;
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.65);
+    }
+
+    .cta-wrap { width: 100%; max-width: 420px; }
+
+    .cta-snake {
+      position: relative; width: 100%;
+      border-radius: 17px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 85px rgba(10,190,82,0.72), 0 18px 44px rgba(0,0,0,0.5);
+    }
+    .cta-snake::before {
+      content: '';
+      position: absolute;
+      width: 300%; height: 300%;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg,
+        transparent 0deg,
+        transparent 255deg,
+        rgba(170,0,0,0.08) 272deg,
+        rgba(210,15,0,0.55) 288deg,
+        #ff3300 302deg,
+        #ff6600 316deg,
+        #ff9900 329deg,
+        rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg,
+        transparent 360deg
+      );
+      animation: cta-snake-spin 2.4s linear infinite;
+    }
+    @keyframes cta-snake-spin {
+      from { transform: translate(-50%,-50%) rotate(0deg); }
+      to   { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 20px clamp(14px, 4vw, 24px);
+      background: linear-gradient(135deg, #0abe52 0%, #079040 60%, #056830 100%);
+      border: none; border-radius: 14px;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(13px, 3.8vw, 17px);
+      color: #ffffff; letter-spacing: 0.04em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      position: relative; overflow: hidden;
+      transition: transform 0.15s;
+    }
+    .cta:hover { transform: translateY(-2px); }
+    .cta:active { transform: scale(0.98) translateY(-2px); }
+    .cta svg { width: 20px; height: 20px; flex-shrink: 0; position: relative; z-index: 1; }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -10%; left: -85%;
+      width: 44%; height: 120%;
+      background: linear-gradient(
+        100deg,
+        transparent 10%,
+        rgba(255,255,255,0.28) 44%,
+        rgba(255,255,255,0.38) 50%,
+        rgba(255,255,255,0.28) 56%,
+        transparent 90%
+      );
+      transform: skewX(-12deg);
+      animation: cta-shimmer 2.9s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes cta-shimmer {
+      0%,  22% { left: -85%; }
+      62%, 100% { left: 155%; }
+    }
+
+    .cta-note {
+      font-family: 'Nunito', sans-serif; font-size: 12px;
+      color: rgba(255,255,255,0.25); text-align: center;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero-wrap">
+      <img class="hero-img" src="banner-pmma.webp" alt="Português é a 2ª maior prioridade da PMMA" />
+    </div>
+
+    <div class="cta-wrap">
+      <div class="cta-snake">
+        <a href="/" class="cta">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+          QUERO VIRAR ESSE JOGO
+        </a>
+      </div>
+      <p class="cta-note">Você será levado direto pro Anti-Gramática 2.0</p>
+    </div>
+  </div>
+</body>
+</html>
