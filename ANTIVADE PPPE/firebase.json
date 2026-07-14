@@ -1,0 +1,1 @@
+{ "hosting": { "site": "antivade-pppe", "public": "public", "ignore": ["firebase.json", "**/.*"] } }
