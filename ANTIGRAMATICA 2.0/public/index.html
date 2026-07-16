@@ -583,6 +583,24 @@
     }
     .faq-a strong { color: rgba(255,255,255,0.8); font-weight: 700; }
 
+    /* ── Conteúdo travado até o vídeo passar do ponto liberado ── */
+    .unlock-note {
+      display: flex; align-items: center; gap: 8px; justify-content: center;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12.5px;
+      color: rgba(255,255,255,0.35); text-align: center;
+      margin: 14px 0 22px; padding: 10px 14px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+    }
+    .unlock-note .dot {
+      width: 6px; height: 6px; border-radius: 50%; background: #e84040; flex-shrink: 0;
+      animation: unlock-pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes unlock-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+    .gated-content {
+      display: none; opacity: 0; transition: opacity 0.8s ease;
+    }
+
     /* ── TSL collapse ── */
     .tsl-collapse {
       width: 100%; margin-top: 36px;
@@ -629,6 +647,10 @@
       <div class="video-wrap">
         <wistia-player media-id="rpycnitnog" aspect="0.5581395348837209" style="width:100%;display:block;"></wistia-player>
       </div>
+
+      <p class="unlock-note" id="unlockNote"><span class="dot"></span> O restante da página libera automaticamente durante o vídeo.</p>
+
+      <div class="gated-content" id="gatedContent">
 
       <!-- ── CTA PRIMÁRIO (imediato após o vídeo) ── -->
       <div class="cta-wrap" style="margin-top:0; margin-bottom:28px;">
@@ -945,6 +967,8 @@
 
       <p class="footer-sig">© 2026 Marcos Brito</p>
 
+      </div><!-- /gated-content -->
+
     </div>
   </div>
   <script>
@@ -1047,6 +1071,19 @@
     }
 
     initPlayer(1, 'depoimento');
+
+    // ── Libera o restante da página 1min30 após o carregamento ──
+    setTimeout(function () {
+      var gated = document.getElementById('gatedContent');
+      var note  = document.getElementById('unlockNote');
+      gated.style.display = 'block';
+      setTimeout(function () { gated.style.opacity = '1'; }, 30);
+      if (note) {
+        note.style.transition = 'opacity 0.5s ease';
+        setTimeout(function () { note.style.opacity = '0'; }, 30);
+        setTimeout(function () { note.style.display = 'none'; }, 530);
+      }
+    }, 90000);
   </script>
 </body>
 </html>
