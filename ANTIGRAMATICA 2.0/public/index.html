@@ -584,19 +584,19 @@
     .faq-a strong { color: rgba(255,255,255,0.8); font-weight: 700; }
 
     /* ── Conteúdo travado até o vídeo passar do ponto liberado ── */
-    .unlock-note {
-      display: flex; align-items: center; gap: 8px; justify-content: center;
+    .watch-bar {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 14px 18px;
+      width: 100%; margin: 14px 0 22px; padding: 14px 16px;
+      background: rgba(255,255,255,0.02); border-top: 2px solid #cc1818;
+    }
+    .watch-item {
+      display: flex; align-items: center; gap: 8px;
       font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12.5px;
-      color: rgba(255,255,255,0.35); text-align: center;
-      margin: 14px 0 22px; padding: 10px 14px;
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
+      color: rgba(255,255,255,0.75); white-space: nowrap;
     }
-    .unlock-note .dot {
-      width: 6px; height: 6px; border-radius: 50%; background: #e84040; flex-shrink: 0;
-      animation: unlock-pulse 1.4s ease-in-out infinite;
-    }
-    @keyframes unlock-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+    .watch-item svg { width: 15px; height: 15px; flex-shrink: 0; fill: rgba(255,255,255,0.5); }
+    .watch-divider { width: 1px; height: 16px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
     .gated-content {
       display: none; opacity: 0; transition: opacity 0.8s ease;
     }
@@ -648,7 +648,17 @@
         <wistia-player media-id="rpycnitnog" aspect="0.5581395348837209" style="width:100%;display:block;"></wistia-player>
       </div>
 
-      <p class="unlock-note" id="unlockNote"><span class="dot"></span> O restante da página libera automaticamente durante o vídeo.</p>
+      <div class="watch-bar" id="unlockNote">
+        <div class="watch-item">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Assista o vídeo acima até o final
+        </div>
+        <div class="watch-divider"></div>
+        <div class="watch-item">
+          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+          Verifique se o som está ligado
+        </div>
+      </div>
 
       <div class="gated-content" id="gatedContent">
 
