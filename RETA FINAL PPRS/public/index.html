@@ -6,39 +6,966 @@
   <title>Reta Final PPRS | Marcos Brito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
-      height: 100%;
-      font-family: 'Sora', sans-serif;
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
       background-color: #150825;
-      color: #F6F6F6;
-      overflow: hidden;
+      color: #fff;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
     body {
-      display: flex; align-items: center; justify-content: center;
-      min-height: 100vh; text-align: center; padding: 24px;
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 60px 80px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 110px 20px, rgba(175,144,100,0.3), transparent),
+        radial-gradient(2px 2px at 150px 140px, rgba(255,255,255,0.1), transparent);
+      background-size: 200px 200px;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none; z-index: 0;
     }
     body::after {
       content: '';
       position: fixed; top: 0; left: 50%; transform: translateX(-50%);
       width: 700px; height: 350px;
       background: #8b171a;
-      border-radius: 50%; filter: blur(180px); opacity: 0.25;
+      border-radius: 50%; filter: blur(180px); opacity: 0.22;
       pointer-events: none; z-index: 0;
     }
-    h1 {
+
+    .page {
       position: relative; z-index: 1;
-      font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase;
-      font-size: clamp(28px, 8vw, 48px); line-height: 1.3;
-      color: #F6F6F6;
+      min-height: 100vh;
+      display: flex; justify-content: center;
+      padding: 52px 20px 80px;
     }
-    h1 span { color: #AF9064; }
+
+    .card {
+      width: 100%; max-width: 560px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    /* ── ticker faixa vermelha ── */
+    .ticker-strip {
+      width: 100%; overflow: hidden;
+      background: linear-gradient(90deg, #9b0a0a, #cc1818, #9b0a0a);
+      padding: 10px 0; margin-bottom: 22px;
+      border-radius: 6px;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+    .ticker-track {
+      display: flex; white-space: nowrap; width: max-content;
+      animation: ticker-scroll 11s linear infinite;
+    }
+    .ticker-track span {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: #ffffff;
+      padding: 0 22px;
+    }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Headline ── */
+    .title {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(24px, 7.2vw, 38px);
+      color: #ffffff; text-align: center;
+      line-height: 1.2; letter-spacing: 0.01em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .title .accent { color: #AF9064; font-size: 0.65em; }
+
+    .pre-video {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.35); text-align: center;
+      margin-bottom: 22px; letter-spacing: 0.02em;
+    }
+
+    /* ── Video (placeholder até a VSL ser gravada) ── */
+    .video-wrap {
+      width: clamp(180px, 58%, 260px);
+      margin: 0 auto 24px;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 60px rgba(139,23,26,0.25), 0 24px 48px rgba(0,0,0,0.5);
+      position: relative;
+      aspect-ratio: 0.5581;
+      background: linear-gradient(160deg, #241033, #150825 60%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-placeholder-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(139,23,26,0.35);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-placeholder-icon svg { width: 24px; height: 24px; fill: #fff; margin-left: 3px; }
+
+    /* ── Advertorial body ── */
+    .advertorial {
+      width: 100%;
+      display: flex; flex-direction: column; gap: 48px;
+    }
+
+    .section-label {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      color: rgba(175,144,100,0.85); letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .body-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 16px;
+      color: rgba(255,255,255,0.72); line-height: 1.8;
+    }
+    .body-text + .body-text { margin-top: 16px; }
+    .body-text strong { color: rgba(255,255,255,0.92); font-weight: 700; }
+    .body-text em { color: #e84040; font-style: normal; font-weight: 700; }
+
+    .section-heading {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(18px, 5vw, 24px);
+      color: #ffffff; line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    /* Callout box */
+    .callout {
+      width: 100%;
+      background: rgba(139,23,26,0.12);
+      border-left: 3px solid #e84040;
+      border-radius: 0 10px 10px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .callout p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      color: rgba(255,220,220,0.9); line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* Neutral box */
+    .box {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .box-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.3); letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    /* Divider */
+    .divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* False solution item */
+    .false-item {
+      margin-bottom: 22px;
+    }
+    .false-item-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: line-through;
+      margin-bottom: 6px;
+    }
+    .false-item p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+
+    /* Objection block */
+    .objection {
+      margin-bottom: 24px;
+    }
+    .objection-q {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 8px;
+    }
+    .objection-q::before { content: '"'; color: #e84040; }
+    .objection-q::after  { content: '"'; color: #e84040; }
+    .objection-a {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.62); line-height: 1.75;
+      padding-left: 14px;
+      border-left: 2px solid rgba(139,23,26,0.4);
+    }
+
+    /* Offer bullets */
+    .offer-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+      margin: 16px 0;
+    }
+    .offer-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px;
+      color: rgba(255,255,255,0.8); line-height: 1.5;
+    }
+    .offer-list li .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #e84040; flex-shrink: 0; margin-top: 7px;
+    }
+
+    /* Testimonial gallery */
+    .dep-gallery {
+      width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .dep-gallery img {
+      width: 100%; display: block; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+    }
+
+    .testimonial {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 22px 20px;
+      margin-bottom: 16px;
+    }
+    .testimonial-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(255,255,255,0.75); line-height: 1.75;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .testimonial-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(139,23,26,0.25);
+      border: 1px solid rgba(139,23,26,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 13px;
+      color: rgba(255,170,170,0.9); flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+    .testimonial-detail {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px;
+      color: rgba(255,255,255,0.3); margin-top: 2px;
+    }
+    .testimonial-stars {
+      color: #e9c400; font-size: 13px; margin-bottom: 10px;
+    }
+
+    /* Bonus / module item */
+    .bonus-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      margin-bottom: 20px;
+    }
+    .bonus-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(139,23,26,0.18);
+      border: 1px solid rgba(139,23,26,0.35);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+    .bonus-text .bonus-name {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.88); margin-bottom: 4px;
+    }
+    .bonus-text p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.5); line-height: 1.6;
+    }
+
+    /* Price box */
+    .price-box {
+      width: 100%; text-align: center;
+      background: rgba(175,144,100,0.07);
+      border: 1px solid rgba(175,144,100,0.25);
+      border-radius: 14px;
+      padding: 26px 20px;
+      margin: 20px 0;
+    }
+    .price-anchor {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px;
+      color: rgba(255,255,255,0.4); text-decoration: line-through;
+      margin-bottom: 6px;
+    }
+    .price-new {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(28px, 8vw, 36px);
+      color: #ffffff; margin-bottom: 4px;
+    }
+    .price-installment {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+    .price-note {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12px;
+      color: rgba(175,144,100,0.8); margin-top: 12px; letter-spacing: 0.02em;
+    }
+
+    /* Guarantee box */
+    .guarantee-box {
+      width: 100%;
+      background: rgba(37,211,102,0.06);
+      border: 1px solid rgba(37,211,102,0.2);
+      border-radius: 14px;
+      padding: 24px 20px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .guarantee-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(37,211,102,0.12);
+      border: 1px solid rgba(37,211,102,0.3);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .guarantee-icon svg { width: 22px; height: 22px; }
+    .guarantee-text .g-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: rgba(255,255,255,0.9); margin-bottom: 8px;
+    }
+    .guarantee-text p {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.55); line-height: 1.7;
+    }
+
+    /* Scarcity bar */
+    .scarcity {
+      width: 100%;
+      background: rgba(233,196,0,0.07);
+      border: 1px solid rgba(233,196,0,0.22);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex; gap: 10px; align-items: center;
+      margin-top: 20px;
+    }
+    .scarcity svg { width: 18px; height: 18px; fill: #e9c400; flex-shrink: 0; }
+    .scarcity p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(233,196,0,0.85); line-height: 1.5;
+    }
+
+    /* ── CTA ── */
+    .cta-wrap {
+      width: 100%;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+
+    /* ── cobrinha girando (wrapper) ── */
+    .cta-snake {
+      position: relative; width: 100%;
+      border-radius: 17px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 85px rgba(10,190,82,0.72), 0 18px 44px rgba(0,0,0,0.5);
+    }
+    .cta-snake::before {
+      content: '';
+      position: absolute;
+      width: 300%; height: 300%;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg,
+        transparent 0deg,
+        transparent 255deg,
+        rgba(170,0,0,0.08) 272deg,
+        rgba(210,15,0,0.55) 288deg,
+        #ff3300 302deg,
+        #ff6600 316deg,
+        #ff9900 329deg,
+        rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg,
+        transparent 360deg
+      );
+      animation: cta-snake-spin 2.4s linear infinite;
+    }
+    @keyframes cta-snake-spin {
+      from { transform: translate(-50%,-50%) rotate(0deg); }
+      to   { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    /* ── botão verde estratégico + shimmer ── */
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 20px clamp(14px, 4vw, 24px);
+      background: linear-gradient(135deg, #0abe52 0%, #079040 60%, #056830 100%);
+      border: none; border-radius: 14px;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(13px, 3.8vw, 17px);
+      color: #ffffff; letter-spacing: 0.04em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      position: relative; overflow: hidden;
+      transition: transform 0.15s;
+    }
+    .cta { transform: translateY(-2px); }
+    .cta:active { transform: scale(0.98) translateY(-2px); }
+    .cta svg { width: 20px; height: 20px; flex-shrink: 0; position: relative; z-index: 1; }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -10%; left: -85%;
+      width: 44%; height: 120%;
+      background: linear-gradient(
+        100deg,
+        transparent 10%,
+        rgba(255,255,255,0.28) 44%,
+        rgba(255,255,255,0.38) 50%,
+        rgba(255,255,255,0.28) 56%,
+        transparent 90%
+      );
+      transform: skewX(-12deg);
+      animation: cta-shimmer 2.9s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes cta-shimmer {
+      0%,  22% { left: -85%; }
+      62%, 100% { left: 155%; }
+    }
+    .cta-note {
+      font-family: 'Nunito', sans-serif; font-size: 12px;
+      color: rgba(255,255,255,0.2); text-align: center;
+    }
+
+    .footer-sig {
+      margin-top: 56px;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: rgba(255,255,255,0.12); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+      width: 100%; display: flex; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 16px 8px; text-align: center;
+    }
+    .stat-icon { font-size: 20px; margin-bottom: 6px; line-height: 1; }
+    .stat-value {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: #ffffff; margin-bottom: 3px;
+    }
+    .stat-label {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 10px;
+      color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── Stars row ── */
+    .stars-row {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-bottom: 24px; text-align: center;
+    }
+    .stars { color: #e9c400; font-size: 14px; letter-spacing: 2px; }
+    .stars-text {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* ── Guarantee mini ── */
+    .guarantee-mini {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      margin-top: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12px;
+      color: rgba(255,255,255,0.22);
+    }
+    .guarantee-mini svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* ── FAQ ── */
+    .faq-wrap {
+      width: 100%; margin-top: 10px; margin-bottom: 10px;
+    }
+    .faq-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+      color: rgba(255,255,255,0.75); margin-bottom: 12px;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .faq-item:first-of-type { border-top: 1px solid rgba(255,255,255,0.07); }
+    .faq-q {
+      width: 100%; padding: 16px 0;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+      cursor: pointer; list-style: none; user-select: none;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.72); line-height: 1.45; text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::marker { display: none; }
+    details[open] .faq-q { color: #ffffff; }
+    .faq-chevron {
+      width: 16px; height: 16px; fill: rgba(255,255,255,0.25);
+      flex-shrink: 0; margin-top: 2px; transition: transform 0.25s;
+    }
+    details[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(255,255,255,0.52); line-height: 1.75;
+      padding-bottom: 18px;
+    }
+    .faq-a strong { color: rgba(255,255,255,0.8); font-weight: 700; }
+
+    /* ── Conteúdo travado até o vídeo passar do ponto liberado ── */
+    .watch-bar {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 14px 18px;
+      width: 100%; margin: 14px 0 22px; padding: 14px 16px;
+      background: rgba(255,255,255,0.02); border-top: 2px solid #cc1818;
+    }
+    .watch-item {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12.5px;
+      color: rgba(255,255,255,0.75); white-space: nowrap;
+    }
+    .watch-item svg { width: 15px; height: 15px; flex-shrink: 0; fill: rgba(255,255,255,0.5); }
+    .watch-divider { width: 1px; height: 16px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+    .gated-content {
+      display: none; opacity: 0; transition: opacity 0.8s ease;
+    }
   </style>
 </head>
 <body>
-  <h1>RETA FINAL <span>PPRS</span></h1>
+  <div class="page">
+    <div class="card">
+
+      <!-- ── HEADER ── -->
+      <div class="ticker-strip">
+        <div class="ticker-track">
+          <span>RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ </span><span>RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ </span>
+        </div>
+      </div>
+
+      <h1 class="title">
+        Você não vai ser<br />aprovado na PPRS.<br />
+        <span class="accent">E eu vou te contar o motivo.</span>
+      </h1>
+
+      <p class="pre-video">Assista ao vídeo antes de sair desta página.</p>
+
+      <!-- PLAYER: placeholder até a VSL ser gravada — substituir por <wistia-player> real quando o media-id existir -->
+      <div class="video-wrap">
+        <div class="video-placeholder-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+
+      <div class="watch-bar" id="unlockNote">
+        <div class="watch-item">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Assista o vídeo acima até o final
+        </div>
+        <div class="watch-divider"></div>
+        <div class="watch-item">
+          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+          Verifique se o som está ligado
+        </div>
+      </div>
+
+      <!-- ── CTA PRIMÁRIO: fora do gate, sempre visível ── -->
+      <div class="cta-wrap" style="margin-bottom:28px;">
+        <div class="cta-snake">
+          <a href="PENDENTE_LINK_CHECKOUT_PPRS" class="cta">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+            QUERO O RETA FINAL PPRS
+          </a>
+        </div>
+        <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+      </div>
+
+      <div class="gated-content" id="gatedContent">
+
+      <!-- ── STRIP VISUAL ── -->
+      <div class="stats-strip">
+        <div class="stat">
+          <div class="stat-icon">🗓️</div>
+          <div class="stat-value">3</div>
+          <div class="stat-label">módulos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-value">Imediato</div>
+          <div class="stat-label">acesso</div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon">🛡️</div>
+          <div class="stat-value">7 dias</div>
+          <div class="stat-label">garantia</div>
+        </div>
+      </div>
+
+      <!-- ── STARS ── -->
+      <div class="stars-row">
+        <span class="stars">★★★★★</span>
+        <span class="stars-text">4.9 · Método por trás de aprovações em PPES e PMMG</span>
+      </div>
+
+      <article class="advertorial">
+
+        <!-- ① OPENING / LEAD-IN -->
+        <section>
+          <p class="body-text">
+            Você acabou de ver o motivo real pelo qual a reta final da PPRS está escorrendo pelos seus dedos. Agora deixa eu te mostrar exatamente o que muda a partir de hoje — e por que isso não tem nada a ver com esforço.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ② INTRO + KEY CONCEPT -->
+        <section>
+          <p class="section-label">O problema real</p>
+          <h2 class="section-heading">Não é falta de esforço. É falta de direção.</h2>
+
+          <p class="body-text">
+            Quanto mais você tenta encaixar tudo que falta no pouco tempo que resta, mais parece que o cronograma nunca fecha. Mesmo estudando todo santo dia, a sensação de despreparo não vai embora.
+          </p>
+
+          <ul class="offer-list" style="margin-top:20px;">
+            <li><div class="dot"></div> Frustração de sentir que já devia estar mais avançado</li>
+            <li><div class="dot"></div> Dúvida se está estudando a coisa certa</li>
+            <li><div class="dot"></div> Sensação de estar ficando pra trás enquanto o dia da prova se aproxima</li>
+          </ul>
+
+          <div class="callout">
+            <p>Você começa a achar que o problema é você. Que talvez não tenha capacidade. Pare de pensar isso imediatamente. O modelo tradicional de preparação foi feito pra funcionar em ritmo demorado, não focado no que realmente importa nessa reta final.</p>
+          </div>
+
+          <p class="body-text">
+            Reler PDF genérico de 50, 70, 90 páginas sem saber o que a banca realmente cobra é quase a mesma coisa que não estudar. E motivação sozinha não segura ninguém até o dia da prova sem um roteiro.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ③ FALSE SOLUTIONS -->
+        <section>
+          <p class="section-label">O que não funciona</p>
+          <h2 class="section-heading">Tudo que promete resolver a reta final e só rouba seu tempo.</h2>
+
+          <div class="false-item">
+            <div class="false-item-title">O cursinho caro de 300 horas</div>
+            <p>Material genérico com conteúdo que você nunca vai terminar antes da prova. Feito pra durar, não pra aprovar você na data que já está marcada.</p>
+          </div>
+          <div class="false-item">
+            <div class="false-item-title">O resumo grátis de grupo de Telegram</div>
+            <p>Quase sempre desatualizado e cheio de artigo revogado. Você estuda lei que nem existe mais e chega na prova com informação errada.</p>
+          </div>
+          <div class="false-item">
+            <div class="false-item-title">O cronograma colorido montado sozinho</div>
+            <p>Bonito na planilha, abandonado em uma semana. Porque monta cronograma quem tem tempo sobrando — e reta final é exatamente a fase em que você não tem.</p>
+          </div>
+          <div class="false-item" style="margin-bottom:0;">
+            <div class="false-item-title">Empilhar mais horas de estudo</div>
+            <p>Decorar mais artigo, assistir mais videoaula, encher a cabeça de técnica de memorização isolada. Não importa quantas horas você empilhe: sem direção, o resultado não muda.</p>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ④ A VIRADA (história pessoal) -->
+        <section>
+          <p class="section-label">A virada</p>
+          <h2 class="section-heading">Sete reprovações depois, eu descobri o que realmente importava.</h2>
+
+          <p class="body-text">
+            Há alguns anos eu tava exatamente onde você tá agora. Tentei material genérico de cursinho caro, resumo desatualizado de Telegram, cronograma colorido que eu abandonava depois de uma semana. Investi tempo, o pouco dinheiro que eu tinha e a energia que sobrava depois de um dia inteiro de trabalho cansativo.
+          </p>
+          <p class="body-text">
+            Reprovei sete vezes. Até que percebi: o problema nunca foi falta de esforço da minha parte. Era falta de um roteiro certo e definido pra reta final.
+          </p>
+
+          <div class="callout">
+            <p>Reta final não se estuda igual no início da preparação. Reta final se executa — dia a dia, com foco cirúrgico no que a banca realmente cobra.</p>
+          </div>
+
+          <p class="body-text">
+            O resultado depois disso foram duas aprovações em menos de 4 meses: uma na PPES e outra na PMMG. E foi assim que nasceu o <strong>Reta Final PPRS</strong>.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ⑤ OBJECTIONS -->
+        <section>
+          <p class="section-label">Suas dúvidas</p>
+          <h2 class="section-heading">Já ouço o que você está pensando.</h2>
+
+          <div class="objection">
+            <div class="objection-q">Faltam poucas semanas. Será que ainda dá tempo?</div>
+            <p class="objection-a">É exatamente pra isso que o Reta Final PPRS existe. Ele não tenta te fazer estudar o edital inteiro do zero. Ele te dá o roteiro dia a dia do que estudar até a data da sua prova, com o pouco tempo que resta.</p>
+          </div>
+
+          <div class="objection">
+            <div class="objection-q">Trabalho o dia inteiro e só sobra a noite pra estudar.</div>
+            <p class="objection-a">O roteiro foi construído pensando em gente comum: quem trabalha o dia inteiro e estuda à noite, quem já reprovou antes, quem não tem dinheiro pra cursinho caro de guru. São pessoas com desafios reais, tendo resultado real.</p>
+          </div>
+
+          <div class="objection">
+            <div class="objection-q">Já comprei material antes e não usei.</div>
+            <p class="objection-a">Esse é justamente o problema que o Reta Final PPRS resolve. Não é mais conteúdo pra você se perder. É um sistema que já filtrou o que cai e descartou o que não cai, com a sequência certa do que fazer em cada dia.</p>
+          </div>
+
+          <div class="objection" style="margin-bottom:0;">
+            <div class="objection-q">Já reprovei antes. Por que seria diferente dessa vez?</div>
+            <p class="objection-a">Porque reprovar não é sinal de incapacidade. É sinal de falta de roteiro. Foi assim comigo: sete reprovações até eu entender que faltava direção, não esforço. Depois disso, duas aprovações em menos de 4 meses.</p>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ⑥ OFFER -->
+        <section>
+          <p class="section-label">O que você vai receber</p>
+          <h2 class="section-heading">Um roteiro completo. Sem enrolação. Sem teoria que não cai.</h2>
+
+          <p class="body-text">
+            O Reta Final PPRS é um roteiro completo que vai te mostrar exatamente como:
+          </p>
+
+          <ul class="offer-list">
+            <li><div class="dot"></div> Saber o que estudar em cada um dos dias até a prova, sem montar cronograma nenhum</li>
+            <li><div class="dot"></div> Estudar só a lei seca que a banca realmente cobra, sem perder tempo com o que não cai</li>
+            <li><div class="dot"></div> Chegar no dia da prova com a sensação de que você fez o que precisava, não o que sobrou ou o que deu pra fazer</li>
+          </ul>
+
+          <p class="body-text">
+            E tudo isso mesmo que você esteja começando a reta final atrasado, já tenha reprovado antes ou até ache que não vai dar tempo.
+          </p>
+
+          <div class="box" style="margin-top:24px;">
+            <p class="box-title">Dentro do Reta Final PPRS</p>
+
+            <div class="bonus-item">
+              <div class="bonus-icon">📍</div>
+              <div class="bonus-text">
+                <div class="bonus-name">Módulo 1 — Roteiro Dia a Dia da Reta Final</div>
+                <p>O passo a passo de quais matérias estudar em cada dia até a prova e em qual tópico focar, pra você nunca mais abrir o material sem saber por onde começar.</p>
+              </div>
+            </div>
+
+            <div class="bonus-item">
+              <div class="bonus-icon">📖</div>
+              <div class="bonus-text">
+                <div class="bonus-name">Módulo 2 — Método de Leitura e Revisão</div>
+                <p>Como ler e revisar pra fixar de verdade, sem reler a mesma página três vezes sem aprender nada.</p>
+              </div>
+            </div>
+
+            <div class="bonus-item" style="margin-bottom:0;">
+              <div class="bonus-icon">✅</div>
+              <div class="bonus-text">
+                <div class="bonus-name">Módulo 3 — Protocolo de Simulados e Questões</div>
+                <p>Quantos simulados fazer, em qual dia fazer cada um, e quantas questões resolver por dia até a prova, pra treinar no ritmo que gera resultado, sem exagero e sem enrolação.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ⑦ TESTEMUNHOS -->
+        <section>
+          <p class="section-label">Provas</p>
+          <h2 class="section-heading">Gente comum, com desafios reais, tendo resultado real.</h2>
+
+          <p class="body-text" style="margin-bottom:20px;">
+            Quem antes se perdia entre PDF pirata desatualizado passou a estudar só a lei seca que a banca cobra de verdade. Quem achava que reta final era sinônimo de pânico passou a chegar no dia da prova com a cabeça organizada.
+          </p>
+
+          <div class="dep-gallery">
+            <img src="dep01.jpg" alt="Print de depoimento de aluno" loading="lazy" />
+            <img src="dep02.jpg" alt="Print de depoimento de aluno" loading="lazy" />
+            <img src="dep03.webp" alt="Print de depoimento de aluno" loading="lazy" />
+            <img src="dep04.webp" alt="Print de depoimento de aluno" loading="lazy" />
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ⑧ BONUSES -->
+        <section>
+          <p class="section-label">Bônus</p>
+          <h2 class="section-heading">O que vem junto, sem custo extra.</h2>
+
+          <div class="bonus-item">
+            <div class="bonus-icon">🎥</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Bônus 1 — Aulão Estratégico ao Vivo</div>
+              <p>Uma aula ao vivo comigo, na última semana antes da prova, só sobre o que fazer nos últimos dias de reta final.</p>
+            </div>
+          </div>
+
+          <div class="bonus-item">
+            <div class="bonus-icon">🔒</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Bônus 2 — Grupo Exclusivo da Reta Final</div>
+              <p>Acesso ao grupo exclusivo de quem comprou o Reta Final PPRS, pra tirar dúvida e trocar com quem tá na mesma fase que você.</p>
+            </div>
+          </div>
+
+          <div class="bonus-item">
+            <div class="bonus-icon">👥</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Bônus 3 — Grupo Geral da PPRS</div>
+              <p>Acesso ao grupo geral de candidatos da PPRS, pra acompanhar informações e se manter perto de quem também tá correndo atrás da mesma vaga.</p>
+            </div>
+          </div>
+
+          <div class="bonus-item" style="margin-bottom:0;">
+            <div class="bonus-icon">🧠</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Bônus 4 — Método de Leitura Certa</div>
+              <p>O mesmo método que eu uso pra estudar e revisar, pra você parar de reler a mesma página três vezes sem fixar nada.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ⑨ GUARANTEE + SCARCITY -->
+        <section>
+          <p class="section-label">Investimento</p>
+          <h2 class="section-heading">Você não arrisca nada. A PPRS já cobra risco suficiente.</h2>
+
+          <p class="body-text" style="margin-bottom: 8px;">
+            Se você fosse pagar por tudo isso separado, com qualquer um desses gurus famosos ou grandes plataformas, estaria investindo mais de R$400. Hoje, tudo isso está por uma fração disso.
+          </p>
+
+          <div class="price-box">
+            <div class="price-anchor">De R$400 por</div>
+            <div class="price-new">12x de R$ 6,90</div>
+            <div class="price-installment">ou R$ 67 à vista</div>
+            <p class="price-note">Menos que uma pizza grande.</p>
+          </div>
+
+          <div class="guarantee-box">
+            <div class="guarantee-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="guarantee-text">
+              <div class="g-title">Garantia incondicional de 7 dias</div>
+              <p>Se você abrir o material e sentir que não é pra você, manda um e-mail direto pra mim e eu devolvo cada centavo. Sem perguntas, sem burocracia, sem enrolação.</p>
+            </div>
+          </div>
+
+          <div class="scarcity">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <p>A PPRS não vai ficar esperando você se organizar. A prova tem data marcada, e essa condição é de reta final, por tempo limitado — quanto mais você esperar, menos dias sobram pra aplicar o roteiro.</p>
+          </div>
+        </section>
+
+      </article>
+
+      <!-- ── FAQ ── -->
+      <div class="faq-wrap">
+        <p class="faq-title">Perguntas frequentes</p>
+
+        <details class="faq-item">
+          <summary class="faq-q">Faltam poucas semanas pra minha prova. Ainda dá tempo de usar o Reta Final PPRS?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">É exatamente pra esse cenário que o material foi criado. Ele não pede que você domine o edital inteiro do zero. Ele te entrega o roteiro dia a dia do que estudar até a data da sua prova, com foco no que a banca realmente cobra, dentro do tempo que ainda resta.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Já reprovei antes. Isso funciona pra quem já tentou e não passou?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Funciona principalmente pra quem já reprovou. Eu mesmo reprovei sete vezes antes de entender que o problema nunca foi falta de esforço, e sim falta de um roteiro certo pra reta final. Depois disso, foram duas aprovações em menos de 4 meses, na PPES e na PMMG. <strong>Reprovar não é sinal de incapacidade. É sinal de falta de direção.</strong></p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Trabalho o dia inteiro e só consigo estudar à noite. Vou conseguir seguir o roteiro?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O Reta Final PPRS foi feito pensando exatamente em gente comum: quem trabalha o dia inteiro e estuda à noite, quem não tem 3 ou 4 horas livres por dia. O roteiro te diz o que fazer em cada dia dentro do tempo que você realmente tem, sem exigir uma rotina que você não pode cumprir.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Por que R$67 se você diz que isso vale mais de R$400?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Porque essa é uma condição de reta final, por tempo limitado, feita pra quem precisa desse roteiro agora — não daqui a alguns meses. Se você fosse comprar módulo por módulo com qualquer cursinho grande ou guru famoso, pagaria muito mais que isso. <strong>Essa condição não é permanente.</strong></p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">E se eu comprar e achar que não é pra mim?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Você tem 7 dias de garantia incondicional. Se abrir o material e sentir que não é o que esperava, manda um e-mail direto pra mim e o valor volta integralmente. Sem perguntas, sem burocracia.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Isso é só mais um resumo genérico de concurso?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Não. O Reta Final PPRS não tem 400 horas de aula, não tem enrolação e muito menos teoria que não cai. É um roteiro específico pra reta final da PPRS: o que estudar em cada dia, qual lei seca a banca realmente cobra e quantos simulados fazer até a prova.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Como recebo o material depois de comprar?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O acesso é liberado imediatamente após a confirmação do pagamento, junto com a entrada no grupo exclusivo da reta final e no grupo geral de candidatos da PPRS.</p>
+        </details>
+
+      </div>
+
+      <!-- ── GARANTIA MINI ── -->
+      <div class="guarantee-mini">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="rgba(37,211,102,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Garantia de 7 dias · Acesso imediato · Sem burocracia</span>
+      </div>
+
+      <!-- ── CTA FINAL ── -->
+      <div class="cta-wrap" style="margin-top:32px;">
+        <div class="cta-snake">
+          <a href="PENDENTE_LINK_CHECKOUT_PPRS" class="cta">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+            QUERO O RETA FINAL PPRS
+          </a>
+        </div>
+        <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+      </div>
+
+      <p class="footer-sig">© 2026 Marcos Brito</p>
+
+      </div><!-- /gated-content -->
+
+    </div>
+  </div>
+  <script>
+    // ── Libera o restante da página 1min30 após o carregamento ──
+    setTimeout(function () {
+      var gated = document.getElementById('gatedContent');
+      var note  = document.getElementById('unlockNote');
+      gated.style.display = 'block';
+      setTimeout(function () { gated.style.opacity = '1'; }, 30);
+      if (note) {
+        note.style.transition = 'opacity 0.5s ease';
+        setTimeout(function () { note.style.opacity = '0'; }, 30);
+        setTimeout(function () { note.style.display = 'none'; }, 530);
+      }
+    }, 90000);
+  </script>
 </body>
 </html>
