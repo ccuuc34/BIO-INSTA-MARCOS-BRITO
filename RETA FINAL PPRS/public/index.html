@@ -523,23 +523,32 @@
     }
     .faq-a strong { color: rgba(255,255,255,0.8); font-weight: 700; }
 
-    /* ── Conteúdo travado até o vídeo passar do ponto liberado ── */
-    .watch-bar {
-      display: flex; align-items: center; justify-content: center;
-      flex-wrap: wrap; gap: 14px 18px;
-      width: 100%; margin: 14px 0 22px; padding: 14px 16px;
-      background: rgba(255,255,255,0.02); border-top: 2px solid #cc1818;
-    }
-    .watch-item {
-      display: flex; align-items: center; gap: 8px;
-      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12.5px;
-      color: rgba(255,255,255,0.75); white-space: nowrap;
-    }
-    .watch-item svg { width: 15px; height: 15px; flex-shrink: 0; fill: rgba(255,255,255,0.5); }
-    .watch-divider { width: 1px; height: 16px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
     .gated-content {
       display: block;
     }
+
+    /* ── TSL collapse ── */
+    .tsl-collapse {
+      width: 100%; margin-top: 4px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .tsl-toggle {
+      width: 100%; padding: 18px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; gap: 12px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.35); list-style: none; user-select: none;
+      transition: color 0.2s;
+    }
+    .tsl-toggle::-webkit-details-marker { display: none; }
+    .tsl-toggle::marker { display: none; }
+    details[open] .tsl-toggle { color: rgba(255,255,255,0.55); }
+    .toggle-icon {
+      width: 18px; height: 18px; fill: rgba(255,255,255,0.2);
+      flex-shrink: 0; transition: transform 0.3s;
+    }
+    details[open] .toggle-icon { transform: rotate(180deg); }
+    .tsl-inner { padding-top: 8px; }
   </style>
 </head>
 <body>
@@ -605,6 +614,74 @@
         <span class="stars-text">4.9 · Método por trás de aprovações em PPES e PMMG</span>
       </div>
 
+      <!-- ── FAQ ── -->
+      <div class="faq-wrap">
+        <p class="faq-title">Perguntas frequentes</p>
+
+        <details class="faq-item">
+          <summary class="faq-q">Faltam poucas semanas pra minha prova. Ainda dá tempo de usar o Reta Final PPRS?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">É exatamente pra esse cenário que o material foi criado. Ele não pede que você domine o edital inteiro do zero. Ele te entrega o roteiro dia a dia do que estudar até a data da sua prova, com foco no que a banca realmente cobra, dentro do tempo que ainda resta.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Já reprovei antes. Isso funciona pra quem já tentou e não passou?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Funciona principalmente pra quem já reprovou. Eu mesmo reprovei sete vezes antes de entender que o problema nunca foi falta de esforço, e sim falta de um roteiro certo pra reta final. Depois disso, foram duas aprovações em menos de 4 meses, na PPES e na PMMG. <strong>Reprovar não é sinal de incapacidade. É sinal de falta de direção.</strong></p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Trabalho o dia inteiro e só consigo estudar à noite. Vou conseguir seguir o roteiro?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O Reta Final PPRS foi feito pensando exatamente em gente comum: quem trabalha o dia inteiro e estuda à noite, quem não tem 3 ou 4 horas livres por dia. O roteiro te diz o que fazer em cada dia dentro do tempo que você realmente tem, sem exigir uma rotina que você não pode cumprir.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Por que R$67 se você diz que isso vale mais de R$400?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Porque essa é uma condição de reta final, por tempo limitado, feita pra quem precisa desse roteiro agora — não daqui a alguns meses. Se você fosse comprar módulo por módulo com qualquer cursinho grande ou guru famoso, pagaria muito mais que isso. <strong>Essa condição não é permanente.</strong></p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">E se eu comprar e achar que não é pra mim?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Você tem 7 dias de garantia incondicional. Se abrir o material e sentir que não é o que esperava, manda um e-mail direto pra mim e o valor volta integralmente. Sem perguntas, sem burocracia.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Isso é só mais um resumo genérico de concurso?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">Não. O Reta Final PPRS não tem 400 horas de aula, não tem enrolação e muito menos teoria que não cai. É um roteiro específico pra reta final da PPRS: o que estudar em cada dia, qual lei seca a banca realmente cobra e quantos simulados fazer até a prova.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Como recebo o material depois de comprar?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">O acesso é liberado imediatamente após a confirmação do pagamento, junto com a entrada no grupo exclusivo da reta final e no grupo geral de candidatos da PPRS.</p>
+        </details>
+
+      </div>
+
+      <!-- ── GARANTIA MINI ── -->
+      <div class="guarantee-mini">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="rgba(37,211,102,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Garantia de 7 dias · Acesso imediato · Sem burocracia</span>
+      </div>
+
+      <!-- ── TSL COLAPSÁVEL ── -->
+      <details class="tsl-collapse">
+        <summary class="tsl-toggle">
+          Quero saber tudo que está incluso antes de decidir
+          <svg class="toggle-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </summary>
+        <div class="tsl-inner">
       <article class="advertorial">
 
         <!-- ① OPENING / LEAD-IN -->
@@ -863,77 +940,19 @@
 
       </article>
 
-      <!-- ── FAQ ── -->
-      <div class="faq-wrap">
-        <p class="faq-title">Perguntas frequentes</p>
-
-        <details class="faq-item">
-          <summary class="faq-q">Faltam poucas semanas pra minha prova. Ainda dá tempo de usar o Reta Final PPRS?
-            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-          </summary>
-          <p class="faq-a">É exatamente pra esse cenário que o material foi criado. Ele não pede que você domine o edital inteiro do zero. Ele te entrega o roteiro dia a dia do que estudar até a data da sua prova, com foco no que a banca realmente cobra, dentro do tempo que ainda resta.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-q">Já reprovei antes. Isso funciona pra quem já tentou e não passou?
-            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-          </summary>
-          <p class="faq-a">Funciona principalmente pra quem já reprovou. Eu mesmo reprovei sete vezes antes de entender que o problema nunca foi falta de esforço, e sim falta de um roteiro certo pra reta final. Depois disso, foram duas aprovações em menos de 4 meses, na PPES e na PMMG. <strong>Reprovar não é sinal de incapacidade. É sinal de falta de direção.</strong></p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-q">Trabalho o dia inteiro e só consigo estudar à noite. Vou conseguir seguir o roteiro?
-            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-          </summary>
-          <p class="faq-a">O Reta Final PPRS foi feito pensando exatamente em gente comum: quem trabalha o dia inteiro e estuda à noite, quem não tem 3 ou 4 horas livres por dia. O roteiro te diz o que fazer em cada dia dentro do tempo que você realmente tem, sem exigir uma rotina que você não pode cumprir.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-q">Por que R$67 se você diz que isso vale mais de R$400?
-            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-          </summary>
-          <p class="faq-a">Porque essa é uma condição de reta final, por tempo limitado, feita pra quem precisa desse roteiro agora — não daqui a alguns meses. Se você fosse comprar módulo por módulo com qualquer cursinho grande ou guru famoso, pagaria muito mais que isso. <strong>Essa condição não é permanente.</strong></p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-q">E se eu comprar e achar que não é pra mim?
-            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-          </summary>
-          <p class="faq-a">Você tem 7 dias de garantia incondicional. Se abrir o material e sentir que não é o que esperava, manda um e-mail direto pra mim e o valor volta integralmente. Sem perguntas, sem burocracia.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-q">Isso é só mais um resumo genérico de concurso?
-            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-          </summary>
-          <p class="faq-a">Não. O Reta Final PPRS não tem 400 horas de aula, não tem enrolação e muito menos teoria que não cai. É um roteiro específico pra reta final da PPRS: o que estudar em cada dia, qual lei seca a banca realmente cobra e quantos simulados fazer até a prova.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-q">Como recebo o material depois de comprar?
-            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-          </summary>
-          <p class="faq-a">O acesso é liberado imediatamente após a confirmação do pagamento, junto com a entrada no grupo exclusivo da reta final e no grupo geral de candidatos da PPRS.</p>
-        </details>
-
-      </div>
-
-      <!-- ── GARANTIA MINI ── -->
-      <div class="guarantee-mini">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="rgba(37,211,102,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>Garantia de 7 dias · Acesso imediato · Sem burocracia</span>
-      </div>
-
-      <!-- ── CTA FINAL ── -->
-      <div class="cta-wrap" style="margin-top:32px;">
-        <div class="cta-snake">
-          <a href="PENDENTE_LINK_CHECKOUT_PPRS" class="cta">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
-            QUERO O RETA FINAL PPRS
-          </a>
+        <!-- CTA dentro do collapse, para quem leu tudo -->
+        <div class="cta-wrap" style="margin-top:32px;">
+          <div class="cta-snake">
+            <a href="PENDENTE_LINK_CHECKOUT_PPRS" class="cta">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+              QUERO O RETA FINAL PPRS
+            </a>
+          </div>
+          <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
         </div>
-        <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
-      </div>
+
+        </div><!-- /tsl-inner -->
+      </details>
 
       <p class="footer-sig">© 2026 Marcos Brito</p>
 
