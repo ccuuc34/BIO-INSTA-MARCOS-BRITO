@@ -8,6 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+  <script src="https://fast.wistia.com/player.js" async></script>
+  <script src="https://fast.wistia.com/embed/ohhkryp3lt.js" async type="module"></script>
+  <script src="https://fast.wistia.com/embed/k3px0xab22.js" async type="module"></script>
+  <script src="https://fast.wistia.com/embed/jww0dsqjmg.js" async type="module"></script>
+  <script src="https://fast.wistia.com/embed/j0rbd8cr4y.js" async type="module"></script>
+  <style>
+    wistia-player[media-id='ohhkryp3lt']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/ohhkryp3lt/swatch'); display: block; filter: blur(5px); padding-top: 177.78%; }
+    wistia-player[media-id='k3px0xab22']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/k3px0xab22/swatch'); display: block; filter: blur(5px); padding-top: 166.67%; }
+    wistia-player[media-id='jww0dsqjmg']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/jww0dsqjmg/swatch'); display: block; filter: blur(5px); padding-top: 177.78%; }
+    wistia-player[media-id='j0rbd8cr4y']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/j0rbd8cr4y/swatch'); display: block; filter: blur(5px); padding-top: 177.78%; }
+  </style>
+
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
@@ -94,25 +106,27 @@
       margin-bottom: 22px; letter-spacing: 0.02em;
     }
 
-    /* ── Video (placeholder até a VSL ser gravada) ── */
+    /* ── Video (VSL) ── */
     .video-wrap {
       width: clamp(180px, 58%, 260px);
       margin: 0 auto 24px;
       border-radius: 16px; overflow: hidden;
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 0 60px rgba(139,23,26,0.25), 0 24px 48px rgba(0,0,0,0.5);
-      position: relative;
-      aspect-ratio: 0.5581;
-      background: linear-gradient(160deg, #241033, #150825 60%);
-      display: flex; align-items: center; justify-content: center;
     }
-    .video-placeholder-icon {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(139,23,26,0.35);
-      border: 1.5px solid rgba(255,255,255,0.15);
-      display: flex; align-items: center; justify-content: center;
+
+    /* ── Depoimentos em vídeo, pequenos, empilhados ── */
+    .testimonials-mini {
+      width: 100%;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      margin-bottom: 24px;
     }
-    .video-placeholder-icon svg { width: 24px; height: 24px; fill: #fff; margin-left: 3px; }
+    .testimonial-mini {
+      width: clamp(110px, 34%, 150px);
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+    }
 
     /* ── Advertorial body ── */
     .advertorial {
@@ -569,15 +583,13 @@
 
       <p class="pre-video">Assista ao vídeo antes de sair desta página.</p>
 
-      <!-- PLAYER: placeholder até a VSL ser gravada — substituir por <wistia-player> real quando o media-id existir -->
+      <!-- PLAYER: VSL definitiva -->
       <div class="video-wrap">
-        <div class="video-placeholder-icon">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
+        <wistia-player media-id="ohhkryp3lt" aspect="0.5625" style="width:100%;display:block;"></wistia-player>
       </div>
 
       <!-- ── CTA PRIMÁRIO: sempre visível, sem depender de vídeo ── -->
-      <div class="cta-wrap" style="margin-bottom:28px;">
+      <div class="cta-wrap" style="margin-bottom:24px;">
         <div class="cta-snake">
           <a href="PENDENTE_LINK_CHECKOUT_PPRS" class="cta">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
@@ -585,6 +597,19 @@
           </a>
         </div>
         <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+      </div>
+
+      <!-- ── DEPOIMENTOS EM VÍDEO (pequenos, empilhados, logo abaixo do botão) ── -->
+      <div class="testimonials-mini">
+        <div class="testimonial-mini">
+          <wistia-player media-id="k3px0xab22" aspect="0.6" style="width:100%;display:block;"></wistia-player>
+        </div>
+        <div class="testimonial-mini">
+          <wistia-player media-id="jww0dsqjmg" aspect="0.5625" style="width:100%;display:block;"></wistia-player>
+        </div>
+        <div class="testimonial-mini">
+          <wistia-player media-id="j0rbd8cr4y" aspect="0.5625" style="width:100%;display:block;"></wistia-player>
+        </div>
       </div>
 
       <div class="gated-content" id="gatedContent">
