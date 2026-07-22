@@ -58,35 +58,12 @@
       position: relative; z-index: 1;
       min-height: 100vh;
       display: flex; justify-content: center;
-      padding: 52px 20px 80px;
+      padding: 20px 20px 80px;
     }
 
     .card {
       width: 100%; max-width: 560px;
       display: flex; flex-direction: column; align-items: center;
-    }
-
-    /* ── ticker faixa vermelha ── */
-    .ticker-strip {
-      width: 100%; overflow: hidden;
-      background: linear-gradient(90deg, #9b0a0a, #cc1818, #9b0a0a);
-      padding: 10px 0; margin-bottom: 22px;
-      border-radius: 6px;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-    }
-    .ticker-track {
-      display: flex; white-space: nowrap; width: max-content;
-      animation: ticker-scroll 11s linear infinite;
-    }
-    .ticker-track span {
-      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px;
-      letter-spacing: 0.16em; text-transform: uppercase; color: #ffffff;
-      padding: 0 22px;
-    }
-    @keyframes ticker-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
     }
 
     /* ── Headline ── */
@@ -108,7 +85,7 @@
 
     /* ── Video (VSL) ── */
     .video-wrap {
-      width: clamp(180px, 58%, 260px);
+      width: clamp(260px, 94%, 420px);
       margin: 0 auto 24px;
       border-radius: 16px; overflow: hidden;
       border: 1px solid rgba(255,255,255,0.08);
@@ -578,13 +555,6 @@
 <body>
   <div class="page">
     <div class="card">
-
-      <!-- ── HEADER ── -->
-      <div class="ticker-strip">
-        <div class="ticker-track">
-          <span>RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ </span><span>RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ RETA FINAL ◆ PPRS ◆ </span>
-        </div>
-      </div>
 
       <h1 class="title">
         Você não vai ser<br />aprovado na PPRS.<br />
