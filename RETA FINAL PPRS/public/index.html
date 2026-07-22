@@ -115,17 +115,27 @@
       box-shadow: 0 0 60px rgba(139,23,26,0.25), 0 24px 48px rgba(0,0,0,0.5);
     }
 
-    /* ── Depoimentos em vídeo, pequenos, empilhados ── */
+    /* ── Depoimentos em vídeo, empilhados ── */
     .testimonials-mini {
       width: 100%;
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-      margin-bottom: 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 28px;
+      margin-bottom: 28px;
     }
     .testimonial-mini {
-      width: clamp(110px, 34%, 150px);
-      border-radius: 12px; overflow: hidden;
+      width: 100%;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .testimonial-mini-video {
+      width: 100%;
+      max-width: clamp(240px, 78%, 340px);
+      border-radius: 16px; overflow: hidden;
       border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+      box-shadow: 0 0 40px rgba(139,23,26,0.2), 0 14px 32px rgba(0,0,0,0.45);
+    }
+    .testimonial-mini-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px;
+      color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 10px; text-align: center;
     }
 
     /* ── Advertorial body ── */
@@ -599,19 +609,6 @@
         <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
       </div>
 
-      <!-- ── DEPOIMENTOS EM VÍDEO (pequenos, empilhados, logo abaixo do botão) ── -->
-      <div class="testimonials-mini">
-        <div class="testimonial-mini">
-          <wistia-player media-id="k3px0xab22" aspect="0.6" style="width:100%;display:block;"></wistia-player>
-        </div>
-        <div class="testimonial-mini">
-          <wistia-player media-id="jww0dsqjmg" aspect="0.5625" style="width:100%;display:block;"></wistia-player>
-        </div>
-        <div class="testimonial-mini">
-          <wistia-player media-id="j0rbd8cr4y" aspect="0.5625" style="width:100%;display:block;"></wistia-player>
-        </div>
-      </div>
-
       <div class="gated-content" id="gatedContent">
 
       <!-- ── STRIP VISUAL ── -->
@@ -637,6 +634,28 @@
       <div class="stars-row">
         <span class="stars">★★★★★</span>
         <span class="stars-text">4.9 · Método por trás de aprovações em PPES e PPMG</span>
+      </div>
+
+      <!-- ── DEPOIMENTOS EM VÍDEO ── -->
+      <div class="testimonials-mini">
+        <div class="testimonial-mini">
+          <p class="testimonial-mini-title">SOBRE O RETA FINAL PPRS 1</p>
+          <div class="testimonial-mini-video">
+            <wistia-player media-id="k3px0xab22" aspect="0.6" style="width:100%;display:block;"></wistia-player>
+          </div>
+        </div>
+        <div class="testimonial-mini">
+          <p class="testimonial-mini-title">SOBRE O RETA FINAL PPRS 2</p>
+          <div class="testimonial-mini-video">
+            <wistia-player media-id="jww0dsqjmg" aspect="0.5625" style="width:100%;display:block;"></wistia-player>
+          </div>
+        </div>
+        <div class="testimonial-mini">
+          <p class="testimonial-mini-title">SOBRE O RETA FINAL PPRS 3</p>
+          <div class="testimonial-mini-video">
+            <wistia-player media-id="j0rbd8cr4y" aspect="0.5625" style="width:100%;display:block;"></wistia-player>
+          </div>
+        </div>
       </div>
 
       <!-- ── FAQ ── -->
