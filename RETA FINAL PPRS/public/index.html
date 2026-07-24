@@ -307,13 +307,13 @@
       margin: 20px 0;
     }
     .price-anchor {
-      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px;
-      color: rgba(255,255,255,0.4); text-decoration: line-through;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      color: #e84040; text-decoration: line-through;
       margin-bottom: 6px;
     }
     .price-new {
       font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(28px, 8vw, 36px);
-      color: #ffffff; margin-bottom: 4px;
+      color: #0abe52; margin-bottom: 4px;
     }
     .price-installment {
       font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px;
@@ -335,6 +335,27 @@
       font-size: clamp(16px, 4.5vw, 20px);
       color: #ffffff; text-align: center; line-height: 1.35;
       margin-bottom: 16px;
+    }
+    .receive-list {
+      width: 100%; display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 24px;
+    }
+    .receive-item {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 14px 16px;
+    }
+    .receive-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(139,23,26,0.18);
+      border: 1px solid rgba(139,23,26,0.35);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 17px;
+    }
+    .receive-text {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14.5px;
+      color: rgba(255,255,255,0.88);
     }
 
     /* ── Selos de confiança ── */
@@ -600,12 +621,24 @@
 
       <!-- ── O QUE VOCÊ VAI RECEBER ── -->
       <p class="receive-title">O que você vai receber por menos de um café por dia</p>
-      <ul class="offer-list" style="margin-bottom:24px;">
-        <li><div class="dot"></div> Como estudar teoria</li>
-        <li><div class="dot"></div> Como fazer a revisão</li>
-        <li><div class="dot"></div> Como resolver e revisar os simulados</li>
-        <li><div class="dot"></div> Os ciclos para os próximos 17 dias</li>
-      </ul>
+      <div class="receive-list">
+        <div class="receive-item">
+          <div class="receive-icon">📘</div>
+          <div class="receive-text">Como estudar teoria</div>
+        </div>
+        <div class="receive-item">
+          <div class="receive-icon">🔁</div>
+          <div class="receive-text">Como fazer a revisão</div>
+        </div>
+        <div class="receive-item">
+          <div class="receive-icon">📝</div>
+          <div class="receive-text">Como resolver e revisar os simulados</div>
+        </div>
+        <div class="receive-item">
+          <div class="receive-icon">📅</div>
+          <div class="receive-text">Os ciclos para os próximos 17 dias</div>
+        </div>
+      </div>
 
       <div class="box" style="margin-bottom:24px;">
         <p class="box-title">Bônus inclusos</p>
@@ -650,6 +683,17 @@
         <p class="price-discount-line">São <strong>83% de desconto</strong> e mais 4 bônus inclusos</p>
       </div>
 
+      <!-- ── CTA PRIMÁRIO: sempre visível, sem depender de vídeo ── -->
+      <div class="cta-wrap" style="margin-bottom:8px;">
+        <div class="cta-snake">
+          <a href="https://pay.kirvano.com/7eb4c684-c5a3-4383-8716-dafd2f265cc6" class="cta">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+            QUERO O RETA FINAL PPRS
+          </a>
+        </div>
+        <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
+      </div>
+
       <div class="trust-badges">
         <div class="trust-badge">
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="rgba(37,211,102,0.8)" stroke-width="1.6"/></svg>
@@ -663,17 +707,6 @@
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 15a5 5 0 100-10 5 5 0 000 10z" stroke="rgba(37,211,102,0.8)" stroke-width="1.6"/><path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5" stroke="rgba(37,211,102,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span>Garantia<br />de 7 dias</span>
         </div>
-      </div>
-
-      <!-- ── CTA PRIMÁRIO: sempre visível, sem depender de vídeo ── -->
-      <div class="cta-wrap" style="margin-bottom:24px;">
-        <div class="cta-snake">
-          <a href="https://pay.kirvano.com/7eb4c684-c5a3-4383-8716-dafd2f265cc6" class="cta">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
-            QUERO O RETA FINAL PPRS
-          </a>
-        </div>
-        <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
       </div>
 
       <div class="gated-content" id="gatedContent">
