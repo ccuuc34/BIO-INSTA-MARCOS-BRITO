@@ -323,6 +323,35 @@
       font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12px;
       color: rgba(175,144,100,0.8); margin-top: 12px; letter-spacing: 0.02em;
     }
+    .price-discount-line {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(255,255,255,0.55); margin-top: 14px;
+    }
+    .price-discount-line strong { color: #0abe52; font-weight: 800; }
+
+    /* ── O que você vai receber (mini-título) ── */
+    .receive-title {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(16px, 4.5vw, 20px);
+      color: #ffffff; text-align: center; line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    /* ── Selos de confiança ── */
+    .trust-badges {
+      width: 100%; display: flex; justify-content: center; gap: 22px;
+      margin: 18px 0 24px;
+    }
+    .trust-badge {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      text-align: center;
+    }
+    .trust-badge svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .trust-badge span {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 10.5px;
+      color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.04em;
+      line-height: 1.3;
+    }
 
     /* Guarantee box */
     .guarantee-box {
@@ -567,6 +596,73 @@
       <!-- PLAYER: VSL definitiva -->
       <div class="video-wrap">
         <wistia-player media-id="ohhkryp3lt" aspect="0.5625" quality-max="540" style="width:100%;display:block;"></wistia-player>
+      </div>
+
+      <!-- ── O QUE VOCÊ VAI RECEBER ── -->
+      <p class="receive-title">O que você vai receber por menos de um café por dia</p>
+      <ul class="offer-list" style="margin-bottom:24px;">
+        <li><div class="dot"></div> Como estudar teoria</li>
+        <li><div class="dot"></div> Como fazer a revisão</li>
+        <li><div class="dot"></div> Como resolver e revisar os simulados</li>
+        <li><div class="dot"></div> Os ciclos para os próximos 17 dias</li>
+      </ul>
+
+      <div class="box" style="margin-bottom:24px;">
+        <p class="box-title">Bônus inclusos</p>
+
+        <div class="bonus-item">
+          <div class="bonus-icon">🎥</div>
+          <div class="bonus-text">
+            <div class="bonus-name">Bônus 1 — Aulão Estratégico ao Vivo</div>
+            <p>Uma aula ao vivo comigo, na última semana antes da prova, só sobre o que fazer nos últimos dias de reta final.</p>
+          </div>
+        </div>
+
+        <div class="bonus-item">
+          <div class="bonus-icon">🔒</div>
+          <div class="bonus-text">
+            <div class="bonus-name">Bônus 2 — Grupo Exclusivo da Reta Final</div>
+            <p>Acesso ao grupo exclusivo de quem comprou o Reta Final PPRS, pra tirar dúvida e trocar com quem tá na mesma fase que você.</p>
+          </div>
+        </div>
+
+        <div class="bonus-item">
+          <div class="bonus-icon">👥</div>
+          <div class="bonus-text">
+            <div class="bonus-name">Bônus 3 — Grupo Geral da PPRS</div>
+            <p>Acesso ao grupo geral de candidatos da PPRS, pra acompanhar informações e se manter perto de quem também tá correndo atrás da mesma vaga.</p>
+          </div>
+        </div>
+
+        <div class="bonus-item" style="margin-bottom:0;">
+          <div class="bonus-icon">🧠</div>
+          <div class="bonus-text">
+            <div class="bonus-name">Bônus 4 — Método de Leitura Certa</div>
+            <p>O mesmo método que eu uso pra estudar e revisar, pra você parar de reler a mesma página três vezes sem fixar nada.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-box">
+        <div class="price-anchor">De R$400 por</div>
+        <div class="price-new">12x de R$ 6,90</div>
+        <div class="price-installment">ou R$ 67 à vista</div>
+        <p class="price-discount-line">São <strong>83% de desconto</strong> e mais 4 bônus inclusos</p>
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="rgba(37,211,102,0.8)" stroke-width="1.6"/></svg>
+          <span>Compra<br />segura</span>
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="rgba(37,211,102,0.8)" stroke-width="1.6"/><path d="M9 12l2 2 4-4" stroke="rgba(37,211,102,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Privacidade<br />protegida</span>
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 15a5 5 0 100-10 5 5 0 000 10z" stroke="rgba(37,211,102,0.8)" stroke-width="1.6"/><path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5" stroke="rgba(37,211,102,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Garantia<br />de 7 dias</span>
+        </div>
       </div>
 
       <!-- ── CTA PRIMÁRIO: sempre visível, sem depender de vídeo ── -->
@@ -828,34 +924,6 @@
           <p class="body-text">
             E tudo isso mesmo que você esteja começando a reta final atrasado, já tenha reprovado antes ou até ache que não vai dar tempo.
           </p>
-
-          <div class="box" style="margin-top:24px;">
-            <p class="box-title">Dentro do Reta Final PPRS</p>
-
-            <div class="bonus-item">
-              <div class="bonus-icon">📍</div>
-              <div class="bonus-text">
-                <div class="bonus-name">Módulo 1 — Roteiro Dia a Dia da Reta Final</div>
-                <p>O passo a passo de quais matérias estudar em cada dia até a prova e em qual tópico focar, pra você nunca mais abrir o material sem saber por onde começar.</p>
-              </div>
-            </div>
-
-            <div class="bonus-item">
-              <div class="bonus-icon">📖</div>
-              <div class="bonus-text">
-                <div class="bonus-name">Módulo 2 — Método de Leitura e Revisão</div>
-                <p>Como ler e revisar pra fixar de verdade, sem reler a mesma página três vezes sem aprender nada.</p>
-              </div>
-            </div>
-
-            <div class="bonus-item" style="margin-bottom:0;">
-              <div class="bonus-icon">✅</div>
-              <div class="bonus-text">
-                <div class="bonus-name">Módulo 3 — Protocolo de Simulados e Questões</div>
-                <p>Quantos simulados fazer, em qual dia fazer cada um, e quantas questões resolver por dia até a prova, pra treinar no ritmo que gera resultado, sem exagero e sem enrolação.</p>
-              </div>
-            </div>
-          </div>
         </section>
 
         <div class="divider"></div>
@@ -874,46 +942,6 @@
             <img src="dep02.jpg" alt="Print de depoimento de aluno" loading="lazy" />
             <img src="dep03.webp" alt="Print de depoimento de aluno" loading="lazy" />
             <img src="dep04.webp" alt="Print de depoimento de aluno" loading="lazy" />
-          </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- ⑧ BONUSES -->
-        <section>
-          <p class="section-label">Bônus</p>
-          <h2 class="section-heading">O que vem junto, sem custo extra.</h2>
-
-          <div class="bonus-item">
-            <div class="bonus-icon">🎥</div>
-            <div class="bonus-text">
-              <div class="bonus-name">Bônus 1 — Aulão Estratégico ao Vivo</div>
-              <p>Uma aula ao vivo comigo, na última semana antes da prova, só sobre o que fazer nos últimos dias de reta final.</p>
-            </div>
-          </div>
-
-          <div class="bonus-item">
-            <div class="bonus-icon">🔒</div>
-            <div class="bonus-text">
-              <div class="bonus-name">Bônus 2 — Grupo Exclusivo da Reta Final</div>
-              <p>Acesso ao grupo exclusivo de quem comprou o Reta Final PPRS, pra tirar dúvida e trocar com quem tá na mesma fase que você.</p>
-            </div>
-          </div>
-
-          <div class="bonus-item">
-            <div class="bonus-icon">👥</div>
-            <div class="bonus-text">
-              <div class="bonus-name">Bônus 3 — Grupo Geral da PPRS</div>
-              <p>Acesso ao grupo geral de candidatos da PPRS, pra acompanhar informações e se manter perto de quem também tá correndo atrás da mesma vaga.</p>
-            </div>
-          </div>
-
-          <div class="bonus-item" style="margin-bottom:0;">
-            <div class="bonus-icon">🧠</div>
-            <div class="bonus-text">
-              <div class="bonus-name">Bônus 4 — Método de Leitura Certa</div>
-              <p>O mesmo método que eu uso pra estudar e revisar, pra você parar de reler a mesma página três vezes sem fixar nada.</p>
-            </div>
           </div>
         </section>
 
