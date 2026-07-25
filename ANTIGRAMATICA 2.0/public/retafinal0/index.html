@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Espera. Antes de você sair. | Marcos Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background-color: #010000;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1.5px 1.5px at 60px 80px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 110px 20px, rgba(255,100,100,0.3), transparent),
+        radial-gradient(2px 2px at 150px 140px, rgba(255,255,255,0.1), transparent);
+      background-size: 200px 200px;
+    }
+    body::after {
+      content: '';
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 350px;
+      background: #8b0000;
+      border-radius: 50%; filter: blur(180px); opacity: 0.18;
+      pointer-events: none; z-index: 0;
+    }
+
+    .page { position: relative; z-index: 1; min-height: 100vh; display: flex; justify-content: center; padding: 52px 20px 80px; }
+    .card { width: 100%; max-width: 500px; }
+
+    .eyebrow {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      color: #e84040; letter-spacing: 0.16em; text-transform: uppercase;
+      text-align: center; margin-bottom: 16px;
+    }
+    .title {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(22px, 6.6vw, 32px);
+      color: #ffffff; text-align: center; line-height: 1.28;
+      margin-bottom: 20px;
+    }
+    .title .accent { color: #e84040; }
+
+    .body-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 16px;
+      color: rgba(255,255,255,0.75); line-height: 1.8; text-align: center;
+      margin-bottom: 24px;
+    }
+    .body-text strong { color: #fff; font-weight: 700; }
+
+    .offer-list {
+      list-style: none; display: flex; flex-direction: column; gap: 10px;
+      margin: 0 0 28px;
+    }
+    .offer-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px;
+      color: rgba(255,255,255,0.85); line-height: 1.5;
+    }
+    .offer-list li .dot { width: 7px; height: 7px; border-radius: 50%; background: #e84040; flex-shrink: 0; margin-top: 7px; }
+
+    /* ── Preço ── */
+    .price-box {
+      background: rgba(10,190,82,0.07); border: 1px solid rgba(10,190,82,0.22);
+      border-radius: 14px; padding: 24px 18px; text-align: center; margin-bottom: 20px;
+    }
+    .price-eyebrow { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px; color: #e9c400; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .price-old { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 16px; color: rgba(232,64,64,0.8); text-decoration: line-through; }
+    .price-new { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 44px; color: #0abe52; line-height: 1; margin-top: 8px; }
+    .price-label { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 8px; }
+
+    /* ── CTA ── */
+    .cta-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .cta-snake {
+      position: relative; width: 100%; border-radius: 16px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 70px rgba(10,190,82,0.55), 0 16px 36px rgba(0,0,0,0.5);
+    }
+    .cta-snake::before {
+      content: ''; position: absolute; width: 300%; height: 300%; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg, transparent 0deg, transparent 255deg,
+        rgba(170,0,0,0.08) 272deg, rgba(210,15,0,0.55) 288deg, #ff3300 302deg,
+        #ff6600 316deg, #ff9900 329deg, rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg, transparent 360deg);
+      animation: spin 2.4s linear infinite;
+    }
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .cta {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 19px 20px;
+      background: linear-gradient(135deg, #0abe52 0%, #079040 60%, #056830 100%);
+      border: none; border-radius: 13px; cursor: pointer;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(13px, 3.6vw, 15px);
+      color: #fff; letter-spacing: 0.02em; text-transform: uppercase;
+      text-decoration: none;
+    }
+    .cta svg { width: 20px; height: 20px; flex-shrink: 0; position: relative; z-index: 1; }
+    .cta-note { font-family: 'Nunito', sans-serif; font-size: 12px; color: rgba(255,255,255,0.28); text-align: center; }
+
+    .cta-refuse {
+      background: none; border: 1px solid rgba(255,255,255,0.25); cursor: pointer;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.7); text-decoration: underline;
+      padding: 10px 18px; margin-top: 6px; border-radius: 10px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .cta-refuse:hover { color: #ffffff; border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+
+    .footer-sig {
+      margin-top: 40px; text-align: center;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      color: rgba(255,255,255,0.14); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+
+      <p class="eyebrow">Antes de você sair</p>
+      <h1 class="title">Tudo bem se o completo não é pra agora. Mas <span class="accent">zero</span> não pode ser a resposta.</h1>
+
+      <p class="body-text">Você vai continuar prestando concurso policial. E a banca vai continuar cobrando português do mesmo jeito, com ou sem o material completo. Por isso separei uma versão enxuta: <strong>23 páginas</strong> só com as pegadinhas que mais derrubam candidato — sem os 20 capítulos, sem enrolação, sem precisar de tempo que você não tem.</p>
+
+      <ul class="offer-list">
+        <li><div class="dot"></div> Crase: o Teste de Substituição, direto ao ponto</li>
+        <li><div class="dot"></div> Pronomes e colocação pronominal, o que mais derruba em prova policial</li>
+        <li><div class="dot"></div> Concordância verbal e nominal, só os casos que a banca insiste em cobrar</li>
+        <li><div class="dot"></div> As caixas MARCOS DIZ com o macete direto, sem teoria</li>
+      </ul>
+
+      <div class="price-box">
+        <div class="price-eyebrow">40% OFF · Só nesta tela</div>
+        <div class="price-old">De R$47</div>
+        <div class="price-new">R$29,90</div>
+        <div class="price-label">Acesso imediato · Pagamento único</div>
+      </div>
+
+      <div class="cta-wrap">
+        <div class="cta-snake">
+          <button class="cta kirvano-payment-trigger">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
+            QUERO A VERSÃO ESSENCIAL
+          </button>
+        </div>
+        <p class="cta-note">Essa versão reduzida só aparece uma vez, agora.</p>
+        <button class="cta-refuse kirvano-refuse-trigger">Não, prefiro seguir sem nenhum dos dois</button>
+      </div>
+
+      <p class="footer-sig">© 2026 Marcos Brito</p>
+
+    </div>
+  </div>
+
+  <!-- ── DOWNSELL KIRVANO ── -->
+  <script>
+    var offer = "adbc45d7-17cf-4499-9421-ed1912a90083";
+    var nextPageURL = "https://antivade-30.web.app/retafinal";
+    var refusePageURL = "https://antivade-30.web.app/retafinaloff";
+  </script>
+  <script src="https://snippets.kirvano.com/upsell.min.js"></script>
+</body>
+</html>

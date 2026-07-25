@@ -442,12 +442,13 @@
 
     /* ── Recusar oferta (downsell) ── */
     .cta-refuse {
-      background: none; border: none; cursor: pointer;
-      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
-      color: rgba(255,255,255,0.35); text-decoration: underline;
-      padding: 4px 0; margin-top: 2px;
+      background: none; border: 1px solid rgba(255,255,255,0.25); cursor: pointer;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,0.7); text-decoration: underline;
+      padding: 10px 18px; margin-top: 10px; border-radius: 10px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
-    .cta-refuse:hover { color: rgba(255,255,255,0.55); }
+    .cta-refuse:hover { color: #ffffff; border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
 
     /* ── Preço (parcelado grande, à vista pequeno) ── */
     .upsell-price {
@@ -477,7 +478,7 @@
     .watch-item svg { width: 15px; height: 15px; flex-shrink: 0; fill: rgba(255,255,255,0.5); }
     .watch-divider { width: 1px; height: 16px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
     .gated-content {
-      display: none; opacity: 0; transition: opacity 0.8s ease;
+      display: block; opacity: 1;
     }
 
     .footer-sig {
@@ -719,25 +720,7 @@
         <wistia-player media-id="rpycnitnog" aspect="0.5581395348837209" style="width:100%;display:block;"></wistia-player>
       </div>
 
-      <div class="watch-bar" id="unlockNote">
-        <div class="watch-item">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          Assista o vídeo acima até o final
-        </div>
-        <div class="watch-divider"></div>
-        <div class="watch-item">
-          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-          Verifique se o som está ligado
-        </div>
-      </div>
-
       <div class="gated-content" id="gatedContent">
-
-      <!-- ── PREÇO ── -->
-      <div class="upsell-price">
-        <div class="upsell-price-main">11x de R$5</div>
-        <div class="upsell-price-full">ou R$47 à vista</div>
-      </div>
 
       <!-- ── CTA PRIMÁRIO (imediato após o vídeo) ── -->
       <div class="cta-wrap" style="margin-top:0; margin-bottom:28px;">
@@ -1160,19 +1143,6 @@
     }
 
     initPlayer(1, '/depoimento');
-
-    // ── Libera o restante da página 1min30 após o carregamento ──
-    setTimeout(function () {
-      var gated = document.getElementById('gatedContent');
-      var note  = document.getElementById('unlockNote');
-      gated.style.display = 'block';
-      setTimeout(function () { gated.style.opacity = '1'; }, 30);
-      if (note) {
-        note.style.transition = 'opacity 0.5s ease';
-        setTimeout(function () { note.style.opacity = '0'; }, 30);
-        setTimeout(function () { note.style.display = 'none'; }, 530);
-      }
-    }, 90000);
   </script>
 
   <!-- ── UPSELL KIRVANO ── -->
