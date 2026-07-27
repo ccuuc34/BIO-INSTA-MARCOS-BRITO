@@ -867,49 +867,26 @@ function AudioPlayer({
   );
 }
 
-// ─── Wistia Video Player ─────────────────────────────────────────────────────
-// API nova (Web Component): <wistia-player media-id="...">
-// player.js é carregado UMA vez em index.html.
-// Cada vídeo tem seu próprio embed/{id}.js — guardado por ID para não duplicar.
+// ─── YouTube Video Player ────────────────────────────────────────────────────
 
-const WISTIA_VIDEO_IDS = ['sz38o0lg5l', 'c3us9zwx3c'];
+const YOUTUBE_VIDEO_IDS = [
+  '8J_HdE5ToRM', 'i58CV8jbV20', 'RUE4odpgwXg', '8x-WwZV0p_E', 'IBdEhwBJ8XE',
+  'DKxmOkAgWh0', 'JWyPQ9TMu1E', 'vAEULTjwjgA', 'N2gEnzNmpQc', 'OvHZ6kScjJY',
+];
 
-function WistiaVideo({ videoId, label }: { videoId: string; label: string }) {
-  useEffect(() => {
-    const scriptId = `wistia-embed-${videoId}`;
-    // Só adiciona se ainda não estiver no DOM — evita conflito entre os dois players
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script');
-      script.id = scriptId;
-      script.src = `https://fast.wistia.com/embed/${videoId}.js`;
-      script.async = true;
-      script.type = 'module';
-      document.head.appendChild(script);
-    }
-    // Sem cleanup: scripts de módulo Wistia registram o custom element globalmente;
-    // removê-los não desfaz o registro e causa problemas se o componente remontar.
-  }, [videoId]);
-
+function YoutubeVideo({ videoId, label }: { videoId: string; label: string }) {
   return (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {/* Swatch placeholder enquanto o player não carrega */}
-      <style>{`
-        wistia-player[media-id='${videoId}']:not(:defined) {
-          background: center / contain no-repeat
-            url('https://fast.wistia.com/embed/medias/${videoId}/swatch');
-          display: block;
-          filter: blur(5px);
-          padding-top: 177.78%;
-        }
-      `}</style>
-
       {/* Wrapper que controla o tamanho — 220px de largura, player vertical 9:16 */}
-      <div style={{ width: '220px' }}>
-        {React.createElement('wistia-player', {
-          'media-id': videoId,
-          aspect: '0.5625',
-          style: { width: '100%', borderRadius: '10px', overflow: 'hidden' },
-        })}
+      <div style={{ width: '220px', position: 'relative', paddingTop: '177.78%', borderRadius: '10px', overflow: 'hidden' }}>
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title={label}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+        />
       </div>
 
       <p style={{
@@ -978,6 +955,9 @@ function App() {
     const t = setInterval(() => setDepIdx(i => (i + 1) % DEP_IMAGES.length), 3600);
     return () => clearInterval(t);
   }, [depAutoplay]);
+
+  // ── Depoimentos em vídeo: mostra só os 2 primeiros até clicar em "veja mais" ──
+  const [showAllVideos, setShowAllVideos] = useState(false);
 
   const [tourStep, setTourStep] = useState<number | null>(null);
   const [spotlightRect, setSpotlightRect] = useState<DOMRect | null>(null);
@@ -1451,15 +1431,32 @@ function App() {
 
           {/* Vídeos */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            {WISTIA_VIDEO_IDS.map((id, i) => (
+            {(showAllVideos ? YOUTUBE_VIDEO_IDS : YOUTUBE_VIDEO_IDS.slice(0, 2)).map((id, i) => (
               <div key={id} style={{
                 background: 'rgba(255,255,255,0.03)',
                 border: '1px solid rgba(255,255,255,0.08)',
                 borderRadius: '16px', padding: '16px',
               }}>
-                <WistiaVideo videoId={id} label={`Depoimento ${i + 1}`} />
+                <YoutubeVideo videoId={id} label={`Depoimento ${i + 1}`} />
               </div>
             ))}
+
+            {!showAllVideos && (
+              <button
+                onClick={() => setShowAllVideos(true)}
+                style={{
+                  width: '100%', padding: '14px', cursor: 'pointer',
+                  background: 'rgba(139,23,26,0.12)',
+                  border: '1px solid rgba(139,23,26,0.35)',
+                  borderRadius: '12px',
+                  fontFamily: "'Sora', sans-serif", fontWeight: 800, fontSize: '13px',
+                  color: 'rgba(255,255,255,0.85)', letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Veja mais
+              </button>
+            )}
           </div>
         </motion.section>
 
