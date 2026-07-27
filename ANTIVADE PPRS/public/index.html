@@ -3,641 +3,598 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anti-Vade Mecum PPRS — Oferta Especial</title>
+  <title>Anti-Vade Mecum PPRS™ | Marcos Brito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     html, body {
       min-height: 100vh;
       font-family: 'Nunito', sans-serif;
-      background: #030303;
-      color: #fff;
+      background-color: #150825;
+      color: #F6F6F6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-
-    /* ── Fundo ── */
     body {
       background-image:
-        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.35), transparent),
-        radial-gradient(1.5px 1.5px at 80px 70px, rgba(255,255,255,0.15), transparent),
-        radial-gradient(1px 1px at 140px 20px, rgba(255,60,60,0.25), transparent),
-        radial-gradient(2px 2px at 40px 120px, rgba(255,255,255,0.08), transparent);
-      background-size: 180px 180px;
+        radial-gradient(1px 1px at 20px 30px, rgba(246,246,246,0.35), transparent),
+        radial-gradient(1.5px 1.5px at 60px 80px, rgba(175,144,100,0.3), transparent),
+        radial-gradient(1px 1px at 110px 20px, rgba(139,79,191,0.3), transparent),
+        radial-gradient(2px 2px at 150px 140px, rgba(246,246,246,0.1), transparent);
+      background-size: 200px 200px;
     }
-
-    /* ── Glow vermelho topo ── */
     body::after {
       content: '';
-      position: fixed;
-      top: -60px; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 300px;
-      background: #cc0000;
-      border-radius: 50%;
-      filter: blur(160px);
-      opacity: 0.18;
-      pointer-events: none;
-      z-index: 0;
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 350px;
+      background: #3D1A6E;
+      border-radius: 50%; filter: blur(180px); opacity: 0.32;
+      pointer-events: none; z-index: 0;
+    }
+
+    .progress-wrap {
+      position: fixed; top: 0; left: 0; width: 100%; height: 5px;
+      background: rgba(255,255,255,0.06); z-index: 50;
+    }
+    .progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #AF9064, #8b171a);
+      transition: width 0.6s ease;
     }
 
     .page {
       position: relative; z-index: 1;
       min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px 16px;
+      display: flex; justify-content: center;
+      padding: 44px 20px 60px;
     }
+    .card { width: 100%; max-width: 520px; }
 
-    /* ══════════════════════════════
-       LOADING SCREEN
-    ══════════════════════════════ */
-    #loading-screen {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      width: 100%;
-      max-width: 440px;
+    #app { animation: fadeIn 0.35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .eyebrow {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: #AF9064; letter-spacing: 0.16em; text-transform: uppercase;
+      text-align: center; margin-bottom: 14px;
     }
-
-    .scanner-icon {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      background: rgba(200, 0, 0, 0.1);
-      border: 1.5px solid rgba(200,0,0,0.35);
-      display: flex; align-items: center; justify-content: center;
+    .validation-line {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
+      color: #AF9064; text-align: center; line-height: 1.6; margin-bottom: 18px;
+    }
+    .headline {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(21px, 6.2vw, 30px);
+      color: #F6F6F6; text-align: center; line-height: 1.28;
       margin-bottom: 28px;
-      animation: scanner-pulse 1.2s ease-in-out infinite;
-      position: relative;
+    }
+    .headline strong { color: #AF9064; }
+    .avatar-row { display: flex; justify-content: center; margin-bottom: 22px; }
+    .avatar {
+      width: 76px; height: 76px; border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 40px rgba(175,144,100,0.4);
     }
 
-    .scanner-icon::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 1px solid rgba(200,0,0,0.15);
-      animation: scanner-pulse 1.2s ease-in-out infinite reverse;
+    .opt-list { display: flex; flex-direction: column; gap: 12px; }
+    .opt-btn {
+      width: 100%; text-align: left; cursor: pointer;
+      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 14px; padding: 18px 20px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15.5px;
+      color: rgba(246,246,246,0.88); line-height: 1.4;
+      transition: border-color 0.2s, background 0.2s, transform 0.12s;
+    }
+    .opt-btn:hover { border-color: rgba(175,144,100,0.55); background: rgba(175,144,100,0.08); }
+    .opt-btn:active { transform: scale(0.98); }
+
+    .body-text {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 16px;
+      color: rgba(246,246,246,0.75); line-height: 1.75; margin-bottom: 14px;
+    }
+    .body-text strong { color: #F6F6F6; font-weight: 700; }
+    .punch {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 17px;
+      color: #F6F6F6; text-align: center; margin: 22px 0 6px;
+    }
+    .punch-sub {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px;
+      color: rgba(246,246,246,0.6); text-align: center; margin-bottom: 24px;
     }
 
-    @keyframes scanner-pulse {
-      0%, 100% { box-shadow: 0 0 20px rgba(200,0,0,0.2); }
-      50%       { box-shadow: 0 0 40px rgba(200,0,0,0.45), 0 0 80px rgba(200,0,0,0.15); }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      color: rgba(246,246,246,0.88); line-height: 1.5;
+    }
+    .check-ico {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(10,190,82,0.15); border: 1px solid rgba(10,190,82,0.4);
+      color: #0abe52; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; margin-top: 1px;
     }
 
-    .scanner-icon svg { width: 34px; height: 34px; }
+    .law-cards { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
+    .law-card {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.03); border: 1px dashed rgba(175,144,100,0.3);
+      border-radius: 10px; padding: 12px 14px;
+    }
+    .law-card .ico { font-size: 16px; flex-shrink: 0; }
+    .law-card .name { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px; color: rgba(246,246,246,0.8); }
 
-    .loading-label {
-      font-family: 'Sora', sans-serif;
-      font-weight: 700;
-      font-size: 11px;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
+    .proof-box {
+      background: rgba(175,144,100,0.07); border: 1px solid rgba(175,144,100,0.25);
+      border-radius: 16px; padding: 22px 20px; margin: 18px 0;
+    }
+    .proof-stats { display: flex; gap: 10px; margin-top: 16px; }
+    .proof-stat {
+      flex: 1; text-align: center; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 6px;
+    }
+    .proof-stat .v { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 17px; color: #0abe52; }
+    .proof-stat .l { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 10px; color: rgba(246,246,246,0.4); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 3px; }
+
+    .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.08); margin: 22px 0; }
+
+    .callout {
+      background: rgba(139,23,26,0.12); border-left: 3px solid #8b171a;
+      border-radius: 0 10px 10px 0; padding: 16px 18px; margin: 18px 0;
+    }
+    .callout p {
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14.5px;
+      color: rgba(255,225,225,0.92); line-height: 1.7; font-style: italic;
     }
 
-    .loading-title {
-      font-family: 'Sora', sans-serif;
-      font-weight: 800;
-      font-size: clamp(20px, 5vw, 26px);
-      color: #fff;
-      letter-spacing: 0.03em;
-      margin-bottom: 8px;
-      line-height: 1.2;
+    .mission-box {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 22px 20px; margin-bottom: 20px;
     }
+    .mission-label { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px; color: #AF9064; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .bonus-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14.5px; color: rgba(246,246,246,0.82); line-height: 1.5; }
+    .bonus-item .ico { flex-shrink: 0; font-size: 16px; }
 
-    #loading-status {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 32px;
-      min-height: 20px;
-      transition: opacity 0.3s;
-    }
-
-    /* Barra de progresso */
-    .progress-wrap {
-      width: 100%;
-      background: rgba(255,255,255,0.07);
-      border-radius: 999px;
-      height: 6px;
-      margin-bottom: 16px;
-      overflow: hidden;
-    }
-
-    #progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #cc0000, #ff4444);
-      border-radius: 999px;
-      transition: width 0.1s linear;
-      box-shadow: 0 0 12px rgba(204,0,0,0.5);
-    }
-
-    #progress-pct {
-      font-family: 'Sora', sans-serif;
-      font-weight: 800;
-      font-size: 13px;
-      color: #cc0000;
-      letter-spacing: 0.06em;
-    }
-
-    /* ══════════════════════════════
-       REVEAL SCREEN
-    ══════════════════════════════ */
-    #reveal-screen {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 440px;
-      text-align: center;
-      animation: fadeUp 0.5s ease both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Banner alerta topo */
-    .alert-banner {
-      width: 100%;
-      background: rgba(204, 0, 0, 0.15);
-      border: 1px solid rgba(204,0,0,0.45);
-      border-radius: 10px;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 28px;
-      font-family: 'Sora', sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      color: #ff5555;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      animation: blink-border 1.5s ease-in-out infinite;
-    }
-
-    @keyframes blink-border {
-      0%, 100% { border-color: rgba(204,0,0,0.45); }
-      50%       { border-color: rgba(204,0,0,0.9); box-shadow: 0 0 16px rgba(204,0,0,0.25); }
-    }
-
-    .alert-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: #ff3333;
-      animation: dot-pulse 1s ease-in-out infinite;
-      flex-shrink: 0;
-    }
-
-    @keyframes dot-pulse {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.2; }
-    }
-
-    /* Contador de vagas */
-    .vagas-section {
-      margin-bottom: 24px;
-    }
-
-    .vagas-number {
-      font-family: 'Sora', sans-serif;
-      font-weight: 900;
-      font-size: clamp(64px, 18vw, 96px);
-      color: #ff3333;
-      line-height: 1;
-      text-shadow: 0 0 40px rgba(255,51,51,0.4), 0 0 80px rgba(255,51,51,0.15);
-      letter-spacing: -0.02em;
-    }
-
-    .vagas-label {
-      font-family: 'Sora', sans-serif;
-      font-weight: 800;
-      font-size: clamp(16px, 4.5vw, 22px);
-      color: #fff;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-
-    .vagas-sub {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      color: rgba(255,255,255,0.45);
-      margin-top: 6px;
-    }
-
-    /* Divisor */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: rgba(255,255,255,0.07);
-      margin: 24px 0;
-    }
-
-    /* Produto */
-    .product-name {
-      font-family: 'Sora', sans-serif;
-      font-weight: 900;
-      font-size: clamp(22px, 6vw, 30px);
-      color: #fff;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .product-desc {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
-
-    /* Preço */
     .price-box {
-      width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 16px;
-      padding: 24px 20px;
-      margin-bottom: 10px;
-      position: relative;
-      overflow: hidden;
+      background: rgba(10,190,82,0.07); border: 1px solid rgba(10,190,82,0.22);
+      border-radius: 14px; padding: 22px 18px; text-align: center; margin: 22px 0 8px;
     }
+    .price-old { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; color: rgba(175,144,100,0.8); text-decoration: line-through; }
+    .price-label { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 11px; color: rgba(246,246,246,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin: 6px 0; }
+    .price-new { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 46px; color: #0abe52; line-height: 1; }
+    .price-installment { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px; color: rgba(246,246,246,0.5); margin-top: 6px; }
+    .price-note { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12px; color: rgba(175,144,100,0.8); margin-top: 10px; }
 
-    .price-box::before {
-      content: 'OFERTA RELÂMPAGO';
-      position: absolute;
-      top: 12px; right: -28px;
-      background: #cc0000;
-      color: #fff;
-      font-family: 'Sora', sans-serif;
-      font-weight: 800;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      padding: 4px 36px;
-      transform: rotate(45deg);
+    .cta-wrap { width: 100%; margin-top: 22px; }
+    .cta-snake {
+      position: relative; width: 100%; border-radius: 16px; padding: 3px; overflow: hidden;
+      box-shadow: 0 0 70px rgba(10,190,82,0.55), 0 16px 36px rgba(0,0,0,0.5);
     }
-
-    .price-old {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      color: rgba(255,255,255,0.3);
-      text-decoration: line-through;
-      margin-bottom: 4px;
+    .cta-snake::before {
+      content: ''; position: absolute; width: 300%; height: 300%; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(from 0deg, transparent 0deg, transparent 255deg,
+        rgba(170,0,0,0.08) 272deg, rgba(210,15,0,0.55) 288deg, #ff3300 302deg,
+        #ff6600 316deg, #ff9900 329deg, rgba(255,170,40,0.45) 342deg,
+        rgba(255,230,80,0.12) 354deg, transparent 360deg);
+      animation: spin 2.4s linear infinite;
     }
-
-    .price-new {
-      display: flex;
-      align-items: baseline;
-      justify-content: center;
-      gap: 4px;
-      margin-bottom: 8px;
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 19px 20px;
+      background: linear-gradient(135deg, #0abe52 0%, #079040 60%, #056830 100%);
+      border: none; border-radius: 13px; cursor: pointer;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(13px, 3.6vw, 15px);
+      color: #fff; letter-spacing: 0.02em; text-transform: uppercase;
+      text-decoration: none; position: relative; z-index: 1;
     }
+    .cta-note { font-family: 'Nunito', sans-serif; font-size: 12px; color: rgba(246,246,246,0.28); text-align: center; margin-top: 10px; }
 
-    .price-currency {
-      font-family: 'Sora', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      color: #4ade80;
-    }
-
-    .price-value {
-      font-family: 'Sora', sans-serif;
-      font-weight: 900;
-      font-size: clamp(48px, 13vw, 64px);
-      color: #4ade80;
-      line-height: 1;
-      text-shadow: 0 0 32px rgba(74,222,128,0.3);
-    }
-
-    .price-cents {
-      font-family: 'Sora', sans-serif;
-      font-weight: 800;
-      font-size: 24px;
-      color: #4ade80;
-    }
-
-    .price-warning {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      color: #ff9933;
-      letter-spacing: 0.02em;
-    }
-
-    /* Prova social */
-    .social-proof {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 10px;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      color: rgba(255,255,255,0.35);
-    }
-
-    .live-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: #ff3333;
-      animation: dot-pulse 1s ease-in-out infinite;
-      flex-shrink: 0;
-    }
-
-    /* CTA */
-    .cta-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 20px 24px;
-      background: linear-gradient(135deg, #16a34a, #15803d);
-      border: none;
-      border-radius: 14px;
-      font-family: 'Sora', sans-serif;
-      font-weight: 900;
-      font-size: clamp(15px, 4vw, 18px);
-      color: #ffffff;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      cursor: pointer;
-      box-shadow: 0 0 40px rgba(22,163,74,0.4), 0 8px 32px rgba(0,0,0,0.5);
-      transition: transform 0.15s, box-shadow 0.15s;
-      margin-bottom: 14px;
-      animation: cta-glow 2s ease-in-out infinite;
-    }
-
-    @keyframes cta-glow {
-      0%, 100% { box-shadow: 0 0 40px rgba(22,163,74,0.4), 0 8px 32px rgba(0,0,0,0.5); }
-      50%       { box-shadow: 0 0 60px rgba(22,163,74,0.65), 0 12px 40px rgba(0,0,0,0.6); }
-    }
-
-    .cta-btn:hover { transform: translateY(-2px); }
-    .cta-btn:active { transform: scale(0.98); }
-
-    .cta-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
-
-    /* Urgência final */
-    .bottom-urgency {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      color: rgba(255,120,0,0.7);
-      margin-bottom: 6px;
-    }
-
-    .bottom-safe {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 600;
-      font-size: 12px;
-      color: rgba(255,255,255,0.2);
+    .back-link {
+      display: block; width: 100%; text-align: center; margin-top: 18px;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(246,246,246,0.3);
     }
 
     .footer-sig {
-      margin-top: 36px;
-      font-family: 'Sora', sans-serif;
-      font-weight: 700;
-      font-size: 11px;
-      color: rgba(255,255,255,0.12);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      margin-top: 40px; text-align: center;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      color: rgba(246,246,246,0.14); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* ── Galeria de depoimentos (print real) ── */
+    .dep-label {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px;
+      color: #AF9064; text-transform: uppercase; letter-spacing: 0.1em; margin: 22px 0 10px;
+    }
+    .dep-gallery {
+      display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 10px;
+      margin-bottom: 6px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    }
+    .dep-gallery::-webkit-scrollbar { display: none; }
+    .dep-gallery img {
+      width: 168px; flex-shrink: 0; border-radius: 12px;
+      border: 1px solid rgba(175,144,100,0.2); scroll-snap-align: start; display: block;
+    }
+
+    /* ── Player de áudio (depoimento em voz) ── */
+    .audio-player {
+      width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px; padding: 18px 20px; margin: 18px 0 10px; position: relative; overflow: hidden;
+    }
+    .player-glow {
+      position: absolute; inset: 0; border-radius: 16px;
+      background: radial-gradient(ellipse at 50% 120%, rgba(139,23,26,0.18), transparent 70%);
+      pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    }
+    .player-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; position: relative; z-index: 1; }
+    .player-avatar { font-size: 22px; flex-shrink: 0; }
+    .player-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; color: rgba(246,246,246,0.8); }
+    .player-detail { font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px; color: rgba(246,246,246,0.3); margin-top: 2px; }
+    .player-stars { margin-left: auto; color: #AF9064; font-size: 13px; flex-shrink: 0; }
+    .player-main { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; position: relative; z-index: 1; }
+    .play-btn-audio {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(139,23,26,0.25); border: 1.5px solid rgba(139,23,26,0.5);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      transition: all 0.2s; position: relative; z-index: 1;
+    }
+    .waveform { flex: 1; display: flex; align-items: center; gap: 2.5px; height: 40px; }
+    .waveform-bar { flex: 1; min-width: 3px; border-radius: 2px; background: rgba(255,255,255,0.18); transform-origin: center; transition: background 0.15s; }
+    .waveform-bar.filled { background: #cc2a2d; }
+    @keyframes wavePulse { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.55); } }
+    .waveform.playing .waveform-bar { animation: wavePulse var(--d, 0.6s) ease-in-out infinite; animation-delay: var(--dl, 0s); }
+    .player-progress { display: flex; align-items: center; gap: 10px; position: relative; z-index: 1; }
+    .time-label { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px; color: rgba(246,246,246,0.5); min-width: 32px; flex-shrink: 0; }
+    .time-label.right { color: rgba(246,246,246,0.3); text-align: right; }
+    .progress-track { flex: 1; position: relative; height: 4px; }
+    .progress-track-bg { position: absolute; inset: 0; border-radius: 2px; background: rgba(255,255,255,0.1); }
+    .progress-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; border-radius: 2px; background: linear-gradient(90deg, #8b171a, #cc2a2d); transition: width 0.1s linear; }
+    .progress-range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; margin: 0; }
+    .speed-btn {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px;
+      padding: 3px 7px; cursor: pointer; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      color: rgba(246,246,246,0.45); letter-spacing: 0.04em; white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-<div class="page">
-
-  <!-- ── LOADING SCREEN ── -->
-  <div id="loading-screen">
-
-    <div class="scanner-icon">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L4 5.5V12C4 17.2 7.6 20.8 12 22C16.4 20.8 20 17.2 20 12V5.5L12 2Z"
-          fill="rgba(204,0,0,0.18)" stroke="#cc0000" stroke-width="1.4" stroke-linejoin="round"/>
-        <path d="M12 7.5L13.18 10.9H16.8L13.9 13L15.05 16.4L12 14.3L8.95 16.4L10.1 13L7.2 10.9H10.82Z"
-          fill="#cc0000"/>
-      </svg>
-    </div>
-
-    <div class="loading-label">Sistema de acesso</div>
-    <div class="loading-title">Anti-Vade Mecum PPRS</div>
-
-    <div id="loading-status">Iniciando verificação...</div>
-
-    <div class="progress-wrap">
-      <div id="progress-bar"></div>
-    </div>
-    <div id="progress-pct">0%</div>
-
+  <div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+  <div class="page">
+    <div class="card" id="app"></div>
   </div>
 
-  <!-- ── REVEAL SCREEN ── -->
-  <div id="reveal-screen">
+  <script>
+    var CHECKOUT_URL = "https://pay.kirvano.com/5882f987-4d30-42e9-9b1f-4cdcfe95d649";
+    var formData = { dor: 'tempo' };
 
-    <div class="alert-banner">
-      <div class="alert-dot"></div>
-      ⚠ Alerta de vagas — leia antes de fechar
-    </div>
+    var app = document.getElementById('app');
+    var progress = document.getElementById('progress');
 
-    <div class="vagas-section">
-      <div class="vagas-number" id="vagas-count">10</div>
-      <div class="vagas-label">vagas restantes</div>
-      <div class="vagas-sub">neste preço promocional</div>
-    </div>
+    function setProgress(pct) { progress.style.width = pct + '%'; }
 
-    <div class="divider"></div>
+    function mount(html, afterMount) {
+      app.style.opacity = 0;
+      setTimeout(function () {
+        app.innerHTML = html;
+        app.style.opacity = 1;
+        if (afterMount) afterMount();
+      }, 120);
+    }
 
-    <div class="product-name">Anti-Vade Mecum PPRS</div>
-    <div class="product-desc">
-      Todas as leis do edital verticalizadas, atualizadas e prontas pra você estudar.<br/>
-      O que você precisa para a prova — sem enrolação.
-    </div>
+    function goStage(n) {
+      var fns = { 1: stage1, 2: stage2, 3: stage3, 4: stage4, 5: stage5, 6: stage6 };
+      fns[n]();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-    <div class="price-box">
-      <div class="price-old">De R$ 97,00</div>
-      <div class="price-new">
-        <span class="price-currency">R$</span>
-        <span class="price-value">37</span>
-        <span class="price-cents">,90</span>
-      </div>
-      <div class="price-warning">⚡ Preço volta a R$97 quando as vagas acabarem</div>
-    </div>
+    function chooseDor(d) {
+      formData.dor = d;
+      goStage(2);
+    }
 
-    <div class="social-proof">
-      <div class="live-dot"></div>
-      <span id="viewers-count">23</span> pessoas estão vendo essa oferta agora
-    </div>
+    // ── ETAPA 1: Qualificação ──
+    function stage1() {
+      setProgress(35);
+      mount(
+        '<p class="eyebrow">Marcos Brito</p>' +
+        '<div class="avatar-row"><img class="avatar" src="marcos-hero.webp" alt="Marcos Brito"></div>' +
+        '<h1 class="headline">Se você vai prestar concurso pra <strong>Polícia Penal do RS</strong>, tem uma pergunta que decide sua reta final: qual dessas 2 mudanças você quer fazer AGORA no seu jeito de estudar?</h1>' +
+        '<div class="opt-list">' +
+          '<button class="opt-btn" onclick="chooseDor(\'tempo\')">Parar de perder tempo estudando o que não vai cair</button>' +
+          '<button class="opt-btn" onclick="chooseDor(\'memoria\')">Aprender a lei seca de um jeito que gruda de verdade</button>' +
+        '</div>'
+      );
+    }
 
-    <div class="divider" style="margin: 16px 0;"></div>
+    // ── ETAPA 2: Presell / Reframe ──
+    function stage2() {
+      setProgress(55);
+      var validacao = formData.dor === 'tempo'
+        ? 'Você quer parar de perder tempo com o que não cai. Show, é exatamente isso que vamos resolver.'
+        : 'Você quer que a lei seca finalmente grude de verdade. Show, é exatamente isso que vamos resolver.';
+      mount(
+        '<p class="eyebrow">Antes de mais nada</p>' +
+        '<p class="validation-line">' + validacao + '</p>' +
+        '<h2 class="headline">Vão te oferecer PDF de 200 páginas e videoaula de 8 horas.</h2>' +
+        '<p class="body-text">Enquanto isso, cada semana que você perde estudando errado é uma semana que não volta.</p>' +
+        '<p class="body-text">Mas o que realmente vai fazer você dominar a lei seca mais rápido é:</p>' +
+        '<ul class="check-list">' +
+          '<li><span class="check-ico">✓</span> Saber exatamente qual palavra a banca troca pra te derrubar</li>' +
+          '<li><span class="check-ico">✓</span> Revisar uma lei inteira em 15 minutos, não em 3 horas</li>' +
+          '<li><span class="check-ico">✓</span> Ter as palavras decisivas já destacadas, sem garimpar sozinho</li>' +
+          '<li><span class="check-ico">✓</span> Estudar só as leis que mais caem em concurso de Polícia Penal, sem perder tempo com o resto</li>' +
+        '</ul>' +
+        '<p class="punch">Pouca coisa né? 😏</p>' +
+        '<p class="punch-sub">Pois é. Você só não sai do lugar porque tá estudando volume, não método.</p>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(3)">Preciso estudar certo</button></div></div>' +
+        '<button class="back-link" onclick="goStage(1)">← Voltar</button>'
+      );
+    }
 
-    <a
-      href="https://pay.kirvano.com/5882f987-4d30-42e9-9b1f-4cdcfe95d649"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="cta-btn"
-    >
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 1L15.09 7.26L22 8.27L17 13.14L18.18 20.02L12 16.77L5.82 20.02L7 13.14L2 8.27L8.91 7.26L12 1Z"/>
-      </svg>
-      GARANTIR MINHA VAGA POR R$37,90
-    </a>
+    // ── ETAPA 3: Produto ──
+    function stage3() {
+      setProgress(70);
+      mount(
+        '<p class="eyebrow">O Anti-Vade Mecum PPRS</p>' +
+        '<h2 class="headline">Com o Anti-Vade Mecum PPRS você vai:</h2>' +
+        '<ul class="check-list">' +
+          '<li><span class="check-ico">✓</span> Ter as leis do edital resumidas em poucas páginas cada</li>' +
+          '<li><span class="check-ico">✓</span> Ver as palavras decisivas em negrito, as que a banca troca pra te derrubar</li>' +
+          '<li><span class="check-ico">✓</span> Revisar toda a legislação especial em uma tarde, não em semanas</li>' +
+          '<li><span class="check-ico">✓</span> Estudar no celular, no ônibus, no intervalo do trabalho</li>' +
+          '<li><span class="check-ico">✓</span> Saber o Mapa de Prioridades, onde a banca mais cobra</li>' +
+        '</ul>' +
+        '<div class="law-cards">' +
+          '<div class="law-card"><span class="ico">📄</span><span class="name">Aqui ficarão as leis do edital da PPRS</span></div>' +
+        '</div>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(4)">É disso que eu preciso</button></div></div>' +
+        '<button class="back-link" onclick="goStage(2)">← Voltar</button>'
+      );
+    }
 
-    <div class="bottom-urgency">
-      ⚠ Ao fechar essa página o preço pode não estar mais disponível
-    </div>
+    // ── ETAPA 4: Prova social ──
+    function stage4() {
+      setProgress(85);
+      mount(
+        '<p class="eyebrow">Não confie só na minha palavra</p>' +
+        '<h2 class="headline">Deixa eu te mostrar o resultado. 😅</h2>' +
+        '<div class="proof-box">' +
+          '<p class="body-text" style="margin-bottom:0;">Antes de criar esse método, eu tentava decorar lei inteira e ia mal em legislação especial. Depois que passei a estudar só as palavras que a banca troca, fui <strong>aprovado na Polícia Penal do Espírito Santo</strong> e na <strong>Polícia Militar de Minas Gerais</strong>.</p>' +
+          '<div class="proof-stats">' +
+            '<div class="proof-stat"><div class="v">18/18</div><div class="l">Acertos em legislação especial (PPES)</div></div>' +
+            '<div class="proof-stat"><div class="v">2</div><div class="l">Concursos aprovado</div></div>' +
+          '</div>' +
+        '</div>' +
+        '<p class="body-text">Não foi sorte. Foi parar de estudar volume e passar a estudar exatamente onde a banca ataca — o mesmo método que agora adaptei pro perfil de cobrança de concursos de Polícia Penal.</p>' +
+        '<p class="dep-label">Print real de aluno</p>' +
+        '<div class="dep-gallery">' +
+          '<img src="dep01.jpg" alt="Depoimento de aluno aprovado" loading="lazy">' +
+          '<img src="dep02.jpg" alt="Depoimento de aluno aprovado" loading="lazy">' +
+          '<img src="dep03.webp" alt="Depoimento de aluno aprovado" loading="lazy">' +
+          '<img src="dep04.webp" alt="Depoimento de aluno aprovado" loading="lazy">' +
+        '</div>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(5)">Preciso desse método também</button></div></div>' +
+        '<button class="back-link" onclick="goStage(3)">← Voltar</button>'
+      );
+    }
 
-    <div class="bottom-safe">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" opacity="0.4">
-        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1z"/>
-      </svg>
-      Compra 100% segura · Pagamento processado pela Kirvano
-    </div>
+    // ── ETAPA 5: Quebra de objeção ──
+    function stage5() {
+      setProgress(93);
+      mount(
+        '<p class="eyebrow">Sua dúvida agora</p>' +
+        '<h2 class="headline">"Mas será que esse material cobre mesmo o edital da PPRS, ou é resumo genérico de outra força adaptado?" 🙄</h2>' +
+        '<p class="body-text">Deixa eu ser direto com você: <strong>esse material não é genérico.</strong></p>' +
+        '<div class="law-cards">' +
+          '<div class="law-card"><span class="ico">🎯</span><span class="name">Feito com foco no perfil de cobrança da Polícia Penal</span></div>' +
+          '<div class="law-card"><span class="ico">🚫</span><span class="name">Não é material de PM ou PC com o nome trocado na capa — é Polícia Penal, com foco total em PPRS</span></div>' +
+        '</div>' +
+        '<div class="callout"><p>Esse Anti-Vade Mecum foi construído <strong>especificamente para quem vai prestar concurso pra PPRS</strong>.</p></div>' +
+        '<p class="body-text">Você só não descobriu ainda como estudar lei seca sem decorar página por página.</p>' +
+        '<p class="dep-label">Ouça de quem já usou</p>' +
+        '<div class="audio-player" id="player-2">' +
+          '<div class="player-glow" id="glow-2"></div>' +
+          '<div class="player-header">' +
+            '<div class="player-avatar">🎙️</div>' +
+            '<div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Vade Mecum</div></div>' +
+            '<div class="player-stars">★★★★★</div>' +
+          '</div>' +
+          '<div class="player-main">' +
+            '<button class="play-btn-audio" id="btn-2" onclick="togglePlay(2)">' +
+              '<svg id="icon-2" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg>' +
+            '</button>' +
+            '<div class="waveform" id="waveform-2"></div>' +
+          '</div>' +
+          '<div class="player-progress">' +
+            '<span class="time-label" id="current-2">0:00</span>' +
+            '<div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-2"></div>' +
+              '<input type="range" class="progress-range" id="range-2" min="0" max="100" step="0.1" value="0" oninput="seek(2)" /></div>' +
+            '<span class="time-label right" id="duration-2">0:00</span>' +
+            '<button class="speed-btn" id="speed-2" onclick="cycleSpeed(2)">1x</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" onclick="goStage(6)">Já quero estudar assim</button></div></div>' +
+        '<button class="back-link" onclick="goStage(4)">← Voltar</button>',
+        function () { initPlayer(2, 'audio02'); }
+      );
+    }
 
-    <div class="footer-sig">© 2026 Marcos Brito — Tactical Prep</div>
+    // ── ETAPA 6: Missão + Oferta principal ──
+    function stage6() {
+      setProgress(100);
+      var abertura = formData.dor === 'tempo'
+        ? '👉 Como você me disse lá no início que quer parar de perder tempo com o que não cai, separei exatamente isso pra você:'
+        : '👉 Como você me disse lá no início que quer que a lei seca grude de verdade, separei exatamente isso pra você:';
+      mount(
+        '<p class="eyebrow">Minha missão é simples</p>' +
+        '<p class="validation-line">' + abertura + '</p>' +
+        '<h2 class="headline">Te fazer dominar toda a lei seca do edital da PPRS, sem perder mais nenhuma semana.</h2>' +
 
-  </div>
+        '<div class="mission-box">' +
+          '<p class="mission-label">🎯 Seu objetivo</p>' +
+          '<p class="body-text" style="margin-bottom:0;">Revisar as leis do edital da PPRS com as palavras decisivas já destacadas pra você, sem precisar garimpar sozinho.</p>' +
+        '</div>' +
 
-</div>
+        '<div class="mission-box">' +
+          '<p class="mission-label">🎁 Bônus que você vai ter</p>' +
+          '<div class="bonus-item"><span class="ico">🎯</span> Lista das Palavras Decisivas por Lei</div>' +
+          '<div class="bonus-item" style="margin-bottom:0;"><span class="ico">♾️</span> Acesso vitalício, sem mensalidade, com atualização gratuita se sair retificação no edital</div>' +
+        '</div>' +
 
-<script>
-  // ── Config ──────────────────────────────
-  const TOTAL_DURATION = 5000; // 5 segundos
-  const MESSAGES = [
-    { pct: 0,  text: 'Iniciando verificação...' },
-    { pct: 18, text: 'Analisando quantidade de vagas disponíveis...' },
-    { pct: 42, text: 'Verificando oferta promocional ativa...' },
-    { pct: 68, text: 'Calculando disponibilidade de acesso...' },
-    { pct: 88, text: 'Liberando acesso à oferta...' },
-  ];
+        '<p class="dep-label">Antes de você decidir, veja quem já passou por isso</p>' +
+        '<div class="dep-gallery">' +
+          '<img src="dep01.jpg" alt="Depoimento de aluno aprovado" loading="lazy">' +
+          '<img src="dep02.jpg" alt="Depoimento de aluno aprovado" loading="lazy">' +
+          '<img src="dep03.webp" alt="Depoimento de aluno aprovado" loading="lazy">' +
+          '<img src="dep04.webp" alt="Depoimento de aluno aprovado" loading="lazy">' +
+        '</div>' +
 
-  // ── Progresso ───────────────────────────
-  const bar   = document.getElementById('progress-bar');
-  const pct   = document.getElementById('progress-pct');
-  const status = document.getElementById('loading-status');
-  const start = performance.now();
-  let msgIndex = 0;
+        '<div class="audio-player" id="player-1">' +
+          '<div class="player-glow" id="glow-1"></div>' +
+          '<div class="player-header">' +
+            '<div class="player-avatar">🎙️</div>' +
+            '<div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Vade Mecum</div></div>' +
+            '<div class="player-stars">★★★★★</div>' +
+          '</div>' +
+          '<div class="player-main">' +
+            '<button class="play-btn-audio" id="btn-1" onclick="togglePlay(1)">' +
+              '<svg id="icon-1" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg>' +
+            '</button>' +
+            '<div class="waveform" id="waveform-1"></div>' +
+          '</div>' +
+          '<div class="player-progress">' +
+            '<span class="time-label" id="current-1">0:00</span>' +
+            '<div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-1"></div>' +
+              '<input type="range" class="progress-range" id="range-1" min="0" max="100" step="0.1" value="0" oninput="seek(1)" /></div>' +
+            '<span class="time-label right" id="duration-1">0:00</span>' +
+            '<button class="speed-btn" id="speed-1" onclick="cycleSpeed(1)">1x</button>' +
+          '</div>' +
+        '</div>' +
 
-  function updateStatus(progress) {
-    for (let i = MESSAGES.length - 1; i >= 0; i--) {
-      if (progress >= MESSAGES[i].pct) {
-        if (msgIndex !== i) {
-          msgIndex = i;
-          status.style.opacity = '0';
-          setTimeout(() => {
-            status.textContent = MESSAGES[i].text;
-            status.style.opacity = '1';
-          }, 150);
+        '<div class="price-box">' +
+          '<div class="price-old">De R$ 97,00</div>' +
+          '<div class="price-label">Oferta atual</div>' +
+          '<div class="price-new">R$ 37,90</div>' +
+          '<div class="price-installment">à vista, acesso imediato</div>' +
+        '</div>' +
+
+        '<div class="cta-wrap">' +
+          '<div class="cta-snake"><a href="' + CHECKOUT_URL + '" class="cta">GARANTIR O ANTI-VADE PPRS</a></div>' +
+          '<p class="cta-note">Acesso imediato após confirmação do pagamento · Garantia de 7 dias</p>' +
+        '</div>' +
+
+        '<p class="footer-sig">© 2026 Marcos Brito</p>',
+        function () { initPlayer(1, 'audio01'); }
+      );
+    }
+
+    // ── Player de áudio (depoimentos em voz) ──
+    var HEIGHTS = [3,6,10,14,9,13,7,12,15,8,11,6,14,10,7,13,9,5,12,8];
+    var SPEEDS  = [1, 1.5, 2];
+    var playerState = {};
+
+    function initPlayer(id, src) {
+      var audio = new Audio();
+      audio.preload = 'none';
+      var s1 = document.createElement('source'); s1.src = src + '.mp3'; s1.type = 'audio/mpeg';
+      var s2 = document.createElement('source'); s2.src = src + '.ogg'; s2.type = 'audio/ogg';
+      audio.appendChild(s1); audio.appendChild(s2);
+
+      var waveform = document.getElementById('waveform-' + id);
+      HEIGHTS.forEach(function (h, i) {
+        var bar = document.createElement('div');
+        bar.className = 'waveform-bar';
+        bar.style.cssText = 'height:' + h + 'px;--d:' + (0.6 + (i % 4) * 0.15) + 's;--dl:' + (i * 0.04) + 's';
+        waveform.appendChild(bar);
+      });
+
+      playerState[id] = { audio: audio, speedIdx: 0, playing: false };
+
+      audio.addEventListener('timeupdate', function () { updateProgress(id); });
+      audio.addEventListener('loadedmetadata', function () {
+        document.getElementById('duration-' + id).textContent = fmtTime(audio.duration);
+        document.getElementById('range-' + id).max = audio.duration;
+      });
+      audio.addEventListener('ended', function () {
+        playerState[id].playing = false;
+        audio.currentTime = 0;
+        updatePlayerUI(id);
+      });
+    }
+
+    function togglePlay(id) {
+      Object.keys(playerState).forEach(function (pid) {
+        if (pid != id && playerState[pid].playing) {
+          playerState[pid].audio.pause();
+          playerState[pid].playing = false;
+          updatePlayerUI(pid);
         }
-        break;
-      }
+      });
+      var p = playerState[id];
+      if (p.playing) { p.audio.pause(); p.playing = false; }
+      else { p.audio.play().catch(function () {}); p.playing = true; }
+      updatePlayerUI(id);
     }
-  }
 
-  function tick(now) {
-    const elapsed = now - start;
-    const progress = Math.min((elapsed / TOTAL_DURATION) * 100, 100);
-    bar.style.width = progress + '%';
-    pct.textContent = Math.floor(progress) + '%';
-    updateStatus(progress);
+    function updatePlayerUI(id) {
+      var p = playerState[id];
+      var btn = document.getElementById('btn-' + id);
+      var icon = document.getElementById('icon-' + id);
+      var glow = document.getElementById('glow-' + id);
+      var wf = document.getElementById('waveform-' + id);
 
-    if (progress < 100) {
-      requestAnimationFrame(tick);
-    } else {
-      setTimeout(showReveal, 200);
+      btn.style.background = p.playing ? '#8b171a' : 'rgba(139,23,26,0.25)';
+      btn.style.borderColor = p.playing ? '#cc2a2d' : 'rgba(139,23,26,0.5)';
+      btn.style.boxShadow = p.playing ? '0 0 20px rgba(139,23,26,0.5)' : 'none';
+      icon.innerHTML = p.playing
+        ? '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>'
+        : '<path d="M8 5v14l11-7z"/>';
+      glow.style.opacity = p.playing ? '1' : '0';
+      wf.classList.toggle('playing', p.playing);
     }
-  }
 
-  requestAnimationFrame(tick);
+    function updateProgress(id) {
+      var p = playerState[id];
+      var cur = p.audio.currentTime;
+      var dur = p.audio.duration || 1;
+      var pct = (cur / dur) * 100;
+      document.getElementById('current-' + id).textContent = fmtTime(cur);
+      document.getElementById('fill-' + id).style.width = pct + '%';
+      document.getElementById('range-' + id).value = cur;
+      var bars = document.querySelectorAll('#waveform-' + id + ' .waveform-bar');
+      bars.forEach(function (bar, i) {
+        bar.classList.toggle('filled', (i / bars.length) * 100 < pct);
+      });
+    }
 
-  // ── Vagas persistentes ──────────────────
-  const VAGAS_KEY = 'vagas_pprs';
-  const VAGAS_MIN = 3;
+    function seek(id) {
+      playerState[id].audio.currentTime = Number(document.getElementById('range-' + id).value);
+    }
 
-  function getVagas() {
-    const stored = localStorage.getItem(VAGAS_KEY);
-    return stored !== null ? Math.max(parseInt(stored), VAGAS_MIN) : 10;
-  }
+    function cycleSpeed(id) {
+      var p = playerState[id];
+      p.speedIdx = (p.speedIdx + 1) % SPEEDS.length;
+      var spd = SPEEDS[p.speedIdx];
+      p.audio.playbackRate = spd;
+      var btn = document.getElementById('speed-' + id);
+      var active = spd !== 1;
+      btn.textContent = spd + 'x';
+      btn.style.background = active ? 'rgba(139,23,26,0.3)' : 'rgba(255,255,255,0.07)';
+      btn.style.borderColor = active ? 'rgba(139,23,26,0.6)' : 'rgba(255,255,255,0.12)';
+      btn.style.color = active ? '#ff8888' : 'rgba(246,246,246,0.45)';
+    }
 
-  function saveVagas(value) {
-    localStorage.setItem(VAGAS_KEY, Math.max(value, VAGAS_MIN));
-  }
+    function fmtTime(t) {
+      return Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+    }
 
-  function punchVagas(el, newValue) {
-    // Animação de "queda" do número
-    el.style.transition = 'transform 0.15s ease-in, opacity 0.15s ease-in';
-    el.style.transform = 'scale(1.25)';
-    el.style.opacity = '0.3';
-    setTimeout(() => {
-      el.textContent = Math.max(newValue, VAGAS_MIN);
-      el.style.transition = 'transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease-out';
-      el.style.transform = 'scale(1)';
-      el.style.opacity = '1';
-    }, 160);
-  }
-
-  function animateVagasDown(startValue) {
-    const el = document.getElementById('vagas-count');
-    if (!el) return;
-    el.textContent = startValue;
-
-    // 1ª queda: após 1.4s
-    setTimeout(() => {
-      punchVagas(el, startValue - 1);
-      // 2ª queda: mais 1.4s depois
-      setTimeout(() => {
-        punchVagas(el, startValue - 2);
-      }, 1400);
-    }, 1400);
-  }
-
-  // ── Reveal ──────────────────────────────
-  function showReveal() {
-    const loadingEl = document.getElementById('loading-screen');
-    const revealEl  = document.getElementById('reveal-screen');
-
-    const vagas = getVagas();
-    saveVagas(vagas - 1); // próximo reload começa 1 abaixo
-
-    loadingEl.style.transition = 'opacity 0.4s';
-    loadingEl.style.opacity = '0';
-    setTimeout(() => {
-      loadingEl.style.display = 'none';
-      revealEl.style.display  = 'flex';
-      animateVagasDown(vagas); // cai 2 na cara da pessoa
-    }, 400);
-  }
-
-  // ── Viewers ao vivo (variação leve) ─────
-  function randomViewers() {
-    const el = document.getElementById('viewers-count');
-    const base = 19;
-    const range = 8;
-    const v = base + Math.floor(Math.random() * range);
-    if (el) el.textContent = v;
-    setTimeout(randomViewers, 4000 + Math.random() * 3000);
-  }
-  setTimeout(randomViewers, 3000);
-</script>
+    stage1();
+  </script>
 </body>
 </html>
