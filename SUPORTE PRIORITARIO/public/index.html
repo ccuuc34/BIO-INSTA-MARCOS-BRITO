@@ -424,6 +424,28 @@
       if (c.indexOf('Anti-Vade Mecum') !== -1) { stage1b(ANTIVADE_PRODUCTS); return; }
       if (c.indexOf('Kit Edital') !== -1) { stage1b(KIT_PRODUCTS); return; }
       formData.produto = c.replace(/^[^\wÀ-ú]+\s*/, '');
+      if (c.indexOf('Grupo de WhatsApp') !== -1) { stage2Grupo(); return; }
+      stage2();
+    }
+
+    // ── ETAPA 2 (grupo gratuito): só faz sentido denúncia ou não conseguir entrar ──
+    function stage2Grupo() {
+      setProgress(38);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 2 de 5</p>' +
+        '<h2 class="stage-title">Qual é o motivo do seu contato sobre o grupo?</h2>' +
+        '<div class="opt-list">' +
+          optButtons([
+            '🚨 Denúncia (alguém ou algo no grupo)',
+            '🔒 Não estou conseguindo entrar no grupo',
+          ], 'chooseMotivo') +
+        '</div>' +
+        '<button class="back-link" onclick="stage1()">← Voltar</button>'
+      );
+    }
+
+    function goBackToStage2() {
+      if (formData.categoria && formData.categoria.indexOf('Grupo de WhatsApp') !== -1) { stage2Grupo(); return; }
       stage2();
     }
 
@@ -483,7 +505,7 @@
         '<p class="stage-eyebrow">Pergunta 3 de 5</p>' +
         '<h2 class="stage-title">' + label + '</h2>' +
         '<div class="opt-list">' + optButtons(options, 'chooseDetalhe') + '</div>' +
-        '<button class="back-link" onclick="stage2()">← Voltar</button>'
+        '<button class="back-link" onclick="goBackToStage2()">← Voltar</button>'
       );
     }
 
@@ -501,7 +523,7 @@
         '<p class="stage-sub">É assim que eu localizo seu pedido no sistema de pagamento.</p>' +
         '<input type="email" class="field-input" id="emailInput" placeholder="seuemail@gmail.com" value="' + (formData.email || '') + '" />' +
         '<button class="stage-cta" onclick="submitEmail()">Continuar</button>' +
-        '<button class="back-link" onclick="' + (formData.detalhe ? 'stage3Back()' : 'stage2()') + '">← Voltar</button>'
+        '<button class="back-link" onclick="' + (formData.detalhe ? 'stage3Back()' : 'goBackToStage2()') + '">← Voltar</button>'
       );
       document.getElementById('emailInput').focus();
     }
