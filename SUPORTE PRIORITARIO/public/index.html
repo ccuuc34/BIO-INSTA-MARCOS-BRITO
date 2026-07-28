@@ -106,6 +106,10 @@
     }
 
     /* ── Fallback de cópia: garante funcionamento mesmo sem app de e-mail (ex: navegador in-app do Instagram) ── */
+    .email-hint {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px;
+      color: rgba(246,246,246,0.4); line-height: 1.6; margin-top: 10px;
+    }
     .email-fallback {
       display: flex; align-items: center; gap: 8px; margin-top: 10px;
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
@@ -202,7 +206,8 @@
           </div>
         </div>
         <p class="channel-desc">Meu canal principal de suporte. Eu leio e respondo e-mail bem mais rápido do que mensagem. Pra qualquer dúvida, comece por aqui.</p>
-        <a href="mailto:suportemarcosbrito@gmail.com" class="channel-btn email-btn">Enviar E-mail</a>
+        <a href="mailto:suportemarcosbrito@gmail.com" class="channel-btn email-btn" id="mailtoBtn">Enviar E-mail</a>
+        <p class="email-hint">Botão não abriu seu app de e-mail? Copia o endereço abaixo (já foi copiado pra você) e cola direto no seu app.</p>
         <div class="email-fallback">
           <span class="email-fallback-text" id="emailAddr">suportemarcosbrito@gmail.com</span>
           <button type="button" class="email-copy-btn" id="copyEmailBtn">Copiar</button>
@@ -258,6 +263,7 @@
   <script>
     (function () {
       var btn = document.getElementById('copyEmailBtn');
+      var mailtoBtn = document.getElementById('mailtoBtn');
       if (!btn) return;
       var email = document.getElementById('emailAddr').textContent.trim();
       var originalLabel = btn.textContent;
@@ -292,13 +298,21 @@
         }
       }
 
-      btn.addEventListener('click', function () {
+      function copyEmail() {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(email).then(function () { done(true); }).catch(legacyCopy);
         } else {
           legacyCopy();
         }
-      });
+      }
+
+      btn.addEventListener('click', copyEmail);
+
+      // ── Rede de segurança: copia o e-mail também ao clicar no botão principal,
+      // caso o dispositivo não tenha app de e-mail padrão e o mailto: falhe em silêncio ──
+      if (mailtoBtn) {
+        mailtoBtn.addEventListener('click', function () { copyEmail(); });
+      }
     })();
   </script>
 </body>
