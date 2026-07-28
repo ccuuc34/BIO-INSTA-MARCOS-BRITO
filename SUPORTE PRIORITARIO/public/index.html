@@ -26,8 +26,12 @@
       pointer-events: none; z-index: 0;
     }
 
-    .page { position: relative; z-index: 1; min-height: 100vh; display: flex; justify-content: center; padding: 64px 20px 56px; }
+    .page { position: relative; z-index: 1; min-height: 100vh; display: flex; justify-content: center; padding: 44px 20px 56px; }
     .card { width: 100%; max-width: 480px; }
+
+    /* ── Barra de progresso da peneira ── */
+    .progress-wrap { width: 100%; height: 4px; background: rgba(255,255,255,0.06); border-radius: 100px; margin-bottom: 30px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #AF9064, #8b171a); transition: width 0.5s ease; }
 
     .eyebrow-row { text-align: center; margin-bottom: 22px; }
     .eyebrow {
@@ -39,8 +43,8 @@
 
     .headline {
       font-family: 'Sora', sans-serif; font-weight: 800;
-      font-size: clamp(26px, 7vw, 34px); color: #F6F6F6;
-      text-align: center; line-height: 1.2; margin-bottom: 6px;
+      font-size: clamp(22px, 6.4vw, 30px); color: #F6F6F6;
+      text-align: center; line-height: 1.25; margin-bottom: 6px;
     }
     .brand-line {
       font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px;
@@ -51,9 +55,85 @@
     .desc {
       font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
       color: rgba(246,246,246,0.65); line-height: 1.75; text-align: center;
-      margin-bottom: 38px;
+      margin-bottom: 28px;
     }
     .desc strong { color: #F6F6F6; font-weight: 700; }
+
+    /* ── Wizard: perguntas da peneira ── */
+    #app { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .stage-eyebrow {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: #AF9064; letter-spacing: 0.14em; text-transform: uppercase;
+      text-align: center; margin-bottom: 12px;
+    }
+    .stage-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(19px, 5.4vw, 24px);
+      color: #F6F6F6; text-align: center; line-height: 1.3; margin-bottom: 24px;
+    }
+    .stage-sub {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(246,246,246,0.5); text-align: center; line-height: 1.6; margin: -14px 0 22px;
+    }
+
+    .opt-list { display: flex; flex-direction: column; gap: 10px; }
+    .opt-btn {
+      width: 100%; text-align: left; cursor: pointer;
+      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 14px; padding: 16px 18px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      color: rgba(246,246,246,0.88); line-height: 1.4;
+      transition: border-color 0.2s, background 0.2s, transform 0.12s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .opt-btn:hover { border-color: rgba(175,144,100,0.55); background: rgba(175,144,100,0.08); }
+    .opt-btn:active { transform: scale(0.98); }
+    .opt-btn.small { font-size: 13.5px; padding: 13px 16px; }
+
+    .field-label {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(246,246,246,0.6); margin-bottom: 10px;
+    }
+    .field-input {
+      width: 100%; padding: 15px 16px; border-radius: 12px;
+      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.14);
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px;
+      color: #F6F6F6; margin-bottom: 16px;
+    }
+    .field-input::placeholder { color: rgba(246,246,246,0.3); }
+    .field-input:focus { outline: none; border-color: #AF9064; }
+    textarea.field-input { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+    .stage-cta {
+      width: 100%; padding: 16px 18px; border-radius: 13px; cursor: pointer;
+      background: linear-gradient(135deg, #8b171a 0%, #6b1113 100%);
+      border: none; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 14px;
+      color: #fff; letter-spacing: 0.02em; text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .stage-cta:disabled { opacity: 0.4; cursor: not-allowed; }
+    .stage-cta:active:not(:disabled) { transform: scale(0.98); }
+
+    .back-link {
+      display: block; width: 100%; text-align: center; margin-top: 16px;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(246,246,246,0.32);
+    }
+
+    /* ── Preview da mensagem gerada ── */
+    .msg-preview {
+      width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 18px; margin-bottom: 20px;
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 13px;
+      color: rgba(246,246,246,0.75); line-height: 1.7; white-space: pre-wrap; word-break: break-word;
+      max-height: 260px; overflow-y: auto;
+    }
+    .msg-note {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(10,190,82,0.9); text-align: center; margin-bottom: 18px; line-height: 1.6;
+    }
 
     /* ── Cards de canal ── */
     .channel-card {
@@ -62,7 +142,6 @@
       transition: border-color 0.2s;
     }
     .channel-card.primary { border-color: rgba(139,23,26,0.4); background: rgba(139,23,26,0.06); }
-    .channel-card.disabled { opacity: 0.55; }
 
     .channel-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
     .channel-icon {
@@ -100,10 +179,6 @@
     .channel-btn.email-btn:active { transform: scale(0.98); }
     .channel-btn.whats-btn { background: #0abe52; color: #fff; }
     .channel-btn.whats-btn:active { transform: scale(0.98); }
-    .channel-btn.disabled-btn {
-      background: rgba(255,255,255,0.04); color: rgba(246,246,246,0.35);
-      cursor: not-allowed; border: 1px solid rgba(255,255,255,0.08);
-    }
 
     /* ── Fallback de cópia: garante funcionamento mesmo sem app de e-mail (ex: navegador in-app do Instagram) ── */
     .email-hint {
@@ -128,13 +203,23 @@
     }
     .email-copy-btn.copied { background: #0abe52; border-color: #0abe52; color: #fff; }
 
+    .copy-msg-btn {
+      width: 100%; padding: 13px 16px; border-radius: 12px; cursor: pointer; margin-bottom: 16px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14);
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 12.5px;
+      letter-spacing: 0.03em; text-transform: uppercase; color: rgba(246,246,246,0.7);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .copy-msg-btn.copied { background: rgba(10,190,82,0.14); border-color: #0abe52; color: #0abe52; }
+
     .footer-note {
       font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12.5px;
       color: rgba(246,246,246,0.32); text-align: center; line-height: 1.7; margin-top: 30px;
     }
 
-    /* ── TSL: o que esse canal resolve (sempre visível) ── */
-    .tsl-section { width: 100%; margin-top: 30px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.08); }
+    /* ── TSL: o que esse canal resolve (sempre visível, antes do wizard) ── */
+    .tsl-section { width: 100%; margin-bottom: 30px; padding-bottom: 26px; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .tsl-title {
       font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13.5px;
       color: #F6F6F6; margin-bottom: 16px;
@@ -186,51 +271,11 @@
       <p class="brand-line">Marcos Brito</p>
 
       <p class="desc">
-        Escolha abaixo o canal certo pra sua dúvida ser resolvida <strong>mais rápido</strong>. Cada canal tem um tempo de resposta diferente.
+        Responde <strong>5 perguntas rápidas</strong> antes de mandar sua mensagem. Isso me dá o contexto todo de uma vez e faz seu problema ser resolvido muito mais rápido — sem ida e volta.
       </p>
 
-      <!-- E-MAIL: canal principal, mais rápido -->
-      <div class="channel-card primary">
-        <div class="channel-top">
-          <div class="channel-icon email">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-              <path d="M3 6.5A1.5 1.5 0 014.5 5h15A1.5 1.5 0 0121 6.5v11a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 17.5v-11z" stroke="#ff9999" stroke-width="1.6" stroke-linejoin="round"/>
-              <path d="M4 6.5l8 6.5 8-6.5" stroke="#ff9999" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="channel-title-row">
-              <span class="channel-title">E-mail</span>
-              <span class="channel-badge fast">⚡ Mais rápido</span>
-            </div>
-          </div>
-        </div>
-        <p class="channel-desc">Meu canal principal de suporte. Eu leio e respondo e-mail bem mais rápido do que mensagem. Pra qualquer dúvida, comece por aqui.</p>
-        <a href="mailto:suportemarcosbrito@gmail.com" class="channel-btn email-btn" id="mailtoBtn">Enviar E-mail</a>
-        <p class="email-hint">Botão não abriu seu app de e-mail? Copia o endereço abaixo (já foi copiado pra você) e cola direto no seu app.</p>
-        <div class="email-fallback">
-          <span class="email-fallback-text" id="emailAddr">suportemarcosbrito@gmail.com</span>
-          <button type="button" class="email-copy-btn" id="copyEmailBtn">Copiar</button>
-        </div>
-      </div>
-
-      <!-- WHATSAPP: canal secundário, mais lento -->
-      <div class="channel-card">
-        <div class="channel-top">
-          <div class="channel-icon whats">💬</div>
-          <div>
-            <div class="channel-title-row">
-              <span class="channel-title">WhatsApp</span>
-              <span class="channel-badge slow">Resposta mais lenta</span>
-            </div>
-          </div>
-        </div>
-        <p class="channel-desc">Canal secundário. Como recebo muitas mensagens por dia, a resposta por aqui costuma demorar bem mais que por e-mail.</p>
-        <a href="https://wa.me/557598921501" target="_blank" rel="noopener noreferrer" class="channel-btn whats-btn">Chamar no WhatsApp</a>
-      </div>
-
       <div class="tsl-section">
-        <p class="tsl-title">Antes de chamar, veja o que esse canal resolve</p>
+        <p class="tsl-title">Antes de começar, veja o que esse canal resolve</p>
         <div class="tsl-inner">
           <p class="tsl-lead">Esse suporte existe pra <strong>resolver problema real</strong>, não pra bate-papo. Isso é o que mantém o canal rápido pra quem realmente precisa.</p>
 
@@ -240,6 +285,7 @@
             <li><span class="mark">✓</span>Link de acesso não abre ou dá erro</li>
             <li><span class="mark">✓</span>Cobrança duplicada ou pagamento não reconhecido</li>
             <li><span class="mark">✓</span>Erro técnico que te impede de usar o que comprou</li>
+            <li><span class="mark">✓</span>Pedido de reembolso dentro da garantia</li>
           </ul>
 
           <p class="tsl-col-label no">❌ Não é pra isso</p>
@@ -250,69 +296,352 @@
             <li><span class="mark">✕</span>Pergunta que já está respondida na página do material</li>
           </ul>
 
-          <p class="tsl-closing">Se você chamar pra resolver algo fútil, pode estar atrasando o atendimento de outra pessoa que tem um problema real esperando resposta. Quanto mais focado o canal, mais rápido eu resolvo problema de verdade.</p>
+          <p class="tsl-closing">Se você chamar pra resolver algo fútil, pode estar atrasando o atendimento de outra pessoa que tem um problema real esperando resposta. Quanto mais completa a peneira abaixo, mais rápido eu resolvo problema de verdade.</p>
         </div>
       </div>
 
-      <p class="footer-note">Priorize o e-mail sempre que possível,é o jeito mais rápido de chegar até mim.</p>
+      <div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+      <div id="app"></div>
+
+      <!-- ── ETAPA FINAL: canais de envio, revelada só depois da peneira ── -->
+      <div id="finalStep" style="display:none;">
+
+        <p class="msg-note">✅ Mensagem pronta. Escolha um canal abaixo — o texto já vai preenchido, você só confirma o envio.</p>
+
+        <div class="msg-preview" id="msgPreview"></div>
+        <button type="button" class="copy-msg-btn" id="copyMsgBtn">Copiar mensagem</button>
+
+        <!-- E-MAIL: canal principal, mais rápido -->
+        <div class="channel-card primary">
+          <div class="channel-top">
+            <div class="channel-icon email">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                <path d="M3 6.5A1.5 1.5 0 014.5 5h15A1.5 1.5 0 0121 6.5v11a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 17.5v-11z" stroke="#ff9999" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M4 6.5l8 6.5 8-6.5" stroke="#ff9999" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="channel-title-row">
+                <span class="channel-title">E-mail</span>
+                <span class="channel-badge fast">⚡ Mais rápido</span>
+              </div>
+            </div>
+          </div>
+          <p class="channel-desc">Meu canal principal de suporte. Eu leio e respondo e-mail bem mais rápido do que mensagem.</p>
+          <a href="#" class="channel-btn email-btn" id="mailtoBtn">Enviar E-mail</a>
+          <p class="email-hint">Botão não abriu seu app de e-mail? A mensagem já foi copiada — cola direto no seu app.</p>
+          <div class="email-fallback">
+            <span class="email-fallback-text" id="emailAddr">suportemarcosbrito@gmail.com</span>
+            <button type="button" class="email-copy-btn" id="copyEmailBtn">Copiar</button>
+          </div>
+        </div>
+
+        <!-- WHATSAPP: canal secundário, mais lento -->
+        <div class="channel-card">
+          <div class="channel-top">
+            <div class="channel-icon whats">💬</div>
+            <div>
+              <div class="channel-title-row">
+                <span class="channel-title">WhatsApp</span>
+                <span class="channel-badge slow">Resposta mais lenta</span>
+              </div>
+            </div>
+          </div>
+          <p class="channel-desc">Canal secundário. Como recebo muitas mensagens por dia, a resposta por aqui costuma demorar bem mais que por e-mail.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="channel-btn whats-btn" id="whatsBtn">Chamar no WhatsApp</a>
+        </div>
+
+        <button type="button" class="back-link" id="restartBtn">← Refazer as perguntas</button>
+      </div>
+
+      <p class="footer-note">Priorize o e-mail sempre que possível, é o jeito mais rápido de chegar até mim.</p>
 
       <p class="footer-sig">© 2026 Marcos Brito</p>
     </div>
   </div>
 
   <script>
+    // ═══════════════════════════════════════════════════════════════════
+    // CATÁLOGO DE PRODUTOS (base: BIO INSTA)
+    // ═══════════════════════════════════════════════════════════════════
+    var ANTIVADE_PRODUCTS = [
+      'Anti-Vade Mecum Carreira Policial', 'Anti-Vade Mecum PPRS', 'Anti-Vade Mecum GMA',
+      'Anti-Vade Mecum PMPE', 'Anti-Vade Mecum PCPE', 'Anti-Vade Mecum PPPE',
+      'Anti-Vade Mecum PCMA', 'Anti-Vade Mecum PMAL', 'Anti-Vade Mecum PPRN',
+      'Anti-Vade Mecum PMPI', 'Anti-Vade Mecum PCAL',
+    ];
+    var KIT_PRODUCTS = [
+      'KIT PPRS', 'KIT PP PB', 'KIT PP MA', 'KIT PMAL', 'KIT PMBA', 'KIT PMPE',
+      'KIT PMES', 'KIT PMESP', 'KIT PMMA', 'KIT PMMG', 'KIT PPRN', 'KIT PMPI',
+      'KIT PMDF Praça', 'KIT Guarda Civil Municipal de Aracaju',
+      'KIT Guarda Civil Municipal de Pouso Alegre',
+      'KIT Guarda Civil Municipal de São José de Ribamar',
+      'KIT Guarda Civil Municipal de Maceió',
+    ];
+
+    var formData = {};
+
+    var app = document.getElementById('app');
+    var progress = document.getElementById('progress');
+    function setProgress(pct) { progress.style.width = pct + '%'; }
+
+    function mount(html) {
+      app.style.opacity = 0;
+      setTimeout(function () {
+        app.innerHTML = html;
+        app.style.opacity = 1;
+      }, 100);
+    }
+
+    function optButtons(options, onClickFnName, extraClass) {
+      return options.map(function (opt) {
+        return '<button class="opt-btn' + (extraClass ? ' ' + extraClass : '') + '" onclick="' + onClickFnName + '(\'' + opt.replace(/'/g, "\\'") + '\')">' + opt + '</button>';
+      }).join('');
+    }
+
+    // ── ETAPA 1: categoria do produto ──
+    function stage1() {
+      setProgress(14);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 1 de 5</p>' +
+        '<h2 class="stage-title">Qual produto você comprou (ou tentou comprar)?</h2>' +
+        '<div class="opt-list">' +
+          optButtons([
+            '📕 Anti-Vade Mecum',
+            '📗 Anti-Gramática 2.0',
+            '🎯 Reta Final PPRS',
+            '🗂️ Kit Edital Verticalizado',
+            '👥 Grupo de WhatsApp (gratuito)',
+            '🎓 Método 6PF',
+            '❓ Outro / não sei o nome exato',
+          ], 'chooseCategoria') +
+        '</div>'
+      );
+    }
+
+    function chooseCategoria(c) {
+      formData.categoria = c;
+      if (c.indexOf('Anti-Vade Mecum') !== -1) { stage1b(ANTIVADE_PRODUCTS); return; }
+      if (c.indexOf('Kit Edital') !== -1) { stage1b(KIT_PRODUCTS); return; }
+      formData.produto = c.replace(/^[^\wÀ-ú]+\s*/, '');
+      stage2();
+    }
+
+    // ── ETAPA 1b: produto específico (só Anti-Vade / Kit) ──
+    function stage1b(list) {
+      setProgress(22);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 1 de 5</p>' +
+        '<h2 class="stage-title">Qual especificamente?</h2>' +
+        '<div class="opt-list">' + optButtons(list, 'chooseProduto', 'small') + '</div>' +
+        '<button class="back-link" onclick="stage1()">← Voltar</button>'
+      );
+    }
+
+    function chooseProduto(p) {
+      formData.produto = p;
+      stage2();
+    }
+
+    // ── ETAPA 2: motivo do contato ──
+    function stage2() {
+      setProgress(38);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 2 de 5</p>' +
+        '<h2 class="stage-title">Qual é o motivo do seu contato?</h2>' +
+        '<div class="opt-list">' +
+          optButtons([
+            '📦 Não recebi o material/acesso',
+            '🔗 Link não abre ou dá erro',
+            '💳 Cobrança duplicada ou pagamento não reconhecido',
+            '⚠️ Erro técnico usando o material',
+            '💰 Quero reembolso (dentro da garantia)',
+            '📄 Recebi o material errado ou incompleto',
+            '❓ Outro motivo',
+          ], 'chooseMotivo') +
+        '</div>' +
+        '<button class="back-link" onclick="' + (formData.categoria && (formData.categoria.indexOf('Anti-Vade') !== -1 || formData.categoria.indexOf('Kit') !== -1) ? 'stage1b(window.__lastList)' : 'stage1()') + '">← Voltar</button>'
+      );
+      if (formData.categoria && formData.categoria.indexOf('Anti-Vade Mecum') !== -1) window.__lastList = ANTIVADE_PRODUCTS;
+      if (formData.categoria && formData.categoria.indexOf('Kit Edital') !== -1) window.__lastList = KIT_PRODUCTS;
+    }
+
+    function chooseMotivo(m) {
+      formData.motivo = m;
+      if (m.indexOf('Não recebi') !== -1) { stage3(['Pix', 'Cartão de crédito', 'Boleto', 'Não sei / não lembro'], 'Forma de pagamento'); return; }
+      if (m.indexOf('Link não abre') !== -1) { stage3(['Dá mensagem de erro', 'Não abre nada, tela em branco', 'Pede senha que eu não tenho', 'Outro problema no link'], 'O que acontece exatamente'); return; }
+      if (m.indexOf('Cobrança duplicada') !== -1) { stage3(['Apareceu 2 vezes', 'Apareceu 3 vezes ou mais', 'Não sei quantas vezes'], 'Quantas vezes a cobrança apareceu'); return; }
+      if (m.indexOf('reembolso') !== -1) { stage3(['Comprei hoje ou ontem', 'Comprei essa semana', 'Comprei há mais de 7 dias'], 'Há quanto tempo comprou'); return; }
+      stage4();
+    }
+
+    // ── ETAPA 3: pergunta condicional (só aparece pra alguns motivos) ──
+    function stage3(options, label) {
+      setProgress(52);
+      formData.detalheLabel = label;
+      mount(
+        '<p class="stage-eyebrow">Pergunta 3 de 5</p>' +
+        '<h2 class="stage-title">' + label + '</h2>' +
+        '<div class="opt-list">' + optButtons(options, 'chooseDetalhe') + '</div>' +
+        '<button class="back-link" onclick="stage2()">← Voltar</button>'
+      );
+    }
+
+    function chooseDetalhe(d) {
+      formData.detalhe = d;
+      stage4();
+    }
+
+    // ── ETAPA 4: e-mail usado na compra ──
+    function stage4() {
+      setProgress(72);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 4 de 5</p>' +
+        '<h2 class="stage-title">Qual e-mail você usou na compra?</h2>' +
+        '<p class="stage-sub">É assim que eu localizo seu pedido no sistema de pagamento.</p>' +
+        '<input type="email" class="field-input" id="emailInput" placeholder="seuemail@gmail.com" value="' + (formData.email || '') + '" />' +
+        '<button class="stage-cta" onclick="submitEmail()">Continuar</button>' +
+        '<button class="back-link" onclick="' + (formData.detalhe ? 'stage3Back()' : 'stage2()') + '">← Voltar</button>'
+      );
+      document.getElementById('emailInput').focus();
+    }
+
+    function stage3Back() {
+      // Reconstrói a etapa 3 com as mesmas opções, caso a pessoa volte
+      chooseMotivo(formData.motivo);
+    }
+
+    function submitEmail() {
+      var val = document.getElementById('emailInput').value.trim();
+      formData.email = val || 'não informado';
+      stage5();
+    }
+
+    // ── ETAPA 5: descrição livre ──
+    function stage5() {
+      setProgress(88);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 5 de 5</p>' +
+        '<h2 class="stage-title">Agora descreve com suas palavras o que está acontecendo</h2>' +
+        '<p class="stage-sub">Quanto mais detalhe, mais rápido eu resolvo. Não tem limite de texto.</p>' +
+        '<textarea class="field-input" id="descInput" placeholder="Conta aqui exatamente o que aconteceu..."></textarea>' +
+        '<button class="stage-cta" onclick="submitDesc()">Gerar minha mensagem</button>' +
+        '<button class="back-link" onclick="stage4()">← Voltar</button>'
+      );
+      document.getElementById('descInput').focus();
+    }
+
+    function submitDesc() {
+      var val = document.getElementById('descInput').value.trim();
+      formData.descricao = val || '(não descrito)';
+      finishWizard();
+    }
+
+    // ── ETAPA FINAL: gera a mensagem e revela os canais ──
+    function buildMessage() {
+      var lines = [];
+      lines.push('🎯 SUPORTE PRIORITÁRIO — Marcos Brito');
+      lines.push('');
+      lines.push('Produto: ' + (formData.produto || '-'));
+      lines.push('Motivo do contato: ' + (formData.motivo || '-'));
+      if (formData.detalhe) lines.push(formData.detalheLabel + ': ' + formData.detalhe);
+      lines.push('E-mail usado na compra: ' + (formData.email || '-'));
+      lines.push('');
+      lines.push('Descrição do problema:');
+      lines.push(formData.descricao || '-');
+      return lines.join('\n');
+    }
+
+    function finishWizard() {
+      setProgress(100);
+      var msg = buildMessage();
+
+      document.getElementById('app').style.display = 'none';
+      var finalStep = document.getElementById('finalStep');
+      finalStep.style.display = 'block';
+      document.getElementById('msgPreview').textContent = msg;
+
+      var subject = encodeURIComponent('Suporte Prioritário - ' + (formData.produto || 'Produto'));
+      var body = encodeURIComponent(msg);
+      document.getElementById('mailtoBtn').setAttribute('href', 'mailto:suportemarcosbrito@gmail.com?subject=' + subject + '&body=' + body);
+      document.getElementById('whatsBtn').setAttribute('href', 'https://wa.me/557598921501?text=' + encodeURIComponent(msg));
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('restartBtn').addEventListener('click', function () {
+      formData = {};
+      document.getElementById('finalStep').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      stage1();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    stage1();
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Cópia pra área de transferência (mensagem + e-mail) e rede de
+    // segurança do mailto: (pode falhar em silêncio sem app padrão)
+    // ═══════════════════════════════════════════════════════════════════
     (function () {
-      var btn = document.getElementById('copyEmailBtn');
+      function makeCopier(btn, getText, labels) {
+        if (!btn) return function () {};
+        var originalLabel = btn.textContent;
+        var resetTimer = null;
+
+        function done(ok) {
+          btn.textContent = ok ? (labels && labels.ok || 'Copiado ✓') : (labels && labels.fail || 'Toque e segure pra copiar');
+          btn.classList.toggle('copied', ok);
+          clearTimeout(resetTimer);
+          resetTimer = setTimeout(function () {
+            btn.textContent = originalLabel;
+            btn.classList.remove('copied');
+          }, 2200);
+        }
+
+        function legacyCopy(text) {
+          try {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.top = '-9999px';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            ta.setSelectionRange(0, text.length);
+            var ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            done(ok);
+          } catch (e) {
+            done(false);
+          }
+        }
+
+        return function () {
+          var text = getText();
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { done(true); }).catch(function () { legacyCopy(text); });
+          } else {
+            legacyCopy(text);
+          }
+        };
+      }
+
+      var copyEmailBtn = document.getElementById('copyEmailBtn');
+      var copyEmail = makeCopier(copyEmailBtn, function () {
+        return document.getElementById('emailAddr').textContent.trim();
+      });
+      if (copyEmailBtn) copyEmailBtn.addEventListener('click', copyEmail);
+
       var mailtoBtn = document.getElementById('mailtoBtn');
-      if (!btn) return;
-      var email = document.getElementById('emailAddr').textContent.trim();
-      var originalLabel = btn.textContent;
-      var resetTimer = null;
+      if (mailtoBtn) mailtoBtn.addEventListener('click', function () { copyEmail(); });
 
-      function done(ok) {
-        btn.textContent = ok ? 'Copiado ✓' : 'Toque e segure pra copiar';
-        btn.classList.toggle('copied', ok);
-        clearTimeout(resetTimer);
-        resetTimer = setTimeout(function () {
-          btn.textContent = originalLabel;
-          btn.classList.remove('copied');
-        }, 2200);
-      }
-
-      function legacyCopy() {
-        try {
-          var ta = document.createElement('textarea');
-          ta.value = email;
-          ta.style.position = 'fixed';
-          ta.style.top = '-9999px';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.focus();
-          ta.select();
-          ta.setSelectionRange(0, email.length);
-          var ok = document.execCommand('copy');
-          document.body.removeChild(ta);
-          done(ok);
-        } catch (e) {
-          done(false);
-        }
-      }
-
-      function copyEmail() {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(email).then(function () { done(true); }).catch(legacyCopy);
-        } else {
-          legacyCopy();
-        }
-      }
-
-      btn.addEventListener('click', copyEmail);
-
-      // ── Rede de segurança: copia o e-mail também ao clicar no botão principal,
-      // caso o dispositivo não tenha app de e-mail padrão e o mailto: falhe em silêncio ──
-      if (mailtoBtn) {
-        mailtoBtn.addEventListener('click', function () { copyEmail(); });
-      }
+      var copyMsgBtn = document.getElementById('copyMsgBtn');
+      var copyMsg = makeCopier(copyMsgBtn, function () {
+        return document.getElementById('msgPreview').textContent;
+      }, { ok: 'Mensagem copiada ✓', fail: 'Toque e segure pra copiar' });
+      if (copyMsgBtn) copyMsgBtn.addEventListener('click', copyMsg);
     })();
   </script>
 </body>
