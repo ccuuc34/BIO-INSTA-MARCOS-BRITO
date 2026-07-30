@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edital Verticalizado PC BA 2026 Grátis | Marcos Brito</title>
+  <title>Edital PC BA + Aulão Ao Vivo Grátis | Marcos Brito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -26,21 +26,8 @@
       pointer-events: none; z-index: 0;
     }
 
-    /* ── Barra de progresso fixa ── */
-    .progress-wrap {
-      position: fixed; top: 0; left: 0; width: 100%; height: 5px;
-      background: rgba(255,255,255,0.06); z-index: 50;
-    }
-    .progress-bar {
-      height: 100%; width: 0%;
-      background: linear-gradient(90deg, #8b171a, #e84040);
-      transition: width 0.4s ease;
-    }
-
     .page { position: relative; z-index: 1; min-height: 100vh; display: flex; justify-content: center; padding: 44px 20px 56px; }
     .card { width: 100%; max-width: 480px; }
-    #app { animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
     .eyebrow {
       font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
@@ -52,22 +39,36 @@
 
     .headline {
       font-family: 'Sora', sans-serif; font-weight: 800;
-      font-size: clamp(21px, 6.4vw, 30px); color: #F6F6F6;
-      text-align: center; line-height: 1.28; margin-bottom: 14px;
+      font-size: clamp(22px, 6.8vw, 32px); color: #F6F6F6;
+      text-align: center; line-height: 1.24; margin-bottom: 14px;
     }
-    .headline.left { text-align: left; font-size: clamp(19px, 5.6vw, 24px); }
     .headline .accent { color: #AF9064; }
 
     .desc {
       font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
       color: rgba(246,246,246,0.72); line-height: 1.75; text-align: center;
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
-    .desc.left { text-align: left; }
     .desc strong { color: #F6F6F6; font-weight: 700; }
 
+    /* ── O que você vai receber ── */
+    .offer-box {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(139,23,26,0.3);
+      border-radius: 14px; padding: 18px 20px; margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25); text-align: left;
+    }
+    .offer-box .offer-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      color: #8b171a; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .offer-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+    .offer-item:last-child { margin-bottom: 0; }
+    .offer-item .check { color: #0abe52; font-weight: 800; flex-shrink: 0; }
+    .offer-item span { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14.5px; color: rgba(246,246,246,0.85); line-height: 1.45; }
+    .offer-item strong { color: #AF9064; }
+
     /* ── Form fields ── */
-    .field { margin-bottom: 10px; }
+    .field { margin-bottom: 14px; }
     .field label {
       display: block; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
       color: rgba(246,246,246,0.85); margin-bottom: 7px;
@@ -85,26 +86,33 @@
     }
     .field input:focus { border-color: rgba(139,23,26,0.6); }
     .field input::placeholder { color: rgba(246,246,246,0.28); }
+    .field input.error { border-color: #e84040; }
 
-    .radio-group { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+    /* ── Perguntas estratégicas ── */
+    .question-block { margin: 22px 0; }
+    .question-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      color: rgba(246,246,246,0.85); line-height: 1.4; margin-bottom: 12px;
+    }
+    .radio-group { display: flex; flex-direction: column; gap: 8px; }
     .radio-opt {
       display: flex; align-items: flex-start; gap: 10px; cursor: pointer;
       background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
-      border-radius: 10px; padding: 14px 15px; transition: border-color 0.2s, background 0.2s, transform 0.12s;
+      border-radius: 10px; padding: 13px 15px; transition: border-color 0.2s, background 0.2s, transform 0.12s;
     }
     .radio-opt:hover { border-color: rgba(139,23,26,0.45); background: rgba(139,23,26,0.06); }
     .radio-opt:active { transform: scale(0.98); }
     .radio-opt span {
-      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14.5px;
-      color: rgba(246,246,246,0.85); line-height: 1.45;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px;
+      color: rgba(246,246,246,0.85); line-height: 1.4;
     }
     .radio-opt.selected { border-color: #8b171a; background: rgba(139,23,26,0.14); }
 
     /* ── CTA (snake shimmer) ── */
-    .cta-wrap { width: 100%; margin-top: 26px; }
+    .cta-wrap { width: 100%; margin-top: 24px; }
     .cta-snake {
       position: relative; width: 100%; border-radius: 16px; padding: 3px; overflow: hidden;
-      box-shadow: 0 0 70px rgba(139,23,26,0.5), 0 16px 36px rgba(0,0,0,0.5);
+      box-shadow: 0 0 50px rgba(139,23,26,0.4), 0 12px 28px rgba(0,0,0,0.4);
     }
     .cta-snake::before {
       content: ''; position: absolute; width: 300%; height: 300%; top: 50%; left: 50%;
@@ -118,6 +126,7 @@
     @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
     .cta {
       position: relative; z-index: 1;
+      -webkit-appearance: none; appearance: none;
       display: flex; align-items: center; justify-content: center; gap: 8px;
       width: 100%; padding: 18px 20px; background: #8b171a;
       border: none; border-radius: 13px; cursor: pointer;
@@ -126,16 +135,11 @@
       text-decoration: none;
     }
     .cta svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .cta:disabled { opacity: 0.6; cursor: not-allowed; }
+    .cta.is-loading { background: #8b171a; color: #fff; opacity: 0.85; cursor: not-allowed; }
     .cta-note { font-family: 'Nunito', sans-serif; font-size: 12px; color: rgba(246,246,246,0.32); text-align: center; margin-top: 10px; }
-    .back-link {
-      display: block; text-align: center; margin-top: 16px;
-      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
-      color: rgba(246,246,246,0.35); cursor: pointer; background: none; border: none;
-    }
 
     /* Variante verde (WhatsApp) usada no botão de grupo */
-    .cta-snake-green { box-shadow: 0 0 70px rgba(37,211,102,0.4), 0 16px 36px rgba(0,0,0,0.5); }
+    .cta-snake-green { box-shadow: 0 0 50px rgba(37,211,102,0.3), 0 12px 28px rgba(0,0,0,0.4); }
     .cta-snake-green::before {
       background: conic-gradient(from 0deg, transparent 0deg, transparent 255deg,
         rgba(0,150,80,0.08) 272deg, rgba(0,190,100,0.55) 288deg, #25D366 302deg,
@@ -144,13 +148,22 @@
     }
     .cta-green { background: #128C4A; margin-top: 12px; }
 
-    /* ── Success screen ── */
-    .success-check {
-      width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 20px;
-      background: rgba(10,190,82,0.12); border: 1px solid rgba(10,190,82,0.35);
+    /* ── Tela de sucesso (pós-envio) ── */
+    .check-wrap {
+      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 22px;
+      background: rgba(10,190,82,0.12); border: 1.5px solid rgba(10,190,82,0.4);
       display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 32px rgba(10,190,82,0.18); animation: pulse 2.5s ease-in-out infinite;
     }
-    .success-check svg { width: 32px; height: 32px; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 32px rgba(10,190,82,0.18); } 50% { box-shadow: 0 0 48px rgba(10,190,82,0.32); } }
+    .check-wrap svg { width: 32px; height: 32px; }
+
+    .instruction-box {
+      width: 100%; background: rgba(139,23,26,0.1); border: 1px solid rgba(139,23,26,0.3);
+      border-radius: 12px; padding: 16px 18px; margin-bottom: 24px; text-align: left;
+    }
+    .instruction-box span { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px; color: rgba(246,246,246,0.8); line-height: 1.6; }
+    .instruction-box strong { color: #F6F6F6; }
 
     .footer-sig {
       margin-top: 36px; text-align: center;
@@ -160,10 +173,50 @@
   </style>
 </head>
 <body>
-  <div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
   <div class="page">
     <div class="card">
-      <div id="app"></div>
+
+      <div id="formScreen">
+        <div class="eyebrow-row"><span class="eyebrow">🔥 Vagas limitadas · Turma 2026</span></div>
+        <h1 class="headline">Eu vou te dar de graça o Edital PC BA <span class="accent">+ um Aulão Ao Vivo.</span><br>Só falta garantir sua vaga.</h1>
+        <p class="desc">Preenche os dados abaixo que eu libero seu edital agora mesmo, aqui na tela. O <strong>Edital Verticalizado da Polícia Civil da Bahia 2026</strong> aparece pra você baixar assim que você terminar — é rapidinho, menos de 1 minuto.</p>
+
+        <div class="offer-box">
+          <div class="offer-title">O que eu separei pra você</div>
+          <div class="offer-item"><span class="check">✓</span><span><strong>Edital Verticalizado PC BA 2026</strong> completo, liberado na hora</span></div>
+          <div class="offer-item"><span class="check">✓</span><span>Um <strong>aulão ao vivo, de graça</strong>, onde eu vou destrinchar o que mais cai na prova</span></div>
+          <div class="offer-item"><span class="check">✓</span><span>Bônus: eu mesmo vou <strong>analisar o edital inteiro ao vivo</strong>, matéria por matéria</span></div>
+        </div>
+
+        <div id="app"></div>
+      </div>
+
+      <div id="successScreen" style="display:none; text-align:center;">
+        <div class="check-wrap">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#0abe52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="eyebrow-row"><span class="eyebrow">✅ Tudo certo</span></div>
+        <h1 class="headline">Prontinho! Seu <span class="accent">Edital PC BA</span> já tá liberado.</h1>
+        <p class="desc">Clica no botão abaixo e baixa agora. E entra no grupo comigo também — é lá que eu aviso a data do aulão ao vivo e mando o que mais cai antes de todo mundo.</p>
+
+        <div class="instruction-box">
+          <span><strong>Baixa agora:</strong> clica no botão vermelho e o PDF abre direto. Depois entra no grupo — é por lá que eu aviso o aulão ao vivo e a análise do edital.</span>
+        </div>
+
+        <div class="cta-wrap">
+          <div class="cta-snake">
+            <a href="/Edital-Verticalizado-PCBA-2026.pdf" download class="cta">⬇️ Baixar Edital Verticalizado PC BA</a>
+          </div>
+          <div class="cta-snake cta-snake-green">
+            <a href="https://chat.whatsapp.com/FPMcZtyakTFCKqpR5kz2R0" target="_blank" rel="noopener noreferrer" class="cta cta-green" id="grupoLinkBtn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.462 3.485 1.34 5.003l-1.427 5.211 5.34-1.4a9.965 9.965 0 004.744 1.183h.004c5.514 0 9.996-4.483 9.996-9.997 0-2.67-1.04-5.18-2.928-7.069a9.935 9.935 0 00-7.072-2.928zm0 18.187h-.003a8.184 8.184 0 01-4.166-1.14l-.299-.177-3.169.831.846-3.089-.195-.317a8.194 8.194 0 01-1.259-4.372c0-4.522 3.68-8.203 8.204-8.203 2.19 0 4.25.854 5.799 2.403a8.15 8.15 0 012.402 5.803c0 4.523-3.681 8.204-8.16 8.204z"/></svg>
+              Entrar no grupo da turma
+            </a>
+          </div>
+          <p class="cta-note">É lá dentro que eu aviso o aulão ao vivo</p>
+        </div>
+      </div>
+
       <p class="footer-sig">© 2026 Marcos Brito</p>
     </div>
   </div>
@@ -171,28 +224,15 @@
   <script>
     // ATENÇÃO: cole aqui a URL do Web App do Google Apps Script depois de implantar (pendente pra PCBA)
     var SHEET_WEBAPP_URL = "";
-    // Link do grupo de WhatsApp da turma PC BA
+    // Link do grupo de WhatsApp compartilhado (mesmo grupo da turma PC AL / PC BA)
     var GRUPO_LINK = "https://chat.whatsapp.com/FPMcZtyakTFCKqpR5kz2R0";
 
-    var formData = {};
+    document.getElementById('grupoLinkBtn').href = GRUPO_LINK;
+
     var app = document.getElementById('app');
-    var progress = document.getElementById('progress');
+    var respostas = { leiseca1: '', leiseca2: '', mentalidade: '', direcao: '', rotina: '', fixacao: '' };
+    var isSubmitting = false;
 
-    function setProgress(pct) { progress.style.width = pct + '%'; }
-
-    function mount(html, afterMount) {
-      app.style.opacity = 0;
-      setTimeout(function () {
-        app.innerHTML = html;
-        app.style.opacity = 1;
-        if (afterMount) afterMount();
-        var firstInput = app.querySelector('input[type="text"], input[type="tel"], input[type="email"]');
-        if (firstInput) firstInput.focus();
-      }, 130);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Trava o campo em tempo real: só dígitos, no máximo 11 (DDD + 9 número).
     function maskWhatsapp(value) {
       var d = (value || '').replace(/\D/g, '').substring(0, 11);
       if (d.length === 0) return '';
@@ -204,7 +244,6 @@
       return '(' + ddd + ') ' + rest.substring(0, 5) + '-' + rest.substring(5);
     }
 
-    // Normaliza qualquer formato pro canônico 55DDNNNNNNNNN, pronto pra API oficial de WhatsApp.
     function normalizeWhatsapp(raw) {
       var digits = (raw || '').replace(/\D/g, '');
       if (digits.length === 0) return null;
@@ -219,226 +258,181 @@
       return { clean: '55' + ddd + numero };
     }
 
-    // options: cada item pode ser uma string simples (label = value) ou um
-    // objeto { label, value } quando o texto mostrado precisa ser diferente
-    // do valor salvo na planilha (ex: sem a tag de produto visível pro candidato).
-    function renderRadioStage(headline, options, key, nextFn, isLast, backFn) {
-      var html = '<h2 class="headline left">' + headline + '</h2><div class="radio-group">';
-      options.forEach(function (opt, i) {
-        var label = (typeof opt === 'string') ? opt : opt.label;
-        html += '<div class="radio-opt" data-idx="' + i + '"><span>' + label + '</span></div>';
-      });
-      html += '</div><button class="back-link" id="backBtn" type="button">← Voltar</button>';
-
-      mount(html, function () {
-        var opts = app.querySelectorAll('.radio-opt');
-        opts.forEach(function (el, i) {
-          el.addEventListener('click', function () {
-            if (el.classList.contains('selected')) return;
-            opts.forEach(function (o) { o.classList.remove('selected'); });
-            el.classList.add('selected');
-            var opt = options[i];
-            formData[key] = (typeof opt === 'string') ? opt : opt.value;
-            setTimeout(function () {
-              if (isLast) { submitToSheet(); }
-              nextFn();
-            }, 380);
-          });
+    function renderRadioGroup(container, options, onSelect) {
+      var opts = container.querySelectorAll('.radio-opt');
+      opts.forEach(function (el, i) {
+        el.addEventListener('click', function () {
+          opts.forEach(function (o) { o.classList.remove('selected'); });
+          el.classList.add('selected');
+          onSelect(options[i]);
         });
-        document.getElementById('backBtn').addEventListener('click', backFn);
       });
     }
 
-    // ── STAGE 1: Nome ──
-    function stage1() {
-      setProgress(8);
-      mount(
-        '<div class="eyebrow-row"><span class="eyebrow">📋 Gratuito · Edição 2026</span></div>' +
-        '<h1 class="headline">Edital Verticalizado PC BA <span class="accent">Grátis.</span><br>Garanta o seu agora.</h1>' +
-        '<p class="desc">Você está prestes a receber o <strong>Edital Verticalizado da Polícia Civil da Bahia 2026</strong>, sem pagar nada por isso. É rapidinho (menos de 1 minuto) e assim que você terminar, ele já aparece aqui na tela pra você baixar.</p>' +
-        '<div class="field"><label for="nome">Seu nome</label><input type="text" id="nome" placeholder="Digite seu nome completo"></div>' +
-        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btn1">Continuar</button></div></div>',
-        function () {
-          document.getElementById('btn1').addEventListener('click', function () {
-            var v = document.getElementById('nome').value.trim();
-            if (!v) { document.getElementById('nome').style.borderColor = '#e84040'; return; }
-            formData.nome = v;
-            stage2();
-          });
-        }
-      );
-    }
+    app.innerHTML =
+      '<div class="field"><label for="nome">Seu nome</label><input type="text" id="nome" placeholder="Digite seu nome completo"></div>' +
+      '<div class="field"><label for="email">Seu melhor e-mail</label><input type="email" id="email" placeholder="seuemail@exemplo.com">' +
+      '<span class="hint" id="emailError" style="color:#e84040; display:none;">Digita um e-mail válido pra continuar.</span></div>' +
+      '<div class="field"><label for="whatsapp">Seu WhatsApp com DDD</label><input type="tel" inputmode="numeric" id="whatsapp" placeholder="71 99999-9999">' +
+      '<span class="hint" id="whatsappError" style="color:#e84040; display:none;">Número inválido. Confere o DDD e o número e tenta de novo.</span></div>' +
 
-    // ── STAGE 2: WhatsApp ──
-    function stage2() {
-      setProgress(16);
-      mount(
-        '<h2 class="headline left">Seu WhatsApp com DDD</h2>' +
-        '<p class="desc left">É pra onde vamos te avisar sobre o material de prioridades da PCBA</p>' +
-        '<div class="field"><input type="tel" inputmode="numeric" id="whatsapp" placeholder="71 99999-9999">' +
-        '<span class="hint" id="whatsappError" style="color:#e84040; display:none;">Número inválido. Confere o DDD e o número e tenta de novo.</span></div>' +
-        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btn2">Continuar</button></div></div>' +
-        '<button class="back-link" id="backBtn2" type="button">← Voltar</button>',
-        function () {
-          var field = document.getElementById('whatsapp');
-          field.addEventListener('input', function () { field.value = maskWhatsapp(field.value); });
-          document.getElementById('backBtn2').addEventListener('click', stage1);
-          document.getElementById('btn2').addEventListener('click', function () {
-            var parsed = normalizeWhatsapp(field.value);
-            if (!parsed) { document.getElementById('whatsappError').style.display = 'block'; return; }
-            formData.whatsapp = parsed.clean;
-            stage3();
-          });
-        }
-      );
-    }
+      '<div class="question-block"><p class="question-title">Qual é a sua maior dificuldade com a lei seca hoje?</p>' +
+      '<div class="radio-group" id="leiseca1Group">' +
+        '<div class="radio-opt"><span>Não consigo nem começar, travo só de olhar o tamanho da lei</span></div>' +
+        '<div class="radio-opt"><span>Leio, decoro, esqueço tudo em poucos dias</span></div>' +
+        '<div class="radio-opt"><span>Entendo o texto, mas erro pegadinha na hora da prova</span></div>' +
+        '<div class="radio-opt"><span>Nem sei direito quais leis realmente caem nessa prova</span></div>' +
+      '</div></div>' +
 
-    // ── STAGE 3: E-mail ──
-    function stage3() {
-      setProgress(24);
-      mount(
-        '<h2 class="headline left">Seu melhor e-mail</h2>' +
-        '<p class="desc left">Vamos usar pra te mandar novidade e conteúdo extra também</p>' +
-        '<div class="field"><input type="email" id="email" placeholder="seuemail@exemplo.com">' +
-        '<span class="hint" id="emailError" style="color:#e84040; display:none;">Digita um e-mail válido pra continuar.</span></div>' +
-        '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btn3">Continuar</button></div></div>' +
-        '<button class="back-link" id="backBtn3" type="button">← Voltar</button>',
-        function () {
-          document.getElementById('backBtn3').addEventListener('click', stage2);
-          document.getElementById('btn3').addEventListener('click', function () {
-            var field = document.getElementById('email');
-            if (!field.checkValidity() || !field.value.trim()) {
-              document.getElementById('emailError').style.display = 'block';
-              return;
-            }
-            formData.email = field.value.trim();
-            stage4();
-          });
-        }
-      );
-    }
+      '<div class="question-block"><p class="question-title">Hoje, como você estuda lei seca na prática?</p>' +
+      '<div class="radio-group" id="leiseca2Group">' +
+        '<div class="radio-opt"><span>Não estudo, sempre acabo deixando pra depois</span></div>' +
+        '<div class="radio-opt"><span>Estudo sem método, lendo a lei crua do jeito que vem</span></div>' +
+        '<div class="radio-opt"><span>Tenho resumo, mas não consigo fixar</span></div>' +
+        '<div class="radio-opt"><span>Estudo só o que "acho" que cai, sem ter certeza</span></div>' +
+      '</div></div>' +
 
-    // ── STAGE 4: O que mais te trava ──
-    function stage4() {
-      setProgress(32);
-      renderRadioStage(
-        'O que mais te trava na sua preparação pra Polícia Civil da Bahia agora?',
-        [
-          'Não sei por onde começar, o edital é gigante',
-          'Tenho rotina puxada e pouco tempo pra estudar',
-          'Já estudo, mas não sei se estou focando no que realmente cai',
-          'Ainda estou decidindo se vou prestar esse concurso'
-        ],
-        'pergunta_trava', stage5, false, stage3
-      );
-    }
+      '<div class="question-block"><p class="question-title">Você já imaginou estudar sem aquela vozinha te dizendo que dessa vez também não vai dar certo? Seria o que pra você?</p>' +
+      '<div class="radio-group" id="mentalidadeGroup">' +
+        '<div class="radio-opt"><span>Seria libertador, mudaria tudo pra mim</span></div>' +
+        '<div class="radio-opt"><span>Seria muito bom</span></div>' +
+        '<div class="radio-opt"><span>Já não penso mais assim, tô numa boa</span></div>' +
+      '</div></div>' +
 
-    // ── STAGE 5: A verdade que dói ──
-    function stage5() {
-      setProgress(40);
-      renderRadioStage(
-        'Enquanto você lê isso, tem candidato que já decorou o edital inteiro. O que está te deixando pra trás?',
-        [
-          { label: 'Não sei nem por onde começar, edital parece um labirinto', value: 'Não sei nem por onde começar, edital parece um labirinto (→ Edital Verticalizado)' },
-          { label: 'Zero questão fácil de português por regra boba que eu "achava" que sabia', value: 'Zero questão fácil de português por regra boba que eu achava que sabia (→ Anti-Gramática)' },
-          { label: 'Abro a lei e sinto vontade de desistir do concurso inteiro', value: 'Abro a lei e sinto vontade de desistir do concurso inteiro (→ Anti-Vade Mecum)' },
-          { label: 'Estudo todo dia e sinto que não saio do lugar, sem método, sem direção', value: 'Estudo todo dia e sinto que não saio do lugar, sem método, sem direção (→ Método 6PF)' }
-        ],
-        'pergunta4', stage6, false, stage4
-      );
-    }
+      '<div class="question-block"><p class="question-title">Já imaginou abrir o material sabendo exatamente o que estudar hoje, sem perder tempo com o que quase não cai? Seria o que pra você?</p>' +
+      '<div class="radio-group" id="direcaoGroup">' +
+        '<div class="radio-opt"><span>Seria incrível, economizaria um tempo enorme</span></div>' +
+        '<div class="radio-opt"><span>Seria muito bom</span></div>' +
+        '<div class="radio-opt"><span>Já sei exatamente o que estudar</span></div>' +
+      '</div></div>' +
 
-    // ── STAGE 6: Lei seca ──
-    function stage6() {
-      setProgress(48);
-      renderRadioStage(
-        'Quantas vezes a lei seca já te fez fechar o material e assistir Netflix no lugar?',
-        [
-          { label: 'Sempre. Bate um bloqueio só de olhar o tamanho da lei', value: 'Sempre. Bate um bloqueio só de olhar o tamanho da lei (→ Anti-Vade Mecum)' },
-          { label: 'Estudo, decoro, esqueço em uma semana, ciclo sem fim', value: 'Estudo, decoro, esqueço em uma semana, ciclo sem fim (→ Anti-Vade Mecum)' },
-          { label: 'Quando vou ler lei seca, sinto vontade de desistir do concurso inteiro', value: 'Quando vou ler lei seca, sinto vontade de desistir do concurso inteiro (→ Anti-Vade Mecum)' },
-          { label: 'Nem sei se estou estudando a versão atualizada de 2026', value: 'Nem sei se estou estudando a versão atualizada de 2026 (→ Anti-Vade Mecum atualizado 2026)' }
-        ],
-        'pergunta_leiseca', stage7, false, stage5
-      );
-    }
+      '<div class="question-block"><p class="question-title">Já imaginou conseguir abrir o material todo santo dia, sem precisar de força de vontade pra isso? Seria o que pra você?</p>' +
+      '<div class="radio-group" id="rotinaGroup">' +
+        '<div class="radio-opt"><span>Seria libertador, é minha maior trava hoje</span></div>' +
+        '<div class="radio-opt"><span>Seria muito bom</span></div>' +
+        '<div class="radio-opt"><span>Já tenho essa rotina rodando</span></div>' +
+      '</div></div>' +
 
-    // ── STAGE 7: Mentalidade ──
-    function stage7() {
-      setProgress(56);
-      renderRadioStage(
-        'Você já imaginou estudar sem aquela vozinha te dizendo que dessa vez também não vai dar certo? Seria o que pra você?',
-        ['Seria libertador, mudaria tudo pra mim', 'Seria muito bom', 'Já não penso mais assim, tô numa boa'],
-        'pergunta_mentalidade', stage8, false, stage6
-      );
-    }
+      '<div class="question-block"><p class="question-title">Já imaginou revisar uma matéria e lembrar dela de verdade na hora da prova, sem esquecer em uma semana? Seria o que pra você?</p>' +
+      '<div class="radio-group" id="fixacaoGroup">' +
+        '<div class="radio-opt"><span>Seria incrível, é exatamente meu problema hoje</span></div>' +
+        '<div class="radio-opt"><span>Seria muito bom</span></div>' +
+        '<div class="radio-opt"><span>Já consigo fixar bem o que estudo</span></div>' +
+      '</div></div>' +
 
-    // ── STAGE 8: Direção do concurso ──
-    function stage8() {
-      setProgress(64);
-      renderRadioStage(
-        'Já imaginou abrir o material sabendo exatamente o que estudar hoje, sem perder tempo com o que quase não cai? Seria o que pra você?',
-        ['Seria incrível, economizaria um tempo enorme', 'Seria muito bom', 'Já sei exatamente o que estudar'],
-        'pergunta_direcao', stage9, false, stage7
-      );
-    }
+      '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btnEnviar">Quero meu edital grátis</button></div></div>' +
+      '<p class="cta-note">Seus dados são só pra eu te avisar do aulão e liberar o edital</p>';
 
-    // ── STAGE 9: Rotina ──
-    function stage9() {
-      setProgress(72);
-      renderRadioStage(
-        'Já imaginou conseguir abrir o material todo santo dia, sem precisar de força de vontade pra isso? Seria o que pra você?',
-        ['Seria libertador, é minha maior trava hoje', 'Seria muito bom', 'Já tenho essa rotina rodando'],
-        'pergunta_rotina', stage10, false, stage8
-      );
-    }
+    var leiseca1Options = [
+      'Não consigo nem começar, travo só de olhar o tamanho da lei',
+      'Leio, decoro, esqueço tudo em poucos dias',
+      'Entendo o texto, mas erro pegadinha na hora da prova',
+      'Nem sei direito quais leis realmente caem nessa prova'
+    ];
+    var leiseca2Options = [
+      'Não estudo, sempre acabo deixando pra depois',
+      'Estudo sem método, lendo a lei crua do jeito que vem',
+      'Tenho resumo, mas não consigo fixar',
+      'Estudo só o que "acho" que cai, sem ter certeza'
+    ];
+    var mentalidadeOptions = [
+      'Seria libertador, mudaria tudo pra mim',
+      'Seria muito bom',
+      'Já não penso mais assim, tô numa boa'
+    ];
+    var direcaoOptions = [
+      'Seria incrível, economizaria um tempo enorme',
+      'Seria muito bom',
+      'Já sei exatamente o que estudar'
+    ];
+    var rotinaOptions = [
+      'Seria libertador, é minha maior trava hoje',
+      'Seria muito bom',
+      'Já tenho essa rotina rodando'
+    ];
+    var fixacaoOptions = [
+      'Seria incrível, é exatamente meu problema hoje',
+      'Seria muito bom',
+      'Já consigo fixar bem o que estudo'
+    ];
 
-    // ── STAGE 10: Fixação / ciência de estudar ──
-    function stage10() {
-      setProgress(80);
-      renderRadioStage(
-        'Já imaginou revisar uma matéria e lembrar dela de verdade na hora da prova, sem esquecer em uma semana? Seria o que pra você?',
-        ['Seria incrível, é exatamente meu problema hoje', 'Seria muito bom', 'Já consigo fixar bem o que estudo'],
-        'pergunta_fixacao', stage11, false, stage9
-      );
-    }
+    renderRadioGroup(document.getElementById('leiseca1Group'), leiseca1Options, function (v) { respostas.leiseca1 = v; });
+    renderRadioGroup(document.getElementById('leiseca2Group'), leiseca2Options, function (v) { respostas.leiseca2 = v; });
+    renderRadioGroup(document.getElementById('mentalidadeGroup'), mentalidadeOptions, function (v) { respostas.mentalidade = v; });
+    renderRadioGroup(document.getElementById('direcaoGroup'), direcaoOptions, function (v) { respostas.direcao = v; });
+    renderRadioGroup(document.getElementById('rotinaGroup'), rotinaOptions, function (v) { respostas.rotina = v; });
+    renderRadioGroup(document.getElementById('fixacaoGroup'), fixacaoOptions, function (v) { respostas.fixacao = v; });
 
-    // ── STAGE 11: Quer saber prioridades (última pergunta) ──
-    function stage11() {
-      setProgress(90);
-      renderRadioStage(
-        'Se existisse uma forma de saber exatamente o que estudar primeiro nesse edital, sem perder tempo com o que quase nunca cai, você gostaria de receber essa informação também?',
-        ['Sim, quero saber', 'Não, prefiro estudar tudo por conta própria'],
-        'pergunta5', stage12, true, stage10
-      );
-    }
+    var whatsappField = document.getElementById('whatsapp');
+    whatsappField.addEventListener('input', function () { whatsappField.value = maskWhatsapp(whatsappField.value); });
 
-    // ── STAGE 12: Sucesso + download + grupo ──
-    function stage12() {
-      setProgress(100);
-      mount(
-        '<div class="success-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#0abe52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
-        '<h1 class="headline">Prontinho! ✅</h1>' +
-        '<p class="desc">Seu Edital Verticalizado já está liberado logo abaixo, clica no botão pra baixar. E como você marcou que quer saber o que estudar primeiro, prepara que em breve chega novidade boa no seu WhatsApp 😉🔥 Tem um aulão ao vivo gratuito chegando também, pra te ajudar a organizar por onde começar.</p>' +
-        '<div class="cta-wrap"><div class="cta-snake"><a href="/Edital-Verticalizado-PCBA-2026.pdf" download class="cta">⬇️ Baixar Edital Verticalizado PC BA</a></div>' +
-        '<div class="cta-snake cta-snake-green"><a href="' + GRUPO_LINK + '" target="_blank" rel="noopener noreferrer" class="cta cta-green">' +
-        '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.462 3.485 1.34 5.003l-1.427 5.211 5.34-1.4a9.965 9.965 0 004.744 1.183h.004c5.514 0 9.996-4.483 9.996-9.997 0-2.67-1.04-5.18-2.928-7.069a9.935 9.935 0 00-7.072-2.928zm0 18.187h-.003a8.184 8.184 0 01-4.166-1.14l-.299-.177-3.169.831.846-3.089-.195-.317a8.194 8.194 0 01-1.259-4.372c0-4.522 3.68-8.203 8.204-8.203 2.19 0 4.25.854 5.799 2.403a8.15 8.15 0 012.402 5.803c0 4.523-3.681 8.204-8.16 8.204z"/></svg>' +
-        'Entrar no grupo da turma PC BA</a></div></div>'
-      );
-    }
+    document.getElementById('btnEnviar').addEventListener('click', function () {
+      if (isSubmitting) return;
 
-    function submitToSheet() {
-      formData.data = new Date().toISOString();
-      if (!SHEET_WEBAPP_URL) return;
-      fetch(SHEET_WEBAPP_URL, {
+      var btnEnviar = document.getElementById('btnEnviar');
+      var nomeField = document.getElementById('nome');
+      var emailField = document.getElementById('email');
+      var emailError = document.getElementById('emailError');
+      var whatsappError = document.getElementById('whatsappError');
+
+      nomeField.classList.remove('error');
+      emailField.classList.remove('error');
+      whatsappField.classList.remove('error');
+      emailError.style.display = 'none';
+      whatsappError.style.display = 'none';
+
+      var nome = nomeField.value.trim();
+      if (!nome) { nomeField.classList.add('error'); return; }
+
+      if (!emailField.checkValidity() || !emailField.value.trim()) {
+        emailField.classList.add('error');
+        emailError.style.display = 'block';
+        return;
+      }
+
+      var parsedWhatsapp = normalizeWhatsapp(whatsappField.value);
+      if (!parsedWhatsapp) {
+        whatsappField.classList.add('error');
+        whatsappError.style.display = 'block';
+        return;
+      }
+
+      isSubmitting = true;
+      btnEnviar.classList.add('is-loading');
+      btnEnviar.textContent = 'Enviando...';
+
+      submitToSheet({
+        nome: nome,
+        email: emailField.value.trim(),
+        whatsapp: parsedWhatsapp.clean,
+        pergunta_leiseca1: respostas.leiseca1,
+        pergunta_leiseca2: respostas.leiseca2,
+        pergunta_mentalidade: respostas.mentalidade,
+        pergunta_direcao: respostas.direcao,
+        pergunta_rotina: respostas.rotina,
+        pergunta_fixacao: respostas.fixacao
+      }).then(function () {
+        document.getElementById('formScreen').style.display = 'none';
+        document.getElementById('successScreen').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // Espera o envio terminar (ou no máximo 4s) antes de trocar de tela — se a
+    // troca acontecer antes do fetch sair, o navegador cancela a requisição
+    // no meio do caminho e o lead nunca chega na planilha.
+    function submitToSheet(data) {
+      data.data = new Date().toISOString();
+      if (!SHEET_WEBAPP_URL) return Promise.resolve();
+      var request = fetch(SHEET_WEBAPP_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(data)
       }).catch(function () {});
+      var timeout = new Promise(function (resolve) { setTimeout(resolve, 4000); });
+      return Promise.race([request, timeout]);
     }
-
-    stage1();
   </script>
 </body>
 </html>

@@ -12,8 +12,8 @@
     html, body {
       min-height: 100vh;
       font-family: 'Nunito', sans-serif;
-      background: linear-gradient(180deg, #F8FBFD 0%, #E9F1F5 100%);
-      color: #150825;
+      background-color: #150825;
+      color: #F6F6F6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -22,7 +22,7 @@
       position: fixed; top: 0; left: 50%; transform: translateX(-50%);
       width: 700px; height: 350px;
       background: #8b171a;
-      border-radius: 50%; filter: blur(180px); opacity: 0.14;
+      border-radius: 50%; filter: blur(180px); opacity: 0.22;
       pointer-events: none; z-index: 0;
     }
 
@@ -31,7 +31,7 @@
 
     .eyebrow {
       font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
-      color: #8b171a; background: rgba(139,23,26,0.08); border: 1px solid rgba(139,23,26,0.3);
+      color: #8b171a; background: rgba(139,23,26,0.12); border: 1px solid rgba(139,23,26,0.35);
       display: inline-flex; padding: 6px 14px; border-radius: 100px;
       letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px;
     }
@@ -39,23 +39,23 @@
 
     .headline {
       font-family: 'Sora', sans-serif; font-weight: 800;
-      font-size: clamp(22px, 6.8vw, 32px); color: #150825;
+      font-size: clamp(22px, 6.8vw, 32px); color: #F6F6F6;
       text-align: center; line-height: 1.24; margin-bottom: 14px;
     }
-    .headline .accent { color: #8b171a; }
+    .headline .accent { color: #AF9064; }
 
     .desc {
       font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
-      color: rgba(21,8,37,0.68); line-height: 1.75; text-align: center;
+      color: rgba(246,246,246,0.72); line-height: 1.75; text-align: center;
       margin-bottom: 22px;
     }
-    .desc strong { color: #150825; font-weight: 700; }
+    .desc strong { color: #F6F6F6; font-weight: 700; }
 
     /* ── O que você vai receber ── */
     .offer-box {
-      background: #FFFFFF; border: 1px solid rgba(139,23,26,0.25);
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(139,23,26,0.3);
       border-radius: 14px; padding: 18px 20px; margin-bottom: 28px;
-      box-shadow: 0 4px 20px rgba(21,8,37,0.05); text-align: left;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25); text-align: left;
     }
     .offer-box .offer-title {
       font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
@@ -64,55 +64,55 @@
     .offer-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
     .offer-item:last-child { margin-bottom: 0; }
     .offer-item .check { color: #0abe52; font-weight: 800; flex-shrink: 0; }
-    .offer-item span { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14.5px; color: rgba(21,8,37,0.85); line-height: 1.45; }
-    .offer-item strong { color: #8b171a; }
+    .offer-item span { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14.5px; color: rgba(246,246,246,0.85); line-height: 1.45; }
+    .offer-item strong { color: #AF9064; }
 
     /* ── Form fields ── */
     .field { margin-bottom: 14px; }
     .field label {
       display: block; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
-      color: rgba(21,8,37,0.82); margin-bottom: 7px;
+      color: rgba(246,246,246,0.85); margin-bottom: 7px;
     }
     .field .hint {
       display: block; font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px;
-      color: rgba(21,8,37,0.45); margin-top: 6px;
+      color: rgba(246,246,246,0.4); margin-top: 6px;
     }
     .field input[type="text"], .field input[type="tel"], .field input[type="email"] {
       width: 100%; padding: 15px 16px;
-      background: #FFFFFF; border: 1.5px solid rgba(21,8,37,0.14);
-      border-radius: 10px; color: #150825;
+      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 10px; color: #F6F6F6;
       font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 16px;
       outline: none; transition: border-color 0.2s;
     }
     .field input:focus { border-color: rgba(139,23,26,0.6); }
-    .field input::placeholder { color: rgba(21,8,37,0.32); }
+    .field input::placeholder { color: rgba(246,246,246,0.28); }
     .field input.error { border-color: #e84040; }
 
-    /* ── Perguntas estratégicas (lei seca) ── */
+    /* ── Perguntas estratégicas ── */
     .question-block { margin: 22px 0; }
     .question-title {
       font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
-      color: rgba(21,8,37,0.82); line-height: 1.4; margin-bottom: 12px;
+      color: rgba(246,246,246,0.85); line-height: 1.4; margin-bottom: 12px;
     }
     .radio-group { display: flex; flex-direction: column; gap: 8px; }
     .radio-opt {
       display: flex; align-items: flex-start; gap: 10px; cursor: pointer;
-      background: #FFFFFF; border: 1.5px solid rgba(21,8,37,0.12);
+      background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
       border-radius: 10px; padding: 13px 15px; transition: border-color 0.2s, background 0.2s, transform 0.12s;
     }
-    .radio-opt:hover { border-color: rgba(139,23,26,0.45); background: rgba(139,23,26,0.05); }
+    .radio-opt:hover { border-color: rgba(139,23,26,0.45); background: rgba(139,23,26,0.06); }
     .radio-opt:active { transform: scale(0.98); }
     .radio-opt span {
       font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px;
-      color: rgba(21,8,37,0.82); line-height: 1.4;
+      color: rgba(246,246,246,0.85); line-height: 1.4;
     }
-    .radio-opt.selected { border-color: #8b171a; background: rgba(139,23,26,0.1); }
+    .radio-opt.selected { border-color: #8b171a; background: rgba(139,23,26,0.14); }
 
     /* ── CTA (snake shimmer) ── */
     .cta-wrap { width: 100%; margin-top: 24px; }
     .cta-snake {
       position: relative; width: 100%; border-radius: 16px; padding: 3px; overflow: hidden;
-      box-shadow: 0 0 50px rgba(139,23,26,0.35), 0 12px 28px rgba(21,8,37,0.15);
+      box-shadow: 0 0 50px rgba(139,23,26,0.4), 0 12px 28px rgba(0,0,0,0.4);
     }
     .cta-snake::before {
       content: ''; position: absolute; width: 300%; height: 300%; top: 50%; left: 50%;
@@ -136,19 +136,19 @@
     }
     .cta svg { width: 20px; height: 20px; flex-shrink: 0; }
     .cta.is-loading { background: #8b171a; color: #fff; opacity: 0.85; cursor: not-allowed; }
-    .cta-note { font-family: 'Nunito', sans-serif; font-size: 12px; color: rgba(21,8,37,0.4); text-align: center; margin-top: 10px; }
+    .cta-note { font-family: 'Nunito', sans-serif; font-size: 12px; color: rgba(246,246,246,0.32); text-align: center; margin-top: 10px; }
 
-    /* Variante verde (WhatsApp) usada na tela de grupo */
-    .cta-snake-green { box-shadow: 0 0 50px rgba(37,211,102,0.3), 0 12px 28px rgba(21,8,37,0.15); }
+    /* Variante verde (WhatsApp) usada no botão de grupo */
+    .cta-snake-green { box-shadow: 0 0 50px rgba(37,211,102,0.3), 0 12px 28px rgba(0,0,0,0.4); }
     .cta-snake-green::before {
       background: conic-gradient(from 0deg, transparent 0deg, transparent 255deg,
         rgba(0,150,80,0.08) 272deg, rgba(0,190,100,0.55) 288deg, #25D366 302deg,
         #4de08a 316deg, #8af0b0 329deg, rgba(180,255,200,0.45) 342deg,
         rgba(230,255,235,0.12) 354deg, transparent 360deg);
     }
-    .cta-green { background: #128C4A; }
+    .cta-green { background: #128C4A; margin-top: 12px; }
 
-    /* ── Tela de grupo (pós-envio) ── */
+    /* ── Tela de sucesso (pós-envio) ── */
     .check-wrap {
       width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 22px;
       background: rgba(10,190,82,0.12); border: 1.5px solid rgba(10,190,82,0.4);
@@ -159,16 +159,16 @@
     .check-wrap svg { width: 32px; height: 32px; }
 
     .instruction-box {
-      width: 100%; background: rgba(139,23,26,0.06); border: 1px solid rgba(139,23,26,0.25);
+      width: 100%; background: rgba(139,23,26,0.1); border: 1px solid rgba(139,23,26,0.3);
       border-radius: 12px; padding: 16px 18px; margin-bottom: 24px; text-align: left;
     }
-    .instruction-box span { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px; color: rgba(21,8,37,0.8); line-height: 1.6; }
-    .instruction-box strong { color: #150825; }
+    .instruction-box span { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px; color: rgba(246,246,246,0.8); line-height: 1.6; }
+    .instruction-box strong { color: #F6F6F6; }
 
     .footer-sig {
       margin-top: 36px; text-align: center;
       font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
-      color: rgba(21,8,37,0.22); letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(246,246,246,0.14); letter-spacing: 0.08em; text-transform: uppercase;
     }
   </style>
 </head>
@@ -178,46 +178,42 @@
 
       <div id="formScreen">
         <div class="eyebrow-row"><span class="eyebrow">🔥 Vagas limitadas · Turma 2026</span></div>
-        <h1 class="headline">Edital PC MA <span class="accent">Grátis</span> + Aulão Ao Vivo.<br>Garanta sua vaga agora.</h1>
-        <p class="desc">Preenche os dados abaixo e entra <strong>agora mesmo</strong> no grupo oficial da turma. O Edital Verticalizado da Polícia Civil do Maranhão 2026 está fixado lá dentro, na descrição do grupo.</p>
+        <h1 class="headline">Eu vou te dar de graça o Edital PC MA <span class="accent">+ um Aulão Ao Vivo.</span><br>Só falta garantir sua vaga.</h1>
+        <p class="desc">Preenche os dados abaixo que eu libero seu edital agora mesmo, aqui na tela. O <strong>Edital Verticalizado da Polícia Civil do Maranhão 2026</strong> aparece pra você baixar assim que você terminar — é rapidinho, menos de 1 minuto.</p>
 
         <div class="offer-box">
-          <div class="offer-title">Você vai receber</div>
-          <div class="offer-item"><span class="check">✓</span><span><strong>Edital Verticalizado PC MA 2026</strong> completo, direto na descrição do grupo</span></div>
-          <div class="offer-item"><span class="check">✓</span><span><strong>Aulão ao vivo gratuito</strong> com o conteúdo que mais cai na prova</span></div>
-          <div class="offer-item"><span class="check">✓</span><span>Bônus: <strong>Análise completa do edital ao vivo com o Marcos Brito</strong>, matéria por matéria</span></div>
+          <div class="offer-title">O que eu separei pra você</div>
+          <div class="offer-item"><span class="check">✓</span><span><strong>Edital Verticalizado PC MA 2026</strong> completo, liberado na hora</span></div>
+          <div class="offer-item"><span class="check">✓</span><span>Um <strong>aulão ao vivo, de graça</strong>, onde eu vou destrinchar o que mais cai na prova</span></div>
+          <div class="offer-item"><span class="check">✓</span><span>Bônus: eu mesmo vou <strong>analisar o edital inteiro ao vivo</strong>, matéria por matéria</span></div>
         </div>
 
         <div id="app"></div>
       </div>
 
-      <div id="groupScreen" style="display:none; text-align:center;">
+      <div id="successScreen" style="display:none; text-align:center;">
         <div class="check-wrap">
           <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#0abe52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="eyebrow-row"><span class="eyebrow">✅ Vaga confirmada</span></div>
-        <h1 class="headline">Falta um passo pra você entrar na <span class="accent">turma PC MA.</span></h1>
-        <p class="desc">Clica no botão abaixo e entra no grupo oficial agora. O <strong>Edital Verticalizado 2026</strong> está fixado na descrição do grupo, prontinho pra você baixar.</p>
-
-        <div class="offer-box">
-          <div class="offer-title">O que te espera lá dentro</div>
-          <div class="offer-item"><span class="check">✓</span><span><strong>Edital Verticalizado PC MA 2026</strong> na descrição do grupo</span></div>
-          <div class="offer-item"><span class="check">✓</span><span><strong>Aulão ao vivo gratuito</strong> com o conteúdo que mais cai</span></div>
-          <div class="offer-item"><span class="check">✓</span><span>Bônus: <strong>Análise completa do edital ao vivo com o Marcos Brito</strong></span></div>
-        </div>
+        <div class="eyebrow-row"><span class="eyebrow">✅ Tudo certo</span></div>
+        <h1 class="headline">Prontinho! Seu <span class="accent">Edital PC MA</span> já tá liberado.</h1>
+        <p class="desc">Clica no botão abaixo e baixa agora. E entra no grupo comigo também — é lá que eu aviso a data do aulão ao vivo e mando o que mais cai antes de todo mundo.</p>
 
         <div class="instruction-box">
-          <span><strong>Como funciona:</strong> entra no grupo → abre a descrição → o link do Edital Verticalizado está lá, fixado. O aulão ao vivo e a análise do edital serão avisados dentro do grupo.</span>
+          <span><strong>Baixa agora:</strong> clica no botão vermelho e o PDF abre direto. Depois entra no grupo — é por lá que eu aviso o aulão ao vivo e a análise do edital.</span>
         </div>
 
         <div class="cta-wrap">
+          <div class="cta-snake">
+            <a href="/Edital-Verticalizado-PCMA-2026.pdf" download class="cta">⬇️ Baixar Edital Verticalizado PC MA</a>
+          </div>
           <div class="cta-snake cta-snake-green">
             <a href="https://chat.whatsapp.com/KxG6g9pZ0FdAb5AKgU9QFZ" target="_blank" rel="noopener noreferrer" class="cta cta-green" id="grupoLinkBtn">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.462 3.485 1.34 5.003l-1.427 5.211 5.34-1.4a9.965 9.965 0 004.744 1.183h.004c5.514 0 9.996-4.483 9.996-9.997 0-2.67-1.04-5.18-2.928-7.069a9.935 9.935 0 00-7.072-2.928zm0 18.187h-.003a8.184 8.184 0 01-4.166-1.14l-.299-.177-3.169.831.846-3.089-.195-.317a8.194 8.194 0 01-1.259-4.372c0-4.522 3.68-8.203 8.204-8.203 2.19 0 4.25.854 5.799 2.403a8.15 8.15 0 012.402 5.803c0 4.523-3.681 8.204-8.16 8.204z"/></svg>
-              Entrar no grupo agora
+              Entrar no grupo da turma
             </a>
           </div>
-          <p class="cta-note">Vagas limitadas à capacidade do grupo</p>
+          <p class="cta-note">É lá dentro que eu aviso o aulão ao vivo</p>
         </div>
       </div>
 
@@ -228,7 +224,7 @@
   <script>
     // ATENÇÃO: cole aqui a URL do Web App do Google Apps Script depois de implantar
     var SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwTtC5RboVWkpsK_ZNhYZOZG2Q5cKrjG663pFB21_DBZgBwr8mFQI2EgJHl46AzNKUM/exec";
-    // ATENÇÃO: cole aqui o link do grupo (WhatsApp ou Telegram)
+    // Link do grupo de WhatsApp da turma PC MA
     var GRUPO_LINK = "https://chat.whatsapp.com/KxG6g9pZ0FdAb5AKgU9QFZ";
 
     document.getElementById('grupoLinkBtn').href = GRUPO_LINK;
@@ -324,8 +320,8 @@
         '<div class="radio-opt"><span>Já consigo fixar bem o que estudo</span></div>' +
       '</div></div>' +
 
-      '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btnEnviar">Quero minha vaga grátis</button></div></div>' +
-      '<p class="cta-note">Vagas limitadas à capacidade do grupo</p>';
+      '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btnEnviar">Quero meu edital grátis</button></div></div>' +
+      '<p class="cta-note">Seus dados são só pra eu te avisar do aulão e liberar o edital</p>';
 
     var leiseca1Options = [
       'Não consigo nem começar, travo só de olhar o tamanho da lei',
@@ -339,7 +335,6 @@
       'Tenho resumo, mas não consigo fixar',
       'Estudo só o que "acho" que cai, sem ter certeza'
     ];
-
     var mentalidadeOptions = [
       'Seria libertador, mudaria tudo pra mim',
       'Seria muito bom',
@@ -418,7 +413,7 @@
         pergunta_fixacao: respostas.fixacao
       }).then(function () {
         document.getElementById('formScreen').style.display = 'none';
-        document.getElementById('groupScreen').style.display = 'block';
+        document.getElementById('successScreen').style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
