@@ -1,0 +1,1 @@
+{ "hosting": { "site": "formulariopcba", "public": "public", "ignore": ["firebase.json", "**/.*"] } }

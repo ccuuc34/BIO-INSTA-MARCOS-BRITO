@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edital Verticalizado PC AL 2026 Grátis | Marcos Brito</title>
+  <title>Edital Verticalizado PC BA 2026 Grátis | Marcos Brito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -125,6 +125,7 @@
       color: #fff; letter-spacing: 0.02em; text-transform: uppercase;
       text-decoration: none;
     }
+    .cta svg { width: 20px; height: 20px; flex-shrink: 0; }
     .cta:disabled { opacity: 0.6; cursor: not-allowed; }
     .cta-note { font-family: 'Nunito', sans-serif; font-size: 12px; color: rgba(246,246,246,0.32); text-align: center; margin-top: 10px; }
     .back-link {
@@ -132,6 +133,16 @@
       font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
       color: rgba(246,246,246,0.35); cursor: pointer; background: none; border: none;
     }
+
+    /* Variante verde (WhatsApp) usada no botão de grupo */
+    .cta-snake-green { box-shadow: 0 0 70px rgba(37,211,102,0.4), 0 16px 36px rgba(0,0,0,0.5); }
+    .cta-snake-green::before {
+      background: conic-gradient(from 0deg, transparent 0deg, transparent 255deg,
+        rgba(0,150,80,0.08) 272deg, rgba(0,190,100,0.55) 288deg, #25D366 302deg,
+        #4de08a 316deg, #8af0b0 329deg, rgba(180,255,200,0.45) 342deg,
+        rgba(230,255,235,0.12) 354deg, transparent 360deg);
+    }
+    .cta-green { background: #128C4A; margin-top: 12px; }
 
     /* ── Success screen ── */
     .success-check {
@@ -158,8 +169,10 @@
   </div>
 
   <script>
-    // ATENÇÃO: cole aqui a URL do Web App do Google Apps Script depois de implantar
-    var SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxnfErn1wP3dnaSchQK4iE1um3xqFTdnsleY-mU8H3ObHmDAPrV2DAIOZVji3HUMNXKIQ/exec";
+    // ATENÇÃO: cole aqui a URL do Web App do Google Apps Script depois de implantar (pendente pra PCBA)
+    var SHEET_WEBAPP_URL = "";
+    // Link do grupo de WhatsApp da turma PC BA
+    var GRUPO_LINK = "https://chat.whatsapp.com/FPMcZtyakTFCKqpR5kz2R0";
 
     var formData = {};
     var app = document.getElementById('app');
@@ -238,11 +251,11 @@
 
     // ── STAGE 1: Nome ──
     function stage1() {
-      setProgress(10);
+      setProgress(8);
       mount(
         '<div class="eyebrow-row"><span class="eyebrow">📋 Gratuito · Edição 2026</span></div>' +
-        '<h1 class="headline">Edital Verticalizado PC AL <span class="accent">Grátis.</span><br>Garanta o seu agora.</h1>' +
-        '<p class="desc">Você está prestes a receber o <strong>Edital Verticalizado da Polícia Civil de Alagoas 2026</strong>, sem pagar nada por isso. É rapidinho (menos de 1 minuto) e assim que você terminar, ele já aparece aqui na tela pra você baixar.</p>' +
+        '<h1 class="headline">Edital Verticalizado PC BA <span class="accent">Grátis.</span><br>Garanta o seu agora.</h1>' +
+        '<p class="desc">Você está prestes a receber o <strong>Edital Verticalizado da Polícia Civil da Bahia 2026</strong>, sem pagar nada por isso. É rapidinho (menos de 1 minuto) e assim que você terminar, ele já aparece aqui na tela pra você baixar.</p>' +
         '<div class="field"><label for="nome">Seu nome</label><input type="text" id="nome" placeholder="Digite seu nome completo"></div>' +
         '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btn1">Continuar</button></div></div>',
         function () {
@@ -258,11 +271,11 @@
 
     // ── STAGE 2: WhatsApp ──
     function stage2() {
-      setProgress(24);
+      setProgress(16);
       mount(
         '<h2 class="headline left">Seu WhatsApp com DDD</h2>' +
-        '<p class="desc left">É pra onde vamos te avisar sobre o material de prioridades da PCAL</p>' +
-        '<div class="field"><input type="tel" inputmode="numeric" id="whatsapp" placeholder="82 99999-9999">' +
+        '<p class="desc left">É pra onde vamos te avisar sobre o material de prioridades da PCBA</p>' +
+        '<div class="field"><input type="tel" inputmode="numeric" id="whatsapp" placeholder="71 99999-9999">' +
         '<span class="hint" id="whatsappError" style="color:#e84040; display:none;">Número inválido. Confere o DDD e o número e tenta de novo.</span></div>' +
         '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btn2">Continuar</button></div></div>' +
         '<button class="back-link" id="backBtn2" type="button">← Voltar</button>',
@@ -282,7 +295,7 @@
 
     // ── STAGE 3: E-mail ──
     function stage3() {
-      setProgress(38);
+      setProgress(24);
       mount(
         '<h2 class="headline left">Seu melhor e-mail</h2>' +
         '<p class="desc left">Vamos usar pra te mandar novidade e conteúdo extra também</p>' +
@@ -307,9 +320,9 @@
 
     // ── STAGE 4: O que mais te trava ──
     function stage4() {
-      setProgress(54);
+      setProgress(32);
       renderRadioStage(
-        'O que mais te trava na sua preparação pra Polícia Civil de Alagoas agora?',
+        'O que mais te trava na sua preparação pra Polícia Civil da Bahia agora?',
         [
           'Não sei por onde começar, o edital é gigante',
           'Tenho rotina puxada e pouco tempo pra estudar',
@@ -322,7 +335,7 @@
 
     // ── STAGE 5: A verdade que dói ──
     function stage5() {
-      setProgress(68);
+      setProgress(40);
       renderRadioStage(
         'Enquanto você lê isso, tem candidato que já decorou o edital inteiro. O que está te deixando pra trás?',
         [
@@ -337,7 +350,7 @@
 
     // ── STAGE 6: Lei seca ──
     function stage6() {
-      setProgress(82);
+      setProgress(48);
       renderRadioStage(
         'Quantas vezes a lei seca já te fez fechar o material e assistir Netflix no lugar?',
         [
@@ -352,7 +365,7 @@
 
     // ── STAGE 7: Mentalidade ──
     function stage7() {
-      setProgress(86);
+      setProgress(56);
       renderRadioStage(
         'Você já imaginou estudar sem aquela vozinha te dizendo que dessa vez também não vai dar certo? Seria o que pra você?',
         ['Seria libertador, mudaria tudo pra mim', 'Seria muito bom', 'Já não penso mais assim, tô numa boa'],
@@ -362,7 +375,7 @@
 
     // ── STAGE 8: Direção do concurso ──
     function stage8() {
-      setProgress(90);
+      setProgress(64);
       renderRadioStage(
         'Já imaginou abrir o material sabendo exatamente o que estudar hoje, sem perder tempo com o que quase não cai? Seria o que pra você?',
         ['Seria incrível, economizaria um tempo enorme', 'Seria muito bom', 'Já sei exatamente o que estudar'],
@@ -372,7 +385,7 @@
 
     // ── STAGE 9: Rotina ──
     function stage9() {
-      setProgress(93);
+      setProgress(72);
       renderRadioStage(
         'Já imaginou conseguir abrir o material todo santo dia, sem precisar de força de vontade pra isso? Seria o que pra você?',
         ['Seria libertador, é minha maior trava hoje', 'Seria muito bom', 'Já tenho essa rotina rodando'],
@@ -382,7 +395,7 @@
 
     // ── STAGE 10: Fixação / ciência de estudar ──
     function stage10() {
-      setProgress(96);
+      setProgress(80);
       renderRadioStage(
         'Já imaginou revisar uma matéria e lembrar dela de verdade na hora da prova, sem esquecer em uma semana? Seria o que pra você?',
         ['Seria incrível, é exatamente meu problema hoje', 'Seria muito bom', 'Já consigo fixar bem o que estudo'],
@@ -392,7 +405,7 @@
 
     // ── STAGE 11: Quer saber prioridades (última pergunta) ──
     function stage11() {
-      setProgress(97);
+      setProgress(90);
       renderRadioStage(
         'Se existisse uma forma de saber exatamente o que estudar primeiro nesse edital, sem perder tempo com o que quase nunca cai, você gostaria de receber essa informação também?',
         ['Sim, quero saber', 'Não, prefiro estudar tudo por conta própria'],
@@ -400,19 +413,23 @@
       );
     }
 
-    // ── STAGE 12: Sucesso + download ──
+    // ── STAGE 12: Sucesso + download + grupo ──
     function stage12() {
       setProgress(100);
       mount(
         '<div class="success-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#0abe52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
         '<h1 class="headline">Prontinho! ✅</h1>' +
-        '<p class="desc">Seu Edital Verticalizado já está liberado logo abaixo,clica no botão pra baixar. E como você marcou que quer saber o que estudar primeiro, prepara que em breve chega novidade boa no seu WhatsApp 😉🔥 Tem um aulão ao vivo gratuito chegando também, pra te ajudar a organizar por onde começar.</p>' +
-        '<div class="cta-wrap"><div class="cta-snake"><a href="/Edital-Verticalizado-PCAL-2026.pdf" download class="cta">⬇️ Baixar Edital Verticalizado PC AL</a></div></div>'
+        '<p class="desc">Seu Edital Verticalizado já está liberado logo abaixo, clica no botão pra baixar. E como você marcou que quer saber o que estudar primeiro, prepara que em breve chega novidade boa no seu WhatsApp 😉🔥 Tem um aulão ao vivo gratuito chegando também, pra te ajudar a organizar por onde começar.</p>' +
+        '<div class="cta-wrap"><div class="cta-snake"><a href="/Edital-Verticalizado-PCBA-2026.pdf" download class="cta">⬇️ Baixar Edital Verticalizado PC BA</a></div>' +
+        '<div class="cta-snake cta-snake-green"><a href="' + GRUPO_LINK + '" target="_blank" rel="noopener noreferrer" class="cta cta-green">' +
+        '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.462 3.485 1.34 5.003l-1.427 5.211 5.34-1.4a9.965 9.965 0 004.744 1.183h.004c5.514 0 9.996-4.483 9.996-9.997 0-2.67-1.04-5.18-2.928-7.069a9.935 9.935 0 00-7.072-2.928zm0 18.187h-.003a8.184 8.184 0 01-4.166-1.14l-.299-.177-3.169.831.846-3.089-.195-.317a8.194 8.194 0 01-1.259-4.372c0-4.522 3.68-8.203 8.204-8.203 2.19 0 4.25.854 5.799 2.403a8.15 8.15 0 012.402 5.803c0 4.523-3.681 8.204-8.16 8.204z"/></svg>' +
+        'Entrar no grupo da turma PC BA</a></div></div>'
       );
     }
 
     function submitToSheet() {
       formData.data = new Date().toISOString();
+      if (!SHEET_WEBAPP_URL) return;
       fetch(SHEET_WEBAPP_URL, {
         method: 'POST',
         mode: 'no-cors',
