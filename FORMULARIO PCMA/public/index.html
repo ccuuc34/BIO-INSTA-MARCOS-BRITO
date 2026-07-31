@@ -230,7 +230,7 @@
     document.getElementById('grupoLinkBtn').href = GRUPO_LINK;
 
     var app = document.getElementById('app');
-    var respostas = { leiseca1: '', leiseca2: '', mentalidade: '', direcao: '', rotina: '', fixacao: '' };
+    var respostas = { mentalidade: '', direcao: '', rotina: '', fixacao: '' };
     var isSubmitting = false;
 
     function maskWhatsapp(value) {
@@ -276,88 +276,58 @@
       '<div class="field"><label for="whatsapp">Seu WhatsApp com DDD</label><input type="tel" inputmode="numeric" id="whatsapp" placeholder="98 99999-9999">' +
       '<span class="hint" id="whatsappError" style="color:#e84040; display:none;">Número inválido. Confere o DDD e o número e tenta de novo.</span></div>' +
 
-      '<div class="question-block"><p class="question-title">Qual é a sua maior dificuldade com a lei seca hoje?</p>' +
-      '<div class="radio-group" id="leiseca1Group">' +
-        '<div class="radio-opt"><span>Não consigo nem começar, travo só de olhar o tamanho da lei</span></div>' +
-        '<div class="radio-opt"><span>Leio, decoro, esqueço tudo em poucos dias</span></div>' +
-        '<div class="radio-opt"><span>Entendo o texto, mas erro pegadinha na hora da prova</span></div>' +
-        '<div class="radio-opt"><span>Nem sei direito quais leis realmente caem nessa prova</span></div>' +
-      '</div></div>' +
-
-      '<div class="question-block"><p class="question-title">Hoje, como você estuda lei seca na prática?</p>' +
-      '<div class="radio-group" id="leiseca2Group">' +
-        '<div class="radio-opt"><span>Não estudo, sempre acabo deixando pra depois</span></div>' +
-        '<div class="radio-opt"><span>Estudo sem método, lendo a lei crua do jeito que vem</span></div>' +
-        '<div class="radio-opt"><span>Tenho resumo, mas não consigo fixar</span></div>' +
-        '<div class="radio-opt"><span>Estudo só o que "acho" que cai, sem ter certeza</span></div>' +
-      '</div></div>' +
-
-      '<div class="question-block"><p class="question-title">Você já imaginou estudar sem aquela vozinha te dizendo que dessa vez também não vai dar certo? Seria o que pra você?</p>' +
+      '<div class="question-block"><p class="question-title">Você já imaginou estudar sem aquela vozinha te dizendo que dessa vez também não vai dar certo?</p>' +
       '<div class="radio-group" id="mentalidadeGroup">' +
-        '<div class="radio-opt"><span>Seria libertador, mudaria tudo pra mim</span></div>' +
-        '<div class="radio-opt"><span>Seria muito bom</span></div>' +
-        '<div class="radio-opt"><span>Já não penso mais assim, tô numa boa</span></div>' +
+        '<div class="radio-opt"><span>Seria a virada de chave que eu preciso agora</span></div>' +
+        '<div class="radio-opt"><span>Ia fazer muita diferença pra mim</span></div>' +
+        '<div class="radio-opt"><span>Real: essa vozinha ainda grita mais alto que eu</span></div>' +
       '</div></div>' +
 
-      '<div class="question-block"><p class="question-title">Já imaginou abrir o material sabendo exatamente o que estudar hoje, sem perder tempo com o que quase não cai? Seria o que pra você?</p>' +
+      '<div class="question-block"><p class="question-title">E se você abrisse o material sabendo exatamente o que estudar hoje, sem perder tempo com o que quase não cai — o que isso mudaria pra você?</p>' +
       '<div class="radio-group" id="direcaoGroup">' +
-        '<div class="radio-opt"><span>Seria incrível, economizaria um tempo enorme</span></div>' +
-        '<div class="radio-opt"><span>Seria muito bom</span></div>' +
-        '<div class="radio-opt"><span>Já sei exatamente o que estudar</span></div>' +
+        '<div class="radio-opt"><span>Ia parar de estudar no escuro, sem mapa nenhum</span></div>' +
+        '<div class="radio-opt"><span>Economizaria um tempo enorme que hoje eu jogo fora</span></div>' +
+        '<div class="radio-opt"><span>Verdade seja dita: hoje eu não sei se tô focando no certo</span></div>' +
       '</div></div>' +
 
-      '<div class="question-block"><p class="question-title">Já imaginou conseguir abrir o material todo santo dia, sem precisar de força de vontade pra isso? Seria o que pra você?</p>' +
+      '<div class="question-block"><p class="question-title">Já pensou como seria abrir o material todo santo dia, sem precisar de força de vontade nenhuma pra isso?</p>' +
       '<div class="radio-group" id="rotinaGroup">' +
-        '<div class="radio-opt"><span>Seria libertador, é minha maior trava hoje</span></div>' +
-        '<div class="radio-opt"><span>Seria muito bom</span></div>' +
-        '<div class="radio-opt"><span>Já tenho essa rotina rodando</span></div>' +
+        '<div class="radio-opt"><span>Seria o fim da procrastinação que me persegue</span></div>' +
+        '<div class="radio-opt"><span>Ia parar de empurrar tudo pra amanhã</span></div>' +
+        '<div class="radio-opt"><span>Hoje eu vivo adiando, é minha maior trava</span></div>' +
       '</div></div>' +
 
-      '<div class="question-block"><p class="question-title">Já imaginou revisar uma matéria e lembrar dela de verdade na hora da prova, sem esquecer em uma semana? Seria o que pra você?</p>' +
+      '<div class="question-block"><p class="question-title">Imagina revisar uma matéria e realmente lembrar dela na hora da prova, sem esquecer tudo em uma semana. O que isso representaria?</p>' +
       '<div class="radio-group" id="fixacaoGroup">' +
-        '<div class="radio-opt"><span>Seria incrível, é exatamente meu problema hoje</span></div>' +
-        '<div class="radio-opt"><span>Seria muito bom</span></div>' +
-        '<div class="radio-opt"><span>Já consigo fixar bem o que estudo</span></div>' +
+        '<div class="radio-opt"><span>Ia acabar com essa sensação de estudar e não fixar nada</span></div>' +
+        '<div class="radio-opt"><span>Seria a prova de que meu método finalmente funciona</span></div>' +
+        '<div class="radio-opt"><span>Isso é exatamente o que mais me frustra hoje</span></div>' +
       '</div></div>' +
 
       '<div class="cta-wrap"><div class="cta-snake"><button class="cta" id="btnEnviar">Quero meu edital grátis</button></div></div>' +
       '<p class="cta-note">Seus dados são só pra eu te avisar do aulão e liberar o edital</p>';
 
-    var leiseca1Options = [
-      'Não consigo nem começar, travo só de olhar o tamanho da lei',
-      'Leio, decoro, esqueço tudo em poucos dias',
-      'Entendo o texto, mas erro pegadinha na hora da prova',
-      'Nem sei direito quais leis realmente caem nessa prova'
-    ];
-    var leiseca2Options = [
-      'Não estudo, sempre acabo deixando pra depois',
-      'Estudo sem método, lendo a lei crua do jeito que vem',
-      'Tenho resumo, mas não consigo fixar',
-      'Estudo só o que "acho" que cai, sem ter certeza'
-    ];
     var mentalidadeOptions = [
-      'Seria libertador, mudaria tudo pra mim',
-      'Seria muito bom',
-      'Já não penso mais assim, tô numa boa'
+      'Seria a virada de chave que eu preciso agora',
+      'Ia fazer muita diferença pra mim',
+      'Real: essa vozinha ainda grita mais alto que eu'
     ];
     var direcaoOptions = [
-      'Seria incrível, economizaria um tempo enorme',
-      'Seria muito bom',
-      'Já sei exatamente o que estudar'
+      'Ia parar de estudar no escuro, sem mapa nenhum',
+      'Economizaria um tempo enorme que hoje eu jogo fora',
+      'Verdade seja dita: hoje eu não sei se tô focando no certo'
     ];
     var rotinaOptions = [
-      'Seria libertador, é minha maior trava hoje',
-      'Seria muito bom',
-      'Já tenho essa rotina rodando'
+      'Seria o fim da procrastinação que me persegue',
+      'Ia parar de empurrar tudo pra amanhã',
+      'Hoje eu vivo adiando, é minha maior trava'
     ];
     var fixacaoOptions = [
-      'Seria incrível, é exatamente meu problema hoje',
-      'Seria muito bom',
-      'Já consigo fixar bem o que estudo'
+      'Ia acabar com essa sensação de estudar e não fixar nada',
+      'Seria a prova de que meu método finalmente funciona',
+      'Isso é exatamente o que mais me frustra hoje'
     ];
 
-    renderRadioGroup(document.getElementById('leiseca1Group'), leiseca1Options, function (v) { respostas.leiseca1 = v; });
-    renderRadioGroup(document.getElementById('leiseca2Group'), leiseca2Options, function (v) { respostas.leiseca2 = v; });
     renderRadioGroup(document.getElementById('mentalidadeGroup'), mentalidadeOptions, function (v) { respostas.mentalidade = v; });
     renderRadioGroup(document.getElementById('direcaoGroup'), direcaoOptions, function (v) { respostas.direcao = v; });
     renderRadioGroup(document.getElementById('rotinaGroup'), rotinaOptions, function (v) { respostas.rotina = v; });
@@ -406,8 +376,6 @@
         nome: nome,
         email: emailField.value.trim(),
         whatsapp: parsedWhatsapp.clean,
-        pergunta_leiseca1: respostas.leiseca1,
-        pergunta_leiseca2: respostas.leiseca2,
         pergunta_mentalidade: respostas.mentalidade,
         pergunta_direcao: respostas.direcao,
         pergunta_rotina: respostas.rotina,
