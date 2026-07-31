@@ -230,7 +230,7 @@
     document.getElementById('grupoLinkBtn').href = GRUPO_LINK;
 
     var app = document.getElementById('app');
-    var respostas = { mentalidade: '', direcao: '', rotina: '', fixacao: '' };
+    var respostas = { mentalidade: '', rotina: '', fixacao: '' };
     var isSubmitting = false;
 
     function maskWhatsapp(value) {
@@ -283,13 +283,6 @@
         '<div class="radio-opt"><span>Real: essa vozinha ainda grita mais alto que eu</span></div>' +
       '</div></div>' +
 
-      '<div class="question-block"><p class="question-title">E se você abrisse o material sabendo exatamente o que estudar hoje, sem perder tempo com o que quase não cai — o que isso mudaria pra você?</p>' +
-      '<div class="radio-group" id="direcaoGroup">' +
-        '<div class="radio-opt"><span>Ia parar de estudar no escuro, sem mapa nenhum</span></div>' +
-        '<div class="radio-opt"><span>Economizaria um tempo enorme que hoje eu jogo fora</span></div>' +
-        '<div class="radio-opt"><span>Verdade seja dita: hoje eu não sei se tô focando no certo</span></div>' +
-      '</div></div>' +
-
       '<div class="question-block"><p class="question-title">Já pensou como seria abrir o material todo santo dia, sem precisar de força de vontade nenhuma pra isso?</p>' +
       '<div class="radio-group" id="rotinaGroup">' +
         '<div class="radio-opt"><span>Seria o fim da procrastinação que me persegue</span></div>' +
@@ -312,11 +305,6 @@
       'Ia fazer muita diferença pra mim',
       'Real: essa vozinha ainda grita mais alto que eu'
     ];
-    var direcaoOptions = [
-      'Ia parar de estudar no escuro, sem mapa nenhum',
-      'Economizaria um tempo enorme que hoje eu jogo fora',
-      'Verdade seja dita: hoje eu não sei se tô focando no certo'
-    ];
     var rotinaOptions = [
       'Seria o fim da procrastinação que me persegue',
       'Ia parar de empurrar tudo pra amanhã',
@@ -329,7 +317,6 @@
     ];
 
     renderRadioGroup(document.getElementById('mentalidadeGroup'), mentalidadeOptions, function (v) { respostas.mentalidade = v; });
-    renderRadioGroup(document.getElementById('direcaoGroup'), direcaoOptions, function (v) { respostas.direcao = v; });
     renderRadioGroup(document.getElementById('rotinaGroup'), rotinaOptions, function (v) { respostas.rotina = v; });
     renderRadioGroup(document.getElementById('fixacaoGroup'), fixacaoOptions, function (v) { respostas.fixacao = v; });
 
@@ -377,7 +364,6 @@
         email: emailField.value.trim(),
         whatsapp: parsedWhatsapp.clean,
         pergunta_mentalidade: respostas.mentalidade,
-        pergunta_direcao: respostas.direcao,
         pergunta_rotina: respostas.rotina,
         pergunta_fixacao: respostas.fixacao
       }).then(function () {
