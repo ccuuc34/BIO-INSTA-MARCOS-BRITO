@@ -95,18 +95,6 @@ const IconTour = () => (
   </svg>
 );
 
-const Icon6Pilares = () => (
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-    {/* 6 pilares verticais */}
-    <rect x="1"  y="8"  width="3" height="13" rx="1" opacity="0.6"/>
-    <rect x="5.5" y="5" width="3" height="16" rx="1" opacity="0.75"/>
-    <rect x="10" y="2"  width="3" height="19" rx="1" opacity="1"/>
-    <rect x="14.5" y="5" width="3" height="16" rx="1" opacity="0.75"/>
-    <rect x="19" y="8"  width="3" height="13" rx="1" opacity="0.6"/>
-    {/* Base */}
-    <rect x="0" y="21.5" width="24" height="1.5" rx="0.75"/>
-  </svg>
-);
 
 const IconAntiGramatica = () => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
@@ -476,16 +464,6 @@ const kitLinks: LinkItem[] = [
 // ─── Links Data ───────────────────────────────────────────────────────────────
 
 const links: LinkItem[] = [
-  {
-    id: '6pilares',
-    label: 'MÉTODO 6PF - AO VIVO COMIGO',
-    url: 'https://6-pilares.web.app',
-    color: '#fed7aa',
-    buttonColor: '#c2410c',
-    icon: <Icon6Pilares />,
-    featured: true,
-    description: 'Se você sofre com falta de disciplina pra manter a rotina, estuda bastante mas sente que não evolui, ou chega na prova travado mesmo sabendo o conteúdo — clica em "Continuar" pra entender o que é o Método 6PF.',
-  },
   {
     id: 'antigramatica',
     label: 'ANTI-GRAMÁTICA AQUI',
