@@ -459,6 +459,24 @@ const kitLinks: LinkItem[] = [
     category: 'gcm',
     description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de Maceió. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
+  {
+    id: 'kit-pmdf-oficial',
+    label: 'KIT PMDF Oficial: Edital Verticalizado + Prioridades',
+    url: 'https://edital-pmdf-oficial-2026.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    category: 'pm',
+    description: 'Eu montei o kit completo pra quem estuda pra PMDF Oficial. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
+  {
+    id: 'kit-gcm-salvador',
+    label: 'KIT Guarda Civil Municipal de Salvador: Edital Verticalizado + Prioridades',
+    url: 'https://edital-verticalizado-gcm-salvador.vercel.app/',
+    color: '#e9d5ff',
+    featured: true,
+    category: 'gcm',
+    description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de Salvador. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
+  },
 ];
 
 // ─── Links Data ───────────────────────────────────────────────────────────────
