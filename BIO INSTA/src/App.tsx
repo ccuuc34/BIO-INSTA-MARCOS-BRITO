@@ -263,11 +263,11 @@ const antiVadeLinks: LinkItem[] = [
   },
   {
     id: 'anti-gramatica',
-    label: 'Anti-Gramática: Português Intensivo',
-    url: 'https://antigramatica.web.app',
+    label: 'Anti-Gramática 3.0: Português Intensivo',
+    url: 'https://anti-gramatica-3-0.vercel.app',
     color: '#e9d5ff',
     featured: true,
-    description: 'Eu criei o Anti-Gramática pra você que trava em português. Tudo o que cai na prova, direto ao ponto, sem enrolação. Clica em "Continuar" e já abre pra você.',
+    description: 'Eu criei o Anti-Gramática 3.0 pra você que trava em português. São 12 páginas com só o recorte que mais cai em qualquer concurso policial (crase, regência, concordância, pontuação, colocação pronominal), sem gramática normativa inteira pra te enrolar. E ainda vem com bônus: o Anti-Gramática 2.0 completo, de graça. Clica em "Continuar" e já abre pra você.',
   },
   {
     id: 'anti-vade-pmal',
@@ -466,13 +466,13 @@ const kitLinks: LinkItem[] = [
 const links: LinkItem[] = [
   {
     id: 'antigramatica',
-    label: 'ANTI-GRAMÁTICA AQUI',
-    url: 'https://antigramatica.web.app',
+    label: 'ANTI-GRAMÁTICA 3.0 AQUI',
+    url: 'https://anti-gramatica-3-0.vercel.app',
     color: '#bfe9d0',
     buttonColor: '#0f7a4d',
     icon: <IconAntiGramatica />,
     featured: true,
-    description: 'Eu criei o Anti-Gramática pra você que trava em português. Tudo o que cai na prova, direto ao ponto, sem enrolação. Clica em "Continuar" e já abre pra você.',
+    description: 'Eu criei o Anti-Gramática 3.0 pra você que trava em português. São 12 páginas com só o recorte que mais cai em qualquer concurso policial (crase, regência, concordância, pontuação, colocação pronominal), sem gramática normativa inteira pra te enrolar. E ainda vem com bônus: o Anti-Gramática 2.0 completo, de graça. Clica em "Continuar" e já abre pra você.',
   },
   {
     id: 'antivade',
