@@ -180,6 +180,13 @@
     .channel-btn.whats-btn { background: #0abe52; color: #fff; }
     .channel-btn.whats-btn:active { transform: scale(0.98); }
 
+    .email-alt-link {
+      display: block; width: 100%; text-align: center; margin: 12px 0 0;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 12.5px;
+      color: rgba(246,246,246,0.4); text-decoration: underline;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     /* ── Fallback de cópia: garante funcionamento mesmo sem app de e-mail (ex: navegador in-app do Instagram) ── */
     .email-hint {
       font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px;
@@ -327,8 +334,9 @@
             </div>
           </div>
           <p class="channel-desc">Meu canal principal de suporte. Eu leio e respondo e-mail bem mais rápido do que mensagem.</p>
-          <a href="#" class="channel-btn email-btn" id="mailtoBtn">Enviar E-mail</a>
-          <p class="email-hint">Botão não abriu seu app de e-mail? A mensagem já foi copiada — cola direto no seu app.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="channel-btn email-btn" id="gmailBtn">Abrir no Gmail e enviar</a>
+          <p class="email-hint">Abre o Gmail no navegador, já com tudo preenchido — funciona em qualquer celular ou computador, mesmo sem app de e-mail instalado.</p>
+          <a href="#" class="email-alt-link" id="mailtoBtn">Prefiro usar meu app de e-mail padrão</a>
           <div class="email-fallback">
             <span class="email-fallback-text" id="emailAddr">suportemarcosbrito@gmail.com</span>
             <button type="button" class="email-copy-btn" id="copyEmailBtn">Copiar</button>
@@ -388,11 +396,12 @@
     var progress = document.getElementById('progress');
     function setProgress(pct) { progress.style.width = pct + '%'; }
 
-    function mount(html) {
+    function mount(html, afterMount) {
       app.style.opacity = 0;
       setTimeout(function () {
         app.innerHTML = html;
         app.style.opacity = 1;
+        if (afterMount) afterMount();
       }, 100);
     }
 
@@ -478,9 +487,9 @@
         '<p class="stage-sub">Escreve o nome, mesmo que não tenha certeza exata. Se não souber, descreve como for (ex: "o material de leis da PM do Ceará").</p>' +
         '<input type="text" class="field-input" id="produtoOutroInput" placeholder="Nome do produto ou descrição" />' +
         '<button class="stage-cta" onclick="submitProdutoOutro()">Continuar</button>' +
-        '<button class="back-link" onclick="stage1b(window.__lastList)">← Voltar</button>'
+        '<button class="back-link" onclick="stage1b(window.__lastList)">← Voltar</button>',
+        function () { document.getElementById('produtoOutroInput').focus(); }
       );
-      document.getElementById('produtoOutroInput').focus();
     }
 
     function submitProdutoOutro() {
@@ -529,9 +538,9 @@
         '<p class="stage-sub">Descreve com suas palavras.</p>' +
         '<input type="text" class="field-input" id="motivoOutroInput" placeholder="Escreve o motivo aqui" />' +
         '<button class="stage-cta" onclick="submitMotivoOutro()">Continuar</button>' +
-        '<button class="back-link" onclick="goBackToStage2()">← Voltar</button>'
+        '<button class="back-link" onclick="goBackToStage2()">← Voltar</button>',
+        function () { document.getElementById('motivoOutroInput').focus(); }
       );
-      document.getElementById('motivoOutroInput').focus();
     }
 
     function submitMotivoOutro() {
@@ -566,9 +575,9 @@
         '<p class="stage-sub">É assim que eu localizo seu pedido no sistema de pagamento.</p>' +
         '<input type="email" class="field-input" id="emailInput" placeholder="seuemail@gmail.com" value="' + (formData.email || '') + '" />' +
         '<button class="stage-cta" onclick="submitEmail()">Continuar</button>' +
-        '<button class="back-link" onclick="' + (formData.detalhe ? 'stage3Back()' : 'goBackToStage2()') + '">← Voltar</button>'
+        '<button class="back-link" onclick="' + (formData.detalhe ? 'stage3Back()' : 'goBackToStage2()') + '">← Voltar</button>',
+        function () { document.getElementById('emailInput').focus(); }
       );
-      document.getElementById('emailInput').focus();
     }
 
     function stage3Back() {
@@ -591,9 +600,9 @@
         '<p class="stage-sub">Quanto mais detalhe, mais rápido eu resolvo. Não tem limite de texto.</p>' +
         '<textarea class="field-input" id="descInput" placeholder="Conta aqui exatamente o que aconteceu..."></textarea>' +
         '<button class="stage-cta" onclick="submitDesc()">Gerar minha mensagem</button>' +
-        '<button class="back-link" onclick="stage4()">← Voltar</button>'
+        '<button class="back-link" onclick="stage4()">← Voltar</button>',
+        function () { document.getElementById('descInput').focus(); }
       );
-      document.getElementById('descInput').focus();
     }
 
     function submitDesc() {
@@ -628,6 +637,7 @@
 
       var subject = encodeURIComponent('Suporte Prioritário - ' + (formData.produto || 'Produto'));
       var body = encodeURIComponent(msg);
+      document.getElementById('gmailBtn').setAttribute('href', 'https://mail.google.com/mail/?view=cm&fs=1&to=suportemarcosbrito@gmail.com&su=' + subject + '&body=' + body);
       document.getElementById('mailtoBtn').setAttribute('href', 'mailto:suportemarcosbrito@gmail.com?subject=' + subject + '&body=' + body);
       document.getElementById('whatsBtn').setAttribute('href', 'https://wa.me/557598921501?text=' + encodeURIComponent(msg));
 
