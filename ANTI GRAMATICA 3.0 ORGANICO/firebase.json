@@ -1,0 +1,1 @@
+{ "hosting": { "site": "antigramatica-30-organico", "public": "public", "ignore": ["firebase.json", "**/.*"] } }

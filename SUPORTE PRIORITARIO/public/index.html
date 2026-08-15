@@ -369,14 +369,18 @@
       'Anti-Vade Mecum PMPE', 'Anti-Vade Mecum PCPE', 'Anti-Vade Mecum PPPE',
       'Anti-Vade Mecum PCMA', 'Anti-Vade Mecum PMAL', 'Anti-Vade Mecum PPRN',
       'Anti-Vade Mecum PMPI', 'Anti-Vade Mecum PCAL',
+      '❓ Outros / não sei o nome exato',
     ];
     var KIT_PRODUCTS = [
-      'KIT PPRS', 'KIT PP PB', 'KIT PP MA', 'KIT PMAL', 'KIT PMBA', 'KIT PMPE',
-      'KIT PMES', 'KIT PMESP', 'KIT PMMA', 'KIT PMMG', 'KIT PPRN', 'KIT PMPI',
-      'KIT PMDF Praça', 'KIT Guarda Civil Municipal de Aracaju',
-      'KIT Guarda Civil Municipal de Pouso Alegre',
-      'KIT Guarda Civil Municipal de São José de Ribamar',
-      'KIT Guarda Civil Municipal de Maceió',
+      'Edital Verticalizado PPRS', 'Edital Verticalizado PP PB', 'Edital Verticalizado PP MA',
+      'Edital Verticalizado PMAL', 'Edital Verticalizado PMBA', 'Edital Verticalizado PMPE',
+      'Edital Verticalizado PMES', 'Edital Verticalizado PMESP', 'Edital Verticalizado PMMA',
+      'Edital Verticalizado PMMG', 'Edital Verticalizado PPRN', 'Edital Verticalizado PMPI',
+      'Edital Verticalizado PMDF Praça', 'Edital Verticalizado Guarda Civil Municipal de Aracaju',
+      'Edital Verticalizado Guarda Civil Municipal de Pouso Alegre',
+      'Edital Verticalizado Guarda Civil Municipal de São José de Ribamar',
+      'Edital Verticalizado Guarda Civil Municipal de Maceió',
+      '❓ Outros / não sei o nome exato',
     ];
 
     var formData = {};
@@ -408,7 +412,7 @@
         '<div class="opt-list">' +
           optButtons([
             '📕 Anti-Vade Mecum',
-            '📗 Anti-Gramática 2.0',
+            '📗 Anti-Gramática 3.0',
             '🎯 Reta Final PPRS',
             '🗂️ Kit Edital Verticalizado',
             '👥 Grupo de WhatsApp (gratuito)',
@@ -461,7 +465,28 @@
     }
 
     function chooseProduto(p) {
+      if (p.indexOf('Outros') !== -1) { stageProdutoOutro(); return; }
       formData.produto = p;
+      stage2();
+    }
+
+    // ── ETAPA 1c: especificar produto quando escolhe "Outros" ──
+    function stageProdutoOutro() {
+      setProgress(30);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 1 de 5</p>' +
+        '<h2 class="stage-title">Qual produto é?</h2>' +
+        '<p class="stage-sub">Escreve o nome, mesmo que não tenha certeza exata. Se não souber, descreve como for (ex: "o material de leis da PM do Ceará").</p>' +
+        '<input type="text" class="field-input" id="produtoOutroInput" placeholder="Nome do produto ou descrição" />' +
+        '<button class="stage-cta" onclick="submitProdutoOutro()">Continuar</button>' +
+        '<button class="back-link" onclick="stage1b(window.__lastList)">← Voltar</button>'
+      );
+      document.getElementById('produtoOutroInput').focus();
+    }
+
+    function submitProdutoOutro() {
+      var val = document.getElementById('produtoOutroInput').value.trim();
+      formData.produto = val || 'Outro (não especificado)';
       stage2();
     }
 
@@ -477,7 +502,6 @@
             '🔗 Link não abre ou dá erro',
             '💳 Cobrança duplicada ou pagamento não reconhecido',
             '⚠️ Erro técnico usando o material',
-            '💰 Quero reembolso (dentro da garantia)',
             '📄 Recebi o material errado ou incompleto',
             '❓ Outro motivo',
           ], 'chooseMotivo') +
@@ -493,7 +517,27 @@
       if (m.indexOf('Não recebi') !== -1) { stage3(['Pix', 'Cartão de crédito', 'Boleto', 'Não sei / não lembro'], 'Forma de pagamento'); return; }
       if (m.indexOf('Link não abre') !== -1) { stage3(['Dá mensagem de erro', 'Não abre nada, tela em branco', 'Pede senha que eu não tenho', 'Outro problema no link'], 'O que acontece exatamente'); return; }
       if (m.indexOf('Cobrança duplicada') !== -1) { stage3(['Apareceu 2 vezes', 'Apareceu 3 vezes ou mais', 'Não sei quantas vezes'], 'Quantas vezes a cobrança apareceu'); return; }
-      if (m.indexOf('reembolso') !== -1) { stage3(['Comprei hoje ou ontem', 'Comprei essa semana', 'Comprei há mais de 7 dias'], 'Há quanto tempo comprou'); return; }
+      if (m.indexOf('Outro motivo') !== -1) { stageMotivoOutro(); return; }
+      stage4();
+    }
+
+    // ── ETAPA 2b: especificar motivo quando escolhe "Outro motivo" ──
+    function stageMotivoOutro() {
+      setProgress(45);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 2 de 5</p>' +
+        '<h2 class="stage-title">Qual é o motivo exatamente?</h2>' +
+        '<p class="stage-sub">Descreve com suas palavras. Se for pedido de reembolso, explica aqui também.</p>' +
+        '<input type="text" class="field-input" id="motivoOutroInput" placeholder="Escreve o motivo aqui" />' +
+        '<button class="stage-cta" onclick="submitMotivoOutro()">Continuar</button>' +
+        '<button class="back-link" onclick="goBackToStage2()">← Voltar</button>'
+      );
+      document.getElementById('motivoOutroInput').focus();
+    }
+
+    function submitMotivoOutro() {
+      var val = document.getElementById('motivoOutroInput').value.trim();
+      formData.motivo = 'Outro: ' + (val || '(não especificado)');
       stage4();
     }
 
