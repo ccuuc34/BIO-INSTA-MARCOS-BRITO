@@ -107,6 +107,17 @@ const IconAntiGramatica = () => (
   </svg>
 );
 
+const IconSupport = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+    <path d="M12 3a7 7 0 00-7 7v3.5a1.5 1.5 0 001.5 1.5H7v-6.2a1 1 0 00-1-1h-.72A5.5 5.5 0 0112 4.5a5.5 5.5 0 015.72 3.8H17a1 1 0 00-1 1V15a1 1 0 001 1h.2A3.3 3.3 0 0114 19.1"
+      stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <rect x="4.3" y="10.8" width="2.7" height="5.2" rx="1.35" fill="currentColor"/>
+    <rect x="17" y="10.8" width="2.7" height="5.2" rx="1.35" fill="currentColor"/>
+    <circle cx="18.5" cy="6" r="4" fill="currentColor" opacity="0.85"/>
+    <path d="M18.5 4.15l.56 1.14 1.26.18-.91.89.22 1.25-1.13-.6-1.13.6.22-1.25-.91-.89 1.26-.18z" fill="#150825"/>
+  </svg>
+);
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 const hexToRgba = (hex: string, alpha: number): string => {
@@ -231,19 +242,11 @@ const groupLinks: LinkItem[] = [
 const antiVadeLinks: LinkItem[] = [
   {
     id: 'anti-vade-carreira',
-    label: 'Anti-Vade Mecum Carreira Policial',
+    label: 'Anti-Vade Mecum 3.0 PC, PF, PRF, PP, PM e GCM',
     url: 'https://antivade-carreira.web.app',
     color: '#e9d5ff',
     featured: true,
     description: 'Eu montei o Anti-Vade Mecum Carreira Policial com todas as leis atualizadas que caem na prova. Olha o que você vai receber:\n\n📄 Atualizações Maria da Penha 2026\n📄 Crimes Hediondos (Lei nº 8.072/90)\n📄 Crimes Hediondos — Atualizações 2026\n📄 Direito Processual — Inquérito Policial\n📄 Direito Processual Penal — Ação Penal\n📄 Estatuto do Desarmamento (Lei nº 10.826/03)\n📄 ORCRIM (Lei nº 12.850)\n📄 Lei de Abuso de Autoridade (Lei nº 13.869/19)\n📄 Lei de Drogas (Lei nº 11.343/06)\n📄 Lei de Execução Penal (Lei 7.210/84)\n📄 Lei de Execução Penal — Atualizações 2026\n📄 Lei de Tortura (Lei nº 9.455/97)\n📄 Lei de Tortura — Atualizações 2026\n📄 Lei Maria da Penha (Lei nº 11.340/06)\n📄 Lei Maria da Penha — Atualizações 2026\n📄 Prisão Temporária (Lei nº 7.960)\n📄 Improbidade Administrativa (Lei nº 8.429/92)\n📄 LEP Atualizações 2026\n\nClica em "Continuar" e já abre pra você.',
-  },
-  {
-    id: 'anti-vade-pprs',
-    label: 'Anti-Vade Mecum PPRS',
-    url: 'https://antivade-pprs.web.app',
-    color: '#e9d5ff',
-    featured: true,
-    description: 'Eu separei todas as leis que vão cair na sua prova da PPRS. Cada uma já está organizada pra você baixar e estudar. Olha o que tem aqui:\n\n📄 Lei de Abuso de Autoridade (Lei nº 13.869/19)\n📄 Lei de Execução Penal (Lei 7.210/84)\n📄 Lei de Execução Penal — Atualizações 2026\n📄 Lei de Tortura (Lei nº 9.455/97)\n📄 Lei de Tortura — Atualizações 2026\n📄 Lei Maria da Penha (Lei 11.340/06)\n📄 Lei Maria da Penha — Atualizações 2026\n📄 Crimes de Preconceito (Lei nº 7.716/89)\n📄 Crime Racial (Lei nº 14.532/23)\n📄 LEP Atualizações 2026\n📄 Estatuto do Desarmamento (Lei 10.826) — INCLUÍDO AGORA ✅\n\nClica em "Continuar" e já abre pra você.',
   },
   {
     id: 'anti-vade-gma',
@@ -260,14 +263,6 @@ const antiVadeLinks: LinkItem[] = [
     color: '#e9d5ff',
     featured: true,
     description: 'Eu montei o Anti-Vade Mecum PMPE com todas as leis que caem na prova. Olha o que você vai receber:\n\n📄 Atualizações Maria da Penha 2026\n📄 Crimes Hediondos (Lei nº 8.072/90)\n📄 Crimes Hediondos — Atualizações 2026\n📄 Lei de Drogas (Lei nº 11.343/2006)\n📄 Lei de Abuso de Autoridade (Lei nº 13.869/19)\n📄 Lei de Tortura (Lei nº 9.455/97)\n📄 Lei de Tortura — Atualizações 2026\n📄 Lei Maria da Penha (Lei nº 11.340/06)\n📄 Lei Maria da Penha — Atualizações 2026\n📄 Crimes de Preconceito (Lei nº 7.716/89)\n\nClica em "Continuar" e já abre pra você.',
-  },
-  {
-    id: 'anti-gramatica',
-    label: 'Anti-Gramática 3.0: Português Intensivo',
-    url: 'https://anti-gramatica-3-0.vercel.app',
-    color: '#e9d5ff',
-    featured: true,
-    description: 'Eu criei o Anti-Gramática 3.0 pra você que trava em português. São 12 páginas com só o recorte que mais cai em qualquer concurso policial (crase, regência, concordância, pontuação, colocação pronominal), sem gramática normativa inteira pra te enrolar. E ainda vem com bônus: o Anti-Gramática 2.0 completo, de graça. Clica em "Continuar" e já abre pra você.',
   },
   {
     id: 'anti-vade-pmal',
@@ -306,15 +301,6 @@ const kitCategories: { id: 'pp' | 'pm' | 'gcm'; label: string; icon: string }[] 
 ];
 
 const kitLinks: LinkItem[] = [
-  {
-    id: 'kit-pprs',
-    label: 'KIT PPRS: Edital Verticalizado + Prioridades + Plano de Ação 76 Dias',
-    url: 'https://edital-verticalizado-pprs.web.app/',
-    color: '#e9d5ff',
-    featured: true,
-    category: 'pp',
-    description: 'Eu montei um kit completo pra você não perder tempo. Tem o edital verticalizado, as prioridades do que estudar primeiro e um plano de ação de 76 dias pra você chegar na prova preparado. Clica em "Continuar" e acessa agora.',
-  },
   {
     id: 'kit-pppb',
     label: 'KIT PP PB: Edital Verticalizado + Prioridades',
@@ -433,15 +419,6 @@ const kitLinks: LinkItem[] = [
     description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de Aracaju. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
-    id: 'kit-gcm-pousoalegre',
-    label: 'KIT Guarda Civil Municipal de Pouso Alegre: Edital Verticalizado + Prioridades',
-    url: 'https://edital-gcm-pouso-alegre.vercel.app/',
-    color: '#e9d5ff',
-    featured: true,
-    category: 'gcm',
-    description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de Pouso Alegre. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
-  },
-  {
     id: 'kit-gcm-saojoseribamar',
     label: 'KIT Guarda Civil Municipal de São José de Ribamar: Edital Verticalizado + Prioridades',
     url: 'https://edital-gcm-sao-jose-ribamar.vercel.app/',
@@ -449,24 +426,6 @@ const kitLinks: LinkItem[] = [
     featured: true,
     category: 'gcm',
     description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de São José de Ribamar. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
-  },
-  {
-    id: 'kit-gcm-maceio',
-    label: 'KIT Guarda Civil Municipal de Maceió: Edital Verticalizado + Prioridades',
-    url: 'https://edital-gcm-maceio-2026.vercel.app/',
-    color: '#e9d5ff',
-    featured: true,
-    category: 'gcm',
-    description: 'Eu montei o kit completo pra quem estuda pra Guarda Civil Municipal de Maceió. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
-  },
-  {
-    id: 'kit-pmdf-oficial',
-    label: 'KIT PMDF Oficial: Edital Verticalizado + Prioridades',
-    url: 'https://edital-pmdf-oficial-2026.vercel.app/',
-    color: '#e9d5ff',
-    featured: true,
-    category: 'pm',
-    description: 'Eu montei o kit completo pra quem estuda pra PMDF Oficial. Tem o edital verticalizado e as prioridades do que você precisa estudar primeiro, sem perder tempo com o que não cai. Clica em "Continuar" e acessa agora.',
   },
   {
     id: 'kit-gcm-salvador',
@@ -483,8 +442,18 @@ const kitLinks: LinkItem[] = [
 
 const links: LinkItem[] = [
   {
+    id: 'suporte',
+    label: 'SUPORTE PRIORITÁRIO AQUI',
+    url: 'https://suporte-prioritario.web.app',
+    color: '#f6f6f6',
+    buttonColor: '#8b171a',
+    icon: <IconSupport />,
+    featured: true,
+    description: 'Precisa de ajuda com algum material, link ou compra? Clica em "Continuar" que você vai direto pro nosso suporte prioritário, é rapidinho.',
+  },
+  {
     id: 'antigramatica',
-    label: 'ANTI-GRAMÁTICA 3.0 AQUI',
+    label: 'MATERIAL DE PORTUGUÊS AQUI',
     url: 'https://anti-gramatica-3-0.vercel.app',
     color: '#bfe9d0',
     buttonColor: '#0f7a4d',
@@ -494,7 +463,7 @@ const links: LinkItem[] = [
   },
   {
     id: 'antivade',
-    label: 'ANTI-VADE AQUI',
+    label: 'MATERIAIS DE DIREITO AQUI',
     url: '',
     color: '#e9d5ff',
     buttonColor: '#8000ff',
@@ -619,8 +588,8 @@ const categoryPopups = {
       },
       {
         icon: '👥',
-        title: '+1.500 alunos sérios',
-        body: 'A comunidade já tem mais de 1.500 alunos estudando junto. Quando o ambiente é sério, o seu rendimento muda. Isso é tribalismo na prática.',
+        title: '+3.000 alunos sérios',
+        body: 'A comunidade já tem mais de 3.000 alunos estudando junto. Quando o ambiente é sério, o seu rendimento muda. Isso é tribalismo na prática.',
       },
     ],
     cta: 'ENTRA NA COMUNIDADE DOS APROVADOS',
@@ -1168,7 +1137,7 @@ function App() {
           transition={{ delay: 0.15, duration: 0.4 }}
         >
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-            <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 800, fontSize: '24px', color: '#8000ff', lineHeight: 1 }}>+1.500</span>
+            <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 800, fontSize: '24px', color: '#8000ff', lineHeight: 1 }}>+3.000</span>
             <span style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: '10px', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Alunos</span>
           </div>
         </motion.div>
