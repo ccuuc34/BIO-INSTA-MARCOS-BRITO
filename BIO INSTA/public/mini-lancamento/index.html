@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Marcos Brito - Escolha seu Grupo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100vh;
+      background: #eef3f6;
+      font-family: 'Nunito', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px 56px;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .badge {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b7a85;
+      background: #ffffff;
+      border: 1px solid #dfe6ea;
+      padding: 7px 16px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      line-height: 1.25;
+      text-align: center;
+      color: #16232b;
+      margin-bottom: 10px;
+    }
+    p.sub {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #5c6b74;
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 32px;
+      max-width: 340px;
+    }
+    .cards {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    a.card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #e2e8ec;
+      border-radius: 16px;
+      padding: 18px 18px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(22, 35, 43, 0.06);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    a.card:active {
+      transform: scale(0.98);
+    }
+    .icon {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      background: #e8f8ee;
+    }
+    .card.direito .icon { background: #fdeaea; }
+    .card.rlm .icon { background: #eef0fd; }
+    .texts {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .texts .label {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 15.5px;
+      color: #16232b;
+    }
+    .texts .desc {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #7a8890;
+    }
+    .go {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .go svg { width: 15px; height: 15px; }
+    .footer {
+      margin-top: 36px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #9aa7ae;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="badge">MARCOS BRITO</div>
+    <h1>Qual grupo você quer entrar?</h1>
+    <p class="sub">Escolhe abaixo e você já entra direto no grupo do WhatsApp.</p>
+
+    <div class="cards">
+      <a class="card portugues" href="https://chat.whatsapp.com/Eipl9wiQrCi6cWLjoDPQMx" target="_blank" rel="noopener noreferrer">
+        <div class="icon">📘</div>
+        <div class="texts">
+          <span class="label">Grupo de Português</span>
+          <span class="desc">Anti-Gramática 2.0 + 3.0</span>
+        </div>
+        <div class="go">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <a class="card direito" href="https://chat.whatsapp.com/I8SLuMtKxRT2AaANQwI1Li" target="_blank" rel="noopener noreferrer">
+        <div class="icon">⚖️</div>
+        <div class="texts">
+          <span class="label">Grupo de Direito Penal</span>
+          <span class="desc">Direito Penal + Anti-Vade Mecum 3.0</span>
+        </div>
+        <div class="go">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <a class="card rlm" href="https://chat.whatsapp.com/IfTB4J7Cr1A64rQ3oLuX4A" target="_blank" rel="noopener noreferrer">
+        <div class="icon">🧠</div>
+        <div class="texts">
+          <span class="label">Grupo de RLM</span>
+          <span class="desc">Raciocínio Lógico-Matemático</span>
+        </div>
+        <div class="go">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+    </div>
+
+    <div class="footer">© 2026 MARCOS BRITO | TACTICAL PREP</div>
+  </div>
+</body>
+</html>
