@@ -118,6 +118,22 @@ const IconSupport = () => (
   </svg>
 );
 
+// Ícone do RLM — cérebro com os "nós" de raciocínio conectados, exclusivo desse produto
+const IconRLM = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+    {/* Hemisfério esquerdo */}
+    <path d="M9.3 3.3C7.5 3.1 6 4.4 5.7 6.1 4.4 6.5 3.4 7.7 3.4 9.1c0 .7.2 1.4.6 1.9-.6.5-1 1.3-1 2.1 0 1.5 1.1 2.7 2.5 2.9.2 1.6 1.6 2.8 3.2 2.8.6 0 1.2-.2 1.7-.5V5.6c0-1.2-.6-2.1-1.1-2.3z" fill="currentColor" opacity="0.85"/>
+    {/* Hemisfério direito */}
+    <path d="M14.7 3.3c1.8-.2 3.3 1.1 3.6 2.8 1.3.4 2.3 1.6 2.3 3 0 .7-.2 1.4-.6 1.9.6.5 1 1.3 1 2.1 0 1.5-1.1 2.7-2.5 2.9-.2 1.6-1.6 2.8-3.2 2.8-.6 0-1.2-.2-1.7-.5V5.6c0-1.2.6-2.1 1.1-2.3z" fill="currentColor" opacity="0.5"/>
+    {/* Nós de raciocínio conectados */}
+    <circle cx="8.6" cy="9.2" r="1.15" fill="#ffffff"/>
+    <circle cx="12" cy="12.6" r="1.15" fill="#ffffff"/>
+    <circle cx="15.4" cy="8.7" r="1.15" fill="#ffffff"/>
+    <circle cx="12" cy="16.4" r="1.15" fill="#ffffff"/>
+    <path d="M8.6 9.2L12 12.6L15.4 8.7M12 12.6L12 16.4" stroke="#ffffff" strokeWidth="1.1" strokeLinecap="round" opacity="0.9"/>
+  </svg>
+);
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 const hexToRgba = (hex: string, alpha: number): string => {
@@ -450,6 +466,16 @@ const links: LinkItem[] = [
     icon: <IconSupport />,
     featured: true,
     description: 'Precisa de ajuda com algum material, link ou compra? Clica em "Continuar" que você vai direto pro nosso suporte prioritário, é rapidinho.',
+  },
+  {
+    id: 'rlm',
+    label: 'RLM AQUI',
+    url: 'https://pay.kirvano.com/ef735c81-fc9e-4c0c-8e44-0e7c4b110d08',
+    color: '#c2d6ff',
+    buttonColor: '#3357d6',
+    icon: <IconRLM />,
+    featured: true,
+    description: 'Eu preparei o material de RLM (Raciocínio Lógico-Matemático) pra você que trava nas questões de lógica e matemática do concurso. Clica em "Continuar" e já abre pra você.',
   },
   {
     id: 'antigramatica',
