@@ -26,10 +26,14 @@
       pointer-events: none; z-index: 0;
     }
 
-    .page { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 44px 20px 56px; }
-    .card { width: 100%; max-width: 440px; text-align: center; }
+    .page { position: relative; z-index: 1; min-height: 100vh; display: flex; justify-content: center; padding: 44px 20px 56px; }
+    .card { width: 100%; max-width: 480px; }
 
-    .eyebrow-row { margin-bottom: 22px; }
+    /* ── Barra de progresso da peneira ── */
+    .progress-wrap { width: 100%; height: 4px; background: rgba(255,255,255,0.06); border-radius: 100px; margin-bottom: 30px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #AF9064, #8b171a); transition: width 0.5s ease; }
+
+    .eyebrow-row { text-align: center; margin-bottom: 22px; }
     .eyebrow {
       font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
       color: #AF9064; background: rgba(175,144,100,0.1); border: 1px solid rgba(175,144,100,0.3);
@@ -39,47 +43,226 @@
 
     .headline {
       font-family: 'Sora', sans-serif; font-weight: 800;
-      font-size: clamp(24px, 7vw, 32px); color: #F6F6F6;
-      line-height: 1.22; margin-bottom: 6px;
+      font-size: clamp(22px, 6.4vw, 30px); color: #F6F6F6;
+      text-align: center; line-height: 1.25; margin-bottom: 6px;
     }
     .brand-line {
       font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px;
-      color: #8b171a; letter-spacing: 0.04em;
-      text-transform: uppercase; margin-bottom: 24px;
+      color: #8b171a; text-align: center; letter-spacing: 0.04em;
+      text-transform: uppercase; margin-bottom: 20px;
     }
 
     .desc {
-      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15.5px;
-      color: rgba(246,246,246,0.66); line-height: 1.75;
-      margin-bottom: 34px;
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 15px;
+      color: rgba(246,246,246,0.65); line-height: 1.75; text-align: center;
+      margin-bottom: 28px;
     }
     .desc strong { color: #F6F6F6; font-weight: 700; }
 
-    .whats-btn {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 100%; padding: 18px 20px; border-radius: 14px;
-      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+    /* ── Wizard: perguntas da peneira ── */
+    #app { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .stage-eyebrow {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      color: #AF9064; letter-spacing: 0.14em; text-transform: uppercase;
+      text-align: center; margin-bottom: 12px;
+    }
+    .stage-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(19px, 5.4vw, 24px);
+      color: #F6F6F6; text-align: center; line-height: 1.3; margin-bottom: 24px;
+    }
+    .stage-sub {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(246,246,246,0.5); text-align: center; line-height: 1.6; margin: -14px 0 22px;
+    }
+
+    .opt-list { display: flex; flex-direction: column; gap: 10px; }
+    .opt-btn {
+      width: 100%; text-align: left; cursor: pointer;
+      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 14px; padding: 16px 18px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+      color: rgba(246,246,246,0.88); line-height: 1.4;
+      transition: border-color 0.2s, background 0.2s, transform 0.12s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .opt-btn:hover { border-color: rgba(175,144,100,0.55); background: rgba(175,144,100,0.08); }
+    .opt-btn:active { transform: scale(0.98); }
+    .opt-btn.small { font-size: 13.5px; padding: 13px 16px; }
+
+    .field-label {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(246,246,246,0.6); margin-bottom: 10px;
+    }
+    .field-input {
+      width: 100%; padding: 15px 16px; border-radius: 12px;
+      background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.14);
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 15px;
+      color: #F6F6F6; margin-bottom: 16px;
+    }
+    .field-input::placeholder { color: rgba(246,246,246,0.3); }
+    .field-input:focus { outline: none; border-color: #AF9064; }
+    textarea.field-input { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+    .stage-cta {
+      width: 100%; padding: 16px 18px; border-radius: 13px; cursor: pointer;
+      background: linear-gradient(135deg, #8b171a 0%, #6b1113 100%);
+      border: none; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 14px;
+      color: #fff; letter-spacing: 0.02em; text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .stage-cta:disabled { opacity: 0.4; cursor: not-allowed; }
+    .stage-cta:active:not(:disabled) { transform: scale(0.98); }
+
+    .back-link {
+      display: block; width: 100%; text-align: center; margin-top: 16px;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+      color: rgba(246,246,246,0.32);
+    }
+
+    /* ── Preview da mensagem gerada ── */
+    .msg-preview {
+      width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 18px; margin-bottom: 20px;
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 13px;
+      color: rgba(246,246,246,0.75); line-height: 1.7; white-space: pre-wrap; word-break: break-word;
+      max-height: 260px; overflow-y: auto;
+    }
+    .msg-note {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+      color: rgba(10,190,82,0.9); text-align: center; margin-bottom: 18px; line-height: 1.6;
+    }
+
+    /* ── Cards de canal ── */
+    .channel-card {
+      background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 18px; padding: 26px 24px; margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .channel-card.primary { border-color: rgba(139,23,26,0.4); background: rgba(139,23,26,0.06); }
+
+    .channel-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .channel-icon {
+      width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .channel-icon.email { background: rgba(139,23,26,0.16); border: 1px solid rgba(139,23,26,0.4); }
+    .channel-icon.whats { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+
+    .channel-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .channel-title { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 17px; color: #F6F6F6; }
+    .channel-badge {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .channel-badge.fast { color: #0abe52; background: rgba(10,190,82,0.12); border: 1px solid rgba(10,190,82,0.3); }
+    .channel-badge.slow { color: rgba(246,246,246,0.45); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+
+    .channel-desc {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 14px;
+      color: rgba(246,246,246,0.6); line-height: 1.65; margin-bottom: 20px;
+    }
+
+    /* ── Botões ── */
+    .channel-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 15px 18px; border-radius: 12px;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 14px;
       letter-spacing: 0.02em; text-transform: uppercase;
       text-decoration: none; border: none; cursor: pointer;
-      background: #0abe52; color: #fff;
-      box-shadow: 0 12px 30px rgba(10,190,82,0.28);
-      transition: transform 0.12s;
+      position: relative;
     }
-    .whats-btn:active { transform: scale(0.98); }
-    .whats-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .channel-btn.email-btn { background: #8b171a; color: #fff; }
+    .channel-btn.email-btn:active { transform: scale(0.98); }
+    .channel-btn.whats-btn { background: #0abe52; color: #fff; }
+    .channel-btn.whats-btn:active { transform: scale(0.98); }
 
-    .number-line {
-      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px;
-      color: rgba(246,246,246,0.5); margin-top: 18px; letter-spacing: 0.02em;
+    .email-alt-link {
+      display: block; width: 100%; text-align: center; margin: 12px 0 0;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 12.5px;
+      color: rgba(246,246,246,0.4); text-decoration: underline;
+      -webkit-tap-highlight-color: transparent;
     }
+
+    /* ── Fallback de cópia: garante funcionamento mesmo sem app de e-mail (ex: navegador in-app do Instagram) ── */
+    .email-hint {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px;
+      color: rgba(246,246,246,0.4); line-height: 1.6; margin-top: 10px;
+    }
+    .email-fallback {
+      display: flex; align-items: center; gap: 8px; margin-top: 10px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 10px 12px;
+    }
+    .email-fallback-text {
+      flex: 1; min-width: 0; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 12.5px;
+      color: rgba(246,246,246,0.7); word-break: break-all;
+    }
+    .email-copy-btn {
+      flex-shrink: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px;
+      letter-spacing: 0.03em; text-transform: uppercase; color: #ff9999;
+      background: rgba(139,23,26,0.14); border: 1px solid rgba(139,23,26,0.4);
+      border-radius: 8px; padding: 9px 12px; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .email-copy-btn.copied { background: #0abe52; border-color: #0abe52; color: #fff; }
+
+    .copy-msg-btn {
+      width: 100%; padding: 13px 16px; border-radius: 12px; cursor: pointer; margin-bottom: 16px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14);
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 12.5px;
+      letter-spacing: 0.03em; text-transform: uppercase; color: rgba(246,246,246,0.7);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .copy-msg-btn.copied { background: rgba(10,190,82,0.14); border-color: #0abe52; color: #0abe52; }
 
     .footer-note {
       font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12.5px;
-      color: rgba(246,246,246,0.32); line-height: 1.7; margin-top: 34px;
+      color: rgba(246,246,246,0.32); text-align: center; line-height: 1.7; margin-top: 30px;
+    }
+
+    /* ── TSL: o que esse canal resolve (sempre visível, antes do wizard) ── */
+    .tsl-section { width: 100%; margin-bottom: 30px; padding-bottom: 26px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .tsl-title {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13.5px;
+      color: #F6F6F6; margin-bottom: 16px;
+    }
+    .tsl-inner { padding-bottom: 8px; }
+
+    .tsl-lead {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 14px;
+      color: rgba(246,246,246,0.7); line-height: 1.7; margin-bottom: 18px;
+    }
+    .tsl-lead strong { color: #F6F6F6; }
+
+    .tsl-col-label {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .tsl-col-label.ok { color: #0abe52; }
+    .tsl-col-label.no { color: #e84040; }
+
+    .tsl-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+    .tsl-list li {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 13.5px;
+      color: rgba(246,246,246,0.62); line-height: 1.5;
+    }
+    .tsl-list li .mark { flex-shrink: 0; font-weight: 800; margin-top: 1px; }
+    .tsl-list.ok li .mark { color: #0abe52; }
+    .tsl-list.no li .mark { color: #e84040; }
+
+    .tsl-closing {
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px;
+      color: rgba(246,246,246,0.55); line-height: 1.7; padding-top: 4px; border-top: 1px solid rgba(255,255,255,0.06);
     }
 
     .footer-sig {
-      margin-top: 30px;
+      margin-top: 36px; text-align: center;
       font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
       color: rgba(246,246,246,0.14); letter-spacing: 0.08em; text-transform: uppercase;
     }
@@ -95,22 +278,407 @@
       <p class="brand-line">Marcos Brito</p>
 
       <p class="desc">
-        O atendimento é <strong>só pelo WhatsApp</strong>. Toca no botão abaixo, manda sua mensagem e a equipe te responde por lá.
+        Responde <strong>5 perguntas rápidas</strong> antes de mandar sua mensagem. Isso me dá o contexto todo de uma vez e faz seu problema ser resolvido muito mais rápido — sem ida e volta.
       </p>
 
-      <a href="https://wa.me/5573988471593" target="_blank" rel="noopener noreferrer" class="whats-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        Chamar no WhatsApp
-      </a>
+      <div class="tsl-section">
+        <p class="tsl-title">Antes de começar, veja o que esse canal resolve</p>
+        <div class="tsl-inner">
+          <p class="tsl-lead">Esse suporte existe pra <strong>resolver problema real</strong>, não pra bate-papo. Isso é o que mantém o canal rápido pra quem realmente precisa.</p>
 
-      <p class="number-line">(73) 98847-1593</p>
+          <p class="tsl-col-label ok">✅ É pra isso</p>
+          <ul class="tsl-list ok">
+            <li><span class="mark">✓</span>Não recebeu o material que comprou</li>
+            <li><span class="mark">✓</span>Link de acesso não abre ou dá erro</li>
+            <li><span class="mark">✓</span>Cobrança duplicada ou pagamento não reconhecido</li>
+            <li><span class="mark">✓</span>Erro técnico que te impede de usar o que comprou</li>
+          </ul>
 
-      <p class="footer-note">Esse é o único canal oficial de suporte. Guarde esse número.</p>
+          <p class="tsl-col-label no">❌ Não é pra isso</p>
+          <ul class="tsl-list no">
+            <li><span class="mark">✕</span>Dúvida de conteúdo ou matéria de estudo</li>
+            <li><span class="mark">✕</span>Papo sem relação com o suporte</li>
+            <li><span class="mark">✕</span>Pedido de desconto ou negociação de preço</li>
+            <li><span class="mark">✕</span>Pergunta que já está respondida na página do material</li>
+          </ul>
+
+          <p class="tsl-closing">Se você chamar pra resolver algo fútil, pode estar atrasando o atendimento de outra pessoa que tem um problema real esperando resposta. Quanto mais completa a peneira abaixo, mais rápido eu resolvo problema de verdade.</p>
+        </div>
+      </div>
+
+      <div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+      <div id="app"></div>
+
+      <!-- ── ETAPA FINAL: envio pelo WhatsApp, revelada só depois da peneira ── -->
+      <div id="finalStep" style="display:none;">
+
+        <p class="msg-note">✅ Mensagem pronta. Toca no botão abaixo — o texto já vai preenchido no WhatsApp, você só confirma o envio.</p>
+
+        <div class="msg-preview" id="msgPreview"></div>
+        <button type="button" class="copy-msg-btn" id="copyMsgBtn">Copiar mensagem</button>
+
+        <!-- WHATSAPP: canal único -->
+        <div class="channel-card primary">
+          <div class="channel-top">
+            <div class="channel-icon whats">💬</div>
+            <div>
+              <div class="channel-title-row">
+                <span class="channel-title">WhatsApp</span>
+                <span class="channel-badge fast">Canal oficial</span>
+              </div>
+            </div>
+          </div>
+          <p class="channel-desc">Toca no botão que o WhatsApp abre com a mensagem já preenchida. É só apertar enviar.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="channel-btn whats-btn" id="whatsBtn">Chamar no WhatsApp</a>
+        </div>
+
+        <button type="button" class="back-link" id="restartBtn">← Refazer as perguntas</button>
+      </div>
+
+      <p class="footer-note">O atendimento é só pelo WhatsApp. Guarde o número: (73) 98847-1593.</p>
 
       <p class="footer-sig">© 2026 Marcos Brito</p>
     </div>
   </div>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════════════
+    // CATÁLOGO DE PRODUTOS (base: BIO INSTA)
+    // ═══════════════════════════════════════════════════════════════════
+    var ANTIVADE_PRODUCTS = [
+      'Anti-Vade Mecum Carreira Policial', 'Anti-Vade Mecum PPRS', 'Anti-Vade Mecum GMA',
+      'Anti-Vade Mecum PMPE', 'Anti-Vade Mecum PCPE', 'Anti-Vade Mecum PPPE',
+      'Anti-Vade Mecum PCMA', 'Anti-Vade Mecum PMAL', 'Anti-Vade Mecum PPRN',
+      'Anti-Vade Mecum PMPI', 'Anti-Vade Mecum PCAL',
+      '❓ Outros / não sei o nome exato',
+    ];
+    var KIT_PRODUCTS = [
+      'Edital Verticalizado PPRS', 'Edital Verticalizado PP PB', 'Edital Verticalizado PP MA',
+      'Edital Verticalizado PMAL', 'Edital Verticalizado PMBA', 'Edital Verticalizado PMPE',
+      'Edital Verticalizado PMES', 'Edital Verticalizado PMESP', 'Edital Verticalizado PMMA',
+      'Edital Verticalizado PMMG', 'Edital Verticalizado PPRN', 'Edital Verticalizado PMPI',
+      'Edital Verticalizado PMDF Praça', 'Edital Verticalizado Guarda Civil Municipal de Aracaju',
+      'Edital Verticalizado Guarda Civil Municipal de Pouso Alegre',
+      'Edital Verticalizado Guarda Civil Municipal de São José de Ribamar',
+      'Edital Verticalizado Guarda Civil Municipal de Maceió',
+      '❓ Outros / não sei o nome exato',
+    ];
+
+    var formData = {};
+
+    var app = document.getElementById('app');
+    var progress = document.getElementById('progress');
+    function setProgress(pct) { progress.style.width = pct + '%'; }
+
+    function mount(html, afterMount) {
+      app.style.opacity = 0;
+      setTimeout(function () {
+        app.innerHTML = html;
+        app.style.opacity = 1;
+        if (afterMount) afterMount();
+      }, 100);
+    }
+
+    function optButtons(options, onClickFnName, extraClass) {
+      return options.map(function (opt) {
+        return '<button class="opt-btn' + (extraClass ? ' ' + extraClass : '') + '" onclick="' + onClickFnName + '(\'' + opt.replace(/'/g, "\\'") + '\')">' + opt + '</button>';
+      }).join('');
+    }
+
+    // ── ETAPA 1: categoria do produto ──
+    function stage1() {
+      setProgress(14);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 1 de 5</p>' +
+        '<h2 class="stage-title">Qual produto você comprou (ou tentou comprar)?</h2>' +
+        '<div class="opt-list">' +
+          optButtons([
+            '📕 Anti-Vade Mecum',
+            '📗 Anti-Gramática 3.0',
+            '🎯 Reta Final PPRS',
+            '🗂️ Kit Edital Verticalizado',
+            '👥 Grupo de WhatsApp (gratuito)',
+            '🎓 Método 6PF',
+            '❓ Outro / não sei o nome exato',
+          ], 'chooseCategoria') +
+        '</div>'
+      );
+    }
+
+    function chooseCategoria(c) {
+      formData.categoria = c;
+      if (c.indexOf('Anti-Vade Mecum') !== -1) { stage1b(ANTIVADE_PRODUCTS); return; }
+      if (c.indexOf('Kit Edital') !== -1) { stage1b(KIT_PRODUCTS); return; }
+      formData.produto = c.replace(/^[^\wÀ-ú]+\s*/, '');
+      if (c.indexOf('Grupo de WhatsApp') !== -1) { stage2Grupo(); return; }
+      stage2();
+    }
+
+    // ── ETAPA 2 (grupo gratuito): só faz sentido denúncia ou não conseguir entrar ──
+    function stage2Grupo() {
+      setProgress(38);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 2 de 5</p>' +
+        '<h2 class="stage-title">Qual é o motivo do seu contato sobre o grupo?</h2>' +
+        '<div class="opt-list">' +
+          optButtons([
+            '🚨 Denúncia (alguém ou algo no grupo)',
+            '🔒 Não estou conseguindo entrar no grupo',
+          ], 'chooseMotivo') +
+        '</div>' +
+        '<button class="back-link" onclick="stage1()">← Voltar</button>'
+      );
+    }
+
+    function goBackToStage2() {
+      if (formData.categoria && formData.categoria.indexOf('Grupo de WhatsApp') !== -1) { stage2Grupo(); return; }
+      stage2();
+    }
+
+    // ── ETAPA 1b: produto específico (só Anti-Vade / Kit) ──
+    function stage1b(list) {
+      setProgress(22);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 1 de 5</p>' +
+        '<h2 class="stage-title">Qual especificamente?</h2>' +
+        '<div class="opt-list">' + optButtons(list, 'chooseProduto', 'small') + '</div>' +
+        '<button class="back-link" onclick="stage1()">← Voltar</button>'
+      );
+    }
+
+    function chooseProduto(p) {
+      if (p.indexOf('Outros') !== -1) { stageProdutoOutro(); return; }
+      formData.produto = p;
+      stage2();
+    }
+
+    // ── ETAPA 1c: especificar produto quando escolhe "Outros" ──
+    function stageProdutoOutro() {
+      setProgress(30);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 1 de 5</p>' +
+        '<h2 class="stage-title">Qual produto é?</h2>' +
+        '<p class="stage-sub">Escreve o nome, mesmo que não tenha certeza exata. Se não souber, descreve como for (ex: "o material de leis da PM do Ceará").</p>' +
+        '<input type="text" class="field-input" id="produtoOutroInput" placeholder="Nome do produto ou descrição" />' +
+        '<button class="stage-cta" onclick="submitProdutoOutro()">Continuar</button>' +
+        '<button class="back-link" onclick="stage1b(window.__lastList)">← Voltar</button>',
+        function () { document.getElementById('produtoOutroInput').focus(); }
+      );
+    }
+
+    function submitProdutoOutro() {
+      var val = document.getElementById('produtoOutroInput').value.trim();
+      formData.produto = val || 'Outro (não especificado)';
+      stage2();
+    }
+
+    // ── ETAPA 2: motivo do contato ──
+    function stage2() {
+      setProgress(38);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 2 de 5</p>' +
+        '<h2 class="stage-title">Qual é o motivo do seu contato?</h2>' +
+        '<div class="opt-list">' +
+          optButtons([
+            '📦 Não recebi o material/acesso',
+            '🔗 Link não abre ou dá erro',
+            '💳 Cobrança duplicada ou pagamento não reconhecido',
+            '⚠️ Erro técnico usando o material',
+            '📄 Recebi o material errado ou incompleto',
+            '❓ Outro motivo',
+          ], 'chooseMotivo') +
+        '</div>' +
+        '<button class="back-link" onclick="' + (formData.categoria && (formData.categoria.indexOf('Anti-Vade') !== -1 || formData.categoria.indexOf('Kit') !== -1) ? 'stage1b(window.__lastList)' : 'stage1()') + '">← Voltar</button>'
+      );
+      if (formData.categoria && formData.categoria.indexOf('Anti-Vade Mecum') !== -1) window.__lastList = ANTIVADE_PRODUCTS;
+      if (formData.categoria && formData.categoria.indexOf('Kit Edital') !== -1) window.__lastList = KIT_PRODUCTS;
+    }
+
+    function chooseMotivo(m) {
+      formData.motivo = m;
+      if (m.indexOf('Não recebi') !== -1) { stage3(['Pix', 'Cartão de crédito', 'Boleto', 'Não sei / não lembro'], 'Forma de pagamento'); return; }
+      if (m.indexOf('Link não abre') !== -1) { stage3(['Dá mensagem de erro', 'Não abre nada, tela em branco', 'Pede senha que eu não tenho', 'Outro problema no link'], 'O que acontece exatamente'); return; }
+      if (m.indexOf('Cobrança duplicada') !== -1) { stage3(['Apareceu 2 vezes', 'Apareceu 3 vezes ou mais', 'Não sei quantas vezes'], 'Quantas vezes a cobrança apareceu'); return; }
+      if (m.indexOf('Outro motivo') !== -1) { stageMotivoOutro(); return; }
+      stage4();
+    }
+
+    // ── ETAPA 2b: especificar motivo quando escolhe "Outro motivo" ──
+    function stageMotivoOutro() {
+      setProgress(45);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 2 de 5</p>' +
+        '<h2 class="stage-title">Qual é o motivo exatamente?</h2>' +
+        '<p class="stage-sub">Descreve com suas palavras.</p>' +
+        '<input type="text" class="field-input" id="motivoOutroInput" placeholder="Escreve o motivo aqui" />' +
+        '<button class="stage-cta" onclick="submitMotivoOutro()">Continuar</button>' +
+        '<button class="back-link" onclick="goBackToStage2()">← Voltar</button>',
+        function () { document.getElementById('motivoOutroInput').focus(); }
+      );
+    }
+
+    function submitMotivoOutro() {
+      var val = document.getElementById('motivoOutroInput').value.trim();
+      formData.motivo = 'Outro: ' + (val || '(não especificado)');
+      stage4();
+    }
+
+    // ── ETAPA 3: pergunta condicional (só aparece pra alguns motivos) ──
+    function stage3(options, label) {
+      setProgress(52);
+      formData.detalheLabel = label;
+      mount(
+        '<p class="stage-eyebrow">Pergunta 3 de 5</p>' +
+        '<h2 class="stage-title">' + label + '</h2>' +
+        '<div class="opt-list">' + optButtons(options, 'chooseDetalhe') + '</div>' +
+        '<button class="back-link" onclick="goBackToStage2()">← Voltar</button>'
+      );
+    }
+
+    function chooseDetalhe(d) {
+      formData.detalhe = d;
+      stage4();
+    }
+
+    // ── ETAPA 4: e-mail usado na compra ──
+    function stage4() {
+      setProgress(72);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 4 de 5</p>' +
+        '<h2 class="stage-title">Qual e-mail você usou na compra?</h2>' +
+        '<p class="stage-sub">É assim que eu localizo seu pedido no sistema de pagamento.</p>' +
+        '<input type="email" class="field-input" id="emailInput" placeholder="seuemail@gmail.com" value="' + (formData.email || '') + '" />' +
+        '<button class="stage-cta" onclick="submitEmail()">Continuar</button>' +
+        '<button class="back-link" onclick="' + (formData.detalhe ? 'stage3Back()' : 'goBackToStage2()') + '">← Voltar</button>',
+        function () { document.getElementById('emailInput').focus(); }
+      );
+    }
+
+    function stage3Back() {
+      // Reconstrói a etapa 3 com as mesmas opções, caso a pessoa volte
+      chooseMotivo(formData.motivo);
+    }
+
+    function submitEmail() {
+      var val = document.getElementById('emailInput').value.trim();
+      formData.email = val || 'não informado';
+      stage5();
+    }
+
+    // ── ETAPA 5: descrição livre ──
+    function stage5() {
+      setProgress(88);
+      mount(
+        '<p class="stage-eyebrow">Pergunta 5 de 5</p>' +
+        '<h2 class="stage-title">Agora descreve com suas palavras o que está acontecendo</h2>' +
+        '<p class="stage-sub">Quanto mais detalhe, mais rápido eu resolvo. Não tem limite de texto.</p>' +
+        '<textarea class="field-input" id="descInput" placeholder="Conta aqui exatamente o que aconteceu..."></textarea>' +
+        '<button class="stage-cta" onclick="submitDesc()">Gerar minha mensagem</button>' +
+        '<button class="back-link" onclick="stage4()">← Voltar</button>',
+        function () { document.getElementById('descInput').focus(); }
+      );
+    }
+
+    function submitDesc() {
+      var val = document.getElementById('descInput').value.trim();
+      formData.descricao = val || '(não descrito)';
+      finishWizard();
+    }
+
+    // ── ETAPA FINAL: gera a mensagem e revela os canais ──
+    function buildMessage() {
+      var lines = [];
+      lines.push('🎯 SUPORTE PRIORITÁRIO — Marcos Brito');
+      lines.push('');
+      lines.push('Produto: ' + (formData.produto || '-'));
+      lines.push('Motivo do contato: ' + (formData.motivo || '-'));
+      if (formData.detalhe) lines.push(formData.detalheLabel + ': ' + formData.detalhe);
+      lines.push('E-mail usado na compra: ' + (formData.email || '-'));
+      lines.push('');
+      lines.push('Descrição do problema:');
+      lines.push(formData.descricao || '-');
+      return lines.join('\n');
+    }
+
+    function finishWizard() {
+      setProgress(100);
+      var msg = buildMessage();
+
+      document.getElementById('app').style.display = 'none';
+      var finalStep = document.getElementById('finalStep');
+      finalStep.style.display = 'block';
+      document.getElementById('msgPreview').textContent = msg;
+
+      document.getElementById('whatsBtn').setAttribute('href', 'https://wa.me/5573988471593?text=' + encodeURIComponent(msg));
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('restartBtn').addEventListener('click', function () {
+      formData = {};
+      document.getElementById('finalStep').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      stage1();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    stage1();
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Cópia da mensagem pra área de transferência (rede de segurança
+    // caso o WhatsApp não abra com o texto já preenchido)
+    // ═══════════════════════════════════════════════════════════════════
+    (function () {
+      function makeCopier(btn, getText, labels) {
+        if (!btn) return function () {};
+        var originalLabel = btn.textContent;
+        var resetTimer = null;
+
+        function done(ok) {
+          btn.textContent = ok ? (labels && labels.ok || 'Copiado ✓') : (labels && labels.fail || 'Toque e segure pra copiar');
+          btn.classList.toggle('copied', ok);
+          clearTimeout(resetTimer);
+          resetTimer = setTimeout(function () {
+            btn.textContent = originalLabel;
+            btn.classList.remove('copied');
+          }, 2200);
+        }
+
+        function legacyCopy(text) {
+          try {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.top = '-9999px';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            ta.setSelectionRange(0, text.length);
+            var ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            done(ok);
+          } catch (e) {
+            done(false);
+          }
+        }
+
+        return function () {
+          var text = getText();
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { done(true); }).catch(function () { legacyCopy(text); });
+          } else {
+            legacyCopy(text);
+          }
+        };
+      }
+
+      var copyMsgBtn = document.getElementById('copyMsgBtn');
+      var copyMsg = makeCopier(copyMsgBtn, function () {
+        return document.getElementById('msgPreview').textContent;
+      }, { ok: 'Mensagem copiada ✓', fail: 'Toque e segure pra copiar' });
+      if (copyMsgBtn) copyMsgBtn.addEventListener('click', copyMsg);
+    })();
+  </script>
 </body>
 </html>
