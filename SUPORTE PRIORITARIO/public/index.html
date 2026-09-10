@@ -266,6 +266,38 @@
       font-family: 'Sora', sans-serif; font-weight: 700; font-size: 10px;
       color: rgba(246,246,246,0.14); letter-spacing: 0.08em; text-transform: uppercase;
     }
+
+    /* ── Feedback: concorrer ao app de estudos vitalício ── */
+    .feedback-card {
+      margin-top: 26px; background: rgba(175,144,100,0.06);
+      border: 1.5px solid rgba(175,144,100,0.35); border-radius: 18px; padding: 24px 22px;
+    }
+    .feedback-eyebrow {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      color: #AF9064; letter-spacing: 0.1em; text-transform: uppercase;
+      text-align: center; margin-bottom: 12px;
+    }
+    .feedback-title {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 17px;
+      color: #F6F6F6; text-align: center; line-height: 1.35; margin-bottom: 12px;
+    }
+    .feedback-desc {
+      font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 13.5px;
+      color: rgba(246,246,246,0.6); text-align: center; line-height: 1.6; margin-bottom: 16px;
+    }
+    .feedback-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .feedback-list li {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13.5px;
+      color: rgba(246,246,246,0.7);
+    }
+    .fb-tag {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 12px;
+      padding: 5px 10px; border-radius: 8px; flex-shrink: 0; min-width: 96px; text-align: center;
+    }
+    .fb-tag.hi { color: #0abe52; background: rgba(10,190,82,0.12); border: 1px solid rgba(10,190,82,0.3); }
+    .fb-tag.mid { color: #AF9064; background: rgba(175,144,100,0.12); border: 1px solid rgba(175,144,100,0.3); }
+    .fb-tag.low { color: rgba(246,246,246,0.5); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); }
   </style>
 </head>
 <body>
@@ -336,6 +368,18 @@
       </div>
 
       <p class="footer-note">O atendimento é só pelo WhatsApp. Guarde o número: (73) 98847-1593.</p>
+
+      <div class="feedback-card">
+        <p class="feedback-eyebrow">🎁 Feedback + prêmio</p>
+        <p class="feedback-title">Manda seu feedback e concorra ao app de estudos do Marcos com acesso vitalício</p>
+        <p class="feedback-desc">Conta o que você achou dos materiais. Quem manda feedback entra pra concorrer — e o formato muda sua chance:</p>
+        <ul class="feedback-list">
+          <li><span class="fb-tag hi">🎥 Vídeo</span> mais chance</li>
+          <li><span class="fb-tag mid">🎙️ Áudio</span> chance média</li>
+          <li><span class="fb-tag low">✍️ Texto</span> chance normal</li>
+        </ul>
+        <a href="https://wa.me/5573988471593?text=Oi%21%20Quero%20deixar%20um%20feedback%20sobre%20os%20materiais%20do%20Marcos%20pra%20concorrer%20ao%20app%20de%20estudos%20%28acesso%20vital%C3%ADcio%29.%20Meu%20feedback%3A" target="_blank" rel="noopener noreferrer" class="channel-btn whats-btn">Mandar feedback no WhatsApp</a>
+      </div>
 
       <p class="footer-sig">© 2026 Marcos Brito</p>
     </div>
