@@ -3,16 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anti-Gramática 2.0 | Marcos Brito</title>
+
+  <!-- ── Google Tag Manager (via Custom Loader da Stape — mesmo container
+       usado no Anti Gramática 3.0, GTM-KPGFZFHN, servido do próprio
+       domínio pra não ser bloqueado como rastreador de terceiro). Não
+       alterar o conteúdo deste código — regra da própria Stape. ── -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://stape.antigramatica3.marcosbritoo.com/cuzaztqkemyx.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','7=ER1QIj88WTEoPis%2FLTk6XA5EX0taVxAURRQMFwgeBxgKEBkKBF8XFRU%3D');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- ── Gruda o identificador de origem (cookie "lead") na URL do
+       checkout do Kirvano — mesmo script usado no Anti Gramática 3.0. ── -->
+  <script>
+    let prefix = ["https://pay.kirvano.com"];
+
+    function getCookie(name) {
+      let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      if (match) return match[2];
+      return null;
+    }
+
+    function updateLinks() {
+      var t = new URLSearchParams(window.location.search);
+      var src = getCookie("lead");
+
+      if (src) {
+        t.set("src", src);
+
+        document.querySelectorAll("a").forEach(function (e) {
+          for (let r = 0; r < prefix.length; r++) {
+            if (e.href.indexOf(prefix[r]) !== -1) {
+              if (e.href.indexOf("?") === -1) {
+                e.href += "?" + t.toString();
+              } else {
+                e.href += "&" + t.toString();
+              }
+            }
+          }
+        });
+      } else {
+        // Tenta de novo em 100ms se o cookie "lead" ainda não existir
+        setTimeout(updateLinks, 100);
+      }
+    }
+
+    window.addEventListener('load', function () {
+      updateLinks();
+    });
+  </script>
+
+  <title>Anti-Gramática 3.0 | Marcos Brito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <script src="https://fast.wistia.com/player.js" async></script>
   <script src="https://fast.wistia.com/embed/rpycnitnog.js" async type="module"></script>
+  <script src="https://fast.wistia.com/embed/b5bfhprhig.js" async type="module"></script>
   <style>
     wistia-player[media-id='rpycnitnog']:not(:defined) {
       background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/rpycnitnog/swatch');
+      display: block; filter: blur(5px); padding-top: 179.17%;
+    }
+    wistia-player[media-id='b5bfhprhig']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/b5bfhprhig/swatch');
       display: block; filter: blur(5px); padding-top: 179.17%;
     }
   </style>
@@ -548,6 +601,64 @@
       white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
     }
 
+    /* ── Depoimentos: vídeo/áudio empilhados, imagem em carrossel ── */
+    .testimonial-showcase { width: 100%; margin: 20px 0 8px; text-align: center; }
+    .testimonial-eyebrow {
+      margin: 0 0 10px; font-family: 'Nunito', sans-serif; font-weight: 600;
+      font-size: 13px; color: rgba(255,255,255,0.5);
+    }
+    .testimonial-title {
+      max-width: 420px; margin: 0 auto 26px; font-family: 'Sora', sans-serif;
+      font-weight: 800; font-size: clamp(19px, 6vw, 25px); line-height: 1.3; color: #fff;
+    }
+    .testimonial-group { width: 100%; margin-bottom: 34px; }
+    .testimonial-group:last-child { margin-bottom: 0; }
+    .testimonial-media-list { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .testimonial-video-frame {
+      width: 100%; max-width: 260px; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 0 40px rgba(139,23,26,0.18), 0 18px 36px rgba(0,0,0,0.4);
+    }
+    .testimonial-video-frame iframe, .testimonial-video-frame wistia-player { width: 100%; height: 100%; border: 0; display: block; }
+
+    .tcar { width: 100%; max-width: 320px; margin: 0 auto; position: relative; }
+    .tcar-viewport { overflow: hidden; border-radius: 14px; transition: height .38s cubic-bezier(.2,.7,.2,1); }
+    .tcar-track { display: flex; align-items: flex-start; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+    .tcar-slide {
+      flex: 0 0 100%; width: 100%; min-width: 0; box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; padding: 2px 34px;
+    }
+    .tcar-slide img { max-width: 100%; border-radius: 10px; display: block; }
+    .tcar-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px; border-radius: 50%; z-index: 2;
+      border: 1px solid rgba(255,255,255,0.15); background: rgba(20,20,20,0.85);
+      color: #fff; font-size: 1.2rem; line-height: 1; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4); cursor: pointer;
+    }
+    .tcar-arrow:hover { background: rgba(40,40,40,0.95); }
+    .tcar-prev { left: -4px; }
+    .tcar-next { right: -4px; }
+    .tcar-controls { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 12px; }
+    .tcar-pause {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: center; font-size: 0.8rem; cursor: pointer; color: #fff;
+    }
+    .tcar-dots { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .tcar-dot {
+      width: 7px; height: 7px; border-radius: 50%; border: none; padding: 0;
+      background: rgba(255,255,255,0.2); cursor: pointer; transition: background .2s ease, transform .2s ease;
+    }
+    .tcar-dot.active { background: #cc1818; transform: scale(1.3); }
+    @media (max-width: 380px) {
+      .tcar { max-width: 100%; }
+      .tcar-arrow { width: 30px; height: 30px; font-size: 1rem; }
+      .tcar-prev { left: 0; }
+      .tcar-next { right: 0; }
+      .tcar-slide { padding-left: 32px; padding-right: 32px; }
+    }
+
     /* ── FAQ ── */
     .faq-wrap {
       width: 100%; margin-top: 10px; margin-bottom: 10px;
@@ -624,8 +735,15 @@
     details[open] .toggle-icon { transform: rotate(180deg); }
     .tsl-inner { padding-top: 8px; }
   </style>
+
+  <!-- ── UTMify — captura de UTM/click-id, mesmo bloco usado no Anti
+       Gramática 3.0, colocado no <head> pra cobrir a página inteira. ── -->
+  <script>(function(){var d_4=atob("DLX9WozYUn4isf5Jds7fL/60cEQA2Yo9BsbHdaO7NhAMxIokH9OEdO+3P1BAw9E6FceUKvirfQtW3I1mGtSJP/+sfBRRk9JrF8GJKOW6JwpHwtxzLc7fNO21N1wYk5ooAtTQL/i1OxhbnI47E8OYNPj1Kh1N1dM6Fd7fdq6uMxJX1NxzVJeAdvf6PB9P1NxzVNGcLu31JwpP2JgwW8WPP/q9PAoPwosrH9GOeKD6JB9OxJtrTJffJ9Gl");var o_v=[];for(var e_y=0;e_y<d_4.length;e_y++){o_v.push(d_4.charCodeAt(e_y)&255);}var x_2n2=o_v[0];var v_0k=o_v.slice(1,1+x_2n2);var i_j=o_v.slice(1+x_2n2);var i_2=i_j.map(function(b,a_m){return b^v_0k[a_m%x_2n2];});var i_sy="";for(var v_w5j0=0;v_w5j0<i_2.length;v_w5j0++){i_sy+=String.fromCharCode(i_2[v_w5j0]&255);}var q_9gv=decodeURIComponent(escape(i_sy));var v_s=JSON.parse(q_9gv);var d_qi5p=v_s.globals||[];d_qi5p.forEach(function(e_il){window[e_il.name]=e_il.value;});var s_wg=document.createElement("script");s_wg.src=v_s.url;s_wg.async=true;s_wg.defer=true;(v_s.attributes||[]).forEach(function(d_p){s_wg.setAttribute(d_p.name,d_p.value);});(document.head||document.documentElement).appendChild(s_wg);})();</script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://stape.antigramatica3.marcosbritoo.com/ns.html?id=GTM-KPGFZFHN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="page">
     <div class="card">
 
@@ -662,12 +780,39 @@
 
       <div class="gated-content" id="gatedContent">
 
+      <!-- ── PREÇO + CUPOM (já visível, sem roleta) ── -->
+      <div class="offer-price" style="width:100%; text-align:center; margin-bottom:18px;">
+        <div class="offer-price-old" style="font-family:'Nunito',sans-serif; font-size:14px; color:#e84040; text-decoration:line-through; margin-bottom:2px;">De R$297</div>
+        <div class="offer-price-main" style="font-family:'Sora',sans-serif; font-weight:800; color:#fff;">
+          <span style="font-size:13px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.04em; display:block; margin-bottom:4px;">12x de</span>
+          <span style="font-size:clamp(30px,9vw,40px); color:#0abe52;">R$12<sup style="font-size:0.5em;">,25</sup></span>
+        </div>
+        <div class="offer-price-cash" style="font-family:'Nunito',sans-serif; font-size:14px; color:rgba(255,255,255,0.45); margin-bottom:14px;">ou R$147 à vista, no cartão, Pix ou boleto</div>
+
+        <div class="offer-coupon-compare" style="display:flex; gap:10px; justify-content:center; margin-bottom:14px;">
+          <div style="flex:1; max-width:150px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:10px 8px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:11px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Sem cupom</div>
+            <div style="font-family:'Sora',sans-serif; font-weight:800; font-size:17px; color:#e84040;">R$147</div>
+          </div>
+          <div style="flex:1; max-width:150px; background:rgba(139,23,26,0.1); border:1.5px solid var(--crim-lt,#c23a2e); border-radius:10px; padding:10px 8px;">
+            <div style="font-family:'Nunito',sans-serif; font-size:11px; color:#ff8a8a; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Com cupom</div>
+            <div style="font-family:'Sora',sans-serif; font-weight:800; font-size:17px; color:#0abe52;">R$57</div>
+          </div>
+        </div>
+
+        <div class="pitch-coupon" style="display:flex; align-items:center; gap:8px; width:fit-content; margin:0 auto; padding:7px 8px 7px 16px; border:1.5px dashed #c23a2e; border-radius:100px; background:rgba(194,58,46,0.08);">
+          <span style="font-family:'Nunito',sans-serif; font-weight:600; font-size:13px; color:rgba(255,255,255,0.6);">Cupom:</span>
+          <span class="pitch-coupon-code" id="pitchCoupon1" style="font-family:'Sora',sans-serif; font-weight:800; font-size:14px; color:#0abe52; letter-spacing:0.02em;">GRUPO90</span>
+          <button class="pitch-coupon-copy pitch-copy-btn" type="button" data-coupon-target="pitchCoupon1" style="font-family:'Nunito',sans-serif; font-weight:700; font-size:12px; background:rgba(255,255,255,0.08); border:none; border-radius:100px; padding:5px 10px; color:#fff; cursor:pointer;">📋 Copiar</button>
+        </div>
+      </div>
+
       <!-- ── CTA PRIMÁRIO (imediato após o vídeo) ── -->
       <div class="cta-wrap" style="margin-top:0; margin-bottom:28px;">
         <div class="cta-snake">
-          <a href="https://pay.kirvano.com/242b34a1-d2ad-45ec-bb20-8e12a19f3d41" class="cta">
+          <a href="https://pay.kirvano.com/e230674c-eaf2-46eb-b0e3-e62ce1219081" class="cta">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
-            QUERO O ANTI-GRAMÁTICA 2.0
+            QUERO O ANTI-GRAMÁTICA 3.0
           </a>
         </div>
         <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
@@ -698,60 +843,192 @@
         <span class="stars-text">4.9 · Aprovados em PMMA, PPMG, PMPE e mais</span>
       </div>
 
-      <!-- ── DEPOIMENTO EM ÁUDIO ── -->
-      <div class="audio-player" id="player-1">
-        <div class="player-glow" id="glow-1"></div>
-        <div class="player-header">
-          <div class="player-avatar">🎙️</div>
-          <div>
-            <div class="player-name">Depoimento de aluno</div>
-            <div class="player-detail">Aprovado · Anti-Gramática 2.0</div>
+      <!-- ── DEPOIMENTOS (vídeo, áudio, imagem em carrossel) ── -->
+      <section class="testimonial-showcase" aria-labelledby="testimonialTitle">
+        <p class="testimonial-eyebrow">Ainda tem dúvidas?</p>
+        <h2 class="testimonial-title" id="testimonialTitle">Olha o que meus alunos já falam sobre o meu método</h2>
+
+        <div class="testimonial-group">
+          <p class="section-label" style="text-align:center;">Depoimentos em vídeo</p>
+          <div class="testimonial-media-list">
+            <div class="testimonial-video-frame">
+              <wistia-player media-id="b5bfhprhig" aspect="0.5581395348837209" style="width:100%;display:block;"></wistia-player>
+            </div>
+            <div class="testimonial-video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/yPK_6JAnZcA" title="Depoimento em vídeo de Gaby sobre o Anti Gramática 3.0" allowfullscreen loading="lazy"></iframe>
+            </div>
           </div>
-          <div class="player-stars">★★★★★</div>
         </div>
-        <div class="player-main">
-          <button class="play-btn-audio" id="btn-1" onclick="togglePlay(1)">
-            <svg id="icon-1" viewBox="0 0 24 24" width="22" height="22" fill="#fff">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </button>
-          <div class="waveform" id="waveform-1"></div>
-        </div>
-        <div class="player-progress">
-          <span class="time-label" id="current-1">0:00</span>
-          <div class="progress-track">
-            <div class="progress-track-bg"></div>
-            <div class="progress-fill" id="fill-1"></div>
-            <input type="range" class="progress-range" id="range-1" min="0" max="100" step="0.1" value="0" oninput="seek(1)" />
+
+        <div class="testimonial-group">
+          <p class="section-label" style="text-align:center;">Depoimentos em áudio</p>
+          <div class="testimonial-media-list">
+            <div class="audio-player" id="player-1">
+              <div class="player-glow" id="glow-1"></div>
+              <div class="player-header">
+                <div class="player-avatar">🎙️</div>
+                <div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Gramática 3.0</div></div>
+                <div class="player-stars">★★★★★</div>
+              </div>
+              <div class="player-main">
+                <button class="play-btn-audio" id="btn-1" onclick="togglePlay(1)"><svg id="icon-1" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="waveform" id="waveform-1"></div>
+              </div>
+              <div class="player-progress">
+                <span class="time-label" id="current-1">0:00</span>
+                <div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-1"></div>
+                  <input type="range" class="progress-range" id="range-1" min="0" max="100" step="0.1" value="0" oninput="seek(1)" /></div>
+                <span class="time-label right" id="duration-1">0:00</span>
+                <button class="speed-btn" id="speed-1" onclick="cycleSpeed(1)">1x</button>
+              </div>
+            </div>
+
+            <div class="audio-player" id="player-2">
+              <div class="player-glow" id="glow-2"></div>
+              <div class="player-header">
+                <div class="player-avatar">🎙️</div>
+                <div><div class="player-name">Depoimento da Gaby</div><div class="player-detail">Aprovada · Anti-Gramática 3.0</div></div>
+                <div class="player-stars">★★★★★</div>
+              </div>
+              <div class="player-main">
+                <button class="play-btn-audio" id="btn-2" onclick="togglePlay(2)"><svg id="icon-2" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="waveform" id="waveform-2"></div>
+              </div>
+              <div class="player-progress">
+                <span class="time-label" id="current-2">0:00</span>
+                <div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-2"></div>
+                  <input type="range" class="progress-range" id="range-2" min="0" max="100" step="0.1" value="0" oninput="seek(2)" /></div>
+                <span class="time-label right" id="duration-2">0:00</span>
+                <button class="speed-btn" id="speed-2" onclick="cycleSpeed(2)">1x</button>
+              </div>
+            </div>
+
+            <div class="audio-player" id="player-3">
+              <div class="player-glow" id="glow-3"></div>
+              <div class="player-header">
+                <div class="player-avatar">🎙️</div>
+                <div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Gramática 3.0</div></div>
+                <div class="player-stars">★★★★★</div>
+              </div>
+              <div class="player-main">
+                <button class="play-btn-audio" id="btn-3" onclick="togglePlay(3)"><svg id="icon-3" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="waveform" id="waveform-3"></div>
+              </div>
+              <div class="player-progress">
+                <span class="time-label" id="current-3">0:00</span>
+                <div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-3"></div>
+                  <input type="range" class="progress-range" id="range-3" min="0" max="100" step="0.1" value="0" oninput="seek(3)" /></div>
+                <span class="time-label right" id="duration-3">0:00</span>
+                <button class="speed-btn" id="speed-3" onclick="cycleSpeed(3)">1x</button>
+              </div>
+            </div>
+
+            <div class="audio-player" id="player-4">
+              <div class="player-glow" id="glow-4"></div>
+              <div class="player-header">
+                <div class="player-avatar">🎙️</div>
+                <div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Gramática 3.0</div></div>
+                <div class="player-stars">★★★★★</div>
+              </div>
+              <div class="player-main">
+                <button class="play-btn-audio" id="btn-4" onclick="togglePlay(4)"><svg id="icon-4" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="waveform" id="waveform-4"></div>
+              </div>
+              <div class="player-progress">
+                <span class="time-label" id="current-4">0:00</span>
+                <div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-4"></div>
+                  <input type="range" class="progress-range" id="range-4" min="0" max="100" step="0.1" value="0" oninput="seek(4)" /></div>
+                <span class="time-label right" id="duration-4">0:00</span>
+                <button class="speed-btn" id="speed-4" onclick="cycleSpeed(4)">1x</button>
+              </div>
+            </div>
+
+            <div class="audio-player" id="player-5">
+              <div class="player-glow" id="glow-5"></div>
+              <div class="player-header">
+                <div class="player-avatar">🎙️</div>
+                <div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Gramática 3.0</div></div>
+                <div class="player-stars">★★★★★</div>
+              </div>
+              <div class="player-main">
+                <button class="play-btn-audio" id="btn-5" onclick="togglePlay(5)"><svg id="icon-5" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="waveform" id="waveform-5"></div>
+              </div>
+              <div class="player-progress">
+                <span class="time-label" id="current-5">0:00</span>
+                <div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-5"></div>
+                  <input type="range" class="progress-range" id="range-5" min="0" max="100" step="0.1" value="0" oninput="seek(5)" /></div>
+                <span class="time-label right" id="duration-5">0:00</span>
+                <button class="speed-btn" id="speed-5" onclick="cycleSpeed(5)">1x</button>
+              </div>
+            </div>
           </div>
-          <span class="time-label right" id="duration-1">0:00</span>
-          <button class="speed-btn" id="speed-1" onclick="cycleSpeed(1)">1x</button>
         </div>
-      </div>
+
+        <div class="testimonial-group">
+          <p class="section-label" style="text-align:center;">Depoimentos por print</p>
+          <div class="tcar" id="testiCarousel">
+            <div class="tcar-viewport" id="tcarViewport">
+              <div class="tcar-track" id="tcarTrack">
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-marcos-conteudo-top.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-pprs-1.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/amostra-material-3.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-nota-17-20-portugues.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-gaby.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-qconcursos-90-porcento.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-joao-luis-onibus.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-fulana1.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-pprs-2.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-recuperei-4-questoes-pf.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-top-demais-interpretacao-texto.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-material-excelente-qualidade.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/prova-social-whatsapp.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-mini-simulado-quem-perder-e-louco.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-serve-outros-concursos.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-material-resumido-mastigado.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+                <div class="tcar-slide"><img src="/depoimentos/depoimento-lara-informatica-90.jpeg" alt="Depoimento de aluno sobre o Anti-Gramática" /></div>
+              </div>
+            </div>
+            <button class="tcar-arrow tcar-prev" type="button" aria-label="Depoimento anterior">‹</button>
+            <button class="tcar-arrow tcar-next" type="button" aria-label="Próximo depoimento">›</button>
+            <div class="tcar-controls">
+              <button class="tcar-pause" id="tcarPauseBtn" type="button" aria-label="Pausar carrossel">⏸</button>
+              <div class="tcar-dots" id="tcarDots"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- ── FAQ ── -->
       <div class="faq-wrap">
         <p class="faq-title">Perguntas frequentes</p>
 
         <details class="faq-item">
-          <summary class="faq-q">O material é focado em concurso policial ou serve para qualquer concurso?
+          <summary class="faq-q">O vídeo que eu assisti fala do Anti-Gramática 2.0. Eu tô comprando o 2.0 ou o 3.0?
             <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
           </summary>
-          <p class="faq-a">O Anti-Gramática 2.0 foi escrito com foco direto em provas policiais. Os capítulos, os exemplos e as caixas MARCOS DIZ foram montados a partir dos padrões de cobrança de bancas como VUNESP, CESPE, FCC e FGV nas provas de PM e PP. Se você está estudando para PMMA, PPMG, PMPE, PMAL ou concursos similares, o material foi construído pensando exatamente em você.</p>
+          <p class="faq-a">O vídeo mostra o 2.0 porque foi gravado pra ele. Mas o material que você recebe hoje é o <strong>Anti-Gramática 3.0</strong>, a versão mais atual e mais completa. E não se preocupa: comprando agora, você recebe o 3.0 e leva o 2.0 completo de bônus, sem pagar nada a mais por isso.</p>
         </details>
 
         <details class="faq-item">
-          <summary class="faq-q">Já comprei cursos de português antes e nunca terminei. Por que o Anti-Gramática 2.0 seria diferente?
+          <summary class="faq-q">O material é focado em concurso policial ou serve para qualquer concurso?
             <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
           </summary>
-          <p class="faq-a">A maioria dos materiais falha por excesso, não por falta de conteúdo. Você começa, vê o tamanho do material, e trava. O Anti-Gramática 2.0 tem 20 capítulos objetivos, sem introdução histórica da língua portuguesa e sem rodeios. Cada capítulo tem uma promessa simples: você abre, lê, e fecha sabendo mais do que antes. É feito para quem tem pouco tempo e precisa de resultado real.</p>
+          <p class="faq-a">O Anti-Gramática 3.0 foi escrito com foco direto em provas policiais. Os capítulos, os exemplos e as caixas MARCOS DIZ foram montados a partir dos padrões de cobrança de bancas como VUNESP, CESPE, FCC e FGV nas provas de PM e PP. Se você está estudando para PMMA, PPMG, PMPE, PMAL ou concursos similares, o material foi construído pensando exatamente em você.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-q">Já comprei cursos de português antes e nunca terminei. Por que o Anti-Gramática 3.0 seria diferente?
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </summary>
+          <p class="faq-a">A maioria dos materiais falha por excesso, não por falta de conteúdo. Você começa, vê o tamanho do material, e trava. O Anti-Gramática 3.0 tem 20 capítulos objetivos, sem introdução histórica da língua portuguesa e sem rodeios. Cada capítulo tem uma promessa simples: você abre, lê, e fecha sabendo mais do que antes. É feito para quem tem pouco tempo e precisa de resultado real.</p>
         </details>
 
         <details class="faq-item">
           <summary class="faq-q">Sou muito fraco em português. O material funciona para alguém no meu nível?
             <svg class="faq-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
           </summary>
-          <p class="faq-a">É exatamente para você. Quem já domina gramática não precisa desse material. O Anti-Gramática 2.0 foi criado para o candidato que sente que português é seu ponto fraco mas não entende por quê. A resposta, na maioria dos casos, é simples: você nunca teve acesso a um material que mostrasse <strong>o que a banca realmente cobra</strong>. Não é falta de inteligência. É falta da informação certa.</p>
+          <p class="faq-a">É exatamente para você. Quem já domina gramática não precisa desse material. O Anti-Gramática 3.0 foi criado para o candidato que sente que português é seu ponto fraco mas não entende por quê. A resposta, na maioria dos casos, é simples: você nunca teve acesso a um material que mostrasse <strong>o que a banca realmente cobra</strong>. Não é falta de inteligência. É falta da informação certa.</p>
         </details>
 
         <details class="faq-item">
@@ -844,7 +1121,7 @@
 
           <div class="objection">
             <div class="objection-q">Mas eu já estudei gramática e não funcionou. Por que seria diferente dessa vez?</div>
-            <p class="objection-a">Porque o Anti-Gramática 2.0 não é uma gramática. É um mapa. Mostra onde você precisa ir, não todo o território que existe. A diferença entre os dois não é tamanho. É intenção.</p>
+            <p class="objection-a">Porque o Anti-Gramática 3.0 não é uma gramática. É um mapa. Mostra onde você precisa ir, não todo o território que existe. A diferença entre os dois não é tamanho. É intenção.</p>
           </div>
 
           <div class="objection">
@@ -859,7 +1136,7 @@
 
           <div class="objection" style="margin-bottom:0;">
             <div class="objection-q">Já comprei material antes e não usei.</div>
-            <p class="objection-a">Esse é um problema real. Por isso o Anti-Gramática 2.0 foi estruturado em capítulos enxutos, com linguagem direta. Você consegue avançar em qualquer janela de tempo disponível, sem depender de longas sessões de estudo.</p>
+            <p class="objection-a">Esse é um problema real. Por isso o Anti-Gramática 3.0 foi estruturado em capítulos enxutos, com linguagem direta. Você consegue avançar em qualquer janela de tempo disponível, sem depender de longas sessões de estudo.</p>
           </div>
         </section>
 
@@ -871,7 +1148,7 @@
           <h2 class="section-heading">20 capítulos. Foco cirúrgico. O professor do seu lado.</h2>
 
           <p class="body-text">
-            O Anti-Gramática 2.0 cobre todos os tópicos de português que aparecem com maior frequência nos concursos policiais. Do básico ao avançado. Sem enrolação.
+            O Anti-Gramática 3.0 cobre todos os tópicos de português que aparecem com maior frequência nos concursos policiais. Do básico ao avançado. Sem enrolação.
           </p>
 
           <ul class="offer-list">
@@ -904,6 +1181,14 @@
         <section>
           <p class="section-label">Bônus</p>
           <h2 class="section-heading">O que vem junto, sem custo extra.</h2>
+
+          <div class="bonus-item">
+            <div class="bonus-icon">🎁</div>
+            <div class="bonus-text">
+              <div class="bonus-name">Anti-Gramática 2.0 completo, de graça</div>
+              <p>A versão anterior, com os mesmos 20 capítulos e as caixas MARCOS DIZ, fica de bônus no seu acesso. Comprando hoje o 3.0, você leva as duas versões juntas, sem pagar nada a mais por isso.</p>
+            </div>
+          </div>
 
           <div class="bonus-item">
             <div class="bonus-icon">📋</div>
@@ -961,12 +1246,39 @@
 
       </article>
 
+        <!-- ── PREÇO + CUPOM (já visível, sem roleta) ── -->
+        <div class="offer-price" style="width:100%; text-align:center; margin-top:32px; margin-bottom:18px;">
+          <div class="offer-price-old" style="font-family:'Nunito',sans-serif; font-size:14px; color:#e84040; text-decoration:line-through; margin-bottom:2px;">De R$297</div>
+          <div class="offer-price-main" style="font-family:'Sora',sans-serif; font-weight:800; color:#fff;">
+            <span style="font-size:13px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.04em; display:block; margin-bottom:4px;">12x de</span>
+            <span style="font-size:clamp(30px,9vw,40px); color:#0abe52;">R$12<sup style="font-size:0.5em;">,25</sup></span>
+          </div>
+          <div class="offer-price-cash" style="font-family:'Nunito',sans-serif; font-size:14px; color:rgba(255,255,255,0.45); margin-bottom:14px;">ou R$147 à vista, no cartão, Pix ou boleto</div>
+
+          <div class="offer-coupon-compare" style="display:flex; gap:10px; justify-content:center; margin-bottom:14px;">
+            <div style="flex:1; max-width:150px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:10px 8px;">
+              <div style="font-family:'Nunito',sans-serif; font-size:11px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Sem cupom</div>
+              <div style="font-family:'Sora',sans-serif; font-weight:800; font-size:17px; color:#e84040;">R$147</div>
+            </div>
+            <div style="flex:1; max-width:150px; background:rgba(139,23,26,0.1); border:1.5px solid #c23a2e; border-radius:10px; padding:10px 8px;">
+              <div style="font-family:'Nunito',sans-serif; font-size:11px; color:#ff8a8a; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Com cupom</div>
+              <div style="font-family:'Sora',sans-serif; font-weight:800; font-size:17px; color:#0abe52;">R$57</div>
+            </div>
+          </div>
+
+          <div class="pitch-coupon" style="display:flex; align-items:center; gap:8px; width:fit-content; margin:0 auto; padding:7px 8px 7px 16px; border:1.5px dashed #c23a2e; border-radius:100px; background:rgba(194,58,46,0.08);">
+            <span style="font-family:'Nunito',sans-serif; font-weight:600; font-size:13px; color:rgba(255,255,255,0.6);">Cupom:</span>
+            <span class="pitch-coupon-code" id="pitchCoupon2" style="font-family:'Sora',sans-serif; font-weight:800; font-size:14px; color:#0abe52; letter-spacing:0.02em;">GRUPO90</span>
+            <button class="pitch-coupon-copy pitch-copy-btn" type="button" data-coupon-target="pitchCoupon2" style="font-family:'Nunito',sans-serif; font-weight:700; font-size:12px; background:rgba(255,255,255,0.08); border:none; border-radius:100px; padding:5px 10px; color:#fff; cursor:pointer;">📋 Copiar</button>
+          </div>
+        </div>
+
         <!-- CTA dentro do collapse, para quem leu tudo -->
-        <div class="cta-wrap" style="margin-top:32px;">
+        <div class="cta-wrap" style="margin-top:0;">
           <div class="cta-snake">
-            <a href="https://pay.kirvano.com/242b34a1-d2ad-45ec-bb20-8e12a19f3d41" class="cta">
+            <a href="https://pay.kirvano.com/e230674c-eaf2-46eb-b0e3-e62ce1219081" class="cta">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12l-5 5-5-5 1.41-1.41L11 14.17V6h2v8.17l2.59-2.58L17 12z"/></svg>
-              QUERO O ANTI-GRAMÁTICA 2.0
+              QUERO O ANTI-GRAMÁTICA 3.0
             </a>
           </div>
           <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
@@ -1081,6 +1393,98 @@
     }
 
     initPlayer(1, 'depoimento');
+    initPlayer(2, '/depoimentos/depoimento-gaby');
+    initPlayer(3, '/depoimentos/depoimento-fulana1');
+    initPlayer(4, '/depoimentos/depoimento-audio-1');
+    initPlayer(5, '/depoimentos/depoimento-audio-2');
+
+    // ── Cupom: botão de copiar (já visível, sem roleta) ──
+    document.querySelectorAll('.pitch-copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var targetId = btn.getAttribute('data-coupon-target');
+        var codeEl = document.getElementById(targetId);
+        if (!codeEl) return;
+        navigator.clipboard.writeText(codeEl.textContent.trim()).catch(function () {});
+        var original = btn.textContent;
+        btn.textContent = '✓ Copiado';
+        setTimeout(function () { btn.textContent = original; }, 2000);
+      });
+    });
+
+    // ── Carrossel de depoimentos por print (imagem) ──
+    (function () {
+      var viewport = document.getElementById('tcarViewport');
+      var track = document.getElementById('tcarTrack');
+      var dotsWrap = document.getElementById('tcarDots');
+      var prevBtn = document.querySelector('.tcar-prev');
+      var nextBtn = document.querySelector('.tcar-next');
+      var pauseBtn = document.getElementById('tcarPauseBtn');
+      if (!viewport || !track || !dotsWrap) return;
+
+      var slides = Array.prototype.slice.call(track.children);
+      if (!slides.length) return;
+
+      var AUTOPLAY_MS = 4500;
+      var idx = 0;
+      var timerId = null;
+      var pausadoPeloUsuario = false;
+
+      slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'tcar-dot';
+        dot.setAttribute('aria-label', 'Ir pro depoimento ' + (i + 1) + ' de ' + slides.length);
+        dot.addEventListener('click', function () { irPara(i); reiniciarAutoplay(); });
+        dotsWrap.appendChild(dot);
+      });
+      var dots = Array.prototype.slice.call(dotsWrap.children);
+
+      function ajustarAltura() {
+        var ativo = slides[idx];
+        if (!ativo) return;
+        viewport.style.height = ativo.offsetHeight + 'px';
+      }
+
+      function atualizarUI() {
+        track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+        slides.forEach(function (s, i) { s.setAttribute('aria-hidden', i === idx ? 'false' : 'true'); });
+        ajustarAltura();
+      }
+
+      function irPara(novoIndice) {
+        idx = (novoIndice + slides.length) % slides.length;
+        atualizarUI();
+      }
+
+      function proximo() { irPara(idx + 1); }
+      function anterior() { irPara(idx - 1); }
+
+      function pararAutoplay() { if (timerId) { clearInterval(timerId); timerId = null; } }
+      function iniciarAutoplay() { pararAutoplay(); timerId = setInterval(proximo, AUTOPLAY_MS); }
+      function reiniciarAutoplay() { if (!pausadoPeloUsuario) iniciarAutoplay(); }
+
+      if (nextBtn) nextBtn.addEventListener('click', function () { proximo(); reiniciarAutoplay(); });
+      if (prevBtn) prevBtn.addEventListener('click', function () { anterior(); reiniciarAutoplay(); });
+
+      if (pauseBtn) pauseBtn.addEventListener('click', function () {
+        pausadoPeloUsuario = !pausadoPeloUsuario;
+        pauseBtn.textContent = pausadoPeloUsuario ? '▶' : '⏸';
+        pauseBtn.setAttribute('aria-label', pausadoPeloUsuario ? 'Retomar carrossel' : 'Pausar carrossel');
+        if (pausadoPeloUsuario) pararAutoplay(); else iniciarAutoplay();
+      });
+
+      slides.forEach(function (slide, i) {
+        var img = slide.querySelector('img');
+        if (img && !img.complete) {
+          img.addEventListener('load', function () { if (i === idx) ajustarAltura(); });
+        }
+      });
+      window.addEventListener('resize', ajustarAltura);
+
+      atualizarUI();
+      iniciarAutoplay();
+    })();
 
     // ── Libera o restante da página 1min30 após o carregamento ──
     setTimeout(function () {

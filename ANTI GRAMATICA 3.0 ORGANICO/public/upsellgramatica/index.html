@@ -63,28 +63,8 @@
       display: flex; flex-direction: column; align-items: center;
     }
 
-    /* ── ticker faixa vermelha ── */
-    .ticker-strip {
-      width: 100%; overflow: hidden;
-      background: linear-gradient(90deg, #9b0a0a, #cc1818, #9b0a0a);
-      padding: 10px 0; margin-bottom: 22px;
-      border-radius: 6px;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-    }
-    .ticker-track {
-      display: flex; white-space: nowrap; width: max-content;
-      animation: ticker-scroll 11s linear infinite;
-    }
-    .ticker-track span {
-      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px;
-      letter-spacing: 0.16em; text-transform: uppercase; color: #ffffff;
-      padding: 0 22px;
-    }
-    @keyframes ticker-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
+    /* ── respiro no lugar da faixa vermelha (removida) ── */
+    .header-gap { height: 14px; }
 
     /* ── Headline ── */
     .title {
@@ -309,6 +289,80 @@
       color: rgba(233,196,0,0.85); line-height: 1.5;
     }
 
+    /* ── "O que vem" logo abaixo do CTA ── */
+    .included-section { width: 100%; margin: 40px 0 0; }
+
+    /* ── Depoimentos: 3 seções separadas (vídeo / print / áudio),
+       tudo empilhado verticalmente — sem carrossel. ── */
+    .testimonial-showcase { width: 100%; margin: 40px 0 8px; text-align: center; }
+    .testimonial-eyebrow {
+      margin: 0 0 10px; font-family: 'Nunito', sans-serif; font-weight: 600;
+      font-size: 13px; color: rgba(255,255,255,0.5);
+    }
+    .testimonial-title {
+      max-width: 420px; margin: 0 auto 30px; font-family: 'Sora', sans-serif;
+      font-weight: 800; font-size: clamp(19px, 6vw, 25px); line-height: 1.3; color: #fff;
+    }
+    .testimonial-group { width: 100%; text-align: left; margin-bottom: 36px; }
+    .testimonial-group:last-child { margin-bottom: 0; }
+    .testimonial-group .section-label { text-align: center; }
+    .testimonial-media-list {
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+    }
+    .testimonial-video-frame {
+      width: 100%; max-width: 280px; aspect-ratio: 9 / 16;
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 40px rgba(139,23,26,0.18), 0 18px 36px rgba(0,0,0,0.4);
+    }
+    .testimonial-video-frame iframe { width: 100%; height: 100%; border: 0; }
+    .testimonial-image-item { width: 100%; max-width: 320px; }
+    .testimonial-image-item img {
+      width: 100%; border-radius: 12px; display: block;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .testimonial-media-list .audio-player { max-width: 320px; margin: 0; }
+
+    /* ── Player de áudio (portado de ANTIVADE PPRS) ── */
+    .audio-player {
+      width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px; padding: 18px 20px; position: relative; overflow: hidden;
+    }
+    .player-glow {
+      position: absolute; inset: 0; border-radius: 16px;
+      background: radial-gradient(ellipse at 50% 120%, rgba(139,23,26,0.18), transparent 70%);
+      pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    }
+    .player-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; position: relative; z-index: 1; }
+    .player-avatar { font-size: 22px; flex-shrink: 0; }
+    .player-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; color: rgba(246,246,246,0.8); }
+    .player-detail { font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px; color: rgba(246,246,246,0.3); margin-top: 2px; }
+    .player-stars { margin-left: auto; color: #AF9064; font-size: 13px; flex-shrink: 0; }
+    .player-main { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; position: relative; z-index: 1; }
+    .play-btn-audio {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(139,23,26,0.25); border: 1.5px solid rgba(139,23,26,0.5);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      transition: all 0.2s; position: relative; z-index: 1;
+    }
+    .waveform { flex: 1; display: flex; align-items: center; gap: 2.5px; height: 40px; }
+    .waveform-bar { flex: 1; min-width: 3px; border-radius: 2px; background: rgba(255,255,255,0.18); transform-origin: center; transition: background 0.15s; }
+    .waveform-bar.filled { background: #cc2a2d; }
+    @keyframes wavePulse { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.55); } }
+    .waveform.playing .waveform-bar { animation: wavePulse var(--d, 0.6s) ease-in-out infinite; animation-delay: var(--dl, 0s); }
+    .player-progress { display: flex; align-items: center; gap: 10px; position: relative; z-index: 1; }
+    .time-label { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px; color: rgba(246,246,246,0.5); min-width: 32px; flex-shrink: 0; }
+    .time-label.right { color: rgba(246,246,246,0.3); text-align: right; }
+    .progress-track { flex: 1; position: relative; height: 4px; }
+    .progress-track-bg { position: absolute; inset: 0; border-radius: 2px; background: rgba(255,255,255,0.1); }
+    .progress-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; border-radius: 2px; background: linear-gradient(90deg, #8b171a, #cc2a2d); transition: width 0.1s linear; }
+    .progress-range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; margin: 0; }
+    .speed-btn {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px;
+      padding: 3px 7px; cursor: pointer; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      color: rgba(246,246,246,0.45); letter-spacing: 0.04em; white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
+    }
+
     /* ── CTA ── */
     .cta-wrap {
       width: 100%; margin-top: 48px;
@@ -509,11 +563,7 @@
     <div class="card">
 
       <!-- ── HEADER ── -->
-      <div class="ticker-strip">
-        <div class="ticker-track">
-          <span>PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ </span><span>PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ </span>
-        </div>
-      </div>
+      <div class="header-gap"></div>
 
       <h1 class="title">
         Você resolveu<br />o português.<br />
@@ -538,6 +588,111 @@
         <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
         <button type="button" class="refuse-link kirvano-refuse-trigger">Não quero. Ao sair daqui, quero perder essa oferta para sempre. Não tenho interesse.</button>
       </div>
+
+      <!-- ── O QUE VEM NO ANTI-VADE MECUM 3.0 ── -->
+      <div class="included-section">
+        <p class="section-label">O que vem no Anti-Vade Mecum 3.0</p>
+        <h2 class="section-heading">Quais leis vêm no Anti-Vade Mecum 3.0? Veja todas abaixo.</h2>
+        <ul class="offer-list">
+          <li><div class="dot"></div> Atualizações Maria da Penha 2026</li>
+          <li><div class="dot"></div> Crimes Hediondos (Lei nº 8.072/90)</li>
+          <li><div class="dot"></div> Crimes Hediondos — Atualizações 2026</li>
+          <li><div class="dot"></div> Direito Processual — Inquérito Policial</li>
+          <li><div class="dot"></div> Direito Processual Penal — Ação Penal</li>
+          <li><div class="dot"></div> Estatuto do Desarmamento (Lei nº 10.826/03)</li>
+          <li><div class="dot"></div> ORCRIM (Lei nº 12.850)</li>
+          <li><div class="dot"></div> Lei de Abuso de Autoridade (Lei nº 13.869/19)</li>
+          <li><div class="dot"></div> Lei de Drogas (Lei nº 11.343/06)</li>
+          <li><div class="dot"></div> Lei de Execução Penal (Lei 7.210/84)</li>
+          <li><div class="dot"></div> Lei de Execução Penal — Atualizações 2026</li>
+          <li><div class="dot"></div> Lei de Tortura (Lei nº 9.455/97)</li>
+          <li><div class="dot"></div> Lei de Tortura — Atualizações 2026</li>
+          <li><div class="dot"></div> Lei Maria da Penha (Lei nº 11.340/06)</li>
+          <li><div class="dot"></div> Lei Maria da Penha — Atualizações 2026</li>
+          <li><div class="dot"></div> Prisão Temporária (Lei nº 7.960)</li>
+          <li><div class="dot"></div> Improbidade Administrativa (Lei nº 8.429/92)</li>
+          <li><div class="dot"></div> LEP Atualizações 2026</li>
+        </ul>
+      </div>
+
+      <!-- ── DEPOIMENTOS (3 seções separadas: vídeo, print, áudio) ── -->
+      <section class="testimonial-showcase" aria-labelledby="testimonialTitle">
+        <p class="testimonial-eyebrow">Ainda tem dúvidas?</p>
+        <h2 class="testimonial-title" id="testimonialTitle">Olha o que meus alunos já falam sobre o meu método</h2>
+
+        <div class="testimonial-group">
+          <p class="section-label">Depoimentos em vídeo</p>
+          <div class="testimonial-media-list">
+            <div class="testimonial-video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/xR9SzsyYJ9s" title="Depoimento em vídeo sobre o Anti-Vade Mecum" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="testimonial-video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/Bm9_GMtBm0Y" title="Depoimento em vídeo sobre o Anti-Vade Mecum" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-group">
+          <p class="section-label">Depoimentos por print</p>
+          <div class="testimonial-media-list">
+            <div class="testimonial-image-item"><img src="/depoimentos/vade1.jpeg" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+            <div class="testimonial-image-item"><img src="/depoimentos/vade2.jpeg" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+            <div class="testimonial-image-item"><img src="/depoimentos/vade3.jpeg" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+            <div class="testimonial-image-item"><img src="/depoimentos/vade4.jpeg" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+            <div class="testimonial-image-item"><img src="/depoimentos/dep03.webp" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+            <div class="testimonial-image-item"><img src="/depoimentos/dep04.webp" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+          </div>
+        </div>
+
+        <div class="testimonial-group">
+          <p class="section-label">Depoimentos em áudio</p>
+          <div class="testimonial-media-list">
+            <div class="audio-player" id="player-1">
+              <div class="player-glow" id="glow-1"></div>
+              <div class="player-header">
+                <div class="player-avatar">🎙️</div>
+                <div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Vade Mecum</div></div>
+                <div class="player-stars">★★★★★</div>
+              </div>
+              <div class="player-main">
+                <button class="play-btn-audio" id="btn-1" onclick="togglePlay(1)">
+                  <svg id="icon-1" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <div class="waveform" id="waveform-1"></div>
+              </div>
+              <div class="player-progress">
+                <span class="time-label" id="current-1">0:00</span>
+                <div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-1"></div>
+                  <input type="range" class="progress-range" id="range-1" min="0" max="100" step="0.1" value="0" oninput="seek(1)" /></div>
+                <span class="time-label right" id="duration-1">0:00</span>
+                <button class="speed-btn" id="speed-1" onclick="cycleSpeed(1)">1x</button>
+              </div>
+            </div>
+
+            <div class="audio-player" id="player-2">
+              <div class="player-glow" id="glow-2"></div>
+              <div class="player-header">
+                <div class="player-avatar">🎙️</div>
+                <div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Vade Mecum</div></div>
+                <div class="player-stars">★★★★★</div>
+              </div>
+              <div class="player-main">
+                <button class="play-btn-audio" id="btn-2" onclick="togglePlay(2)">
+                  <svg id="icon-2" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <div class="waveform" id="waveform-2"></div>
+              </div>
+              <div class="player-progress">
+                <span class="time-label" id="current-2">0:00</span>
+                <div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-2"></div>
+                  <input type="range" class="progress-range" id="range-2" min="0" max="100" step="0.1" value="0" oninput="seek(2)" /></div>
+                <span class="time-label right" id="duration-2">0:00</span>
+                <button class="speed-btn" id="speed-2" onclick="cycleSpeed(2)">1x</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- ── STRIP VISUAL ── -->
       <div class="stats-strip">
@@ -695,43 +850,6 @@
 
         <div class="divider"></div>
 
-        <!-- OFFER -->
-        <section>
-          <p class="section-label">O que você vai receber</p>
-          <h2 class="section-heading">A lei inteira. Em 15 minutos. Com o que cai em negrito.</h2>
-
-          <p class="body-text">
-            O Anti-Vade Mecum 3.0 pega cada lei do seu edital e entrega destrinchada, mastigada, com as palavras decisivas marcadas. As principais leis dos concursos policiais, na ordem de maior incidência.
-          </p>
-
-          <ul class="offer-list">
-            <li><div class="dot"></div> Atualizações Maria da Penha 2026</li>
-            <li><div class="dot"></div> Crimes Hediondos (Lei nº 8.072/90)</li>
-            <li><div class="dot"></div> Crimes Hediondos — Atualizações 2026</li>
-            <li><div class="dot"></div> Direito Processual — Inquérito Policial</li>
-            <li><div class="dot"></div> Direito Processual Penal — Ação Penal</li>
-            <li><div class="dot"></div> Estatuto do Desarmamento (Lei nº 10.826/03)</li>
-            <li><div class="dot"></div> ORCRIM (Lei nº 12.850)</li>
-            <li><div class="dot"></div> Lei de Abuso de Autoridade (Lei nº 13.869/19)</li>
-            <li><div class="dot"></div> Lei de Drogas (Lei nº 11.343/06)</li>
-            <li><div class="dot"></div> Lei de Execução Penal (Lei 7.210/84)</li>
-            <li><div class="dot"></div> Lei de Execução Penal — Atualizações 2026</li>
-            <li><div class="dot"></div> Lei de Tortura (Lei nº 9.455/97)</li>
-            <li><div class="dot"></div> Lei de Tortura — Atualizações 2026</li>
-            <li><div class="dot"></div> Lei Maria da Penha (Lei nº 11.340/06)</li>
-            <li><div class="dot"></div> Lei Maria da Penha — Atualizações 2026</li>
-            <li><div class="dot"></div> Prisão Temporária (Lei nº 7.960)</li>
-            <li><div class="dot"></div> Improbidade Administrativa (Lei nº 8.429/92)</li>
-            <li><div class="dot"></div> LEP Atualizações 2026</li>
-          </ul>
-
-          <p class="body-text">
-            Cada lei vem com <strong>destaques nos artigos de alta incidência</strong>, alertas onde a banca tenta te derrubar e comparativos quando duas leis são cobradas juntas na mesma questão.
-          </p>
-        </section>
-
-        <div class="divider"></div>
-
         <!-- BONUSES -->
         <section>
           <p class="section-label">Bônus</p>
@@ -812,6 +930,112 @@
 
     </div>
   </div>
+
+  <script>
+    /* ── Player de áudio (portado de ANTIVADE PPRS) — sem carrossel aqui,
+       os depoimentos ficam empilhados em seções separadas por tipo. */
+    var HEIGHTS = [3,6,10,14,9,13,7,12,15,8,11,6,14,10,7,13,9,5,12,8];
+    var SPEEDS  = [1, 1.5, 2];
+    var playerState = {};
+
+    function initPlayer(id, src) {
+      var audio = new Audio();
+      audio.preload = 'none';
+      var s1 = document.createElement('source'); s1.src = src + '.mp3'; s1.type = 'audio/mpeg';
+      var s2 = document.createElement('source'); s2.src = src + '.ogg'; s2.type = 'audio/ogg';
+      audio.appendChild(s1); audio.appendChild(s2);
+
+      var waveform = document.getElementById('waveform-' + id);
+      HEIGHTS.forEach(function (h, i) {
+        var bar = document.createElement('div');
+        bar.className = 'waveform-bar';
+        bar.style.cssText = 'height:' + h + 'px;--d:' + (0.6 + (i % 4) * 0.15) + 's;--dl:' + (i * 0.04) + 's';
+        waveform.appendChild(bar);
+      });
+
+      playerState[id] = { audio: audio, speedIdx: 0, playing: false };
+
+      audio.addEventListener('timeupdate', function () { updateProgress(id); });
+      audio.addEventListener('loadedmetadata', function () {
+        document.getElementById('duration-' + id).textContent = fmtTime(audio.duration);
+        document.getElementById('range-' + id).max = audio.duration;
+      });
+      audio.addEventListener('ended', function () {
+        playerState[id].playing = false;
+        audio.currentTime = 0;
+        updatePlayerUI(id);
+      });
+    }
+
+    function togglePlay(id) {
+      Object.keys(playerState).forEach(function (pid) {
+        if (pid != id && playerState[pid].playing) {
+          playerState[pid].audio.pause();
+          playerState[pid].playing = false;
+          updatePlayerUI(pid);
+        }
+      });
+      var p = playerState[id];
+      if (p.playing) { p.audio.pause(); p.playing = false; }
+      else { p.audio.play().catch(function () {}); p.playing = true; }
+      updatePlayerUI(id);
+    }
+
+    function updatePlayerUI(id) {
+      var p = playerState[id];
+      var btn = document.getElementById('btn-' + id);
+      var icon = document.getElementById('icon-' + id);
+      var glow = document.getElementById('glow-' + id);
+      var wf = document.getElementById('waveform-' + id);
+
+      btn.style.background = p.playing ? '#8b171a' : 'rgba(139,23,26,0.25)';
+      btn.style.borderColor = p.playing ? '#cc2a2d' : 'rgba(139,23,26,0.5)';
+      btn.style.boxShadow = p.playing ? '0 0 20px rgba(139,23,26,0.5)' : 'none';
+      icon.innerHTML = p.playing
+        ? '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>'
+        : '<path d="M8 5v14l11-7z"/>';
+      glow.style.opacity = p.playing ? '1' : '0';
+      wf.classList.toggle('playing', p.playing);
+    }
+
+    function updateProgress(id) {
+      var p = playerState[id];
+      var cur = p.audio.currentTime;
+      var dur = p.audio.duration || 1;
+      var pct = (cur / dur) * 100;
+      document.getElementById('current-' + id).textContent = fmtTime(cur);
+      document.getElementById('fill-' + id).style.width = pct + '%';
+      document.getElementById('range-' + id).value = cur;
+      var bars = document.querySelectorAll('#waveform-' + id + ' .waveform-bar');
+      bars.forEach(function (bar, i) {
+        bar.classList.toggle('filled', (i / bars.length) * 100 < pct);
+      });
+    }
+
+    function seek(id) {
+      playerState[id].audio.currentTime = Number(document.getElementById('range-' + id).value);
+    }
+
+    function cycleSpeed(id) {
+      var p = playerState[id];
+      p.speedIdx = (p.speedIdx + 1) % SPEEDS.length;
+      var spd = SPEEDS[p.speedIdx];
+      p.audio.playbackRate = spd;
+      var btn = document.getElementById('speed-' + id);
+      var active = spd !== 1;
+      btn.textContent = spd + 'x';
+      btn.style.background = active ? 'rgba(139,23,26,0.3)' : 'rgba(255,255,255,0.07)';
+      btn.style.borderColor = active ? 'rgba(139,23,26,0.6)' : 'rgba(255,255,255,0.12)';
+      btn.style.color = active ? '#ff8888' : 'rgba(246,246,246,0.45)';
+    }
+
+    function fmtTime(t) {
+      return Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+    }
+
+    initPlayer(1, '/depoimentos/audio01');
+    initPlayer(2, '/depoimentos/audio02');
+  </script>
 
   <script>
     var offer = "5a00e95b-b4d8-41e1-af66-49e196ff1ccc";

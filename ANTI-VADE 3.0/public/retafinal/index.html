@@ -79,20 +79,8 @@
     .thanks-arrow svg { width: 30px; height: 30px; }
     @keyframes thanks-bounce { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(10px); opacity: 1; } }
 
-    /* ── ticker faixa vermelha ── */
-    .ticker-strip {
-      width: 100%; overflow: hidden;
-      background: linear-gradient(90deg, #9b0a0a, #cc1818, #9b0a0a);
-      padding: 10px 0; margin-bottom: 22px; border-radius: 6px;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-    }
-    .ticker-track { display: flex; white-space: nowrap; width: max-content; animation: ticker-scroll 11s linear infinite; }
-    .ticker-track span {
-      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 12px;
-      letter-spacing: 0.16em; text-transform: uppercase; color: #ffffff; padding: 0 22px;
-    }
-    @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    /* ── respiro no lugar da faixa vermelha (removida) ── */
+    .header-gap { height: 14px; }
 
     /* ── Headline ── */
     .title {
@@ -165,6 +153,105 @@
     .scarcity { width: 100%; background: rgba(233,196,0,0.07); border: 1px solid rgba(233,196,0,0.22); border-radius: 10px; padding: 14px 18px; display: flex; gap: 10px; align-items: center; margin-top: 20px; }
     .scarcity svg { width: 18px; height: 18px; fill: #e9c400; flex-shrink: 0; }
     .scarcity p { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px; color: rgba(233,196,0,0.85); line-height: 1.5; }
+
+    /* ── "O que vem" logo abaixo do CTA ── */
+    .included-section { width: 100%; margin: 40px 0 0; }
+
+    /* ── Depoimentos (título no mesmo padrão do Anti Gramática 3.0) ── */
+    .testimonial-showcase { width: 100%; margin: 40px 0 8px; text-align: center; }
+    .testimonial-eyebrow {
+      margin: 0 0 10px; font-family: 'Nunito', sans-serif; font-weight: 600;
+      font-size: 13px; color: rgba(255,255,255,0.5);
+    }
+    .testimonial-title {
+      max-width: 420px; margin: 0 auto 22px; font-family: 'Sora', sans-serif;
+      font-weight: 800; font-size: clamp(19px, 6vw, 25px); line-height: 1.3; color: #fff;
+    }
+    .testimonial-title em { color: #e84040; font-style: normal; }
+
+    .tcar { width: 100%; max-width: 340px; margin: 0 auto 8px; position: relative; }
+    .tcar-viewport { overflow: hidden; border-radius: 14px; transition: height .38s cubic-bezier(.2,.7,.2,1); }
+    .tcar-track { display: flex; align-items: flex-start; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+    .tcar-slide {
+      flex: 0 0 100%; width: 100%; min-width: 0; box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; padding: 2px 36px;
+    }
+    .tcar-slide img { max-width: 100%; border-radius: 10px; display: block; }
+    .tcar-slide .video-embed {
+      width: 100%; max-width: 240px; aspect-ratio: 9 / 16; border-radius: 10px; overflow: hidden;
+    }
+    .tcar-slide .video-embed iframe { width: 100%; height: 100%; border: 0; }
+    .tcar-slide .audio-player { margin: 4px auto 0; max-width: 100%; }
+    .tcar-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 38px; height: 38px; border-radius: 50%; z-index: 2;
+      border: 1px solid rgba(255,255,255,0.15); background: rgba(20,20,20,0.85);
+      color: #fff; font-size: 1.3rem; line-height: 1; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4); cursor: pointer;
+    }
+    .tcar-arrow:hover { background: rgba(40,40,40,0.95); }
+    .tcar-prev { left: -6px; }
+    .tcar-next { right: -6px; }
+    .tcar-controls { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 12px; }
+    .tcar-pause {
+      flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: center; font-size: 0.85rem; cursor: pointer; color: #fff;
+    }
+    .tcar-dots { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .tcar-dot {
+      width: 7px; height: 7px; border-radius: 50%; border: none; padding: 0;
+      background: rgba(255,255,255,0.2); cursor: pointer; transition: background .2s ease, transform .2s ease;
+    }
+    .tcar-dot.active { background: #cc1818; transform: scale(1.3); }
+    @media (max-width: 380px) {
+      .tcar { max-width: 100%; }
+      .tcar-arrow { width: 32px; height: 32px; font-size: 1.1rem; }
+      .tcar-prev { left: 0; }
+      .tcar-next { right: 0; }
+      .tcar-slide { padding-left: 34px; padding-right: 34px; }
+    }
+
+    /* ── Player de áudio (portado de ANTIVADE PPRS/GMA/PCMA/PMAL/CARREIRA) ── */
+    .audio-player {
+      width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px; padding: 18px 20px; margin: 18px 0 10px; position: relative; overflow: hidden;
+    }
+    .player-glow {
+      position: absolute; inset: 0; border-radius: 16px;
+      background: radial-gradient(ellipse at 50% 120%, rgba(139,23,26,0.18), transparent 70%);
+      pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    }
+    .player-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; position: relative; z-index: 1; }
+    .player-avatar { font-size: 22px; flex-shrink: 0; }
+    .player-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; color: rgba(246,246,246,0.8); }
+    .player-detail { font-family: 'Nunito', sans-serif; font-weight: 500; font-size: 12px; color: rgba(246,246,246,0.3); margin-top: 2px; }
+    .player-stars { margin-left: auto; color: #AF9064; font-size: 13px; flex-shrink: 0; }
+    .player-main { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; position: relative; z-index: 1; }
+    .play-btn-audio {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(139,23,26,0.25); border: 1.5px solid rgba(139,23,26,0.5);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      transition: all 0.2s; position: relative; z-index: 1;
+    }
+    .waveform { flex: 1; display: flex; align-items: center; gap: 2.5px; height: 40px; }
+    .waveform-bar { flex: 1; min-width: 3px; border-radius: 2px; background: rgba(255,255,255,0.18); transform-origin: center; transition: background 0.15s; }
+    .waveform-bar.filled { background: #cc2a2d; }
+    @keyframes wavePulse { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.55); } }
+    .waveform.playing .waveform-bar { animation: wavePulse var(--d, 0.6s) ease-in-out infinite; animation-delay: var(--dl, 0s); }
+    .player-progress { display: flex; align-items: center; gap: 10px; position: relative; z-index: 1; }
+    .time-label { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px; color: rgba(246,246,246,0.5); min-width: 32px; flex-shrink: 0; }
+    .time-label.right { color: rgba(246,246,246,0.3); text-align: right; }
+    .progress-track { flex: 1; position: relative; height: 4px; }
+    .progress-track-bg { position: absolute; inset: 0; border-radius: 2px; background: rgba(255,255,255,0.1); }
+    .progress-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; border-radius: 2px; background: linear-gradient(90deg, #8b171a, #cc2a2d); transition: width 0.1s linear; }
+    .progress-range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; margin: 0; }
+    .speed-btn {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px;
+      padding: 3px 7px; cursor: pointer; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px;
+      color: rgba(246,246,246,0.45); letter-spacing: 0.04em; white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
+    }
 
     /* ── CTA ── */
     .cta-wrap { width: 100%; margin-top: 0; margin-bottom: 28px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
@@ -274,11 +361,7 @@
       </div>
 
       <!-- ── HEADER ── -->
-      <div class="ticker-strip">
-        <div class="ticker-track">
-          <span>PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ </span><span>PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ PARABÉNS ◆ PRÓXIMO PASSO ◆ </span>
-        </div>
-      </div>
+      <div class="header-gap"></div>
 
       <h1 class="title">
         Você resolveu<br />o português.<br />
@@ -303,6 +386,111 @@
         <p class="cta-note">Acesso imediato após confirmação do pagamento.</p>
         <button class="cta-refuse kirvano-refuse-trigger">Não, quero recusar essa oferta</button>
       </div>
+
+      <!-- ── O QUE VEM NO ANTI-VADE MECUM PPRS ── -->
+      <div class="included-section">
+        <p class="section-label">O que vem no Anti-Vade Mecum PPRS</p>
+        <h2 class="section-heading">Quais leis vêm no Anti-Vade Mecum PPRS? Veja todas abaixo.</h2>
+        <ul class="offer-list">
+          <li><div class="dot"></div> Lei de Execução Penal (Lei nº 7.210/84)</li>
+          <li><div class="dot"></div> LEP — Atualizações 2026</li>
+          <li><div class="dot"></div> Lei de Crimes de Preconceito de Raça ou Cor (Lei nº 7.716/89)</li>
+          <li><div class="dot"></div> Lei nº 14.532/2023 — Lei do Crime Racial</li>
+          <li><div class="dot"></div> Lei de Abuso de Autoridade (Lei nº 13.869/2019)</li>
+          <li><div class="dot"></div> Lei de Tortura (Lei nº 9.455/1997)</li>
+          <li><div class="dot"></div> Lei Maria da Penha (Lei nº 11.340/06)</li>
+          <li><div class="dot"></div> Atualizações Maria da Penha 2026</li>
+          <li><div class="dot"></div> Estatuto do Desarmamento (Lei nº 10.826/2003)</li>
+        </ul>
+      </div>
+
+      <!-- ── DEPOIMENTOS ── -->
+      <section class="testimonial-showcase" aria-labelledby="testimonialTitle">
+        <p class="testimonial-eyebrow">Ainda tem dúvidas?</p>
+        <h2 class="testimonial-title" id="testimonialTitle">Olha o que meus alunos já falam sobre o meu método</h2>
+
+        <div class="tcar" id="testiCarousel">
+          <div class="tcar-viewport" id="tcarViewport">
+            <div class="tcar-track" id="tcarTrack">
+
+              <div class="tcar-slide"><img src="/depoimentos/vade1.jpeg" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+              <div class="tcar-slide"><img src="/depoimentos/vade2.jpeg" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+              <div class="tcar-slide"><img src="/depoimentos/vade3.jpeg" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+              <div class="tcar-slide"><img src="/depoimentos/vade4.jpeg" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+              <div class="tcar-slide"><img src="/depoimentos/dep03.webp" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+              <div class="tcar-slide"><img src="/depoimentos/dep04.webp" alt="Depoimento de aluno sobre o Anti-Vade Mecum" loading="lazy" /></div>
+
+              <div class="tcar-slide">
+                <div class="video-embed">
+                  <iframe src="https://www.youtube-nocookie.com/embed/xR9SzsyYJ9s" title="Depoimento em vídeo sobre o Anti-Vade Mecum" allowfullscreen loading="lazy"></iframe>
+                </div>
+              </div>
+              <div class="tcar-slide">
+                <div class="video-embed">
+                  <iframe src="https://www.youtube-nocookie.com/embed/Bm9_GMtBm0Y" title="Depoimento em vídeo sobre o Anti-Vade Mecum" allowfullscreen loading="lazy"></iframe>
+                </div>
+              </div>
+
+              <div class="tcar-slide">
+                <div class="audio-player" id="player-1">
+                  <div class="player-glow" id="glow-1"></div>
+                  <div class="player-header">
+                    <div class="player-avatar">🎙️</div>
+                    <div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Vade Mecum</div></div>
+                    <div class="player-stars">★★★★★</div>
+                  </div>
+                  <div class="player-main">
+                    <button class="play-btn-audio" id="btn-1" onclick="togglePlay(1)">
+                      <svg id="icon-1" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <div class="waveform" id="waveform-1"></div>
+                  </div>
+                  <div class="player-progress">
+                    <span class="time-label" id="current-1">0:00</span>
+                    <div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-1"></div>
+                      <input type="range" class="progress-range" id="range-1" min="0" max="100" step="0.1" value="0" oninput="seek(1)" /></div>
+                    <span class="time-label right" id="duration-1">0:00</span>
+                    <button class="speed-btn" id="speed-1" onclick="cycleSpeed(1)">1x</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tcar-slide">
+                <div class="audio-player" id="player-2">
+                  <div class="player-glow" id="glow-2"></div>
+                  <div class="player-header">
+                    <div class="player-avatar">🎙️</div>
+                    <div><div class="player-name">Depoimento de aluno</div><div class="player-detail">Aprovado · Anti-Vade Mecum</div></div>
+                    <div class="player-stars">★★★★★</div>
+                  </div>
+                  <div class="player-main">
+                    <button class="play-btn-audio" id="btn-2" onclick="togglePlay(2)">
+                      <svg id="icon-2" viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <div class="waveform" id="waveform-2"></div>
+                  </div>
+                  <div class="player-progress">
+                    <span class="time-label" id="current-2">0:00</span>
+                    <div class="progress-track"><div class="progress-track-bg"></div><div class="progress-fill" id="fill-2"></div>
+                      <input type="range" class="progress-range" id="range-2" min="0" max="100" step="0.1" value="0" oninput="seek(2)" /></div>
+                    <span class="time-label right" id="duration-2">0:00</span>
+                    <button class="speed-btn" id="speed-2" onclick="cycleSpeed(2)">1x</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <button class="tcar-arrow tcar-prev" type="button" aria-label="Depoimento anterior">‹</button>
+          <button class="tcar-arrow tcar-next" type="button" aria-label="Próximo depoimento">›</button>
+
+          <div class="tcar-controls">
+            <button class="tcar-pause" id="tcarPauseBtn" type="button" aria-label="Pausar carrossel">⏸</button>
+            <div class="tcar-dots" id="tcarDots"></div>
+          </div>
+        </div>
+      </section>
 
       <!-- ── STRIP VISUAL ── -->
       <div class="stats-strip">
@@ -446,30 +634,6 @@
         <div class="divider"></div>
 
         <section>
-          <p class="section-label">O que você vai receber</p>
-          <h2 class="section-heading">A lei inteira. Em 15 minutos. Com o que cai em negrito.</h2>
-          <p class="body-text">
-            O Anti-Vade Mecum PPRS pega cada lei do edital e entrega destrinchada, mastigada, com as palavras decisivas marcadas. Exatamente as leis que caem na prova, nenhuma a mais.
-          </p>
-          <ul class="offer-list">
-            <li><div class="dot"></div> Lei de Execução Penal (Lei nº 7.210/84)</li>
-            <li><div class="dot"></div> LEP — Atualizações 2026</li>
-            <li><div class="dot"></div> Lei de Crimes de Preconceito de Raça ou Cor (Lei nº 7.716/89)</li>
-            <li><div class="dot"></div> Lei nº 14.532/2023 — Lei do Crime Racial</li>
-            <li><div class="dot"></div> Lei de Abuso de Autoridade (Lei nº 13.869/2019)</li>
-            <li><div class="dot"></div> Lei de Tortura (Lei nº 9.455/1997)</li>
-            <li><div class="dot"></div> Lei Maria da Penha (Lei nº 11.340/06)</li>
-            <li><div class="dot"></div> Atualizações Maria da Penha 2026</li>
-            <li><div class="dot"></div> Estatuto do Desarmamento (Lei nº 10.826/2003)</li>
-          </ul>
-          <p class="body-text">
-            Cada lei vem com <strong>destaques nos artigos de alta incidência</strong>, alertas onde a banca tenta te derrubar e comparativos quando duas leis são cobradas juntas na mesma questão.
-          </p>
-        </section>
-
-        <div class="divider"></div>
-
-        <section>
           <p class="section-label">Bônus</p>
           <h2 class="section-heading">O que vem junto, sem custo extra.</h2>
           <div class="bonus-item">
@@ -531,6 +695,211 @@
   </div>
 
   <!-- ── UPSELL 2 KIRVANO ── -->
+  <script>
+    /* ── Carrossel de depoimentos (mesmo padrão do Anti Gramática 3.0):
+       altura se adapta ao slide ativo, autoplay com pausa manual/setas/
+       dots, e pausa sozinho enquanto um áudio do carrossel está tocando. */
+    (function () {
+      var viewport = document.getElementById('tcarViewport');
+      var track = document.getElementById('tcarTrack');
+      var dotsWrap = document.getElementById('tcarDots');
+      var prevBtn = document.querySelector('.tcar-prev');
+      var nextBtn = document.querySelector('.tcar-next');
+      var pauseBtn = document.getElementById('tcarPauseBtn');
+      if (!viewport || !track || !dotsWrap) return;
+
+      var slides = Array.prototype.slice.call(track.children);
+      if (!slides.length) return;
+
+      var AUTOPLAY_MS = 4500;
+      var idx = 0;
+      var timerId = null;
+      var pausadoPeloUsuario = false;
+
+      slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'tcar-dot';
+        dot.setAttribute('aria-label', 'Ir pro depoimento ' + (i + 1) + ' de ' + slides.length);
+        dot.addEventListener('click', function () {
+          irPara(i);
+          reiniciarAutoplay();
+        });
+        dotsWrap.appendChild(dot);
+      });
+      var dots = Array.prototype.slice.call(dotsWrap.children);
+
+      function ajustarAltura() {
+        var ativo = slides[idx];
+        if (!ativo) return;
+        viewport.style.height = ativo.offsetHeight + 'px';
+      }
+
+      function atualizarUI() {
+        track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+        slides.forEach(function (s, i) { s.setAttribute('aria-hidden', i === idx ? 'false' : 'true'); });
+        ajustarAltura();
+      }
+
+      function irPara(novoIndice) {
+        idx = (novoIndice + slides.length) % slides.length;
+        atualizarUI();
+      }
+
+      function proximo() { irPara(idx + 1); }
+      function anterior() { irPara(idx - 1); }
+
+      function pararAutoplay() {
+        if (timerId) { clearInterval(timerId); timerId = null; }
+      }
+      function iniciarAutoplay() {
+        pararAutoplay();
+        timerId = setInterval(proximo, AUTOPLAY_MS);
+      }
+      function reiniciarAutoplay() {
+        if (!pausadoPeloUsuario) iniciarAutoplay();
+      }
+
+      if (nextBtn) nextBtn.addEventListener('click', function () { proximo(); reiniciarAutoplay(); });
+      if (prevBtn) prevBtn.addEventListener('click', function () { anterior(); reiniciarAutoplay(); });
+
+      if (pauseBtn) pauseBtn.addEventListener('click', function () {
+        pausadoPeloUsuario = !pausadoPeloUsuario;
+        pauseBtn.textContent = pausadoPeloUsuario ? '▶' : '⏸';
+        pauseBtn.setAttribute('aria-label', pausadoPeloUsuario ? 'Retomar carrossel' : 'Pausar carrossel');
+        if (pausadoPeloUsuario) pararAutoplay();
+        else iniciarAutoplay();
+      });
+
+      slides.forEach(function (slide, i) {
+        var img = slide.querySelector('img');
+        if (img && !img.complete) {
+          img.addEventListener('load', function () {
+            if (i === idx) ajustarAltura();
+          });
+        }
+      });
+      window.addEventListener('resize', ajustarAltura);
+
+      window.pausarAutoplayCarrossel = pararAutoplay;
+      window.retomarAutoplayCarrossel = reiniciarAutoplay;
+
+      atualizarUI();
+      iniciarAutoplay();
+    })();
+
+    /* ── Player de áudio (portado de ANTIVADE PPRS) ── */
+    var HEIGHTS = [3,6,10,14,9,13,7,12,15,8,11,6,14,10,7,13,9,5,12,8];
+    var SPEEDS  = [1, 1.5, 2];
+    var playerState = {};
+
+    function initPlayer(id, src) {
+      var audio = new Audio();
+      audio.preload = 'none';
+      var s1 = document.createElement('source'); s1.src = src + '.mp3'; s1.type = 'audio/mpeg';
+      var s2 = document.createElement('source'); s2.src = src + '.ogg'; s2.type = 'audio/ogg';
+      audio.appendChild(s1); audio.appendChild(s2);
+
+      var waveform = document.getElementById('waveform-' + id);
+      HEIGHTS.forEach(function (h, i) {
+        var bar = document.createElement('div');
+        bar.className = 'waveform-bar';
+        bar.style.cssText = 'height:' + h + 'px;--d:' + (0.6 + (i % 4) * 0.15) + 's;--dl:' + (i * 0.04) + 's';
+        waveform.appendChild(bar);
+      });
+
+      playerState[id] = { audio: audio, speedIdx: 0, playing: false };
+
+      audio.addEventListener('timeupdate', function () { updateProgress(id); });
+      audio.addEventListener('loadedmetadata', function () {
+        document.getElementById('duration-' + id).textContent = fmtTime(audio.duration);
+        document.getElementById('range-' + id).max = audio.duration;
+      });
+      audio.addEventListener('ended', function () {
+        playerState[id].playing = false;
+        audio.currentTime = 0;
+        updatePlayerUI(id);
+        if (window.retomarAutoplayCarrossel) window.retomarAutoplayCarrossel();
+      });
+      audio.addEventListener('play', function () {
+        if (window.pausarAutoplayCarrossel) window.pausarAutoplayCarrossel();
+      });
+      audio.addEventListener('pause', function () {
+        if (window.retomarAutoplayCarrossel) window.retomarAutoplayCarrossel();
+      });
+    }
+
+    function togglePlay(id) {
+      Object.keys(playerState).forEach(function (pid) {
+        if (pid != id && playerState[pid].playing) {
+          playerState[pid].audio.pause();
+          playerState[pid].playing = false;
+          updatePlayerUI(pid);
+        }
+      });
+      var p = playerState[id];
+      if (p.playing) { p.audio.pause(); p.playing = false; }
+      else { p.audio.play().catch(function () {}); p.playing = true; }
+      updatePlayerUI(id);
+    }
+
+    function updatePlayerUI(id) {
+      var p = playerState[id];
+      var btn = document.getElementById('btn-' + id);
+      var icon = document.getElementById('icon-' + id);
+      var glow = document.getElementById('glow-' + id);
+      var wf = document.getElementById('waveform-' + id);
+
+      btn.style.background = p.playing ? '#8b171a' : 'rgba(139,23,26,0.25)';
+      btn.style.borderColor = p.playing ? '#cc2a2d' : 'rgba(139,23,26,0.5)';
+      btn.style.boxShadow = p.playing ? '0 0 20px rgba(139,23,26,0.5)' : 'none';
+      icon.innerHTML = p.playing
+        ? '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>'
+        : '<path d="M8 5v14l11-7z"/>';
+      glow.style.opacity = p.playing ? '1' : '0';
+      wf.classList.toggle('playing', p.playing);
+    }
+
+    function updateProgress(id) {
+      var p = playerState[id];
+      var cur = p.audio.currentTime;
+      var dur = p.audio.duration || 1;
+      var pct = (cur / dur) * 100;
+      document.getElementById('current-' + id).textContent = fmtTime(cur);
+      document.getElementById('fill-' + id).style.width = pct + '%';
+      document.getElementById('range-' + id).value = cur;
+      var bars = document.querySelectorAll('#waveform-' + id + ' .waveform-bar');
+      bars.forEach(function (bar, i) {
+        bar.classList.toggle('filled', (i / bars.length) * 100 < pct);
+      });
+    }
+
+    function seek(id) {
+      playerState[id].audio.currentTime = Number(document.getElementById('range-' + id).value);
+    }
+
+    function cycleSpeed(id) {
+      var p = playerState[id];
+      p.speedIdx = (p.speedIdx + 1) % SPEEDS.length;
+      var spd = SPEEDS[p.speedIdx];
+      p.audio.playbackRate = spd;
+      var btn = document.getElementById('speed-' + id);
+      var active = spd !== 1;
+      btn.textContent = spd + 'x';
+      btn.style.background = active ? 'rgba(139,23,26,0.3)' : 'rgba(255,255,255,0.07)';
+      btn.style.borderColor = active ? 'rgba(139,23,26,0.6)' : 'rgba(255,255,255,0.12)';
+      btn.style.color = active ? '#ff8888' : 'rgba(246,246,246,0.45)';
+    }
+
+    function fmtTime(t) {
+      return Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+    }
+
+    initPlayer(1, '/depoimentos/audio01');
+    initPlayer(2, '/depoimentos/audio02');
+  </script>
+
   <script>
     var offer = "cf08e965-23ff-4eb0-b3fa-b9e079648e55";
     var nextPageURL = "https://6-pilares.web.app/";
